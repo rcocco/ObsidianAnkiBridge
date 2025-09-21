@@ -28,6 +28,9 @@ export class ClozePostprocessor extends Postprocessor {
         if (this.plugin.settings.deleteToCloze) {
             targets = targets.concat(Array.from(domField.content.querySelectorAll('del')))
         }
+        if (this.plugin.settings.boldToCloze) {
+            targets = targets.concat(Array.from(domField.content.querySelectorAll('strong')))
+        }
 
         targets.forEach((target) => {
             const content = target.textContent

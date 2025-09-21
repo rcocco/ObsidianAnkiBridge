@@ -501,6 +501,16 @@ export class SettingsTab extends PluginSettingTab {
             })
 
         new Setting(this.containerEl)
+            .setName('ClozePostprocessor: use bold as clozes')
+            .setDesc('Translates **something** into a cloze.')
+            .addToggle((toggle) => {
+                toggle.setValue(this.plugin.settings.boldToCloze).onChange((newState) => {
+                    this.plugin.settings.boldToCloze = newState
+                    this.plugin.saveSettings()
+                })
+            })
+
+        new Setting(this.containerEl)
             .setName('ClozePostprocessor: use deletes as clozes')
             .setDesc('Translates ~~something~~ into a cloze.')
             .addToggle((toggle) => {

@@ -26,6 +26,7 @@ export interface ISettings {
 
     markToCloze: boolean
     deleteToCloze: boolean
+    boldToCloze: boolean
 
     debug: boolean
     debugNetwork: boolean
@@ -111,6 +112,7 @@ export const DEFAULT_SETTINGS: ISettings = {
 
     markToCloze: true,
     deleteToCloze: true,
+    boldToCloze: true,
 
     debug: false,
     debugNetwork: false,
