@@ -20,6 +20,7 @@ export interface Config {
     delete?: boolean
     enabled?: boolean
     cloze?: boolean
+    enhancedCloze?: boolean
 }
 
 export interface ParseConfig extends Config {
@@ -42,6 +43,7 @@ export const ParseConfigSchema: yup.SchemaOf<ParseConfig> = yup.object({
     delete: yup.boolean().nullAsUndefined(),
     enabled: yup.boolean().nullAsUndefined(),
     cloze: yup.boolean().nullAsUndefined(),
+    enhancedCloze: yup.boolean().nullAsUndefined(),
 })
 
 // Location
@@ -97,6 +99,7 @@ export abstract class NoteBase {
     public config: Config
     public medias: Array<Media>
     public isCloze: boolean
+    public isEnhancedCloze: boolean
 
     constructor(
         public blueprint: Blueprint,
@@ -117,6 +120,7 @@ export abstract class NoteBase {
         this.config = config
         this.medias = medias
         this.isCloze = isCloze
+        this.isEnhancedCloze = Boolean(this.config.enhancedCloze)
     }
 
     public renderAsText(): string {
@@ -125,6 +129,12 @@ export abstract class NoteBase {
 
     public fieldsToAnkiFields(fields: NoteFields): AnkiFields {
         if (this.isCloze) {
+            if(this.config.enhancedCloze) {
+                return {
+                    Content: fields[NoteField.Frontlike] || '',
+                    'Note': fields[NoteField.Backlike] || '',
+                }
+            }
             return {
                 Text: fields[NoteField.Frontlike] || '',
                 'Back Extra': fields[NoteField.Backlike] || '',
@@ -136,9 +146,9 @@ export abstract class NoteBase {
 
     public normaliseNoteInfoFields(noteInfo: NotesInfoResponseEntity): NoteFields {
         const isCloze = noteInfo.modelName === 'Cloze'
-
-        const frontlike = isCloze ? 'Text' : 'Front'
-        const backlike = isCloze ? 'Back Extra' : 'Back'
+        const isEnhancedCloze = noteInfo.modelName === 'Enhanced Cloze 2.1 v2' 
+        const frontlike = isCloze ? (isEnhancedCloze ? 'Content': 'Text') : 'Front'
+        const backlike = isCloze ? (isEnhancedCloze ? 'Note': 'Back Extra') : 'Back'
 
         return {
             [NoteField.Frontlike]: noteInfo.fields[frontlike].value,
@@ -152,6 +162,9 @@ export abstract class NoteBase {
 
     public getModelName(): ModelName {
         if (this.isCloze) {
+            if (this.isEnhancedCloze) {
+                return 'Enhanced Cloze 2.1 v2'
+            }
             return 'Cloze'
         }
 

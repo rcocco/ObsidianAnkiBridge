@@ -4,9 +4,10 @@ import { TFile } from 'obsidian'
 
 export type AnkiBasicField = 'Front' | 'Back'
 export type AnkiClozeField = 'Text' | 'Back Extra'
-export type AnkiField = AnkiBasicField | AnkiClozeField
+export type AnkiEnhancedClozeField = 'Content' | 'Note'
+export type AnkiField = AnkiBasicField | AnkiClozeField | AnkiEnhancedClozeField
 
-export type AnkiFields = Record<AnkiBasicField, string> | Record<AnkiClozeField, string>
+export type AnkiFields = Record<AnkiBasicField, string> | Record<AnkiClozeField, string> | Record<AnkiEnhancedClozeField, string>
 
 export enum NoteField {
     Frontlike,
@@ -14,7 +15,7 @@ export enum NoteField {
 }
 export type NoteFields = Record<NoteField, string | null>
 
-export type ModelName = 'Basic' | 'Cloze'
+export type ModelName = 'Basic' | 'Cloze' | 'Enhanced Cloze 2.1 v2'
 
 export interface SourceDescriptor {
     from: number
