@@ -187,6 +187,8 @@ export class Bridge {
 
         const ankiFields = note.fieldsToAnkiFields(renderedFields)
 
+        // create deck
+        await anki.createDeck(deckName)
         // Add note
         const id = await anki.addNote(note, deckName, modelName, ankiFields, tagsToSet)
         note.id = id

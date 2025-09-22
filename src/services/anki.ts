@@ -2,6 +2,8 @@ import { PLUGIN_NAME } from 'ankibridge/consts'
 import {
     AddNoteRequest,
     AddNoteResponse,
+    CreateDeckRequest,
+    CreateDeckResponse,
     AddTagsRequest,
     CardsInfoRequest,
     CardsInfoResponse,
@@ -53,6 +55,14 @@ export class Anki {
         }
 
         return await this.invoke('changeDeck', Anki.version, params)
+    }
+
+    public async createDeck(deckName: string): Promise<CreateDeckResponse> {
+        const params: CreateDeckRequest = {
+            deck: deckName
+        }
+
+        return await this.invoke('createDeck', Anki.version, params)   
     }
 
     public async addNote(

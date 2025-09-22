@@ -89,6 +89,13 @@ export interface ChangeDeckRequest {
 
 export type ChangeDeckResponse = null
 
+// CreateDeck
+export interface CreateDeckRequest {
+    deck: string
+}
+
+export type CreateDeckResponse = null
+
 // AddNote
 export interface AddNoteEntity extends AssetsEntity {
     deckName: string
