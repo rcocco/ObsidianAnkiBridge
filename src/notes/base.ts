@@ -145,7 +145,7 @@ export abstract class NoteBase {
     }
 
     public normaliseNoteInfoFields(noteInfo: NotesInfoResponseEntity): NoteFields {
-        const isCloze = noteInfo.modelName === 'Cloze'
+        const isCloze = noteInfo.modelName === 'Cloze' || noteInfo.modelName === 'Enhanced Cloze 2.1 v2'
         const isEnhancedCloze = noteInfo.modelName === 'Enhanced Cloze 2.1 v2' 
         const frontlike = isCloze ? (isEnhancedCloze ? 'Content': 'Text') : 'Front'
         const backlike = isCloze ? (isEnhancedCloze ? 'Note': 'Back Extra') : 'Back'
