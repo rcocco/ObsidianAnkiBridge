@@ -115,6 +115,10 @@ div.ankibridge-card {
                     content: "Cloze";
                 }
 
+                &[data-type="enhancedCloze"]::before {
+                    content: "EnhancedCloze";
+                }
+
                 &[data-type="enabled"]::before {
                     content: "Enabled:";
                 }
