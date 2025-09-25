@@ -34,12 +34,19 @@ export class ClozePostprocessor extends Postprocessor {
 
         targets.forEach((target) => {
             const content = target.textContent
-            const cloze = `{{c${clozeIterator}::${content}}}`
-            const clozeNode = document.createTextNode(cloze)
-
-            target.replaceWith(clozeNode)
-
-            clozeIterator++
+            const mat = /(?:\[c(\d+)\])$/.exec(content || "")
+            if(mat) {
+                const clozeIdx = mat[1]
+                const pureContent = content?.slice(0, mat.index)
+                const cloze = `{{c${clozeIdx}::${pureContent}}}`
+                const clozeNode = document.createTextNode(cloze)
+                target.replaceWith(clozeNode)
+            }else {
+                const cloze = `{{c${clozeIterator}::${content}}}`
+                const clozeNode = document.createTextNode(cloze)
+                target.replaceWith(clozeNode)
+                clozeIterator++
+            }
         })
 
         if (clozeIterator !== 1) {
