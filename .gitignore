@@ -4,13 +4,12 @@
 
 # npm
 node_modules
-
 # We use yarn
 package-lock.json
 
 # Yarn
 yarn-error.log
-.yarn/*
+.yarn/
 !.yarn/cache
 !.yarn/patches
 !.yarn/plugins
@@ -19,11 +18,11 @@ yarn-error.log
 !.yarn/versions
 
 # build
-main.js
+# main.js
 *.js.map
-data.json
+# data.json
 rendered_test_file.json
-styles.css
+# styles.css
 
 # Visual Studio Code
 .vscode
