@@ -273,6 +273,7 @@ export abstract class CodeBlockBlueprint extends Blueprint {
         const frontEl = fieldsEl.createDiv('ankibridge-card-front ankibridge-card-content')
         MarkdownRenderer.renderMarkdown(front, frontEl, ctx.sourcePath, renderChild)
         this.includeImages(frontEl, ctx.sourcePath);
+        this.includeAudios(frontEl, ctx.sourcePath);
 
         // Add back
         if (back !== null) {
@@ -281,6 +282,7 @@ export abstract class CodeBlockBlueprint extends Blueprint {
             const backEl = fieldsEl.createDiv('ankibridge-card-back ankibridge-card-content')
             MarkdownRenderer.renderMarkdown(back, backEl, ctx.sourcePath, renderChild)
             this.includeImages(backEl, ctx.sourcePath)
+            this.includeAudios(backEl, ctx.sourcePath);
         }
 
 
@@ -293,7 +295,7 @@ export abstract class CodeBlockBlueprint extends Blueprint {
     public includeImages(element: HTMLElement, sourcePath: string) {
         element.findAll(".internal-embed").forEach(el => {
             const src = el.getAttribute("src");
-            if (src === null) return;
+            if (src === null || src.endsWith('.mp3')) return;
             const target: TFile|null = this.app.metadataCache.getFirstLinkpathDest(src, sourcePath);
             if (target !== null && target.extension !== "md") {
                 el.innerText = '';
@@ -302,6 +304,19 @@ export abstract class CodeBlockBlueprint extends Blueprint {
                     if (el.hasAttribute("alt"))   img.setAttribute("alt",   el.getAttribute("alt")?? "")
                 })
                 el.addClasses(["image-embed", "is-loaded"]);
+            }
+        });
+    }
+
+    public includeAudios(element: HTMLElement, sourcePath: string) {
+        element.findAll(".internal-embed").forEach(el => {
+            const src = el.getAttribute("src");
+            if (src === null || !src.endsWith('.mp3')) return;
+            const target: TFile|null = this.app.metadataCache.getFirstLinkpathDest(src, sourcePath);
+            if (target !== null && target.extension !== "md") {
+                el.innerText = '';
+                el.createEl("audio", {attr: {src: this.app.vault.getResourcePath(target), controls: "", controlslist: "nodownload"}})
+                el.addClasses(["media-embed", "audio-embed", "is-loaded"]);
             }
         });
     }

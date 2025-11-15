@@ -23808,11 +23808,13 @@ var CodeBlockBlueprint = class extends Blueprint {
       const frontEl = fieldsEl.createDiv("ankibridge-card-front ankibridge-card-content");
       import_obsidian6.MarkdownRenderer.renderMarkdown(front, frontEl, ctx.sourcePath, renderChild);
       this.includeImages(frontEl, ctx.sourcePath);
+      this.includeAudios(frontEl, ctx.sourcePath);
       if (back !== null) {
         const separatorEl = fieldsEl.createDiv("ankibridge-card-separator");
         const backEl = fieldsEl.createDiv("ankibridge-card-back ankibridge-card-content");
         import_obsidian6.MarkdownRenderer.renderMarkdown(back, backEl, ctx.sourcePath, renderChild);
         this.includeImages(backEl, ctx.sourcePath);
+        this.includeAudios(backEl, ctx.sourcePath);
       }
       return renderChild;
     });
@@ -23820,7 +23822,7 @@ var CodeBlockBlueprint = class extends Blueprint {
   includeImages(element, sourcePath) {
     element.findAll(".internal-embed").forEach((el) => {
       const src = el.getAttribute("src");
-      if (src === null)
+      if (src === null || src.endsWith(".mp3"))
         return;
       const target = this.app.metadataCache.getFirstLinkpathDest(src, sourcePath);
       if (target !== null && target.extension !== "md") {
@@ -23833,6 +23835,19 @@ var CodeBlockBlueprint = class extends Blueprint {
             img.setAttribute("alt", (_b = el.getAttribute("alt")) != null ? _b : "");
         });
         el.addClasses(["image-embed", "is-loaded"]);
+      }
+    });
+  }
+  includeAudios(element, sourcePath) {
+    element.findAll(".internal-embed").forEach((el) => {
+      const src = el.getAttribute("src");
+      if (src === null || !src.endsWith(".mp3"))
+        return;
+      const target = this.app.metadataCache.getFirstLinkpathDest(src, sourcePath);
+      if (target !== null && target.extension !== "md") {
+        el.innerText = "";
+        el.createEl("audio", { attr: { src: this.app.vault.getResourcePath(target), controls: "", controlslist: "nodownload" } });
+        el.addClasses(["media-embed", "audio-embed", "is-loaded"]);
       }
     });
   }
