@@ -84,7 +84,7 @@ export class MediaPostprocessor extends Postprocessor {
                     mediaEl.controls = true
 
                     const sourceEl = createEl('source')
-                    sourceEl.src = media.filename
+                    sourceEl.src = media.filename.split('/').pop()!
                     sourceEl.type = fileType.mime
 
                     mediaEl.appendChild(sourceEl)
