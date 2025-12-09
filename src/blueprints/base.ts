@@ -271,6 +271,9 @@ export abstract class CodeBlockBlueprint extends Blueprint {
 
         // Add front
         const frontEl = fieldsEl.createDiv('ankibridge-card-front ankibridge-card-content')
+        if (typeof front == 'string') {
+            front = front.replace(/(?<!\n)\n(?!\n)/g, '\n\n')
+        }
         MarkdownRenderer.renderMarkdown(front, frontEl, ctx.sourcePath, renderChild)
         this.includeImages(frontEl, ctx.sourcePath);
         this.includeAudios(frontEl, ctx.sourcePath);
@@ -280,6 +283,9 @@ export abstract class CodeBlockBlueprint extends Blueprint {
             const separatorEl = fieldsEl.createDiv('ankibridge-card-separator')
 
             const backEl = fieldsEl.createDiv('ankibridge-card-back ankibridge-card-content')
+            if (typeof back == 'string') {
+                back = back.replace(/(?<!\n)\n(?!\n)/g, '\n\n')
+            }
             MarkdownRenderer.renderMarkdown(back, backEl, ctx.sourcePath, renderChild)
             this.includeImages(backEl, ctx.sourcePath)
             this.includeAudios(backEl, ctx.sourcePath);

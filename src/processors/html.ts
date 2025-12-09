@@ -12,6 +12,7 @@ export async function processMarkdownToHtml(
     const body = createEl('body')
 
     if (field !== null) {
+        field = field.replace(/(?<!\n)\n(?!\n)/g, '\n\n')
         await MarkdownRenderer.renderMarkdown(field, body, '', {} as Component)
     }
 
