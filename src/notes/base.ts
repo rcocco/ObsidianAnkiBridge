@@ -1,3 +1,4 @@
+import { CachedMetadata } from 'obsidian'
 import { Blueprint } from 'ankibridge/blueprints/base'
 import { NotesInfoResponseEntity } from 'ankibridge/entities/network'
 import {
@@ -100,6 +101,7 @@ export abstract class NoteBase {
     public medias: Array<Media>
     public isCloze: boolean
     public isEnhancedCloze: boolean
+    public metadata: CachedMetadata
 
     constructor(
         public blueprint: Blueprint,
@@ -121,6 +123,10 @@ export abstract class NoteBase {
         this.medias = medias
         this.isCloze = isCloze
         this.isEnhancedCloze = Boolean(this.config.enhancedCloze)
+    }
+
+    public setMetaData(metadata: CachedMetadata) {
+        this.metadata = metadata
     }
 
     public renderAsText(): string {
@@ -187,6 +193,13 @@ export abstract class NoteBase {
         )
         if (resolvedDefaultDeck) {
             return resolvedDefaultDeck
+        }
+
+        if(this.metadata) {
+            const metaDeckName = this.metadata?.frontmatter?.['anki_deck']
+            if(metaDeckName) {
+                return metaDeckName
+            }
         }
 
         // Fallback if no deck was found

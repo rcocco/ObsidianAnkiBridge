@@ -50,7 +50,7 @@ export class Reader {
 
     async readFile(file: TFile): Promise<ProcessedFileResult> {
         const fileContent = stripCr(await this.app.vault.read(file))
-
+        const metadata = this.app.metadataCache.getFileCache(file)!
         const initialFragment: Fragment = {
             text: fileContent,
             sourceFile: file,
@@ -70,6 +70,7 @@ export class Reader {
 
                 for (const processedElement of processedElements) {
                     if (processedElement instanceof NoteBase) {
+                        processedElement.setMetaData(metadata)
                         notes.push(processedElement)
                         continue
                     }
