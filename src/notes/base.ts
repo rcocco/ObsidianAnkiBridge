@@ -207,7 +207,11 @@ export abstract class NoteBase {
     }
 
     public getTags(plugin: AnkiBridgePlugin): Array<string> {
-        return [plugin.settings.tagInAnki, ...(this.config.tags || [])]
+        let noteTags: string[] | undefined
+        if(this.metadata) {
+            noteTags = this.metadata?.frontmatter?.['anki_tags']
+        }
+        return [plugin.settings.tagInAnki, ...(noteTags || []), ...(this.config.tags || [])]
     }
 
     public getEnabled(): boolean {
