@@ -7,7 +7,7 @@ import { Reader } from 'ankibridge/services/reader'
 import { DEFAULT_SETTINGS, Settings } from 'ankibridge/settings/settings'
 import { SettingsTab } from 'ankibridge/settings/settings-tab'
 import _ from 'lodash'
-import { addIcon, Notice, Plugin, TFile } from 'obsidian'
+import { addIcon, Notice, Plugin, TFile, Editor, EditorPosition } from 'obsidian'
 
 export default class AnkiBridgePlugin extends Plugin {
     public settings: Settings
@@ -64,6 +64,97 @@ export default class AnkiBridgePlugin extends Plugin {
             callback: async () => {
                 await this.syncAllFiles()
             },
+        })
+
+        // wrap card
+        this.addCommand({
+            id: 'anki-bridge-wrap-with-shortcut',
+            name: 'Wrap text with anki card',
+            editorCallback: (editor: Editor)=>{
+                const startTag = "```anki\n"
+                const endTag = "\n```"
+
+                const selectedText = editor.getSelection();
+                const formatSelectedText = formatText(selectedText)
+                console.log(formatSelectedText)
+                function formatText(content: string) {
+                    const lines = content.split('\n');
+                    if(content.startsWith('---\n')) {
+                        return content
+                    }
+                    // 如果开头不是 tags:，直接原样返回
+                    if (!lines[0].startsWith('tags:')) {
+                        return `---\n` + content;
+                    }
+                    let lastListIndex = 0;
+                    // 从第二行开始向下找，直到找到最后一个无序列表项 (-)
+                    for (let i = 1; i < lines.length; i++) {
+                        const line = lines[i].trim();
+                        if (line.startsWith('- ')) {
+                            lastListIndex = i;
+                        } else if (line === '') {
+                            // 允许列表之间有空行，继续向下找
+                            continue;
+                        } else {
+                            // 遇到了既不是列表也不是空行的内容（如数字列表或普通文本），停止搜索
+                            break;
+                        }
+                    }
+
+                    // 检查最后一个列表项的下一行是否已经是 ---
+                    // 这里使用 trim() 是为了防止有空格干扰判断
+                    const nextLine = lines[lastListIndex + 1];
+                    if (nextLine !== undefined && nextLine.trim() === '---') {
+                        return content; // 已经有了，直接返回
+                    }
+
+                    // 在最后一个列表项后面插入分割线
+                    lines.splice(lastListIndex + 1, 0, '---');
+                    
+                    return lines.join('\n');
+
+                }
+
+                function toPos(editor: Editor, pos: number): EditorPosition {
+                  return editor.offsetToPos(pos);
+                }
+
+                function getRange(editor: Editor, from: number, to: number): string {
+                try {
+                    return editor.getRange(toPos(editor, from), toPos(editor, to));
+                } catch (_) {
+                    return '';
+                }
+                }
+
+                /* Detect whether the selected text is packed by <u></u>.
+                If true, unpack it, else pack with <u></u>. */
+
+                const fos = editor.posToOffset(editor.getCursor("from")); // 选中部分的起始坐标，若无选中则是光标位置
+                const tos = editor.posToOffset(editor.getCursor("to")); // 选中部分的结束坐标
+                const len = selectedText.length;
+
+                const beforeText = getRange(editor, fos - startTag.length, tos - len);
+                const afterText = getRange(editor, fos + len, tos + endTag.length);
+                const startText = getRange(editor, fos, fos + startTag.length);
+                const endText = getRange(editor, tos - endTag.length, tos);
+
+                if (beforeText === startTag && afterText === endTag) {
+                //=> undo (inside selection)
+                    editor.setSelection(toPos(editor, fos - startTag.length), toPos(editor, tos + endTag.length));
+                    editor.replaceSelection(selectedText);
+                    // re-select
+                    editor.setSelection(toPos(editor, fos - startTag.length), toPos(editor, tos - startTag.length));
+                } else if (startText === startTag && endText === endTag) {
+                    //=> undo (outside selection)
+                    editor.replaceSelection(editor.getRange(toPos(editor, fos + startTag.length), toPos(editor, tos - endTag.length)));
+                    // re-select
+                    editor.setSelection(toPos(editor, fos), toPos(editor, tos - (startTag.length + endTag.length)));
+                } else {
+                    editor.replaceSelection(`${startTag}${formatSelectedText}${endTag}`);
+                    editor.setSelection(toPos(editor, fos + startTag.length), toPos(editor, tos + startTag.length + (formatSelectedText.length-selectedText.length)));
+                }
+            }
         })
 
         this.addRibbonIcon('flashcards', 'Sync with Anki', async () => {
