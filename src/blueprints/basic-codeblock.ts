@@ -34,12 +34,17 @@ export class BasicCodeBlockBlueprint extends CodeBlockBlueprint {
 
         const config = dump({
             id: note.id,
-            deck: note.config.deck,
+            deck: note.config.deck || note.config.deckName,
             tags: note.config.tags,
             delete: note.config.delete,
             enabled: note.config.enabled,
             cloze: note.config.cloze,
             enhancedCloze: note.config.enhancedCloze,
+            recite: note.config.recite,
+            title: note.config.title,
+            contextLines: note.config.contextLines,
+            reciteLines: note.config.reciteLines,
+            reciteIds: note.config.reciteIds,
         })
 
         let str = ''

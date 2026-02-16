@@ -5,17 +5,26 @@ import { TFile } from 'obsidian'
 export type AnkiBasicField = 'Front' | 'Back'
 export type AnkiClozeField = 'Text' | 'Back Extra'
 export type AnkiEnhancedClozeField = 'Content' | 'Note'
-export type AnkiField = AnkiBasicField | AnkiClozeField | AnkiEnhancedClozeField
+export type AnkiLpcgField = 'Line' | 'Context' | 'Title' | 'Author' | 'Sequence' | 'Prompt'
+export type AnkiField = AnkiBasicField | AnkiClozeField | AnkiEnhancedClozeField | AnkiLpcgField
 
-export type AnkiFields = Record<AnkiBasicField, string> | Record<AnkiClozeField, string> | Record<AnkiEnhancedClozeField, string>
+export type AnkiFields =
+    | Record<AnkiBasicField, string>
+    | Record<AnkiClozeField, string>
+    | Record<AnkiEnhancedClozeField, string>
+    | Record<AnkiLpcgField, string>
 
 export enum NoteField {
     Frontlike,
     Backlike,
+    Title,
+    Author,
+    Sequence,
+    Prompt,
 }
-export type NoteFields = Record<NoteField, string | null>
+export type NoteFields = Partial<Record<NoteField, string | null>>
 
-export type ModelName = 'Basic' | 'Cloze' | 'Enhanced Cloze 2.1 v2'
+export type ModelName = 'Basic' | 'Cloze' | 'Enhanced Cloze 2.1 v2' | 'LPCG 1.0'
 
 export interface SourceDescriptor {
     from: number

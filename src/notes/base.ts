@@ -17,11 +17,17 @@ import { load } from 'js-yaml'
 // Config
 export interface Config {
     deck?: string
+    deckName?: string
     tags?: Array<string>
     delete?: boolean
     enabled?: boolean
     cloze?: boolean
     enhancedCloze?: boolean
+    recite?: boolean
+    title?: string
+    contextLines?: number
+    reciteLines?: number
+    reciteIds?: Array<number>
 }
 
 export interface ParseConfig extends Config {
@@ -40,11 +46,17 @@ export class ParseConfig {
 export const ParseConfigSchema: yup.SchemaOf<ParseConfig> = yup.object({
     id: yup.number().nullable().defined().default(null),
     deck: yup.string().emptyAsUndefined().nullAsUndefined(),
+    deckName: yup.string().emptyAsUndefined().nullAsUndefined(),
     tags: yup.array().of(yup.string()).notRequired(),
     delete: yup.boolean().nullAsUndefined(),
     enabled: yup.boolean().nullAsUndefined(),
     cloze: yup.boolean().nullAsUndefined(),
     enhancedCloze: yup.boolean().nullAsUndefined(),
+    recite: yup.boolean().nullAsUndefined(),
+    title: yup.string().emptyAsUndefined().nullAsUndefined(),
+    contextLines: yup.number().integer().min(0).nullAsUndefined(),
+    reciteLines: yup.number().integer().min(1).nullAsUndefined(),
+    reciteIds: yup.array().of(yup.number().integer().defined()).notRequired(),
 })
 
 // Location
@@ -157,8 +169,8 @@ export abstract class NoteBase {
         const backlike = isCloze ? (isEnhancedCloze ? 'Note': 'Back Extra') : 'Back'
 
         return {
-            [NoteField.Frontlike]: noteInfo.fields[frontlike].value,
-            [NoteField.Backlike]: noteInfo.fields[backlike].value,
+            [NoteField.Frontlike]: noteInfo.fields[frontlike]?.value || '',
+            [NoteField.Backlike]: noteInfo.fields[backlike]?.value || '',
         }
     }
 
@@ -184,6 +196,9 @@ export abstract class NoteBase {
         // Use in-note configured deck
         if (this.config.deck) {
             return this.config.deck
+        }
+        if (this.config.deckName) {
+            return this.config.deckName
         }
 
         // Try to resolve based on default deck mappings

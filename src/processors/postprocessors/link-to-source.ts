@@ -16,7 +16,14 @@ export class LinkToSourcePostprocessor extends Postprocessor {
         domField: HTMLTemplateElement,
         ctx: ProcessorContext,
     ): Promise<void> {
-        if (ctx.noteField == NoteField.Backlike) {
+        const isReciteModel = note.getModelName() === 'LPCG 1.0'
+        const noteField = Number(ctx.noteField) as NoteField
+
+        if (isReciteModel) {
+            if (noteField !== NoteField.Frontlike) {
+                return
+            }
+        } else if (noteField === NoteField.Backlike) {
             return
         }
 

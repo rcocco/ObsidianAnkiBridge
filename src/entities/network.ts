@@ -161,7 +161,7 @@ export interface NotesInfoResponseEntity {
     modelName: ModelName
     tags: Array<string>
     cards: Array<number>
-    fields: Record<AnkiField, FieldEntity>
+    fields: Partial<Record<AnkiField, FieldEntity>>
 }
 
 export type NotesInfoResponse = Array<NotesInfoResponseEntity>

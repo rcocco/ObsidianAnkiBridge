@@ -6,12 +6,15 @@ import {
 import { NoteAction, NoteField, NoteFields } from 'ankibridge/entities/note'
 import AnkiBridgePlugin from 'ankibridge/main'
 import { hasID, NoteBase, NoteWithID } from 'ankibridge/notes/base'
+import { BasicNote } from 'ankibridge/notes/basic'
+import { ReciteNote } from 'ankibridge/notes/recite'
 import { getProcessorById } from 'ankibridge/processors'
 import { ProcessorContext } from 'ankibridge/processors/base'
 import { processMarkdownToHtml } from 'ankibridge/processors/html'
 import { Postprocessor } from 'ankibridge/processors/postprocessors/base'
 import { Preprocessor } from 'ankibridge/processors/preprocessors/base'
 import { ProcessedFileResult } from 'ankibridge/services/reader'
+import { toReciteCards } from 'ankibridge/utils/recite'
 import _ from 'lodash'
 import { App, Notice } from 'obsidian'
 import promiseAllProperties from 'promise-all-properties'
@@ -212,12 +215,132 @@ export class Bridge {
         return null
     }
 
+    private buildReciteNotes(note: NoteBase): Array<ReciteNote> {
+        const sourceText = note.fields[NoteField.Frontlike] || ''
+        const title = note.config.title
+        const contextLines = note.config.contextLines ?? 3
+        const reciteLines = note.config.reciteLines ?? 2
+        const cards = toReciteCards(sourceText, contextLines, reciteLines)
+        const sourceIds = note.config.reciteIds || []
+
+        const noteConfig = {
+            ...note.config,
+            recite: false,
+            reciteIds: undefined,
+        }
+
+        return cards.map((card, idx) => {
+            const reciteNote = new ReciteNote(
+                note.blueprint,
+                sourceIds[idx] ?? null,
+                {
+                    line: card.recite,
+                    context: card.context,
+                    title: title || '',
+                    author: '',
+                    sequence: String(idx + 1),
+                    prompt: '',
+                },
+                note.source,
+                note.sourceText,
+                {
+                    config: { ...noteConfig },
+                    medias: note.medias,
+                },
+            )
+            if (note.metadata) {
+                reciteNote.setMetaData(note.metadata)
+            }
+            return reciteNote
+        })
+    }
+
+    private reciteProxyNote(note: NoteBase, id: number): NoteWithID {
+        return new BasicNote(note.blueprint, id, '', '', note.source, note.sourceText, {
+            config: {
+                ...note.config,
+                recite: false,
+                reciteIds: undefined,
+            },
+            medias: [],
+        }) as NoteWithID
+    }
+
+    private async deleteReciteIds(note: NoteBase, ids: Array<number>): Promise<void> {
+        const anki = this.plugin.anki
+
+        for (const id of ids) {
+            const proxyNote = this.reciteProxyNote(note, id)
+            const noteInfo = await anki.noteInfo(proxyNote)
+
+            if (!_.isEmpty(noteInfo)) {
+                await anki.deleteNote(proxyNote)
+            }
+        }
+    }
+
+    private resolveBatchAction(actions: Array<NoteAction>, hadStaleDeletes: boolean): NoteAction {
+        if (_.isEmpty(actions)) {
+            return NoteAction.Checked
+        }
+        if (actions.includes(NoteAction.Recreated)) {
+            return NoteAction.Recreated
+        }
+        if (actions.includes(NoteAction.Created)) {
+            return NoteAction.Created
+        }
+        if (hadStaleDeletes || actions.includes(NoteAction.Updated)) {
+            return NoteAction.Updated
+        }
+        if (actions.every((action) => action === NoteAction.Skipped)) {
+            return NoteAction.Skipped
+        }
+
+        return NoteAction.Checked
+    }
+
+    private async processReciteNote(note: NoteBase): Promise<NoteAction> {
+        note.id = null
+        const previousIds = [...(note.config.reciteIds || [])]
+
+        if (note.config.delete) {
+            await this.deleteReciteIds(note, previousIds)
+            note.config.reciteIds = []
+            note.config.delete = undefined
+            note.config.enabled = false
+            note.id = null
+
+            return NoteAction.Deleted
+        }
+
+        const reciteNotes = this.buildReciteNotes(note)
+        const actions: Array<NoteAction> = []
+
+        for (const reciteNote of reciteNotes) {
+            actions.push(await this.processNote(reciteNote))
+        }
+
+        const nextIds = reciteNotes
+            .filter((reciteNote): reciteNote is NoteWithID => hasID(reciteNote))
+            .map((reciteNote) => reciteNote.id)
+        note.config.reciteIds = nextIds
+
+        const staleIds = _.difference(previousIds, nextIds)
+        await this.deleteReciteIds(note, staleIds)
+
+        return this.resolveBatchAction(actions, staleIds.length > 0)
+    }
+
     private async processNote(note: NoteBase | NoteWithID): Promise<NoteAction> {
         const anki = this.plugin.anki
 
         // Skip
         if (note.config.enabled === false) {
             return NoteAction.Skipped
+        }
+
+        if (note.config.recite) {
+            return this.processReciteNote(note)
         }
 
         // Delete
