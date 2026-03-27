@@ -21350,6 +21350,7 @@ var ClozePostprocessor = class extends Postprocessor {
         return;
       }
       let clozeIterator = 1;
+      let sawCloze = false;
       let targets = [];
       if (this.plugin.settings.markToCloze) {
         targets = targets.concat(Array.from(domField.content.querySelectorAll("mark")));
@@ -21360,6 +21361,7 @@ var ClozePostprocessor = class extends Postprocessor {
       if (this.plugin.settings.boldToCloze) {
         targets = targets.concat(Array.from(domField.content.querySelectorAll("strong")));
       }
+      const reservedClozeIndices = new Set(targets.map((target) => /(?:\[c(\d+)\])$/.exec(target.textContent || "")).filter((match) => match !== null).map((match) => Number(match[1])));
       targets.forEach((target) => {
         const content = target.textContent;
         const mat = /(?:\[c(\d+)\])$/.exec(content || "");
@@ -21369,14 +21371,19 @@ var ClozePostprocessor = class extends Postprocessor {
           const cloze = `{{c${clozeIdx}::${pureContent}}}`;
           const clozeNode = document.createTextNode(cloze);
           target.replaceWith(clozeNode);
+          sawCloze = true;
         } else {
+          while (reservedClozeIndices.has(clozeIterator)) {
+            clozeIterator++;
+          }
           const cloze = `{{c${clozeIterator}::${content}}}`;
           const clozeNode = document.createTextNode(cloze);
           target.replaceWith(clozeNode);
           clozeIterator++;
+          sawCloze = true;
         }
       });
-      if (clozeIterator !== 1) {
+      if (sawCloze) {
         note.isCloze = true;
       }
     });
