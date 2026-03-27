@@ -25112,6 +25112,69 @@ var SettingsTab = class extends import_obsidian10.PluginSettingTab {
   }
 };
 
+// pnp:/home/rcocco/ObsidianAnkiBridge/src/utils/anki-shortcut.ts
+var CONFIG_PROPERTY_RE = /^[A-Za-z_][A-Za-z0-9_-]*:\s*(.*)$/;
+function isConfigPropertyLine(line) {
+  return CONFIG_PROPERTY_RE.test(line);
+}
+function isConfigContinuationLine(line) {
+  const trimmed = line.trim();
+  return line.startsWith(" ") || line.startsWith("	") || trimmed.startsWith("- ");
+}
+function getLeadingConfigEndIndex(lines) {
+  let idx = 0;
+  let foundConfig = false;
+  while (idx < lines.length) {
+    const line = lines[idx];
+    if (!isConfigPropertyLine(line)) {
+      break;
+    }
+    foundConfig = true;
+    idx++;
+    while (idx < lines.length) {
+      const continuation = lines[idx];
+      if (continuation.trim() === "---") {
+        break;
+      }
+      if (!isConfigContinuationLine(continuation)) {
+        break;
+      }
+      idx++;
+    }
+  }
+  return foundConfig ? idx : 0;
+}
+function formatSelectionForAnkiShortcutWrap(content) {
+  var _a;
+  const lines = content.split("\n");
+  const configEnd = getLeadingConfigEndIndex(lines);
+  if (configEnd === 0) {
+    if (((_a = lines[0]) == null ? void 0 : _a.trim()) === "---") {
+      return content;
+    }
+    return ["---", ...lines].join("\n");
+  }
+  if (configEnd >= lines.length || lines[configEnd].trim() === "---") {
+    return content;
+  }
+  return [...lines.slice(0, configEnd), "---", ...lines.slice(configEnd)].join("\n");
+}
+function formatSelectionForAnkiShortcutUnwrap(content) {
+  var _a;
+  const lines = content.split("\n");
+  const configEnd = getLeadingConfigEndIndex(lines);
+  if (configEnd === 0) {
+    if (((_a = lines[0]) == null ? void 0 : _a.trim()) !== "---") {
+      return content;
+    }
+    return lines.slice(1).join("\n");
+  }
+  if (configEnd >= lines.length || lines[configEnd].trim() !== "---") {
+    return content;
+  }
+  return [...lines.slice(0, configEnd), ...lines.slice(configEnd + 1)].join("\n");
+}
+
 // pnp:/home/rcocco/ObsidianAnkiBridge/src/main.ts
 var import_lodash6 = __toModule(require_lodash());
 var import_obsidian11 = __toModule(require("obsidian"));
@@ -25166,35 +25229,7 @@ var AnkiBridgePlugin = class extends import_obsidian11.Plugin {
           const startTag = "```anki\n";
           const endTag = "\n```";
           const selectedText = editor.getSelection();
-          const formatSelectedText = formatText(selectedText);
-          console.log(formatSelectedText);
-          function formatText(content) {
-            const lines = content.split("\n");
-            if (content.startsWith("---\n")) {
-              return content;
-            }
-            if (!lines[0].startsWith("tags:")) {
-              return `---
-` + content;
-            }
-            let lastListIndex = 0;
-            for (let i = 1; i < lines.length; i++) {
-              const line = lines[i].trim();
-              if (line.startsWith("- ")) {
-                lastListIndex = i;
-              } else if (line === "") {
-                continue;
-              } else {
-                break;
-              }
-            }
-            const nextLine = lines[lastListIndex + 1];
-            if (nextLine !== void 0 && nextLine.trim() === "---") {
-              return content;
-            }
-            lines.splice(lastListIndex + 1, 0, "---");
-            return lines.join("\n");
-          }
+          const formatSelectedText = formatSelectionForAnkiShortcutWrap(selectedText);
           function toPos(editor2, pos) {
             return editor2.offsetToPos(pos);
           }
@@ -25214,11 +25249,13 @@ var AnkiBridgePlugin = class extends import_obsidian11.Plugin {
           const endText = getRange(editor, tos - endTag.length, tos);
           if (beforeText === startTag && afterText === endTag) {
             editor.setSelection(toPos(editor, fos - startTag.length), toPos(editor, tos + endTag.length));
-            editor.replaceSelection(selectedText);
-            editor.setSelection(toPos(editor, fos - startTag.length), toPos(editor, tos - startTag.length));
+            const unwrappedText = formatSelectionForAnkiShortcutUnwrap(selectedText);
+            editor.replaceSelection(unwrappedText);
+            editor.setSelection(toPos(editor, fos - startTag.length), toPos(editor, fos - startTag.length + unwrappedText.length));
           } else if (startText === startTag && endText === endTag) {
-            editor.replaceSelection(editor.getRange(toPos(editor, fos + startTag.length), toPos(editor, tos - endTag.length)));
-            editor.setSelection(toPos(editor, fos), toPos(editor, tos - (startTag.length + endTag.length)));
+            const unwrappedText = formatSelectionForAnkiShortcutUnwrap(editor.getRange(toPos(editor, fos + startTag.length), toPos(editor, tos - endTag.length)));
+            editor.replaceSelection(unwrappedText);
+            editor.setSelection(toPos(editor, fos), toPos(editor, fos + unwrappedText.length));
           } else {
             editor.replaceSelection(`${startTag}${formatSelectedText}${endTag}`);
             editor.setSelection(toPos(editor, fos + startTag.length), toPos(editor, tos + startTag.length + (formatSelectedText.length - selectedText.length)));

@@ -6,6 +6,10 @@ import { Bridge } from 'ankibridge/services/bridge'
 import { Reader } from 'ankibridge/services/reader'
 import { DEFAULT_SETTINGS, Settings } from 'ankibridge/settings/settings'
 import { SettingsTab } from 'ankibridge/settings/settings-tab'
+import {
+    formatSelectionForAnkiShortcutUnwrap,
+    formatSelectionForAnkiShortcutWrap,
+} from 'ankibridge/utils/anki-shortcut'
 import _ from 'lodash'
 import { addIcon, Notice, Plugin, TFile, Editor, EditorPosition } from 'obsidian'
 
@@ -75,45 +79,7 @@ export default class AnkiBridgePlugin extends Plugin {
                 const endTag = "\n```"
 
                 const selectedText = editor.getSelection();
-                const formatSelectedText = formatText(selectedText)
-                console.log(formatSelectedText)
-                function formatText(content: string) {
-                    const lines = content.split('\n');
-                    if(content.startsWith('---\n')) {
-                        return content
-                    }
-                    // 如果开头不是 tags:，直接原样返回
-                    if (!lines[0].startsWith('tags:')) {
-                        return `---\n` + content;
-                    }
-                    let lastListIndex = 0;
-                    // 从第二行开始向下找，直到找到最后一个无序列表项 (-)
-                    for (let i = 1; i < lines.length; i++) {
-                        const line = lines[i].trim();
-                        if (line.startsWith('- ')) {
-                            lastListIndex = i;
-                        } else if (line === '') {
-                            // 允许列表之间有空行，继续向下找
-                            continue;
-                        } else {
-                            // 遇到了既不是列表也不是空行的内容（如数字列表或普通文本），停止搜索
-                            break;
-                        }
-                    }
-
-                    // 检查最后一个列表项的下一行是否已经是 ---
-                    // 这里使用 trim() 是为了防止有空格干扰判断
-                    const nextLine = lines[lastListIndex + 1];
-                    if (nextLine !== undefined && nextLine.trim() === '---') {
-                        return content; // 已经有了，直接返回
-                    }
-
-                    // 在最后一个列表项后面插入分割线
-                    lines.splice(lastListIndex + 1, 0, '---');
-                    
-                    return lines.join('\n');
-
-                }
+                const formatSelectedText = formatSelectionForAnkiShortcutWrap(selectedText)
 
                 function toPos(editor: Editor, pos: number): EditorPosition {
                   return editor.offsetToPos(pos);
@@ -142,14 +108,21 @@ export default class AnkiBridgePlugin extends Plugin {
                 if (beforeText === startTag && afterText === endTag) {
                 //=> undo (inside selection)
                     editor.setSelection(toPos(editor, fos - startTag.length), toPos(editor, tos + endTag.length));
-                    editor.replaceSelection(selectedText);
+                    const unwrappedText = formatSelectionForAnkiShortcutUnwrap(selectedText)
+                    editor.replaceSelection(unwrappedText);
                     // re-select
-                    editor.setSelection(toPos(editor, fos - startTag.length), toPos(editor, tos - startTag.length));
+                    editor.setSelection(
+                        toPos(editor, fos - startTag.length),
+                        toPos(editor, fos - startTag.length + unwrappedText.length),
+                    );
                 } else if (startText === startTag && endText === endTag) {
                     //=> undo (outside selection)
-                    editor.replaceSelection(editor.getRange(toPos(editor, fos + startTag.length), toPos(editor, tos - endTag.length)));
+                    const unwrappedText = formatSelectionForAnkiShortcutUnwrap(
+                        editor.getRange(toPos(editor, fos + startTag.length), toPos(editor, tos - endTag.length)),
+                    )
+                    editor.replaceSelection(unwrappedText);
                     // re-select
-                    editor.setSelection(toPos(editor, fos), toPos(editor, tos - (startTag.length + endTag.length)));
+                    editor.setSelection(toPos(editor, fos), toPos(editor, fos + unwrappedText.length));
                 } else {
                     editor.replaceSelection(`${startTag}${formatSelectedText}${endTag}`);
                     editor.setSelection(toPos(editor, fos + startTag.length), toPos(editor, tos + startTag.length + (formatSelectedText.length-selectedText.length)));
