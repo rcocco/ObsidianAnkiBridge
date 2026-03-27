@@ -90,8 +90,10 @@ export abstract class Blueprint {
                 case 'note': {
                     // Assume location is good for now
                     const location: ParseLocation = result['location']
-                    const from = location.start.line + fragment.sourceOffset
-                    const to = location.end.line + fragment.sourceOffset
+                    const localFrom = location.start.line
+                    const localTo = location.end.line
+                    const from = localFrom + fragment.sourceOffset
+                    const to = localTo + fragment.sourceOffset
 
                     const source: SourceDescriptor = {
                         from: from,
@@ -101,7 +103,7 @@ export abstract class Blueprint {
                     const sourceText =
                         fragment.text
                             .split('\n')
-                            .slice(from - 1, to - 1)
+                            .slice(localFrom - 1, localTo - 1)
                             .join('\n') + '\n'
 
                     try {
@@ -124,7 +126,7 @@ export abstract class Blueprint {
                         newFragment = {
                             text: '',
                             sourceFile: fragment.sourceFile,
-                            sourceOffset: to + 1,
+                            sourceOffset: to,
                         }
                         elements.push(note)
                     } catch (e) {
@@ -137,13 +139,13 @@ export abstract class Blueprint {
                                 newFragment = {
                                     text: '',
                                     sourceFile: fragment.sourceFile,
-                                    sourceOffset: to + 1,
+                                    sourceOffset: to,
                                 }
                                 // If invalid push back this part of the file as a whole fragment
                                 elements.push({
                                     text: sourceText,
                                     sourceFile: fragment.sourceFile,
-                                    sourceOffset: from,
+                                    sourceOffset: from - 1,
                                 })
 
                                 continue

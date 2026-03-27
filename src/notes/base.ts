@@ -110,6 +110,7 @@ export const ParseNoteResultSchema: yup.SchemaOf<ParseNoteResult> = yup.object({
 
 export abstract class NoteBase {
     public config: Config
+    public scopedConfig?: Config
     public medias: Array<Media>
     public isCloze: boolean
     public isEnhancedCloze: boolean
@@ -139,6 +140,10 @@ export abstract class NoteBase {
 
     public setMetaData(metadata: CachedMetadata) {
         this.metadata = metadata
+    }
+
+    public setScopedConfig(config: Config | undefined) {
+        this.scopedConfig = config
     }
 
     public renderAsText(): string {
@@ -201,13 +206,11 @@ export abstract class NoteBase {
             return this.config.deckName
         }
 
-        // Try to resolve based on default deck mappings
-        const resolvedDefaultDeck = getDefaultDeckForFolder(
-            this.source.file.parent,
-            plugin.settings.defaultDeckMaps,
-        )
-        if (resolvedDefaultDeck) {
-            return resolvedDefaultDeck
+        if (this.scopedConfig?.deck) {
+            return this.scopedConfig.deck
+        }
+        if (this.scopedConfig?.deckName) {
+            return this.scopedConfig.deckName
         }
 
         if(this.metadata) {
@@ -215,6 +218,15 @@ export abstract class NoteBase {
             if(metaDeckName) {
                 return metaDeckName
             }
+        }
+
+        // Try to resolve based on default deck mappings
+        const resolvedDefaultDeck = getDefaultDeckForFolder(
+            this.source.file.parent,
+            plugin.settings.defaultDeckMaps,
+        )
+        if (resolvedDefaultDeck) {
+            return resolvedDefaultDeck
         }
 
         // Fallback if no deck was found
@@ -226,7 +238,12 @@ export abstract class NoteBase {
         if(this.metadata) {
             noteTags = this.metadata?.frontmatter?.['anki_tags']
         }
-        return [plugin.settings.tagInAnki, ...(noteTags || []), ...(this.config.tags || [])]
+        return [
+            plugin.settings.tagInAnki,
+            ...(noteTags || []),
+            ...(this.scopedConfig?.tags || []),
+            ...(this.config.tags || []),
+        ]
     }
 
     public getEnabled(): boolean {

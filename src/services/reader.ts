@@ -3,6 +3,7 @@ import { Blueprint } from 'ankibridge/blueprints/base'
 import { Fragment, FragmentProcessingResult } from 'ankibridge/entities/note'
 import AnkiBridgePlugin from 'ankibridge/main'
 import { NoteBase } from 'ankibridge/notes/base'
+import { resolveHeadingScopeForLine } from 'ankibridge/utils/heading-scope'
 import { stripCr } from 'ankibridge/utils/file'
 import _ from 'lodash'
 import { App, TFile } from 'obsidian'
@@ -71,6 +72,9 @@ export class Reader {
                 for (const processedElement of processedElements) {
                     if (processedElement instanceof NoteBase) {
                         processedElement.setMetaData(metadata)
+                        processedElement.setScopedConfig(
+                            resolveHeadingScopeForLine(fileContent, processedElement.source.from),
+                        )
                         notes.push(processedElement)
                         continue
                     }
