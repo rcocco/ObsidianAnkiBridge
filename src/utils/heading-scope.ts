@@ -2,12 +2,13 @@ import { Config } from 'ankibridge/notes/base'
 import yup from 'ankibridge/utils/yup'
 import { load } from 'js-yaml'
 
-export type HeadingScopeConfig = Pick<Config, 'deck' | 'deckName' | 'tags'>
+export type HeadingScopeConfig = Pick<Config, 'deck' | 'deckName' | 'tags' | 'headingAsTag'>
 
 interface HeadingNode {
     level: number
     startLine: number
     endLine: number
+    title: string
     scope?: HeadingScopeConfig
 }
 
@@ -15,6 +16,7 @@ const HeadingScopeSchema: yup.SchemaOf<HeadingScopeConfig> = yup.object({
     deck: yup.string().emptyAsUndefined().nullAsUndefined(),
     deckName: yup.string().emptyAsUndefined().nullAsUndefined(),
     tags: yup.array().of(yup.string()).notRequired(),
+    headingAsTag: yup.boolean().nullAsUndefined(),
 })
 
 function parseHeadingScope(configText: string): HeadingScopeConfig {
@@ -93,6 +95,7 @@ export function resolveHeadingScopeForLine(
                 level,
                 startLine: lineNumberHere,
                 endLine: lines.length,
+                title: headingMatch[2].trim(),
             }
             headings.push(heading)
             stack.push(heading)
@@ -138,6 +141,9 @@ export function resolveHeadingScopeForLine(
         }
         if (scope.tags?.length) {
             resolved.tags = [...(resolved.tags || []), ...scope.tags]
+        }
+        if (scope.headingAsTag) {
+            resolved.tags = [...(resolved.tags || []), heading.title]
         }
     }
 

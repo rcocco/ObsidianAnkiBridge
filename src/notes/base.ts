@@ -19,6 +19,7 @@ export interface Config {
     deck?: string
     deckName?: string
     tags?: Array<string>
+    headingAsTag?: boolean
     delete?: boolean
     enabled?: boolean
     cloze?: boolean
@@ -48,6 +49,7 @@ export const ParseConfigSchema: yup.SchemaOf<ParseConfig> = yup.object({
     deck: yup.string().emptyAsUndefined().nullAsUndefined(),
     deckName: yup.string().emptyAsUndefined().nullAsUndefined(),
     tags: yup.array().of(yup.string()).notRequired(),
+    headingAsTag: yup.boolean().nullAsUndefined(),
     delete: yup.boolean().nullAsUndefined(),
     enabled: yup.boolean().nullAsUndefined(),
     cloze: yup.boolean().nullAsUndefined(),

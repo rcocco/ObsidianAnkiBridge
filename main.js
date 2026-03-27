@@ -20827,6 +20827,7 @@ var ParseConfigSchema = yup_default.object({
   deck: yup_default.string().emptyAsUndefined().nullAsUndefined(),
   deckName: yup_default.string().emptyAsUndefined().nullAsUndefined(),
   tags: yup_default.array().of(yup_default.string()).notRequired(),
+  headingAsTag: yup_default.boolean().nullAsUndefined(),
   delete: yup_default.boolean().nullAsUndefined(),
   enabled: yup_default.boolean().nullAsUndefined(),
   cloze: yup_default.boolean().nullAsUndefined(),
@@ -24344,7 +24345,8 @@ var import_js_yaml4 = __toModule(require_js_yaml());
 var HeadingScopeSchema = yup_default.object({
   deck: yup_default.string().emptyAsUndefined().nullAsUndefined(),
   deckName: yup_default.string().emptyAsUndefined().nullAsUndefined(),
-  tags: yup_default.array().of(yup_default.string()).notRequired()
+  tags: yup_default.array().of(yup_default.string()).notRequired(),
+  headingAsTag: yup_default.boolean().nullAsUndefined()
 });
 function parseHeadingScope(configText) {
   const configObj = (0, import_js_yaml4.load)(configText) || {};
@@ -24405,7 +24407,8 @@ function resolveHeadingScopeForLine(source, lineNumber) {
       const heading = {
         level,
         startLine: lineNumberHere,
-        endLine: lines.length
+        endLine: lines.length,
+        title: headingMatch[2].trim()
       };
       headings.push(heading);
       stack.push(heading);
@@ -24441,6 +24444,9 @@ function resolveHeadingScopeForLine(source, lineNumber) {
     }
     if ((_a = scope.tags) == null ? void 0 : _a.length) {
       resolved.tags = [...resolved.tags || [], ...scope.tags];
+    }
+    if (scope.headingAsTag) {
+      resolved.tags = [...resolved.tags || [], heading.title];
     }
   }
   return resolved;

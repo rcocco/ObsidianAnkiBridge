@@ -90,6 +90,70 @@ Back
         ])
     })
 
+    it('adds heading text as tags when headingAsTag is enabled', async () => {
+        const headingTagSource = `# Root Heading
+
+\`\`\`anki-scope
+headingAsTag: true
+\`\`\`
+
+## Child Heading
+
+\`\`\`anki-scope
+tags:
+  - explicit
+headingAsTag: true
+\`\`\`
+
+\`\`\`anki
+---
+Front
+\`\`\`
+`
+
+        const app = {
+            vault: {
+                read: jest.fn().mockResolvedValue(headingTagSource),
+            },
+            metadataCache: {
+                getFileCache: jest.fn().mockReturnValue({
+                    frontmatter: {
+                        anki_tags: ['file'],
+                    },
+                }),
+            },
+        }
+
+        const plugin = {
+            registerMarkdownCodeBlockProcessor: jest.fn(),
+            settings: {
+                getBlueprintSettings: jest.fn().mockReturnValue({
+                    BasicCodeblock: true,
+                    Sandwich: false,
+                }),
+                defaultDeckMaps: [],
+                fallbackDeck: 'FallbackDeck',
+                tagInAnki: 'obsidian',
+            },
+            debug: jest.fn(),
+        }
+
+        const reader = new Reader(app as any, plugin as any)
+        await reader.setup()
+
+        const result = await reader.readFile(file)
+        const notes = result.elements.filter((element) => element instanceof NoteBase) as NoteBase[]
+
+        expect(notes).toHaveLength(1)
+        expect(notes[0].getTags(reader.plugin)).toEqual([
+            'obsidian',
+            'file',
+            'Root Heading',
+            'explicit',
+            'Child Heading',
+        ])
+    })
+
     it('preserves heading order when multiple notes appear after earlier fragments', async () => {
         const complexSource = `# Test 1
 
