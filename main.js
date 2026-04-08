@@ -13,6 +13,7 @@ var __getOwnPropSymbols = Object.getOwnPropertySymbols;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __reflectGet = Reflect.get;
 var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
 var __spreadValues = (a, b) => {
   for (var prop in b || (b = {}))
@@ -26,7 +27,6 @@ var __spreadValues = (a, b) => {
   return a;
 };
 var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
-var __markAsModule = (target) => __defProp(target, "__esModule", { value: true });
 var __objRest = (source, exclude) => {
   var target = {};
   for (var prop in source)
@@ -40,24 +40,26 @@ var __objRest = (source, exclude) => {
   return target;
 };
 var __commonJS = (cb, mod) => function __require() {
-  return mod || (0, cb[Object.keys(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 var __export = (target, all) => {
-  __markAsModule(target);
   for (var name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __reExport = (target, module2, desc) => {
-  if (module2 && typeof module2 === "object" || typeof module2 === "function") {
-    for (let key of __getOwnPropNames(module2))
-      if (!__hasOwnProp.call(target, key) && key !== "default")
-        __defProp(target, key, { get: () => module2[key], enumerable: !(desc = __getOwnPropDesc(module2, key)) || desc.enumerable });
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
-  return target;
+  return to;
 };
-var __toModule = (module2) => {
-  return __reExport(__markAsModule(__defProp(module2 != null ? __create(__getProtoOf(module2)) : {}, "default", module2 && module2.__esModule && "default" in module2 ? { get: () => module2.default, enumerable: true } : { value: module2, enumerable: true })), module2);
-};
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+  mod
+));
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+var __superGet = (cls, obj, key) => __reflectGet(__getProtoOf(cls), key, obj);
 var __async = (__this, __arguments, generator) => {
   return new Promise((resolve, reject) => {
     var fulfilled = (value) => {
@@ -79,18 +81,18 @@ var __async = (__this, __arguments, generator) => {
   });
 };
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/nanoclone-npm-0.2.1-972ee958a0-96b2954e22.zip/node_modules/nanoclone/index.js
+// node_modules/.pnpm/nanoclone@0.2.1/node_modules/nanoclone/index.js
 var require_nanoclone = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/nanoclone-npm-0.2.1-972ee958a0-96b2954e22.zip/node_modules/nanoclone/index.js"(exports2, module2) {
+  "node_modules/.pnpm/nanoclone@0.2.1/node_modules/nanoclone/index.js"(exports2, module2) {
     "use strict";
-    var map;
+    var map2;
     try {
-      map = Map;
+      map2 = Map;
     } catch (_7) {
     }
-    var set;
+    var set2;
     try {
-      set = Set;
+      set2 = Set;
     } catch (_7) {
     }
     function baseClone(src, circulars, clones) {
@@ -109,10 +111,10 @@ var require_nanoclone = __commonJS({
       if (Array.isArray(src)) {
         return src.map(clone);
       }
-      if (map && src instanceof map) {
+      if (map2 && src instanceof map2) {
         return new Map(Array.from(src.entries()));
       }
-      if (set && src instanceof set) {
+      if (set2 && src instanceof set2) {
         return new Set(Array.from(src.values()));
       }
       if (src instanceof Object) {
@@ -136,15 +138,15 @@ var require_nanoclone = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/util/printValue.js
+// node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/util/printValue.js
 var require_printValue = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/util/printValue.js"(exports2) {
+  "node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/util/printValue.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", {
       value: true
     });
     exports2.default = printValue;
-    var toString = Object.prototype.toString;
+    var toString2 = Object.prototype.toString;
     var errorToString = Error.prototype.toString;
     var regExpToString = RegExp.prototype.toString;
     var symbolToString = typeof Symbol !== "undefined" ? Symbol.prototype.toString : () => "";
@@ -152,8 +154,8 @@ var require_printValue = __commonJS({
     function printNumber(val) {
       if (val != +val)
         return "NaN";
-      const isNegativeZero = val === 0 && 1 / val < 0;
-      return isNegativeZero ? "-0" : "" + val;
+      const isNegativeZero2 = val === 0 && 1 / val < 0;
+      return isNegativeZero2 ? "-0" : "" + val;
     }
     function printSimpleValue(val, quoteStrings = false) {
       if (val == null || val === true || val === false)
@@ -167,7 +169,7 @@ var require_printValue = __commonJS({
         return "[Function " + (val.name || "anonymous") + "]";
       if (typeOf === "symbol")
         return symbolToString.call(val).replace(SYMBOL_REGEXP, "Symbol($1)");
-      const tag = toString.call(val).slice(8, -1);
+      const tag = toString2.call(val).slice(8, -1);
       if (tag === "Date")
         return isNaN(val.getTime()) ? "" + val : val.toISOString(val);
       if (tag === "Error" || val instanceof Error)
@@ -190,9 +192,9 @@ var require_printValue = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/locale.js
+// node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/locale.js
 var require_locale = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/locale.js"(exports2) {
+  "node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/locale.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", {
       value: true
@@ -209,12 +211,12 @@ var require_locale = __commonJS({
       notOneOf: "${path} must not be one of the following values: ${values}",
       notType: ({
         path,
-        type,
+        type: type2,
         value,
         originalValue
       }) => {
         let isCast = originalValue != null && originalValue !== value;
-        let msg = `${path} must be a \`${type}\` type, but the final value was: \`${(0, _printValue.default)(value, true)}\`` + (isCast ? ` (cast from the value \`${(0, _printValue.default)(originalValue, true)}\`).` : ".");
+        let msg = `${path} must be a \`${type2}\` type, but the final value was: \`${(0, _printValue.default)(value, true)}\`` + (isCast ? ` (cast from the value \`${(0, _printValue.default)(originalValue, true)}\`).` : ".");
         if (value === null) {
           msg += `
  If "null" is intended as an empty value be sure to mark the schema as \`.nullable()\``;
@@ -266,7 +268,7 @@ var require_locale = __commonJS({
       length: "${path} must have ${length} items"
     };
     exports2.array = array;
-    var _default = Object.assign(Object.create(null), {
+    var _default2 = Object.assign(/* @__PURE__ */ Object.create(null), {
       mixed,
       string: string2,
       number: number2,
@@ -275,13 +277,13 @@ var require_locale = __commonJS({
       array,
       boolean: boolean2
     });
-    exports2.default = _default;
+    exports2.default = _default2;
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseHas.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseHas.js
 var require_baseHas = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseHas.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseHas.js"(exports2, module2) {
     var objectProto = Object.prototype;
     var hasOwnProperty = objectProto.hasOwnProperty;
     function baseHas(object, key) {
@@ -291,25 +293,25 @@ var require_baseHas = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/isArray.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isArray.js
 var require_isArray = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/isArray.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isArray.js"(exports2, module2) {
     var isArray = Array.isArray;
     module2.exports = isArray;
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_freeGlobal.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_freeGlobal.js
 var require_freeGlobal = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_freeGlobal.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_freeGlobal.js"(exports2, module2) {
     var freeGlobal = typeof global == "object" && global && global.Object === Object && global;
     module2.exports = freeGlobal;
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_root.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_root.js
 var require_root = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_root.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_root.js"(exports2, module2) {
     var freeGlobal = require_freeGlobal();
     var freeSelf = typeof self == "object" && self && self.Object === Object && self;
     var root = freeGlobal || freeSelf || Function("return this")();
@@ -317,18 +319,18 @@ var require_root = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_Symbol.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Symbol.js
 var require_Symbol = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_Symbol.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Symbol.js"(exports2, module2) {
     var root = require_root();
     var Symbol2 = root.Symbol;
     module2.exports = Symbol2;
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_getRawTag.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getRawTag.js
 var require_getRawTag = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_getRawTag.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getRawTag.js"(exports2, module2) {
     var Symbol2 = require_Symbol();
     var objectProto = Object.prototype;
     var hasOwnProperty = objectProto.hasOwnProperty;
@@ -355,9 +357,9 @@ var require_getRawTag = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_objectToString.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_objectToString.js
 var require_objectToString = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_objectToString.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_objectToString.js"(exports2, module2) {
     var objectProto = Object.prototype;
     var nativeObjectToString = objectProto.toString;
     function objectToString(value) {
@@ -367,9 +369,9 @@ var require_objectToString = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseGetTag.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseGetTag.js
 var require_baseGetTag = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseGetTag.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseGetTag.js"(exports2, module2) {
     var Symbol2 = require_Symbol();
     var getRawTag = require_getRawTag();
     var objectToString = require_objectToString();
@@ -386,9 +388,9 @@ var require_baseGetTag = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/isObjectLike.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isObjectLike.js
 var require_isObjectLike = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/isObjectLike.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isObjectLike.js"(exports2, module2) {
     function isObjectLike(value) {
       return value != null && typeof value == "object";
     }
@@ -396,9 +398,9 @@ var require_isObjectLike = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/isSymbol.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isSymbol.js
 var require_isSymbol = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/isSymbol.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isSymbol.js"(exports2, module2) {
     var baseGetTag = require_baseGetTag();
     var isObjectLike = require_isObjectLike();
     var symbolTag = "[object Symbol]";
@@ -409,9 +411,9 @@ var require_isSymbol = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_isKey.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isKey.js
 var require_isKey = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_isKey.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isKey.js"(exports2, module2) {
     var isArray = require_isArray();
     var isSymbol = require_isSymbol();
     var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/;
@@ -420,8 +422,8 @@ var require_isKey = __commonJS({
       if (isArray(value)) {
         return false;
       }
-      var type = typeof value;
-      if (type == "number" || type == "symbol" || type == "boolean" || value == null || isSymbol(value)) {
+      var type2 = typeof value;
+      if (type2 == "number" || type2 == "symbol" || type2 == "boolean" || value == null || isSymbol(value)) {
         return true;
       }
       return reIsPlainProp.test(value) || !reIsDeepProp.test(value) || object != null && value in Object(object);
@@ -430,28 +432,28 @@ var require_isKey = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/isObject.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isObject.js
 var require_isObject = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/isObject.js"(exports2, module2) {
-    function isObject(value) {
-      var type = typeof value;
-      return value != null && (type == "object" || type == "function");
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isObject.js"(exports2, module2) {
+    function isObject2(value) {
+      var type2 = typeof value;
+      return value != null && (type2 == "object" || type2 == "function");
     }
-    module2.exports = isObject;
+    module2.exports = isObject2;
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/isFunction.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isFunction.js
 var require_isFunction = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/isFunction.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isFunction.js"(exports2, module2) {
     var baseGetTag = require_baseGetTag();
-    var isObject = require_isObject();
+    var isObject2 = require_isObject();
     var asyncTag = "[object AsyncFunction]";
     var funcTag = "[object Function]";
     var genTag = "[object GeneratorFunction]";
     var proxyTag = "[object Proxy]";
     function isFunction(value) {
-      if (!isObject(value)) {
+      if (!isObject2(value)) {
         return false;
       }
       var tag = baseGetTag(value);
@@ -461,18 +463,18 @@ var require_isFunction = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_coreJsData.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_coreJsData.js
 var require_coreJsData = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_coreJsData.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_coreJsData.js"(exports2, module2) {
     var root = require_root();
     var coreJsData = root["__core-js_shared__"];
     module2.exports = coreJsData;
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_isMasked.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isMasked.js
 var require_isMasked = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_isMasked.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isMasked.js"(exports2, module2) {
     var coreJsData = require_coreJsData();
     var maskSrcKey = function() {
       var uid = /[^.]+$/.exec(coreJsData && coreJsData.keys && coreJsData.keys.IE_PROTO || "");
@@ -485,9 +487,9 @@ var require_isMasked = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_toSource.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_toSource.js
 var require_toSource = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_toSource.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_toSource.js"(exports2, module2) {
     var funcProto = Function.prototype;
     var funcToString = funcProto.toString;
     function toSource(func) {
@@ -507,12 +509,12 @@ var require_toSource = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseIsNative.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsNative.js
 var require_baseIsNative = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseIsNative.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsNative.js"(exports2, module2) {
     var isFunction = require_isFunction();
     var isMasked = require_isMasked();
-    var isObject = require_isObject();
+    var isObject2 = require_isObject();
     var toSource = require_toSource();
     var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
     var reIsHostCtor = /^\[object .+?Constructor\]$/;
@@ -520,9 +522,11 @@ var require_baseIsNative = __commonJS({
     var objectProto = Object.prototype;
     var funcToString = funcProto.toString;
     var hasOwnProperty = objectProto.hasOwnProperty;
-    var reIsNative = RegExp("^" + funcToString.call(hasOwnProperty).replace(reRegExpChar, "\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, "$1.*?") + "$");
+    var reIsNative = RegExp(
+      "^" + funcToString.call(hasOwnProperty).replace(reRegExpChar, "\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, "$1.*?") + "$"
+    );
     function baseIsNative(value) {
-      if (!isObject(value) || isMasked(value)) {
+      if (!isObject2(value) || isMasked(value)) {
         return false;
       }
       var pattern = isFunction(value) ? reIsNative : reIsHostCtor;
@@ -532,9 +536,9 @@ var require_baseIsNative = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_getValue.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getValue.js
 var require_getValue = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_getValue.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getValue.js"(exports2, module2) {
     function getValue(object, key) {
       return object == null ? void 0 : object[key];
     }
@@ -542,9 +546,9 @@ var require_getValue = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_getNative.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getNative.js
 var require_getNative = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_getNative.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getNative.js"(exports2, module2) {
     var baseIsNative = require_baseIsNative();
     var getValue = require_getValue();
     function getNative(object, key) {
@@ -555,18 +559,18 @@ var require_getNative = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_nativeCreate.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_nativeCreate.js
 var require_nativeCreate = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_nativeCreate.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_nativeCreate.js"(exports2, module2) {
     var getNative = require_getNative();
     var nativeCreate = getNative(Object, "create");
     module2.exports = nativeCreate;
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_hashClear.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashClear.js
 var require_hashClear = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_hashClear.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashClear.js"(exports2, module2) {
     var nativeCreate = require_nativeCreate();
     function hashClear() {
       this.__data__ = nativeCreate ? nativeCreate(null) : {};
@@ -576,9 +580,9 @@ var require_hashClear = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_hashDelete.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashDelete.js
 var require_hashDelete = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_hashDelete.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashDelete.js"(exports2, module2) {
     function hashDelete(key) {
       var result = this.has(key) && delete this.__data__[key];
       this.size -= result ? 1 : 0;
@@ -588,9 +592,9 @@ var require_hashDelete = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_hashGet.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashGet.js
 var require_hashGet = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_hashGet.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashGet.js"(exports2, module2) {
     var nativeCreate = require_nativeCreate();
     var HASH_UNDEFINED = "__lodash_hash_undefined__";
     var objectProto = Object.prototype;
@@ -607,9 +611,9 @@ var require_hashGet = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_hashHas.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashHas.js
 var require_hashHas = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_hashHas.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashHas.js"(exports2, module2) {
     var nativeCreate = require_nativeCreate();
     var objectProto = Object.prototype;
     var hasOwnProperty = objectProto.hasOwnProperty;
@@ -621,9 +625,9 @@ var require_hashHas = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_hashSet.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashSet.js
 var require_hashSet = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_hashSet.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashSet.js"(exports2, module2) {
     var nativeCreate = require_nativeCreate();
     var HASH_UNDEFINED = "__lodash_hash_undefined__";
     function hashSet(key, value) {
@@ -636,9 +640,9 @@ var require_hashSet = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_Hash.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Hash.js
 var require_Hash = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_Hash.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Hash.js"(exports2, module2) {
     var hashClear = require_hashClear();
     var hashDelete = require_hashDelete();
     var hashGet = require_hashGet();
@@ -661,9 +665,9 @@ var require_Hash = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_listCacheClear.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheClear.js
 var require_listCacheClear = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_listCacheClear.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheClear.js"(exports2, module2) {
     function listCacheClear() {
       this.__data__ = [];
       this.size = 0;
@@ -672,9 +676,9 @@ var require_listCacheClear = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/eq.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/eq.js
 var require_eq = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/eq.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/eq.js"(exports2, module2) {
     function eq(value, other) {
       return value === other || value !== value && other !== other;
     }
@@ -682,9 +686,9 @@ var require_eq = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_assocIndexOf.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_assocIndexOf.js
 var require_assocIndexOf = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_assocIndexOf.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_assocIndexOf.js"(exports2, module2) {
     var eq = require_eq();
     function assocIndexOf(array, key) {
       var length = array.length;
@@ -699,9 +703,9 @@ var require_assocIndexOf = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_listCacheDelete.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheDelete.js
 var require_listCacheDelete = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_listCacheDelete.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheDelete.js"(exports2, module2) {
     var assocIndexOf = require_assocIndexOf();
     var arrayProto = Array.prototype;
     var splice = arrayProto.splice;
@@ -723,9 +727,9 @@ var require_listCacheDelete = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_listCacheGet.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheGet.js
 var require_listCacheGet = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_listCacheGet.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheGet.js"(exports2, module2) {
     var assocIndexOf = require_assocIndexOf();
     function listCacheGet(key) {
       var data = this.__data__, index = assocIndexOf(data, key);
@@ -735,9 +739,9 @@ var require_listCacheGet = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_listCacheHas.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheHas.js
 var require_listCacheHas = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_listCacheHas.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheHas.js"(exports2, module2) {
     var assocIndexOf = require_assocIndexOf();
     function listCacheHas(key) {
       return assocIndexOf(this.__data__, key) > -1;
@@ -746,9 +750,9 @@ var require_listCacheHas = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_listCacheSet.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheSet.js
 var require_listCacheSet = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_listCacheSet.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheSet.js"(exports2, module2) {
     var assocIndexOf = require_assocIndexOf();
     function listCacheSet(key, value) {
       var data = this.__data__, index = assocIndexOf(data, key);
@@ -764,9 +768,9 @@ var require_listCacheSet = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_ListCache.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_ListCache.js
 var require_ListCache = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_ListCache.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_ListCache.js"(exports2, module2) {
     var listCacheClear = require_listCacheClear();
     var listCacheDelete = require_listCacheDelete();
     var listCacheGet = require_listCacheGet();
@@ -789,9 +793,9 @@ var require_ListCache = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_Map.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Map.js
 var require_Map = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_Map.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Map.js"(exports2, module2) {
     var getNative = require_getNative();
     var root = require_root();
     var Map2 = getNative(root, "Map");
@@ -799,9 +803,9 @@ var require_Map = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_mapCacheClear.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheClear.js
 var require_mapCacheClear = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_mapCacheClear.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheClear.js"(exports2, module2) {
     var Hash = require_Hash();
     var ListCache = require_ListCache();
     var Map2 = require_Map();
@@ -817,32 +821,32 @@ var require_mapCacheClear = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_isKeyable.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isKeyable.js
 var require_isKeyable = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_isKeyable.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isKeyable.js"(exports2, module2) {
     function isKeyable(value) {
-      var type = typeof value;
-      return type == "string" || type == "number" || type == "symbol" || type == "boolean" ? value !== "__proto__" : value === null;
+      var type2 = typeof value;
+      return type2 == "string" || type2 == "number" || type2 == "symbol" || type2 == "boolean" ? value !== "__proto__" : value === null;
     }
     module2.exports = isKeyable;
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_getMapData.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getMapData.js
 var require_getMapData = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_getMapData.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getMapData.js"(exports2, module2) {
     var isKeyable = require_isKeyable();
-    function getMapData(map, key) {
-      var data = map.__data__;
+    function getMapData(map2, key) {
+      var data = map2.__data__;
       return isKeyable(key) ? data[typeof key == "string" ? "string" : "hash"] : data.map;
     }
     module2.exports = getMapData;
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_mapCacheDelete.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheDelete.js
 var require_mapCacheDelete = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_mapCacheDelete.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheDelete.js"(exports2, module2) {
     var getMapData = require_getMapData();
     function mapCacheDelete(key) {
       var result = getMapData(this, key)["delete"](key);
@@ -853,9 +857,9 @@ var require_mapCacheDelete = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_mapCacheGet.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheGet.js
 var require_mapCacheGet = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_mapCacheGet.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheGet.js"(exports2, module2) {
     var getMapData = require_getMapData();
     function mapCacheGet(key) {
       return getMapData(this, key).get(key);
@@ -864,9 +868,9 @@ var require_mapCacheGet = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_mapCacheHas.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheHas.js
 var require_mapCacheHas = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_mapCacheHas.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheHas.js"(exports2, module2) {
     var getMapData = require_getMapData();
     function mapCacheHas(key) {
       return getMapData(this, key).has(key);
@@ -875,9 +879,9 @@ var require_mapCacheHas = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_mapCacheSet.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheSet.js
 var require_mapCacheSet = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_mapCacheSet.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheSet.js"(exports2, module2) {
     var getMapData = require_getMapData();
     function mapCacheSet(key, value) {
       var data = getMapData(this, key), size = data.size;
@@ -889,9 +893,9 @@ var require_mapCacheSet = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_MapCache.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_MapCache.js
 var require_MapCache = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_MapCache.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_MapCache.js"(exports2, module2) {
     var mapCacheClear = require_mapCacheClear();
     var mapCacheDelete = require_mapCacheDelete();
     var mapCacheGet = require_mapCacheGet();
@@ -914,9 +918,9 @@ var require_MapCache = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/memoize.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/memoize.js
 var require_memoize = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/memoize.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/memoize.js"(exports2, module2) {
     var MapCache = require_MapCache();
     var FUNC_ERROR_TEXT = "Expected a function";
     function memoize(func, resolver) {
@@ -940,9 +944,9 @@ var require_memoize = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_memoizeCapped.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_memoizeCapped.js
 var require_memoizeCapped = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_memoizeCapped.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_memoizeCapped.js"(exports2, module2) {
     var memoize = require_memoize();
     var MAX_MEMOIZE_SIZE = 500;
     function memoizeCapped(func) {
@@ -959,9 +963,9 @@ var require_memoizeCapped = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_stringToPath.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stringToPath.js
 var require_stringToPath = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_stringToPath.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stringToPath.js"(exports2, module2) {
     var memoizeCapped = require_memoizeCapped();
     var rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g;
     var reEscapeChar = /\\(\\)?/g;
@@ -979,9 +983,9 @@ var require_stringToPath = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_arrayMap.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayMap.js
 var require_arrayMap = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_arrayMap.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayMap.js"(exports2, module2) {
     function arrayMap(array, iteratee) {
       var index = -1, length = array == null ? 0 : array.length, result = Array(length);
       while (++index < length) {
@@ -993,9 +997,9 @@ var require_arrayMap = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseToString.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseToString.js
 var require_baseToString = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseToString.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseToString.js"(exports2, module2) {
     var Symbol2 = require_Symbol();
     var arrayMap = require_arrayMap();
     var isArray = require_isArray();
@@ -1020,37 +1024,37 @@ var require_baseToString = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/toString.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/toString.js
 var require_toString = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/toString.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/toString.js"(exports2, module2) {
     var baseToString = require_baseToString();
-    function toString(value) {
+    function toString2(value) {
       return value == null ? "" : baseToString(value);
     }
-    module2.exports = toString;
+    module2.exports = toString2;
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_castPath.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_castPath.js
 var require_castPath = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_castPath.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_castPath.js"(exports2, module2) {
     var isArray = require_isArray();
     var isKey = require_isKey();
     var stringToPath = require_stringToPath();
-    var toString = require_toString();
+    var toString2 = require_toString();
     function castPath(value, object) {
       if (isArray(value)) {
         return value;
       }
-      return isKey(value, object) ? [value] : stringToPath(toString(value));
+      return isKey(value, object) ? [value] : stringToPath(toString2(value));
     }
     module2.exports = castPath;
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseIsArguments.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsArguments.js
 var require_baseIsArguments = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseIsArguments.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsArguments.js"(exports2, module2) {
     var baseGetTag = require_baseGetTag();
     var isObjectLike = require_isObjectLike();
     var argsTag = "[object Arguments]";
@@ -1061,9 +1065,9 @@ var require_baseIsArguments = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/isArguments.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isArguments.js
 var require_isArguments = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/isArguments.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isArguments.js"(exports2, module2) {
     var baseIsArguments = require_baseIsArguments();
     var isObjectLike = require_isObjectLike();
     var objectProto = Object.prototype;
@@ -1078,23 +1082,23 @@ var require_isArguments = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_isIndex.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isIndex.js
 var require_isIndex = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_isIndex.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isIndex.js"(exports2, module2) {
     var MAX_SAFE_INTEGER = 9007199254740991;
     var reIsUint = /^(?:0|[1-9]\d*)$/;
     function isIndex(value, length) {
-      var type = typeof value;
+      var type2 = typeof value;
       length = length == null ? MAX_SAFE_INTEGER : length;
-      return !!length && (type == "number" || type != "symbol" && reIsUint.test(value)) && (value > -1 && value % 1 == 0 && value < length);
+      return !!length && (type2 == "number" || type2 != "symbol" && reIsUint.test(value)) && (value > -1 && value % 1 == 0 && value < length);
     }
     module2.exports = isIndex;
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/isLength.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isLength.js
 var require_isLength = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/isLength.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isLength.js"(exports2, module2) {
     var MAX_SAFE_INTEGER = 9007199254740991;
     function isLength(value) {
       return typeof value == "number" && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
@@ -1103,9 +1107,9 @@ var require_isLength = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_toKey.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_toKey.js
 var require_toKey = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_toKey.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_toKey.js"(exports2, module2) {
     var isSymbol = require_isSymbol();
     var INFINITY = 1 / 0;
     function toKey(value) {
@@ -1119,9 +1123,9 @@ var require_toKey = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_hasPath.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hasPath.js
 var require_hasPath = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_hasPath.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hasPath.js"(exports2, module2) {
     var castPath = require_castPath();
     var isArguments = require_isArguments();
     var isArray = require_isArray();
@@ -1148,9 +1152,9 @@ var require_hasPath = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/has.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/has.js
 var require_has = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/has.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/has.js"(exports2, module2) {
     var baseHas = require_baseHas();
     var hasPath = require_hasPath();
     function has(object, path) {
@@ -1160,23 +1164,23 @@ var require_has = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/util/isSchema.js
+// node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/util/isSchema.js
 var require_isSchema = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/util/isSchema.js"(exports2) {
+  "node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/util/isSchema.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", {
       value: true
     });
     exports2.default = void 0;
     var isSchema = (obj) => obj && obj.__isYupSchema__;
-    var _default = isSchema;
-    exports2.default = _default;
+    var _default2 = isSchema;
+    exports2.default = _default2;
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/Condition.js
+// node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/Condition.js
 var require_Condition = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/Condition.js"(exports2) {
+  "node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/Condition.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", {
       value: true
@@ -1208,47 +1212,47 @@ var require_Condition = __commonJS({
         let check = typeof is === "function" ? is : (...values) => values.every((value) => value === is);
         this.fn = function(...args) {
           let options3 = args.pop();
-          let schema = args.pop();
+          let schema2 = args.pop();
           let branch = check(...args) ? then : otherwise;
           if (!branch)
             return void 0;
           if (typeof branch === "function")
-            return branch(schema);
-          return schema.concat(branch.resolve(options3));
+            return branch(schema2);
+          return schema2.concat(branch.resolve(options3));
         };
       }
       resolve(base, options2) {
         let values = this.refs.map((ref) => ref.getValue(options2 == null ? void 0 : options2.value, options2 == null ? void 0 : options2.parent, options2 == null ? void 0 : options2.context));
-        let schema = this.fn.apply(base, values.concat(base, options2));
-        if (schema === void 0 || schema === base)
+        let schema2 = this.fn.apply(base, values.concat(base, options2));
+        if (schema2 === void 0 || schema2 === base)
           return base;
-        if (!(0, _isSchema.default)(schema))
+        if (!(0, _isSchema.default)(schema2))
           throw new TypeError("conditions must return a schema object");
-        return schema.resolve(options2);
+        return schema2.resolve(options2);
       }
     };
-    var _default = Condition;
-    exports2.default = _default;
+    var _default2 = Condition;
+    exports2.default = _default2;
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/util/toArray.js
+// node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/util/toArray.js
 var require_toArray = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/util/toArray.js"(exports2) {
+  "node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/util/toArray.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", {
       value: true
     });
-    exports2.default = toArray;
-    function toArray(value) {
+    exports2.default = toArray2;
+    function toArray2(value) {
       return value == null ? [] : [].concat(value);
     }
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/ValidationError.js
+// node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/ValidationError.js
 var require_ValidationError = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/ValidationError.js"(exports2) {
+  "node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/ValidationError.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", {
       value: true
@@ -1290,7 +1294,7 @@ var require_ValidationError = __commonJS({
       static isError(err) {
         return err && err.name === "ValidationError";
       }
-      constructor(errorOrErrors, value, field, type) {
+      constructor(errorOrErrors, value, field, type2) {
         super();
         this.value = void 0;
         this.path = void 0;
@@ -1301,7 +1305,7 @@ var require_ValidationError = __commonJS({
         this.name = "ValidationError";
         this.value = value;
         this.path = field;
-        this.type = type;
+        this.type = type2;
         this.errors = [];
         this.inner = [];
         (0, _toArray.default)(errorOrErrors).forEach((err) => {
@@ -1321,9 +1325,9 @@ var require_ValidationError = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/util/runTests.js
+// node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/util/runTests.js
 var require_runTests = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/util/runTests.js"(exports2) {
+  "node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/util/runTests.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", {
       value: true
@@ -1391,9 +1395,9 @@ var require_runTests = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_defineProperty.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_defineProperty.js
 var require_defineProperty = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_defineProperty.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_defineProperty.js"(exports2, module2) {
     var getNative = require_getNative();
     var defineProperty = function() {
       try {
@@ -1407,9 +1411,9 @@ var require_defineProperty = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseAssignValue.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseAssignValue.js
 var require_baseAssignValue = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseAssignValue.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseAssignValue.js"(exports2, module2) {
     var defineProperty = require_defineProperty();
     function baseAssignValue(object, key, value) {
       if (key == "__proto__" && defineProperty) {
@@ -1427,9 +1431,9 @@ var require_baseAssignValue = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_createBaseFor.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_createBaseFor.js
 var require_createBaseFor = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_createBaseFor.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_createBaseFor.js"(exports2, module2) {
     function createBaseFor(fromRight) {
       return function(object, iteratee, keysFunc) {
         var index = -1, iterable = Object(object), props = keysFunc(object), length = props.length;
@@ -1446,18 +1450,18 @@ var require_createBaseFor = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseFor.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseFor.js
 var require_baseFor = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseFor.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseFor.js"(exports2, module2) {
     var createBaseFor = require_createBaseFor();
     var baseFor = createBaseFor();
     module2.exports = baseFor;
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseTimes.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseTimes.js
 var require_baseTimes = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseTimes.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseTimes.js"(exports2, module2) {
     function baseTimes(n, iteratee) {
       var index = -1, result = Array(n);
       while (++index < n) {
@@ -1469,9 +1473,9 @@ var require_baseTimes = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/stubFalse.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/stubFalse.js
 var require_stubFalse = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/stubFalse.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/stubFalse.js"(exports2, module2) {
     function stubFalse() {
       return false;
     }
@@ -1479,24 +1483,24 @@ var require_stubFalse = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/isBuffer.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isBuffer.js
 var require_isBuffer = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/isBuffer.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isBuffer.js"(exports2, module2) {
     var root = require_root();
     var stubFalse = require_stubFalse();
     var freeExports = typeof exports2 == "object" && exports2 && !exports2.nodeType && exports2;
     var freeModule = freeExports && typeof module2 == "object" && module2 && !module2.nodeType && module2;
     var moduleExports = freeModule && freeModule.exports === freeExports;
-    var Buffer5 = moduleExports ? root.Buffer : void 0;
-    var nativeIsBuffer = Buffer5 ? Buffer5.isBuffer : void 0;
+    var Buffer4 = moduleExports ? root.Buffer : void 0;
+    var nativeIsBuffer = Buffer4 ? Buffer4.isBuffer : void 0;
     var isBuffer = nativeIsBuffer || stubFalse;
     module2.exports = isBuffer;
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseIsTypedArray.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsTypedArray.js
 var require_baseIsTypedArray = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseIsTypedArray.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsTypedArray.js"(exports2, module2) {
     var baseGetTag = require_baseGetTag();
     var isLength = require_isLength();
     var isObjectLike = require_isObjectLike();
@@ -1534,9 +1538,9 @@ var require_baseIsTypedArray = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseUnary.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseUnary.js
 var require_baseUnary = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseUnary.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseUnary.js"(exports2, module2) {
     function baseUnary(func) {
       return function(value) {
         return func(value);
@@ -1546,9 +1550,9 @@ var require_baseUnary = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_nodeUtil.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_nodeUtil.js
 var require_nodeUtil = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_nodeUtil.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_nodeUtil.js"(exports2, module2) {
     var freeGlobal = require_freeGlobal();
     var freeExports = typeof exports2 == "object" && exports2 && !exports2.nodeType && exports2;
     var freeModule = freeExports && typeof module2 == "object" && module2 && !module2.nodeType && module2;
@@ -1568,9 +1572,9 @@ var require_nodeUtil = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/isTypedArray.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isTypedArray.js
 var require_isTypedArray = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/isTypedArray.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isTypedArray.js"(exports2, module2) {
     var baseIsTypedArray = require_baseIsTypedArray();
     var baseUnary = require_baseUnary();
     var nodeUtil = require_nodeUtil();
@@ -1580,9 +1584,9 @@ var require_isTypedArray = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_arrayLikeKeys.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayLikeKeys.js
 var require_arrayLikeKeys = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_arrayLikeKeys.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayLikeKeys.js"(exports2, module2) {
     var baseTimes = require_baseTimes();
     var isArguments = require_isArguments();
     var isArray = require_isArray();
@@ -1604,9 +1608,9 @@ var require_arrayLikeKeys = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_isPrototype.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isPrototype.js
 var require_isPrototype = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_isPrototype.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isPrototype.js"(exports2, module2) {
     var objectProto = Object.prototype;
     function isPrototype(value) {
       var Ctor = value && value.constructor, proto = typeof Ctor == "function" && Ctor.prototype || objectProto;
@@ -1616,9 +1620,9 @@ var require_isPrototype = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_overArg.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_overArg.js
 var require_overArg = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_overArg.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_overArg.js"(exports2, module2) {
     function overArg(func, transform) {
       return function(arg) {
         return func(transform(arg));
@@ -1628,18 +1632,18 @@ var require_overArg = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_nativeKeys.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_nativeKeys.js
 var require_nativeKeys = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_nativeKeys.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_nativeKeys.js"(exports2, module2) {
     var overArg = require_overArg();
     var nativeKeys = overArg(Object.keys, Object);
     module2.exports = nativeKeys;
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseKeys.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseKeys.js
 var require_baseKeys = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseKeys.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseKeys.js"(exports2, module2) {
     var isPrototype = require_isPrototype();
     var nativeKeys = require_nativeKeys();
     var objectProto = Object.prototype;
@@ -1660,9 +1664,9 @@ var require_baseKeys = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/isArrayLike.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isArrayLike.js
 var require_isArrayLike = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/isArrayLike.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isArrayLike.js"(exports2, module2) {
     var isFunction = require_isFunction();
     var isLength = require_isLength();
     function isArrayLike(value) {
@@ -1672,9 +1676,9 @@ var require_isArrayLike = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/keys.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/keys.js
 var require_keys = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/keys.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/keys.js"(exports2, module2) {
     var arrayLikeKeys = require_arrayLikeKeys();
     var baseKeys = require_baseKeys();
     var isArrayLike = require_isArrayLike();
@@ -1685,9 +1689,9 @@ var require_keys = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseForOwn.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseForOwn.js
 var require_baseForOwn = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseForOwn.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseForOwn.js"(exports2, module2) {
     var baseFor = require_baseFor();
     var keys = require_keys();
     function baseForOwn(object, iteratee) {
@@ -1697,9 +1701,9 @@ var require_baseForOwn = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_stackClear.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackClear.js
 var require_stackClear = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_stackClear.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackClear.js"(exports2, module2) {
     var ListCache = require_ListCache();
     function stackClear() {
       this.__data__ = new ListCache();
@@ -1709,9 +1713,9 @@ var require_stackClear = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_stackDelete.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackDelete.js
 var require_stackDelete = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_stackDelete.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackDelete.js"(exports2, module2) {
     function stackDelete(key) {
       var data = this.__data__, result = data["delete"](key);
       this.size = data.size;
@@ -1721,9 +1725,9 @@ var require_stackDelete = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_stackGet.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackGet.js
 var require_stackGet = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_stackGet.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackGet.js"(exports2, module2) {
     function stackGet(key) {
       return this.__data__.get(key);
     }
@@ -1731,9 +1735,9 @@ var require_stackGet = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_stackHas.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackHas.js
 var require_stackHas = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_stackHas.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackHas.js"(exports2, module2) {
     function stackHas(key) {
       return this.__data__.has(key);
     }
@@ -1741,9 +1745,9 @@ var require_stackHas = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_stackSet.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackSet.js
 var require_stackSet = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_stackSet.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackSet.js"(exports2, module2) {
     var ListCache = require_ListCache();
     var Map2 = require_Map();
     var MapCache = require_MapCache();
@@ -1751,13 +1755,13 @@ var require_stackSet = __commonJS({
     function stackSet(key, value) {
       var data = this.__data__;
       if (data instanceof ListCache) {
-        var pairs = data.__data__;
-        if (!Map2 || pairs.length < LARGE_ARRAY_SIZE - 1) {
-          pairs.push([key, value]);
+        var pairs2 = data.__data__;
+        if (!Map2 || pairs2.length < LARGE_ARRAY_SIZE - 1) {
+          pairs2.push([key, value]);
           this.size = ++data.size;
           return this;
         }
-        data = this.__data__ = new MapCache(pairs);
+        data = this.__data__ = new MapCache(pairs2);
       }
       data.set(key, value);
       this.size = data.size;
@@ -1767,9 +1771,9 @@ var require_stackSet = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_Stack.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Stack.js
 var require_Stack = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_Stack.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Stack.js"(exports2, module2) {
     var ListCache = require_ListCache();
     var stackClear = require_stackClear();
     var stackDelete = require_stackDelete();
@@ -1789,9 +1793,9 @@ var require_Stack = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_setCacheAdd.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_setCacheAdd.js
 var require_setCacheAdd = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_setCacheAdd.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_setCacheAdd.js"(exports2, module2) {
     var HASH_UNDEFINED = "__lodash_hash_undefined__";
     function setCacheAdd(value) {
       this.__data__.set(value, HASH_UNDEFINED);
@@ -1801,9 +1805,9 @@ var require_setCacheAdd = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_setCacheHas.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_setCacheHas.js
 var require_setCacheHas = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_setCacheHas.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_setCacheHas.js"(exports2, module2) {
     function setCacheHas(value) {
       return this.__data__.has(value);
     }
@@ -1811,9 +1815,9 @@ var require_setCacheHas = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_SetCache.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_SetCache.js
 var require_SetCache = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_SetCache.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_SetCache.js"(exports2, module2) {
     var MapCache = require_MapCache();
     var setCacheAdd = require_setCacheAdd();
     var setCacheHas = require_setCacheHas();
@@ -1830,9 +1834,9 @@ var require_SetCache = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_arraySome.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arraySome.js
 var require_arraySome = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_arraySome.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arraySome.js"(exports2, module2) {
     function arraySome(array, predicate) {
       var index = -1, length = array == null ? 0 : array.length;
       while (++index < length) {
@@ -1846,9 +1850,9 @@ var require_arraySome = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_cacheHas.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_cacheHas.js
 var require_cacheHas = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_cacheHas.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_cacheHas.js"(exports2, module2) {
     function cacheHas(cache, key) {
       return cache.has(key);
     }
@@ -1856,9 +1860,9 @@ var require_cacheHas = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_equalArrays.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_equalArrays.js
 var require_equalArrays = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_equalArrays.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_equalArrays.js"(exports2, module2) {
     var SetCache = require_SetCache();
     var arraySome = require_arraySome();
     var cacheHas = require_cacheHas();
@@ -1911,21 +1915,21 @@ var require_equalArrays = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_Uint8Array.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Uint8Array.js
 var require_Uint8Array = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_Uint8Array.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Uint8Array.js"(exports2, module2) {
     var root = require_root();
     var Uint8Array2 = root.Uint8Array;
     module2.exports = Uint8Array2;
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_mapToArray.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapToArray.js
 var require_mapToArray = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_mapToArray.js"(exports2, module2) {
-    function mapToArray(map) {
-      var index = -1, result = Array(map.size);
-      map.forEach(function(value, key) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapToArray.js"(exports2, module2) {
+    function mapToArray(map2) {
+      var index = -1, result = Array(map2.size);
+      map2.forEach(function(value, key) {
         result[++index] = [key, value];
       });
       return result;
@@ -1934,12 +1938,12 @@ var require_mapToArray = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_setToArray.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_setToArray.js
 var require_setToArray = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_setToArray.js"(exports2, module2) {
-    function setToArray(set) {
-      var index = -1, result = Array(set.size);
-      set.forEach(function(value) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_setToArray.js"(exports2, module2) {
+    function setToArray(set2) {
+      var index = -1, result = Array(set2.size);
+      set2.forEach(function(value) {
         result[++index] = value;
       });
       return result;
@@ -1948,9 +1952,9 @@ var require_setToArray = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_equalByTag.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_equalByTag.js
 var require_equalByTag = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_equalByTag.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_equalByTag.js"(exports2, module2) {
     var Symbol2 = require_Symbol();
     var Uint8Array2 = require_Uint8Array();
     var eq = require_eq();
@@ -2022,9 +2026,9 @@ var require_equalByTag = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_arrayPush.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayPush.js
 var require_arrayPush = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_arrayPush.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayPush.js"(exports2, module2) {
     function arrayPush(array, values) {
       var index = -1, length = values.length, offset = array.length;
       while (++index < length) {
@@ -2036,9 +2040,9 @@ var require_arrayPush = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseGetAllKeys.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseGetAllKeys.js
 var require_baseGetAllKeys = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseGetAllKeys.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseGetAllKeys.js"(exports2, module2) {
     var arrayPush = require_arrayPush();
     var isArray = require_isArray();
     function baseGetAllKeys(object, keysFunc, symbolsFunc) {
@@ -2049,9 +2053,9 @@ var require_baseGetAllKeys = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_arrayFilter.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayFilter.js
 var require_arrayFilter = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_arrayFilter.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayFilter.js"(exports2, module2) {
     function arrayFilter(array, predicate) {
       var index = -1, length = array == null ? 0 : array.length, resIndex = 0, result = [];
       while (++index < length) {
@@ -2066,9 +2070,9 @@ var require_arrayFilter = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/stubArray.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/stubArray.js
 var require_stubArray = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/stubArray.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/stubArray.js"(exports2, module2) {
     function stubArray() {
       return [];
     }
@@ -2076,9 +2080,9 @@ var require_stubArray = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_getSymbols.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getSymbols.js
 var require_getSymbols = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_getSymbols.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getSymbols.js"(exports2, module2) {
     var arrayFilter = require_arrayFilter();
     var stubArray = require_stubArray();
     var objectProto = Object.prototype;
@@ -2097,9 +2101,9 @@ var require_getSymbols = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_getAllKeys.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getAllKeys.js
 var require_getAllKeys = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_getAllKeys.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getAllKeys.js"(exports2, module2) {
     var baseGetAllKeys = require_baseGetAllKeys();
     var getSymbols = require_getSymbols();
     var keys = require_keys();
@@ -2110,9 +2114,9 @@ var require_getAllKeys = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_equalObjects.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_equalObjects.js
 var require_equalObjects = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_equalObjects.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_equalObjects.js"(exports2, module2) {
     var getAllKeys = require_getAllKeys();
     var COMPARE_PARTIAL_FLAG = 1;
     var objectProto = Object.prototype;
@@ -2164,9 +2168,9 @@ var require_equalObjects = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_DataView.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_DataView.js
 var require_DataView = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_DataView.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_DataView.js"(exports2, module2) {
     var getNative = require_getNative();
     var root = require_root();
     var DataView2 = getNative(root, "DataView");
@@ -2174,9 +2178,9 @@ var require_DataView = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_Promise.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Promise.js
 var require_Promise = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_Promise.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Promise.js"(exports2, module2) {
     var getNative = require_getNative();
     var root = require_root();
     var Promise2 = getNative(root, "Promise");
@@ -2184,9 +2188,9 @@ var require_Promise = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_Set.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Set.js
 var require_Set = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_Set.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Set.js"(exports2, module2) {
     var getNative = require_getNative();
     var root = require_root();
     var Set2 = getNative(root, "Set");
@@ -2194,9 +2198,9 @@ var require_Set = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_WeakMap.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_WeakMap.js
 var require_WeakMap = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_WeakMap.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_WeakMap.js"(exports2, module2) {
     var getNative = require_getNative();
     var root = require_root();
     var WeakMap2 = getNative(root, "WeakMap");
@@ -2204,9 +2208,9 @@ var require_WeakMap = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_getTag.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getTag.js
 var require_getTag = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_getTag.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getTag.js"(exports2, module2) {
     var DataView2 = require_DataView();
     var Map2 = require_Map();
     var Promise2 = require_Promise();
@@ -2250,9 +2254,9 @@ var require_getTag = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseIsEqualDeep.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsEqualDeep.js
 var require_baseIsEqualDeep = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseIsEqualDeep.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsEqualDeep.js"(exports2, module2) {
     var Stack = require_Stack();
     var equalArrays = require_equalArrays();
     var equalByTag = require_equalByTag();
@@ -2301,9 +2305,9 @@ var require_baseIsEqualDeep = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseIsEqual.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsEqual.js
 var require_baseIsEqual = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseIsEqual.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsEqual.js"(exports2, module2) {
     var baseIsEqualDeep = require_baseIsEqualDeep();
     var isObjectLike = require_isObjectLike();
     function baseIsEqual(value, other, bitmask, customizer, stack) {
@@ -2319,9 +2323,9 @@ var require_baseIsEqual = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseIsMatch.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsMatch.js
 var require_baseIsMatch = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseIsMatch.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsMatch.js"(exports2, module2) {
     var Stack = require_Stack();
     var baseIsEqual = require_baseIsEqual();
     var COMPARE_PARTIAL_FLAG = 1;
@@ -2361,20 +2365,20 @@ var require_baseIsMatch = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_isStrictComparable.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isStrictComparable.js
 var require_isStrictComparable = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_isStrictComparable.js"(exports2, module2) {
-    var isObject = require_isObject();
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isStrictComparable.js"(exports2, module2) {
+    var isObject2 = require_isObject();
     function isStrictComparable(value) {
-      return value === value && !isObject(value);
+      return value === value && !isObject2(value);
     }
     module2.exports = isStrictComparable;
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_getMatchData.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getMatchData.js
 var require_getMatchData = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_getMatchData.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getMatchData.js"(exports2, module2) {
     var isStrictComparable = require_isStrictComparable();
     var keys = require_keys();
     function getMatchData(object) {
@@ -2389,9 +2393,9 @@ var require_getMatchData = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_matchesStrictComparable.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_matchesStrictComparable.js
 var require_matchesStrictComparable = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_matchesStrictComparable.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_matchesStrictComparable.js"(exports2, module2) {
     function matchesStrictComparable(key, srcValue) {
       return function(object) {
         if (object == null) {
@@ -2404,9 +2408,9 @@ var require_matchesStrictComparable = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseMatches.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseMatches.js
 var require_baseMatches = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseMatches.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseMatches.js"(exports2, module2) {
     var baseIsMatch = require_baseIsMatch();
     var getMatchData = require_getMatchData();
     var matchesStrictComparable = require_matchesStrictComparable();
@@ -2423,9 +2427,9 @@ var require_baseMatches = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseGet.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseGet.js
 var require_baseGet = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseGet.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseGet.js"(exports2, module2) {
     var castPath = require_castPath();
     var toKey = require_toKey();
     function baseGet(object, path) {
@@ -2440,9 +2444,9 @@ var require_baseGet = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/get.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/get.js
 var require_get = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/get.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/get.js"(exports2, module2) {
     var baseGet = require_baseGet();
     function get(object, path, defaultValue) {
       var result = object == null ? void 0 : baseGet(object, path);
@@ -2452,9 +2456,9 @@ var require_get = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseHasIn.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseHasIn.js
 var require_baseHasIn = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseHasIn.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseHasIn.js"(exports2, module2) {
     function baseHasIn(object, key) {
       return object != null && key in Object(object);
     }
@@ -2462,9 +2466,9 @@ var require_baseHasIn = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/hasIn.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/hasIn.js
 var require_hasIn = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/hasIn.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/hasIn.js"(exports2, module2) {
     var baseHasIn = require_baseHasIn();
     var hasPath = require_hasPath();
     function hasIn(object, path) {
@@ -2474,9 +2478,9 @@ var require_hasIn = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseMatchesProperty.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseMatchesProperty.js
 var require_baseMatchesProperty = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseMatchesProperty.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseMatchesProperty.js"(exports2, module2) {
     var baseIsEqual = require_baseIsEqual();
     var get = require_get();
     var hasIn = require_hasIn();
@@ -2499,9 +2503,9 @@ var require_baseMatchesProperty = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/identity.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/identity.js
 var require_identity = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/identity.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/identity.js"(exports2, module2) {
     function identity(value) {
       return value;
     }
@@ -2509,9 +2513,9 @@ var require_identity = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseProperty.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseProperty.js
 var require_baseProperty = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseProperty.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseProperty.js"(exports2, module2) {
     function baseProperty(key) {
       return function(object) {
         return object == null ? void 0 : object[key];
@@ -2521,9 +2525,9 @@ var require_baseProperty = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_basePropertyDeep.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_basePropertyDeep.js
 var require_basePropertyDeep = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_basePropertyDeep.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_basePropertyDeep.js"(exports2, module2) {
     var baseGet = require_baseGet();
     function basePropertyDeep(path) {
       return function(object) {
@@ -2534,9 +2538,9 @@ var require_basePropertyDeep = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/property.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/property.js
 var require_property = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/property.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/property.js"(exports2, module2) {
     var baseProperty = require_baseProperty();
     var basePropertyDeep = require_basePropertyDeep();
     var isKey = require_isKey();
@@ -2548,9 +2552,9 @@ var require_property = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseIteratee.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIteratee.js
 var require_baseIteratee = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseIteratee.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIteratee.js"(exports2, module2) {
     var baseMatches = require_baseMatches();
     var baseMatchesProperty = require_baseMatchesProperty();
     var identity = require_identity();
@@ -2572,9 +2576,9 @@ var require_baseIteratee = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/mapValues.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/mapValues.js
 var require_mapValues = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/mapValues.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/mapValues.js"(exports2, module2) {
     var baseAssignValue = require_baseAssignValue();
     var baseForOwn = require_baseForOwn();
     var baseIteratee = require_baseIteratee();
@@ -2590,9 +2594,9 @@ var require_mapValues = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/property-expr-npm-2.0.4-dffd410058-7ac142e189.zip/node_modules/property-expr/index.js
+// node_modules/.pnpm/property-expr@2.0.6/node_modules/property-expr/index.js
 var require_property_expr = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/property-expr-npm-2.0.4-dffd410058-7ac142e189.zip/node_modules/property-expr/index.js"(exports2, module2) {
+  "node_modules/.pnpm/property-expr@2.0.6/node_modules/property-expr/index.js"(exports2, module2) {
     "use strict";
     function Cache(maxSize) {
       this._maxSize = maxSize;
@@ -2600,7 +2604,7 @@ var require_property_expr = __commonJS({
     }
     Cache.prototype.clear = function() {
       this._size = 0;
-      this._values = Object.create(null);
+      this._values = /* @__PURE__ */ Object.create(null);
     };
     Cache.prototype.get = function(key) {
       return this._values[key];
@@ -2663,12 +2667,15 @@ var require_property_expr = __commonJS({
       }
     };
     function normalizePath2(path) {
-      return pathCache.get(path) || pathCache.set(path, split(path).map(function(part) {
-        return part.replace(CLEAN_QUOTES_REGEX, "$2");
-      }));
+      return pathCache.get(path) || pathCache.set(
+        path,
+        split(path).map(function(part) {
+          return part.replace(CLEAN_QUOTES_REGEX, "$2");
+        })
+      );
     }
     function split(path) {
-      return path.match(SPLIT_REGEX);
+      return path.match(SPLIT_REGEX) || [""];
     }
     function forEach(parts, iter, thisArg) {
       var len = parts.length, part, idx, isArray, isBracket;
@@ -2684,8 +2691,8 @@ var require_property_expr = __commonJS({
         }
       }
     }
-    function isQuoted(str) {
-      return typeof str === "string" && str && ["'", '"'].indexOf(str.charAt(0)) !== -1;
+    function isQuoted(str2) {
+      return typeof str2 === "string" && str2 && ["'", '"'].indexOf(str2.charAt(0)) !== -1;
     }
     function hasLeadingNumber(part) {
       return part.match(LEAD_DIGIT_REGEX) && !part.match(DIGIT_REGEX);
@@ -2699,9 +2706,9 @@ var require_property_expr = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/Reference.js
+// node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/Reference.js
 var require_Reference = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/Reference.js"(exports2) {
+  "node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/Reference.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", {
       value: true
@@ -2770,9 +2777,9 @@ var require_Reference = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/util/createValidation.js
+// node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/util/createValidation.js
 var require_createValidation = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/util/createValidation.js"(exports2) {
+  "node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/util/createValidation.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", {
       value: true
@@ -2894,9 +2901,9 @@ var require_createValidation = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/util/reach.js
+// node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/util/reach.js
 var require_reach = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/util/reach.js"(exports2) {
+  "node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/util/reach.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", {
       value: true
@@ -2905,55 +2912,55 @@ var require_reach = __commonJS({
     exports2.getIn = getIn;
     var _propertyExpr = require_property_expr();
     var trim = (part) => part.substr(0, part.length - 1).substr(1);
-    function getIn(schema, path, value, context = value) {
+    function getIn(schema2, path, value, context = value) {
       let parent, lastPart, lastPartDebug;
       if (!path)
         return {
           parent,
           parentPath: path,
-          schema
+          schema: schema2
         };
       (0, _propertyExpr.forEach)(path, (_part, isBracket, isArray) => {
         let part = isBracket ? trim(_part) : _part;
-        schema = schema.resolve({
+        schema2 = schema2.resolve({
           context,
           parent,
           value
         });
-        if (schema.innerType) {
+        if (schema2.innerType) {
           let idx = isArray ? parseInt(part, 10) : 0;
           if (value && idx >= value.length) {
             throw new Error(`Yup.reach cannot resolve an array item at index: ${_part}, in the path: ${path}. because there is no value at that index. `);
           }
           parent = value;
           value = value && value[idx];
-          schema = schema.innerType;
+          schema2 = schema2.innerType;
         }
         if (!isArray) {
-          if (!schema.fields || !schema.fields[part])
-            throw new Error(`The schema does not contain the path: ${path}. (failed at: ${lastPartDebug} which is a type: "${schema._type}")`);
+          if (!schema2.fields || !schema2.fields[part])
+            throw new Error(`The schema does not contain the path: ${path}. (failed at: ${lastPartDebug} which is a type: "${schema2._type}")`);
           parent = value;
           value = value && value[part];
-          schema = schema.fields[part];
+          schema2 = schema2.fields[part];
         }
         lastPart = part;
         lastPartDebug = isBracket ? "[" + _part + "]" : "." + _part;
       });
       return {
-        schema,
+        schema: schema2,
         parent,
         parentPath: lastPart
       };
     }
     var reach = (obj, path, value, context) => getIn(obj, path, value, context).schema;
-    var _default = reach;
-    exports2.default = _default;
+    var _default2 = reach;
+    exports2.default = _default2;
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/util/ReferenceSet.js
+// node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/util/ReferenceSet.js
 var require_ReferenceSet = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/util/ReferenceSet.js"(exports2) {
+  "node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/util/ReferenceSet.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", {
       value: true
@@ -3012,9 +3019,9 @@ var require_ReferenceSet = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/schema.js
+// node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/schema.js
 var require_schema = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/schema.js"(exports2) {
+  "node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/schema.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", {
       value: true
@@ -3058,7 +3065,7 @@ var require_schema = __commonJS({
         this._typeError = void 0;
         this._whitelist = new _ReferenceSet.default();
         this._blacklist = new _ReferenceSet.default();
-        this.exclusiveTests = Object.create(null);
+        this.exclusiveTests = /* @__PURE__ */ Object.create(null);
         this.spec = void 0;
         this.tests = [];
         this.transforms = [];
@@ -3121,24 +3128,24 @@ var require_schema = __commonJS({
         this._mutate = before;
         return result;
       }
-      concat(schema) {
-        if (!schema || schema === this)
+      concat(schema2) {
+        if (!schema2 || schema2 === this)
           return this;
-        if (schema.type !== this.type && this.type !== "mixed")
-          throw new TypeError(`You cannot \`concat()\` schema's of different types: ${this.type} and ${schema.type}`);
+        if (schema2.type !== this.type && this.type !== "mixed")
+          throw new TypeError(`You cannot \`concat()\` schema's of different types: ${this.type} and ${schema2.type}`);
         let base = this;
-        let combined = schema.clone();
+        let combined = schema2.clone();
         const mergedSpec = _extends({}, base.spec, combined.spec);
         combined.spec = mergedSpec;
         combined._typeError || (combined._typeError = base._typeError);
         combined._whitelistError || (combined._whitelistError = base._whitelistError);
         combined._blacklistError || (combined._blacklistError = base._blacklistError);
-        combined._whitelist = base._whitelist.merge(schema._whitelist, schema._blacklist);
-        combined._blacklist = base._blacklist.merge(schema._blacklist, schema._whitelist);
+        combined._whitelist = base._whitelist.merge(schema2._whitelist, schema2._blacklist);
+        combined._blacklist = base._blacklist.merge(schema2._blacklist, schema2._whitelist);
         combined.tests = base.tests;
         combined.exclusiveTests = base.exclusiveTests;
         combined.withMutation((next) => {
-          schema.tests.forEach((fn) => {
+          schema2.tests.forEach((fn) => {
             next.test(fn.OPTIONS);
           });
         });
@@ -3151,15 +3158,15 @@ var require_schema = __commonJS({
         return this._typeCheck(v);
       }
       resolve(options2) {
-        let schema = this;
-        if (schema.conditions.length) {
-          let conditions = schema.conditions;
-          schema = schema.clone();
-          schema.conditions = [];
-          schema = conditions.reduce((schema2, condition) => condition.resolve(schema2, options2), schema);
-          schema = schema.resolve(options2);
+        let schema2 = this;
+        if (schema2.conditions.length) {
+          let conditions = schema2.conditions;
+          schema2 = schema2.clone();
+          schema2.conditions = [];
+          schema2 = conditions.reduce((schema3, condition) => condition.resolve(schema3, options2), schema2);
+          schema2 = schema2.resolve(options2);
         }
-        return schema;
+        return schema2;
       }
       cast(value, options2 = {}) {
         let resolvedSchema = this.resolve(_extends({
@@ -3237,10 +3244,10 @@ attempted value: ${formattedValue}
         });
       }
       validate(value, options2, maybeCb) {
-        let schema = this.resolve(_extends({}, options2, {
+        let schema2 = this.resolve(_extends({}, options2, {
           value
         }));
-        return typeof maybeCb === "function" ? schema._validate(value, options2, maybeCb) : new Promise((resolve, reject) => schema._validate(value, options2, (err, value2) => {
+        return typeof maybeCb === "function" ? schema2._validate(value, options2, maybeCb) : new Promise((resolve, reject) => schema2._validate(value, options2, (err, value2) => {
           if (err)
             reject(err);
           else
@@ -3248,11 +3255,11 @@ attempted value: ${formattedValue}
         }));
       }
       validateSync(value, options2) {
-        let schema = this.resolve(_extends({}, options2, {
+        let schema2 = this.resolve(_extends({}, options2, {
           value
         }));
         let result;
-        schema._validate(value, _extends({}, options2, {
+        schema2._validate(value, _extends({}, options2, {
           sync: true
         }), (err, value2) => {
           if (err)
@@ -3286,8 +3293,8 @@ attempted value: ${formattedValue}
         return typeof defaultValue === "function" ? defaultValue.call(this) : (0, _nanoclone.default)(defaultValue);
       }
       getDefault(options2) {
-        let schema = this.resolve(options2 || {});
-        return schema._getDefault();
+        let schema2 = this.resolve(options2 || {});
+        return schema2._getDefault();
       }
       default(def) {
         if (arguments.length === 0) {
@@ -3504,9 +3511,9 @@ attempted value: ${formattedValue}
         const {
           parent,
           parentPath,
-          schema
+          schema: schema2
         } = (0, _reach.getIn)(this, path, value, options2.context);
-        return schema[method](parent && parent[parentPath], _extends({}, options2, {
+        return schema2[method](parent && parent[parentPath], _extends({}, options2, {
           parent,
           path
         }));
@@ -3519,9 +3526,9 @@ attempted value: ${formattedValue}
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/mixed.js
+// node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/mixed.js
 var require_mixed = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/mixed.js"(exports2) {
+  "node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/mixed.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", {
       value: true
@@ -3533,8 +3540,8 @@ var require_mixed = __commonJS({
       return obj && obj.__esModule ? obj : { default: obj };
     }
     var Mixed = _schema.default;
-    var _default = Mixed;
-    exports2.default = _default;
+    var _default2 = Mixed;
+    exports2.default = _default2;
     function create() {
       return new Mixed();
     }
@@ -3542,23 +3549,23 @@ var require_mixed = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/util/isAbsent.js
+// node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/util/isAbsent.js
 var require_isAbsent = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/util/isAbsent.js"(exports2) {
+  "node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/util/isAbsent.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", {
       value: true
     });
     exports2.default = void 0;
     var isAbsent = (value) => value == null;
-    var _default = isAbsent;
-    exports2.default = _default;
+    var _default2 = isAbsent;
+    exports2.default = _default2;
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/boolean.js
+// node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/boolean.js
 var require_boolean = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/boolean.js"(exports2) {
+  "node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/boolean.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", {
       value: true
@@ -3628,9 +3635,9 @@ var require_boolean = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/string.js
+// node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/string.js
 var require_string = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/string.js"(exports2) {
+  "node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/string.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", {
       value: true
@@ -3793,9 +3800,9 @@ var require_string = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/number.js
+// node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/number.js
 var require_number = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/number.js"(exports2) {
+  "node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/number.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", {
       value: true
@@ -3921,9 +3928,9 @@ var require_number = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/util/isodate.js
+// node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/util/isodate.js
 var require_isodate = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/util/isodate.js"(exports2) {
+  "node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/util/isodate.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", {
       value: true
@@ -3931,7 +3938,7 @@ var require_isodate = __commonJS({
     exports2.default = parseIsoDate;
     var isoReg = /^(\d{4}|[+\-]\d{6})(?:-?(\d{2})(?:-?(\d{2}))?)?(?:[ T]?(\d{2}):?(\d{2})(?::?(\d{2})(?:[,\.](\d{1,}))?)?(?:(Z)|([+\-])(\d{2})(?::?(\d{2}))?)?)?$/;
     function parseIsoDate(date) {
-      var numericKeys = [1, 4, 5, 6, 7, 10, 11], minutesOffset = 0, timestamp, struct;
+      var numericKeys = [1, 4, 5, 6, 7, 10, 11], minutesOffset = 0, timestamp2, struct;
       if (struct = isoReg.exec(date)) {
         for (var i = 0, k; k = numericKeys[i]; ++i)
           struct[k] = +struct[k] || 0;
@@ -3939,25 +3946,25 @@ var require_isodate = __commonJS({
         struct[3] = +struct[3] || 1;
         struct[7] = struct[7] ? String(struct[7]).substr(0, 3) : 0;
         if ((struct[8] === void 0 || struct[8] === "") && (struct[9] === void 0 || struct[9] === ""))
-          timestamp = +new Date(struct[1], struct[2], struct[3], struct[4], struct[5], struct[6], struct[7]);
+          timestamp2 = +new Date(struct[1], struct[2], struct[3], struct[4], struct[5], struct[6], struct[7]);
         else {
           if (struct[8] !== "Z" && struct[9] !== void 0) {
             minutesOffset = struct[10] * 60 + struct[11];
             if (struct[9] === "+")
               minutesOffset = 0 - minutesOffset;
           }
-          timestamp = Date.UTC(struct[1], struct[2], struct[3], struct[4], struct[5] + minutesOffset, struct[6], struct[7]);
+          timestamp2 = Date.UTC(struct[1], struct[2], struct[3], struct[4], struct[5] + minutesOffset, struct[6], struct[7]);
         }
       } else
-        timestamp = Date.parse ? Date.parse(date) : NaN;
-      return timestamp;
+        timestamp2 = Date.parse ? Date.parse(date) : NaN;
+      return timestamp2;
     }
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/date.js
+// node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/date.js
 var require_date = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/date.js"(exports2) {
+  "node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/date.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", {
       value: true
@@ -4042,9 +4049,9 @@ var require_date = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_arrayReduce.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayReduce.js
 var require_arrayReduce = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_arrayReduce.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayReduce.js"(exports2, module2) {
     function arrayReduce(array, iteratee, accumulator, initAccum) {
       var index = -1, length = array == null ? 0 : array.length;
       if (initAccum && length) {
@@ -4059,9 +4066,9 @@ var require_arrayReduce = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_basePropertyOf.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_basePropertyOf.js
 var require_basePropertyOf = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_basePropertyOf.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_basePropertyOf.js"(exports2, module2) {
     function basePropertyOf(object) {
       return function(key) {
         return object == null ? void 0 : object[key];
@@ -4071,9 +4078,9 @@ var require_basePropertyOf = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_deburrLetter.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_deburrLetter.js
 var require_deburrLetter = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_deburrLetter.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_deburrLetter.js"(exports2, module2) {
     var basePropertyOf = require_basePropertyOf();
     var deburredLetters = {
       "\xC0": "A",
@@ -4272,11 +4279,11 @@ var require_deburrLetter = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/deburr.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/deburr.js
 var require_deburr = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/deburr.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/deburr.js"(exports2, module2) {
     var deburrLetter = require_deburrLetter();
-    var toString = require_toString();
+    var toString2 = require_toString();
     var reLatin = /[\xc0-\xd6\xd8-\xf6\xf8-\xff\u0100-\u017f]/g;
     var rsComboMarksRange = "\\u0300-\\u036f";
     var reComboHalfMarksRange = "\\ufe20-\\ufe2f";
@@ -4285,16 +4292,16 @@ var require_deburr = __commonJS({
     var rsCombo = "[" + rsComboRange + "]";
     var reComboMark = RegExp(rsCombo, "g");
     function deburr(string2) {
-      string2 = toString(string2);
+      string2 = toString2(string2);
       return string2 && string2.replace(reLatin, deburrLetter).replace(reComboMark, "");
     }
     module2.exports = deburr;
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_asciiWords.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_asciiWords.js
 var require_asciiWords = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_asciiWords.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_asciiWords.js"(exports2, module2) {
     var reAsciiWord = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g;
     function asciiWords(string2) {
       return string2.match(reAsciiWord) || [];
@@ -4303,9 +4310,9 @@ var require_asciiWords = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_hasUnicodeWord.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hasUnicodeWord.js
 var require_hasUnicodeWord = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_hasUnicodeWord.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hasUnicodeWord.js"(exports2, module2) {
     var reHasUnicodeWord = /[a-z][A-Z]|[A-Z]{2}[a-z]|[0-9][a-zA-Z]|[a-zA-Z][0-9]|[^a-zA-Z0-9 ]/;
     function hasUnicodeWord(string2) {
       return reHasUnicodeWord.test(string2);
@@ -4314,9 +4321,9 @@ var require_hasUnicodeWord = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_unicodeWords.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_unicodeWords.js
 var require_unicodeWords = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_unicodeWords.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_unicodeWords.js"(exports2, module2) {
     var rsAstralRange = "\\ud800-\\udfff";
     var rsComboMarksRange = "\\u0300-\\u036f";
     var reComboHalfMarksRange = "\\ufe20-\\ufe2f";
@@ -4373,15 +4380,15 @@ var require_unicodeWords = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/words.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/words.js
 var require_words = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/words.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/words.js"(exports2, module2) {
     var asciiWords = require_asciiWords();
     var hasUnicodeWord = require_hasUnicodeWord();
-    var toString = require_toString();
+    var toString2 = require_toString();
     var unicodeWords = require_unicodeWords();
     function words(string2, pattern, guard) {
-      string2 = toString(string2);
+      string2 = toString2(string2);
       pattern = guard ? void 0 : pattern;
       if (pattern === void 0) {
         return hasUnicodeWord(string2) ? unicodeWords(string2) : asciiWords(string2);
@@ -4392,9 +4399,9 @@ var require_words = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_createCompounder.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_createCompounder.js
 var require_createCompounder = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_createCompounder.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_createCompounder.js"(exports2, module2) {
     var arrayReduce = require_arrayReduce();
     var deburr = require_deburr();
     var words = require_words();
@@ -4409,9 +4416,9 @@ var require_createCompounder = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/snakeCase.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/snakeCase.js
 var require_snakeCase = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/snakeCase.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/snakeCase.js"(exports2, module2) {
     var createCompounder = require_createCompounder();
     var snakeCase = createCompounder(function(result, word, index) {
       return result + (index ? "_" : "") + word.toLowerCase();
@@ -4420,9 +4427,9 @@ var require_snakeCase = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseSlice.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseSlice.js
 var require_baseSlice = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_baseSlice.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseSlice.js"(exports2, module2) {
     function baseSlice(array, start, end) {
       var index = -1, length = array.length;
       if (start < 0) {
@@ -4444,9 +4451,9 @@ var require_baseSlice = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_castSlice.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_castSlice.js
 var require_castSlice = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_castSlice.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_castSlice.js"(exports2, module2) {
     var baseSlice = require_baseSlice();
     function castSlice(array, start, end) {
       var length = array.length;
@@ -4457,9 +4464,9 @@ var require_castSlice = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_hasUnicode.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hasUnicode.js
 var require_hasUnicode = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_hasUnicode.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hasUnicode.js"(exports2, module2) {
     var rsAstralRange = "\\ud800-\\udfff";
     var rsComboMarksRange = "\\u0300-\\u036f";
     var reComboHalfMarksRange = "\\ufe20-\\ufe2f";
@@ -4475,9 +4482,9 @@ var require_hasUnicode = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_asciiToArray.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_asciiToArray.js
 var require_asciiToArray = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_asciiToArray.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_asciiToArray.js"(exports2, module2) {
     function asciiToArray(string2) {
       return string2.split("");
     }
@@ -4485,9 +4492,9 @@ var require_asciiToArray = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_unicodeToArray.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_unicodeToArray.js
 var require_unicodeToArray = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_unicodeToArray.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_unicodeToArray.js"(exports2, module2) {
     var rsAstralRange = "\\ud800-\\udfff";
     var rsComboMarksRange = "\\u0300-\\u036f";
     var reComboHalfMarksRange = "\\ufe20-\\ufe2f";
@@ -4515,9 +4522,9 @@ var require_unicodeToArray = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_stringToArray.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stringToArray.js
 var require_stringToArray = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_stringToArray.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stringToArray.js"(exports2, module2) {
     var asciiToArray = require_asciiToArray();
     var hasUnicode = require_hasUnicode();
     var unicodeToArray = require_unicodeToArray();
@@ -4528,16 +4535,16 @@ var require_stringToArray = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_createCaseFirst.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_createCaseFirst.js
 var require_createCaseFirst = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/_createCaseFirst.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_createCaseFirst.js"(exports2, module2) {
     var castSlice = require_castSlice();
     var hasUnicode = require_hasUnicode();
     var stringToArray = require_stringToArray();
-    var toString = require_toString();
+    var toString2 = require_toString();
     function createCaseFirst(methodName) {
       return function(string2) {
-        string2 = toString(string2);
+        string2 = toString2(string2);
         var strSymbols = hasUnicode(string2) ? stringToArray(string2) : void 0;
         var chr = strSymbols ? strSymbols[0] : string2.charAt(0);
         var trailing = strSymbols ? castSlice(strSymbols, 1).join("") : string2.slice(1);
@@ -4548,30 +4555,30 @@ var require_createCaseFirst = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/upperFirst.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/upperFirst.js
 var require_upperFirst = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/upperFirst.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/upperFirst.js"(exports2, module2) {
     var createCaseFirst = require_createCaseFirst();
     var upperFirst = createCaseFirst("toUpperCase");
     module2.exports = upperFirst;
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/capitalize.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/capitalize.js
 var require_capitalize = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/capitalize.js"(exports2, module2) {
-    var toString = require_toString();
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/capitalize.js"(exports2, module2) {
+    var toString2 = require_toString();
     var upperFirst = require_upperFirst();
     function capitalize(string2) {
-      return upperFirst(toString(string2).toLowerCase());
+      return upperFirst(toString2(string2).toLowerCase());
     }
     module2.exports = capitalize;
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/camelCase.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/camelCase.js
 var require_camelCase = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/camelCase.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/camelCase.js"(exports2, module2) {
     var capitalize = require_capitalize();
     var createCompounder = require_createCompounder();
     var camelCase = createCompounder(function(result, word, index) {
@@ -4582,9 +4589,9 @@ var require_camelCase = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/mapKeys.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/mapKeys.js
 var require_mapKeys = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/mapKeys.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/mapKeys.js"(exports2, module2) {
     var baseAssignValue = require_baseAssignValue();
     var baseForOwn = require_baseForOwn();
     var baseIteratee = require_baseIteratee();
@@ -4600,9 +4607,9 @@ var require_mapKeys = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/toposort-npm-2.0.2-d472329c7d-d64c74b570.zip/node_modules/toposort/index.js
+// node_modules/.pnpm/toposort@2.0.2/node_modules/toposort/index.js
 var require_toposort = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/toposort-npm-2.0.2-d472329c7d-d64c74b570.zip/node_modules/toposort/index.js"(exports2, module2) {
+  "node_modules/.pnpm/toposort@2.0.2/node_modules/toposort/index.js"(exports2, module2) {
     module2.exports = function(edges) {
       return toposort(uniqueNodes(edges), edges);
     };
@@ -4679,9 +4686,9 @@ var require_toposort = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/util/sortFields.js
+// node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/util/sortFields.js
 var require_sortFields = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/util/sortFields.js"(exports2) {
+  "node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/util/sortFields.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", {
       value: true
@@ -4719,9 +4726,9 @@ var require_sortFields = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/util/sortByKeyOrder.js
+// node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/util/sortByKeyOrder.js
 var require_sortByKeyOrder = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/util/sortByKeyOrder.js"(exports2) {
+  "node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/util/sortByKeyOrder.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", {
       value: true
@@ -4746,9 +4753,9 @@ var require_sortByKeyOrder = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/object.js
+// node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/object.js
 var require_object = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/object.js"(exports2) {
+  "node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/object.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", {
       value: true
@@ -4784,7 +4791,7 @@ var require_object = __commonJS({
       };
       return _extends.apply(this, arguments);
     }
-    var isObject = (obj) => Object.prototype.toString.call(obj) === "[object Object]";
+    var isObject2 = (obj) => Object.prototype.toString.call(obj) === "[object Object]";
     function unknown(ctx, value) {
       let known = Object.keys(ctx.fields);
       return Object.keys(value).filter((key) => known.indexOf(key) === -1);
@@ -4795,7 +4802,7 @@ var require_object = __commonJS({
         super({
           type: "object"
         });
-        this.fields = Object.create(null);
+        this.fields = /* @__PURE__ */ Object.create(null);
         this._sortErrors = defaultSort;
         this._nodes = [];
         this._excludedEdges = [];
@@ -4818,7 +4825,7 @@ var require_object = __commonJS({
         });
       }
       _typeCheck(value) {
-        return isObject(value) || typeof value === "function";
+        return isObject2(value) || typeof value === "function";
       }
       _cast(_value, options2 = {}) {
         var _options$stripUnknown;
@@ -4890,7 +4897,7 @@ var require_object = __commonJS({
             }
             errors.push(err);
           }
-          if (!recursive || !isObject(value)) {
+          if (!recursive || !isObject2(value)) {
             callback(errors[0] || null, value);
             return;
           }
@@ -4929,8 +4936,8 @@ var require_object = __commonJS({
         next._sortErrors = this._sortErrors;
         return next;
       }
-      concat(schema) {
-        let next = super.concat(schema);
+      concat(schema2) {
+        let next = super.concat(schema2);
         let nextFields = next.fields;
         for (let [field, schemaOrRef] of Object.entries(this.fields)) {
           const target = nextFields[field];
@@ -5059,9 +5066,9 @@ var require_object = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/array.js
+// node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/array.js
 var require_array = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/array.js"(exports2) {
+  "node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/array.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", {
       value: true
@@ -5092,16 +5099,16 @@ var require_array = __commonJS({
       };
       return _extends.apply(this, arguments);
     }
-    function create(type) {
-      return new ArraySchema(type);
+    function create(type2) {
+      return new ArraySchema(type2);
     }
     var ArraySchema = class extends _schema.default {
-      constructor(type) {
+      constructor(type2) {
         super({
           type: "array"
         });
         this.innerType = void 0;
-        this.innerType = type;
+        this.innerType = type2;
         this.withMutation(() => {
           this.transform(function(values) {
             if (typeof values === "string")
@@ -5185,18 +5192,18 @@ var require_array = __commonJS({
         next.innerType = this.innerType;
         return next;
       }
-      concat(schema) {
-        let next = super.concat(schema);
+      concat(schema2) {
+        let next = super.concat(schema2);
         next.innerType = this.innerType;
-        if (schema.innerType)
-          next.innerType = next.innerType ? next.innerType.concat(schema.innerType) : schema.innerType;
+        if (schema2.innerType)
+          next.innerType = next.innerType ? next.innerType.concat(schema2.innerType) : schema2.innerType;
         return next;
       }
-      of(schema) {
+      of(schema2) {
         let next = this.clone();
-        if (!(0, _isSchema.default)(schema))
-          throw new TypeError("`array.of()` sub-schema must be a valid yup schema not: " + (0, _printValue.default)(schema));
-        next.innerType = schema;
+        if (!(0, _isSchema.default)(schema2))
+          throw new TypeError("`array.of()` sub-schema must be a valid yup schema not: " + (0, _printValue.default)(schema2));
+        next.innerType = schema2;
         return next;
       }
       length(length, message = _locale.array.length) {
@@ -5272,9 +5279,9 @@ var require_array = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/Lazy.js
+// node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/Lazy.js
 var require_Lazy = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/Lazy.js"(exports2) {
+  "node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/Lazy.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", {
       value: true
@@ -5295,10 +5302,10 @@ var require_Lazy = __commonJS({
         this.__inputType = void 0;
         this.__outputType = void 0;
         this._resolve = (value, options2 = {}) => {
-          let schema = this.builder(value, options2);
-          if (!(0, _isSchema.default)(schema))
+          let schema2 = this.builder(value, options2);
+          if (!(0, _isSchema.default)(schema2))
             throw new TypeError("lazy() functions must return a valid schema");
-          return schema.resolve(options2);
+          return schema2.resolve(options2);
         };
         this.builder = builder;
       }
@@ -5330,14 +5337,14 @@ var require_Lazy = __commonJS({
         return this._resolve(value, options2).isValidSync(value, options2);
       }
     };
-    var _default = Lazy;
-    exports2.default = _default;
+    var _default2 = Lazy;
+    exports2.default = _default2;
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/setLocale.js
+// node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/setLocale.js
 var require_setLocale = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/setLocale.js"(exports2) {
+  "node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/setLocale.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", {
       value: true
@@ -5348,18 +5355,18 @@ var require_setLocale = __commonJS({
       return obj && obj.__esModule ? obj : { default: obj };
     }
     function setLocale(custom) {
-      Object.keys(custom).forEach((type) => {
-        Object.keys(custom[type]).forEach((method) => {
-          _locale.default[type][method] = custom[type][method];
+      Object.keys(custom).forEach((type2) => {
+        Object.keys(custom[type2]).forEach((method) => {
+          _locale.default[type2][method] = custom[type2][method];
         });
       });
     }
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/index.js
+// node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/index.js
 var require_lib = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/yup-npm-0.32.11-dbaff8ca9c-43a16786b4.zip/node_modules/yup/lib/index.js"(exports2) {
+  "node_modules/.pnpm/yup@0.32.11/node_modules/yup/lib/index.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", {
       value: true
@@ -5517,8 +5524,8 @@ var require_lib = __commonJS({
     function _getRequireWildcardCache(nodeInterop) {
       if (typeof WeakMap !== "function")
         return null;
-      var cacheBabelInterop = new WeakMap();
-      var cacheNodeInterop = new WeakMap();
+      var cacheBabelInterop = /* @__PURE__ */ new WeakMap();
+      var cacheNodeInterop = /* @__PURE__ */ new WeakMap();
       return (_getRequireWildcardCache = function(nodeInterop2) {
         return nodeInterop2 ? cacheNodeInterop : cacheBabelInterop;
       })(nodeInterop);
@@ -5564,2835 +5571,14 @@ var require_lib = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/common.js
-var require_common = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/common.js"(exports2, module2) {
-    "use strict";
-    function isNothing(subject) {
-      return typeof subject === "undefined" || subject === null;
-    }
-    function isObject(subject) {
-      return typeof subject === "object" && subject !== null;
-    }
-    function toArray(sequence) {
-      if (Array.isArray(sequence))
-        return sequence;
-      else if (isNothing(sequence))
-        return [];
-      return [sequence];
-    }
-    function extend(target, source) {
-      var index, length, key, sourceKeys;
-      if (source) {
-        sourceKeys = Object.keys(source);
-        for (index = 0, length = sourceKeys.length; index < length; index += 1) {
-          key = sourceKeys[index];
-          target[key] = source[key];
-        }
-      }
-      return target;
-    }
-    function repeat(string2, count) {
-      var result = "", cycle;
-      for (cycle = 0; cycle < count; cycle += 1) {
-        result += string2;
-      }
-      return result;
-    }
-    function isNegativeZero(number2) {
-      return number2 === 0 && Number.NEGATIVE_INFINITY === 1 / number2;
-    }
-    module2.exports.isNothing = isNothing;
-    module2.exports.isObject = isObject;
-    module2.exports.toArray = toArray;
-    module2.exports.repeat = repeat;
-    module2.exports.isNegativeZero = isNegativeZero;
-    module2.exports.extend = extend;
-  }
-});
-
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/exception.js
-var require_exception = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/exception.js"(exports2, module2) {
-    "use strict";
-    function formatError(exception, compact) {
-      var where = "", message = exception.reason || "(unknown reason)";
-      if (!exception.mark)
-        return message;
-      if (exception.mark.name) {
-        where += 'in "' + exception.mark.name + '" ';
-      }
-      where += "(" + (exception.mark.line + 1) + ":" + (exception.mark.column + 1) + ")";
-      if (!compact && exception.mark.snippet) {
-        where += "\n\n" + exception.mark.snippet;
-      }
-      return message + " " + where;
-    }
-    function YAMLException2(reason, mark) {
-      Error.call(this);
-      this.name = "YAMLException";
-      this.reason = reason;
-      this.mark = mark;
-      this.message = formatError(this, false);
-      if (Error.captureStackTrace) {
-        Error.captureStackTrace(this, this.constructor);
-      } else {
-        this.stack = new Error().stack || "";
-      }
-    }
-    YAMLException2.prototype = Object.create(Error.prototype);
-    YAMLException2.prototype.constructor = YAMLException2;
-    YAMLException2.prototype.toString = function toString(compact) {
-      return this.name + ": " + formatError(this, compact);
-    };
-    module2.exports = YAMLException2;
-  }
-});
-
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/snippet.js
-var require_snippet = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/snippet.js"(exports2, module2) {
-    "use strict";
-    var common = require_common();
-    function getLine(buffer, lineStart, lineEnd, position, maxLineLength) {
-      var head = "";
-      var tail = "";
-      var maxHalfLength = Math.floor(maxLineLength / 2) - 1;
-      if (position - lineStart > maxHalfLength) {
-        head = " ... ";
-        lineStart = position - maxHalfLength + head.length;
-      }
-      if (lineEnd - position > maxHalfLength) {
-        tail = " ...";
-        lineEnd = position + maxHalfLength - tail.length;
-      }
-      return {
-        str: head + buffer.slice(lineStart, lineEnd).replace(/\t/g, "\u2192") + tail,
-        pos: position - lineStart + head.length
-      };
-    }
-    function padStart(string2, max) {
-      return common.repeat(" ", max - string2.length) + string2;
-    }
-    function makeSnippet(mark, options2) {
-      options2 = Object.create(options2 || null);
-      if (!mark.buffer)
-        return null;
-      if (!options2.maxLength)
-        options2.maxLength = 79;
-      if (typeof options2.indent !== "number")
-        options2.indent = 1;
-      if (typeof options2.linesBefore !== "number")
-        options2.linesBefore = 3;
-      if (typeof options2.linesAfter !== "number")
-        options2.linesAfter = 2;
-      var re = /\r?\n|\r|\0/g;
-      var lineStarts = [0];
-      var lineEnds = [];
-      var match;
-      var foundLineNo = -1;
-      while (match = re.exec(mark.buffer)) {
-        lineEnds.push(match.index);
-        lineStarts.push(match.index + match[0].length);
-        if (mark.position <= match.index && foundLineNo < 0) {
-          foundLineNo = lineStarts.length - 2;
-        }
-      }
-      if (foundLineNo < 0)
-        foundLineNo = lineStarts.length - 1;
-      var result = "", i, line;
-      var lineNoLength = Math.min(mark.line + options2.linesAfter, lineEnds.length).toString().length;
-      var maxLineLength = options2.maxLength - (options2.indent + lineNoLength + 3);
-      for (i = 1; i <= options2.linesBefore; i++) {
-        if (foundLineNo - i < 0)
-          break;
-        line = getLine(mark.buffer, lineStarts[foundLineNo - i], lineEnds[foundLineNo - i], mark.position - (lineStarts[foundLineNo] - lineStarts[foundLineNo - i]), maxLineLength);
-        result = common.repeat(" ", options2.indent) + padStart((mark.line - i + 1).toString(), lineNoLength) + " | " + line.str + "\n" + result;
-      }
-      line = getLine(mark.buffer, lineStarts[foundLineNo], lineEnds[foundLineNo], mark.position, maxLineLength);
-      result += common.repeat(" ", options2.indent) + padStart((mark.line + 1).toString(), lineNoLength) + " | " + line.str + "\n";
-      result += common.repeat("-", options2.indent + lineNoLength + 3 + line.pos) + "^\n";
-      for (i = 1; i <= options2.linesAfter; i++) {
-        if (foundLineNo + i >= lineEnds.length)
-          break;
-        line = getLine(mark.buffer, lineStarts[foundLineNo + i], lineEnds[foundLineNo + i], mark.position - (lineStarts[foundLineNo] - lineStarts[foundLineNo + i]), maxLineLength);
-        result += common.repeat(" ", options2.indent) + padStart((mark.line + i + 1).toString(), lineNoLength) + " | " + line.str + "\n";
-      }
-      return result.replace(/\n$/, "");
-    }
-    module2.exports = makeSnippet;
-  }
-});
-
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/type.js
-var require_type = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/type.js"(exports2, module2) {
-    "use strict";
-    var YAMLException2 = require_exception();
-    var TYPE_CONSTRUCTOR_OPTIONS = [
-      "kind",
-      "multi",
-      "resolve",
-      "construct",
-      "instanceOf",
-      "predicate",
-      "represent",
-      "representName",
-      "defaultStyle",
-      "styleAliases"
-    ];
-    var YAML_NODE_KINDS = [
-      "scalar",
-      "sequence",
-      "mapping"
-    ];
-    function compileStyleAliases(map) {
-      var result = {};
-      if (map !== null) {
-        Object.keys(map).forEach(function(style) {
-          map[style].forEach(function(alias) {
-            result[String(alias)] = style;
-          });
-        });
-      }
-      return result;
-    }
-    function Type(tag, options2) {
-      options2 = options2 || {};
-      Object.keys(options2).forEach(function(name) {
-        if (TYPE_CONSTRUCTOR_OPTIONS.indexOf(name) === -1) {
-          throw new YAMLException2('Unknown option "' + name + '" is met in definition of "' + tag + '" YAML type.');
-        }
-      });
-      this.options = options2;
-      this.tag = tag;
-      this.kind = options2["kind"] || null;
-      this.resolve = options2["resolve"] || function() {
-        return true;
-      };
-      this.construct = options2["construct"] || function(data) {
-        return data;
-      };
-      this.instanceOf = options2["instanceOf"] || null;
-      this.predicate = options2["predicate"] || null;
-      this.represent = options2["represent"] || null;
-      this.representName = options2["representName"] || null;
-      this.defaultStyle = options2["defaultStyle"] || null;
-      this.multi = options2["multi"] || false;
-      this.styleAliases = compileStyleAliases(options2["styleAliases"] || null);
-      if (YAML_NODE_KINDS.indexOf(this.kind) === -1) {
-        throw new YAMLException2('Unknown kind "' + this.kind + '" is specified for "' + tag + '" YAML type.');
-      }
-    }
-    module2.exports = Type;
-  }
-});
-
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/schema.js
-var require_schema2 = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/schema.js"(exports2, module2) {
-    "use strict";
-    var YAMLException2 = require_exception();
-    var Type = require_type();
-    function compileList(schema, name) {
-      var result = [];
-      schema[name].forEach(function(currentType) {
-        var newIndex = result.length;
-        result.forEach(function(previousType, previousIndex) {
-          if (previousType.tag === currentType.tag && previousType.kind === currentType.kind && previousType.multi === currentType.multi) {
-            newIndex = previousIndex;
-          }
-        });
-        result[newIndex] = currentType;
-      });
-      return result;
-    }
-    function compileMap() {
-      var result = {
-        scalar: {},
-        sequence: {},
-        mapping: {},
-        fallback: {},
-        multi: {
-          scalar: [],
-          sequence: [],
-          mapping: [],
-          fallback: []
-        }
-      }, index, length;
-      function collectType(type) {
-        if (type.multi) {
-          result.multi[type.kind].push(type);
-          result.multi["fallback"].push(type);
-        } else {
-          result[type.kind][type.tag] = result["fallback"][type.tag] = type;
-        }
-      }
-      for (index = 0, length = arguments.length; index < length; index += 1) {
-        arguments[index].forEach(collectType);
-      }
-      return result;
-    }
-    function Schema(definition) {
-      return this.extend(definition);
-    }
-    Schema.prototype.extend = function extend(definition) {
-      var implicit = [];
-      var explicit = [];
-      if (definition instanceof Type) {
-        explicit.push(definition);
-      } else if (Array.isArray(definition)) {
-        explicit = explicit.concat(definition);
-      } else if (definition && (Array.isArray(definition.implicit) || Array.isArray(definition.explicit))) {
-        if (definition.implicit)
-          implicit = implicit.concat(definition.implicit);
-        if (definition.explicit)
-          explicit = explicit.concat(definition.explicit);
-      } else {
-        throw new YAMLException2("Schema.extend argument should be a Type, [ Type ], or a schema definition ({ implicit: [...], explicit: [...] })");
-      }
-      implicit.forEach(function(type) {
-        if (!(type instanceof Type)) {
-          throw new YAMLException2("Specified list of YAML types (or a single Type object) contains a non-Type object.");
-        }
-        if (type.loadKind && type.loadKind !== "scalar") {
-          throw new YAMLException2("There is a non-scalar type in the implicit list of a schema. Implicit resolving of such types is not supported.");
-        }
-        if (type.multi) {
-          throw new YAMLException2("There is a multi type in the implicit list of a schema. Multi tags can only be listed as explicit.");
-        }
-      });
-      explicit.forEach(function(type) {
-        if (!(type instanceof Type)) {
-          throw new YAMLException2("Specified list of YAML types (or a single Type object) contains a non-Type object.");
-        }
-      });
-      var result = Object.create(Schema.prototype);
-      result.implicit = (this.implicit || []).concat(implicit);
-      result.explicit = (this.explicit || []).concat(explicit);
-      result.compiledImplicit = compileList(result, "implicit");
-      result.compiledExplicit = compileList(result, "explicit");
-      result.compiledTypeMap = compileMap(result.compiledImplicit, result.compiledExplicit);
-      return result;
-    };
-    module2.exports = Schema;
-  }
-});
-
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/type/str.js
-var require_str = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/type/str.js"(exports2, module2) {
-    "use strict";
-    var Type = require_type();
-    module2.exports = new Type("tag:yaml.org,2002:str", {
-      kind: "scalar",
-      construct: function(data) {
-        return data !== null ? data : "";
-      }
-    });
-  }
-});
-
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/type/seq.js
-var require_seq = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/type/seq.js"(exports2, module2) {
-    "use strict";
-    var Type = require_type();
-    module2.exports = new Type("tag:yaml.org,2002:seq", {
-      kind: "sequence",
-      construct: function(data) {
-        return data !== null ? data : [];
-      }
-    });
-  }
-});
-
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/type/map.js
-var require_map = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/type/map.js"(exports2, module2) {
-    "use strict";
-    var Type = require_type();
-    module2.exports = new Type("tag:yaml.org,2002:map", {
-      kind: "mapping",
-      construct: function(data) {
-        return data !== null ? data : {};
-      }
-    });
-  }
-});
-
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/schema/failsafe.js
-var require_failsafe = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/schema/failsafe.js"(exports2, module2) {
-    "use strict";
-    var Schema = require_schema2();
-    module2.exports = new Schema({
-      explicit: [
-        require_str(),
-        require_seq(),
-        require_map()
-      ]
-    });
-  }
-});
-
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/type/null.js
-var require_null = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/type/null.js"(exports2, module2) {
-    "use strict";
-    var Type = require_type();
-    function resolveYamlNull(data) {
-      if (data === null)
-        return true;
-      var max = data.length;
-      return max === 1 && data === "~" || max === 4 && (data === "null" || data === "Null" || data === "NULL");
-    }
-    function constructYamlNull() {
-      return null;
-    }
-    function isNull(object) {
-      return object === null;
-    }
-    module2.exports = new Type("tag:yaml.org,2002:null", {
-      kind: "scalar",
-      resolve: resolveYamlNull,
-      construct: constructYamlNull,
-      predicate: isNull,
-      represent: {
-        canonical: function() {
-          return "~";
-        },
-        lowercase: function() {
-          return "null";
-        },
-        uppercase: function() {
-          return "NULL";
-        },
-        camelcase: function() {
-          return "Null";
-        },
-        empty: function() {
-          return "";
-        }
-      },
-      defaultStyle: "lowercase"
-    });
-  }
-});
-
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/type/bool.js
-var require_bool = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/type/bool.js"(exports2, module2) {
-    "use strict";
-    var Type = require_type();
-    function resolveYamlBoolean(data) {
-      if (data === null)
-        return false;
-      var max = data.length;
-      return max === 4 && (data === "true" || data === "True" || data === "TRUE") || max === 5 && (data === "false" || data === "False" || data === "FALSE");
-    }
-    function constructYamlBoolean(data) {
-      return data === "true" || data === "True" || data === "TRUE";
-    }
-    function isBoolean(object) {
-      return Object.prototype.toString.call(object) === "[object Boolean]";
-    }
-    module2.exports = new Type("tag:yaml.org,2002:bool", {
-      kind: "scalar",
-      resolve: resolveYamlBoolean,
-      construct: constructYamlBoolean,
-      predicate: isBoolean,
-      represent: {
-        lowercase: function(object) {
-          return object ? "true" : "false";
-        },
-        uppercase: function(object) {
-          return object ? "TRUE" : "FALSE";
-        },
-        camelcase: function(object) {
-          return object ? "True" : "False";
-        }
-      },
-      defaultStyle: "lowercase"
-    });
-  }
-});
-
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/type/int.js
-var require_int = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/type/int.js"(exports2, module2) {
-    "use strict";
-    var common = require_common();
-    var Type = require_type();
-    function isHexCode(c) {
-      return 48 <= c && c <= 57 || 65 <= c && c <= 70 || 97 <= c && c <= 102;
-    }
-    function isOctCode(c) {
-      return 48 <= c && c <= 55;
-    }
-    function isDecCode(c) {
-      return 48 <= c && c <= 57;
-    }
-    function resolveYamlInteger(data) {
-      if (data === null)
-        return false;
-      var max = data.length, index = 0, hasDigits = false, ch;
-      if (!max)
-        return false;
-      ch = data[index];
-      if (ch === "-" || ch === "+") {
-        ch = data[++index];
-      }
-      if (ch === "0") {
-        if (index + 1 === max)
-          return true;
-        ch = data[++index];
-        if (ch === "b") {
-          index++;
-          for (; index < max; index++) {
-            ch = data[index];
-            if (ch === "_")
-              continue;
-            if (ch !== "0" && ch !== "1")
-              return false;
-            hasDigits = true;
-          }
-          return hasDigits && ch !== "_";
-        }
-        if (ch === "x") {
-          index++;
-          for (; index < max; index++) {
-            ch = data[index];
-            if (ch === "_")
-              continue;
-            if (!isHexCode(data.charCodeAt(index)))
-              return false;
-            hasDigits = true;
-          }
-          return hasDigits && ch !== "_";
-        }
-        if (ch === "o") {
-          index++;
-          for (; index < max; index++) {
-            ch = data[index];
-            if (ch === "_")
-              continue;
-            if (!isOctCode(data.charCodeAt(index)))
-              return false;
-            hasDigits = true;
-          }
-          return hasDigits && ch !== "_";
-        }
-      }
-      if (ch === "_")
-        return false;
-      for (; index < max; index++) {
-        ch = data[index];
-        if (ch === "_")
-          continue;
-        if (!isDecCode(data.charCodeAt(index))) {
-          return false;
-        }
-        hasDigits = true;
-      }
-      if (!hasDigits || ch === "_")
-        return false;
-      return true;
-    }
-    function constructYamlInteger(data) {
-      var value = data, sign = 1, ch;
-      if (value.indexOf("_") !== -1) {
-        value = value.replace(/_/g, "");
-      }
-      ch = value[0];
-      if (ch === "-" || ch === "+") {
-        if (ch === "-")
-          sign = -1;
-        value = value.slice(1);
-        ch = value[0];
-      }
-      if (value === "0")
-        return 0;
-      if (ch === "0") {
-        if (value[1] === "b")
-          return sign * parseInt(value.slice(2), 2);
-        if (value[1] === "x")
-          return sign * parseInt(value.slice(2), 16);
-        if (value[1] === "o")
-          return sign * parseInt(value.slice(2), 8);
-      }
-      return sign * parseInt(value, 10);
-    }
-    function isInteger(object) {
-      return Object.prototype.toString.call(object) === "[object Number]" && (object % 1 === 0 && !common.isNegativeZero(object));
-    }
-    module2.exports = new Type("tag:yaml.org,2002:int", {
-      kind: "scalar",
-      resolve: resolveYamlInteger,
-      construct: constructYamlInteger,
-      predicate: isInteger,
-      represent: {
-        binary: function(obj) {
-          return obj >= 0 ? "0b" + obj.toString(2) : "-0b" + obj.toString(2).slice(1);
-        },
-        octal: function(obj) {
-          return obj >= 0 ? "0o" + obj.toString(8) : "-0o" + obj.toString(8).slice(1);
-        },
-        decimal: function(obj) {
-          return obj.toString(10);
-        },
-        hexadecimal: function(obj) {
-          return obj >= 0 ? "0x" + obj.toString(16).toUpperCase() : "-0x" + obj.toString(16).toUpperCase().slice(1);
-        }
-      },
-      defaultStyle: "decimal",
-      styleAliases: {
-        binary: [2, "bin"],
-        octal: [8, "oct"],
-        decimal: [10, "dec"],
-        hexadecimal: [16, "hex"]
-      }
-    });
-  }
-});
-
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/type/float.js
-var require_float = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/type/float.js"(exports2, module2) {
-    "use strict";
-    var common = require_common();
-    var Type = require_type();
-    var YAML_FLOAT_PATTERN = new RegExp("^(?:[-+]?(?:[0-9][0-9_]*)(?:\\.[0-9_]*)?(?:[eE][-+]?[0-9]+)?|\\.[0-9_]+(?:[eE][-+]?[0-9]+)?|[-+]?\\.(?:inf|Inf|INF)|\\.(?:nan|NaN|NAN))$");
-    function resolveYamlFloat(data) {
-      if (data === null)
-        return false;
-      if (!YAML_FLOAT_PATTERN.test(data) || data[data.length - 1] === "_") {
-        return false;
-      }
-      return true;
-    }
-    function constructYamlFloat(data) {
-      var value, sign;
-      value = data.replace(/_/g, "").toLowerCase();
-      sign = value[0] === "-" ? -1 : 1;
-      if ("+-".indexOf(value[0]) >= 0) {
-        value = value.slice(1);
-      }
-      if (value === ".inf") {
-        return sign === 1 ? Number.POSITIVE_INFINITY : Number.NEGATIVE_INFINITY;
-      } else if (value === ".nan") {
-        return NaN;
-      }
-      return sign * parseFloat(value, 10);
-    }
-    var SCIENTIFIC_WITHOUT_DOT = /^[-+]?[0-9]+e/;
-    function representYamlFloat(object, style) {
-      var res;
-      if (isNaN(object)) {
-        switch (style) {
-          case "lowercase":
-            return ".nan";
-          case "uppercase":
-            return ".NAN";
-          case "camelcase":
-            return ".NaN";
-        }
-      } else if (Number.POSITIVE_INFINITY === object) {
-        switch (style) {
-          case "lowercase":
-            return ".inf";
-          case "uppercase":
-            return ".INF";
-          case "camelcase":
-            return ".Inf";
-        }
-      } else if (Number.NEGATIVE_INFINITY === object) {
-        switch (style) {
-          case "lowercase":
-            return "-.inf";
-          case "uppercase":
-            return "-.INF";
-          case "camelcase":
-            return "-.Inf";
-        }
-      } else if (common.isNegativeZero(object)) {
-        return "-0.0";
-      }
-      res = object.toString(10);
-      return SCIENTIFIC_WITHOUT_DOT.test(res) ? res.replace("e", ".e") : res;
-    }
-    function isFloat(object) {
-      return Object.prototype.toString.call(object) === "[object Number]" && (object % 1 !== 0 || common.isNegativeZero(object));
-    }
-    module2.exports = new Type("tag:yaml.org,2002:float", {
-      kind: "scalar",
-      resolve: resolveYamlFloat,
-      construct: constructYamlFloat,
-      predicate: isFloat,
-      represent: representYamlFloat,
-      defaultStyle: "lowercase"
-    });
-  }
-});
-
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/schema/json.js
-var require_json = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/schema/json.js"(exports2, module2) {
-    "use strict";
-    module2.exports = require_failsafe().extend({
-      implicit: [
-        require_null(),
-        require_bool(),
-        require_int(),
-        require_float()
-      ]
-    });
-  }
-});
-
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/schema/core.js
-var require_core = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/schema/core.js"(exports2, module2) {
-    "use strict";
-    module2.exports = require_json();
-  }
-});
-
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/type/timestamp.js
-var require_timestamp = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/type/timestamp.js"(exports2, module2) {
-    "use strict";
-    var Type = require_type();
-    var YAML_DATE_REGEXP = new RegExp("^([0-9][0-9][0-9][0-9])-([0-9][0-9])-([0-9][0-9])$");
-    var YAML_TIMESTAMP_REGEXP = new RegExp("^([0-9][0-9][0-9][0-9])-([0-9][0-9]?)-([0-9][0-9]?)(?:[Tt]|[ \\t]+)([0-9][0-9]?):([0-9][0-9]):([0-9][0-9])(?:\\.([0-9]*))?(?:[ \\t]*(Z|([-+])([0-9][0-9]?)(?::([0-9][0-9]))?))?$");
-    function resolveYamlTimestamp(data) {
-      if (data === null)
-        return false;
-      if (YAML_DATE_REGEXP.exec(data) !== null)
-        return true;
-      if (YAML_TIMESTAMP_REGEXP.exec(data) !== null)
-        return true;
-      return false;
-    }
-    function constructYamlTimestamp(data) {
-      var match, year, month, day, hour, minute, second, fraction = 0, delta = null, tz_hour, tz_minute, date;
-      match = YAML_DATE_REGEXP.exec(data);
-      if (match === null)
-        match = YAML_TIMESTAMP_REGEXP.exec(data);
-      if (match === null)
-        throw new Error("Date resolve error");
-      year = +match[1];
-      month = +match[2] - 1;
-      day = +match[3];
-      if (!match[4]) {
-        return new Date(Date.UTC(year, month, day));
-      }
-      hour = +match[4];
-      minute = +match[5];
-      second = +match[6];
-      if (match[7]) {
-        fraction = match[7].slice(0, 3);
-        while (fraction.length < 3) {
-          fraction += "0";
-        }
-        fraction = +fraction;
-      }
-      if (match[9]) {
-        tz_hour = +match[10];
-        tz_minute = +(match[11] || 0);
-        delta = (tz_hour * 60 + tz_minute) * 6e4;
-        if (match[9] === "-")
-          delta = -delta;
-      }
-      date = new Date(Date.UTC(year, month, day, hour, minute, second, fraction));
-      if (delta)
-        date.setTime(date.getTime() - delta);
-      return date;
-    }
-    function representYamlTimestamp(object) {
-      return object.toISOString();
-    }
-    module2.exports = new Type("tag:yaml.org,2002:timestamp", {
-      kind: "scalar",
-      resolve: resolveYamlTimestamp,
-      construct: constructYamlTimestamp,
-      instanceOf: Date,
-      represent: representYamlTimestamp
-    });
-  }
-});
-
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/type/merge.js
-var require_merge = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/type/merge.js"(exports2, module2) {
-    "use strict";
-    var Type = require_type();
-    function resolveYamlMerge(data) {
-      return data === "<<" || data === null;
-    }
-    module2.exports = new Type("tag:yaml.org,2002:merge", {
-      kind: "scalar",
-      resolve: resolveYamlMerge
-    });
-  }
-});
-
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/type/binary.js
-var require_binary = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/type/binary.js"(exports2, module2) {
-    "use strict";
-    var Type = require_type();
-    var BASE64_MAP = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=\n\r";
-    function resolveYamlBinary(data) {
-      if (data === null)
-        return false;
-      var code, idx, bitlen = 0, max = data.length, map = BASE64_MAP;
-      for (idx = 0; idx < max; idx++) {
-        code = map.indexOf(data.charAt(idx));
-        if (code > 64)
-          continue;
-        if (code < 0)
-          return false;
-        bitlen += 6;
-      }
-      return bitlen % 8 === 0;
-    }
-    function constructYamlBinary(data) {
-      var idx, tailbits, input = data.replace(/[\r\n=]/g, ""), max = input.length, map = BASE64_MAP, bits = 0, result = [];
-      for (idx = 0; idx < max; idx++) {
-        if (idx % 4 === 0 && idx) {
-          result.push(bits >> 16 & 255);
-          result.push(bits >> 8 & 255);
-          result.push(bits & 255);
-        }
-        bits = bits << 6 | map.indexOf(input.charAt(idx));
-      }
-      tailbits = max % 4 * 6;
-      if (tailbits === 0) {
-        result.push(bits >> 16 & 255);
-        result.push(bits >> 8 & 255);
-        result.push(bits & 255);
-      } else if (tailbits === 18) {
-        result.push(bits >> 10 & 255);
-        result.push(bits >> 2 & 255);
-      } else if (tailbits === 12) {
-        result.push(bits >> 4 & 255);
-      }
-      return new Uint8Array(result);
-    }
-    function representYamlBinary(object) {
-      var result = "", bits = 0, idx, tail, max = object.length, map = BASE64_MAP;
-      for (idx = 0; idx < max; idx++) {
-        if (idx % 3 === 0 && idx) {
-          result += map[bits >> 18 & 63];
-          result += map[bits >> 12 & 63];
-          result += map[bits >> 6 & 63];
-          result += map[bits & 63];
-        }
-        bits = (bits << 8) + object[idx];
-      }
-      tail = max % 3;
-      if (tail === 0) {
-        result += map[bits >> 18 & 63];
-        result += map[bits >> 12 & 63];
-        result += map[bits >> 6 & 63];
-        result += map[bits & 63];
-      } else if (tail === 2) {
-        result += map[bits >> 10 & 63];
-        result += map[bits >> 4 & 63];
-        result += map[bits << 2 & 63];
-        result += map[64];
-      } else if (tail === 1) {
-        result += map[bits >> 2 & 63];
-        result += map[bits << 4 & 63];
-        result += map[64];
-        result += map[64];
-      }
-      return result;
-    }
-    function isBinary(obj) {
-      return Object.prototype.toString.call(obj) === "[object Uint8Array]";
-    }
-    module2.exports = new Type("tag:yaml.org,2002:binary", {
-      kind: "scalar",
-      resolve: resolveYamlBinary,
-      construct: constructYamlBinary,
-      predicate: isBinary,
-      represent: representYamlBinary
-    });
-  }
-});
-
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/type/omap.js
-var require_omap = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/type/omap.js"(exports2, module2) {
-    "use strict";
-    var Type = require_type();
-    var _hasOwnProperty = Object.prototype.hasOwnProperty;
-    var _toString = Object.prototype.toString;
-    function resolveYamlOmap(data) {
-      if (data === null)
-        return true;
-      var objectKeys = [], index, length, pair, pairKey, pairHasKey, object = data;
-      for (index = 0, length = object.length; index < length; index += 1) {
-        pair = object[index];
-        pairHasKey = false;
-        if (_toString.call(pair) !== "[object Object]")
-          return false;
-        for (pairKey in pair) {
-          if (_hasOwnProperty.call(pair, pairKey)) {
-            if (!pairHasKey)
-              pairHasKey = true;
-            else
-              return false;
-          }
-        }
-        if (!pairHasKey)
-          return false;
-        if (objectKeys.indexOf(pairKey) === -1)
-          objectKeys.push(pairKey);
-        else
-          return false;
-      }
-      return true;
-    }
-    function constructYamlOmap(data) {
-      return data !== null ? data : [];
-    }
-    module2.exports = new Type("tag:yaml.org,2002:omap", {
-      kind: "sequence",
-      resolve: resolveYamlOmap,
-      construct: constructYamlOmap
-    });
-  }
-});
-
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/type/pairs.js
-var require_pairs = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/type/pairs.js"(exports2, module2) {
-    "use strict";
-    var Type = require_type();
-    var _toString = Object.prototype.toString;
-    function resolveYamlPairs(data) {
-      if (data === null)
-        return true;
-      var index, length, pair, keys, result, object = data;
-      result = new Array(object.length);
-      for (index = 0, length = object.length; index < length; index += 1) {
-        pair = object[index];
-        if (_toString.call(pair) !== "[object Object]")
-          return false;
-        keys = Object.keys(pair);
-        if (keys.length !== 1)
-          return false;
-        result[index] = [keys[0], pair[keys[0]]];
-      }
-      return true;
-    }
-    function constructYamlPairs(data) {
-      if (data === null)
-        return [];
-      var index, length, pair, keys, result, object = data;
-      result = new Array(object.length);
-      for (index = 0, length = object.length; index < length; index += 1) {
-        pair = object[index];
-        keys = Object.keys(pair);
-        result[index] = [keys[0], pair[keys[0]]];
-      }
-      return result;
-    }
-    module2.exports = new Type("tag:yaml.org,2002:pairs", {
-      kind: "sequence",
-      resolve: resolveYamlPairs,
-      construct: constructYamlPairs
-    });
-  }
-});
-
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/type/set.js
-var require_set = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/type/set.js"(exports2, module2) {
-    "use strict";
-    var Type = require_type();
-    var _hasOwnProperty = Object.prototype.hasOwnProperty;
-    function resolveYamlSet(data) {
-      if (data === null)
-        return true;
-      var key, object = data;
-      for (key in object) {
-        if (_hasOwnProperty.call(object, key)) {
-          if (object[key] !== null)
-            return false;
-        }
-      }
-      return true;
-    }
-    function constructYamlSet(data) {
-      return data !== null ? data : {};
-    }
-    module2.exports = new Type("tag:yaml.org,2002:set", {
-      kind: "mapping",
-      resolve: resolveYamlSet,
-      construct: constructYamlSet
-    });
-  }
-});
-
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/schema/default.js
-var require_default = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/schema/default.js"(exports2, module2) {
-    "use strict";
-    module2.exports = require_core().extend({
-      implicit: [
-        require_timestamp(),
-        require_merge()
-      ],
-      explicit: [
-        require_binary(),
-        require_omap(),
-        require_pairs(),
-        require_set()
-      ]
-    });
-  }
-});
-
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/loader.js
-var require_loader = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/loader.js"(exports2, module2) {
-    "use strict";
-    var common = require_common();
-    var YAMLException2 = require_exception();
-    var makeSnippet = require_snippet();
-    var DEFAULT_SCHEMA = require_default();
-    var _hasOwnProperty = Object.prototype.hasOwnProperty;
-    var CONTEXT_FLOW_IN = 1;
-    var CONTEXT_FLOW_OUT = 2;
-    var CONTEXT_BLOCK_IN = 3;
-    var CONTEXT_BLOCK_OUT = 4;
-    var CHOMPING_CLIP = 1;
-    var CHOMPING_STRIP = 2;
-    var CHOMPING_KEEP = 3;
-    var PATTERN_NON_PRINTABLE = /[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x84\x86-\x9F\uFFFE\uFFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]/;
-    var PATTERN_NON_ASCII_LINE_BREAKS = /[\x85\u2028\u2029]/;
-    var PATTERN_FLOW_INDICATORS = /[,\[\]\{\}]/;
-    var PATTERN_TAG_HANDLE = /^(?:!|!!|![a-z\-]+!)$/i;
-    var PATTERN_TAG_URI = /^(?:!|[^,\[\]\{\}])(?:%[0-9a-f]{2}|[0-9a-z\-#;\/\?:@&=\+\$,_\.!~\*'\(\)\[\]])*$/i;
-    function _class(obj) {
-      return Object.prototype.toString.call(obj);
-    }
-    function is_EOL(c) {
-      return c === 10 || c === 13;
-    }
-    function is_WHITE_SPACE(c) {
-      return c === 9 || c === 32;
-    }
-    function is_WS_OR_EOL(c) {
-      return c === 9 || c === 32 || c === 10 || c === 13;
-    }
-    function is_FLOW_INDICATOR(c) {
-      return c === 44 || c === 91 || c === 93 || c === 123 || c === 125;
-    }
-    function fromHexCode(c) {
-      var lc;
-      if (48 <= c && c <= 57) {
-        return c - 48;
-      }
-      lc = c | 32;
-      if (97 <= lc && lc <= 102) {
-        return lc - 97 + 10;
-      }
-      return -1;
-    }
-    function escapedHexLen(c) {
-      if (c === 120) {
-        return 2;
-      }
-      if (c === 117) {
-        return 4;
-      }
-      if (c === 85) {
-        return 8;
-      }
-      return 0;
-    }
-    function fromDecimalCode(c) {
-      if (48 <= c && c <= 57) {
-        return c - 48;
-      }
-      return -1;
-    }
-    function simpleEscapeSequence(c) {
-      return c === 48 ? "\0" : c === 97 ? "\x07" : c === 98 ? "\b" : c === 116 ? "	" : c === 9 ? "	" : c === 110 ? "\n" : c === 118 ? "\v" : c === 102 ? "\f" : c === 114 ? "\r" : c === 101 ? "" : c === 32 ? " " : c === 34 ? '"' : c === 47 ? "/" : c === 92 ? "\\" : c === 78 ? "\x85" : c === 95 ? "\xA0" : c === 76 ? "\u2028" : c === 80 ? "\u2029" : "";
-    }
-    function charFromCodepoint(c) {
-      if (c <= 65535) {
-        return String.fromCharCode(c);
-      }
-      return String.fromCharCode((c - 65536 >> 10) + 55296, (c - 65536 & 1023) + 56320);
-    }
-    var simpleEscapeCheck = new Array(256);
-    var simpleEscapeMap = new Array(256);
-    for (i = 0; i < 256; i++) {
-      simpleEscapeCheck[i] = simpleEscapeSequence(i) ? 1 : 0;
-      simpleEscapeMap[i] = simpleEscapeSequence(i);
-    }
-    var i;
-    function State(input, options2) {
-      this.input = input;
-      this.filename = options2["filename"] || null;
-      this.schema = options2["schema"] || DEFAULT_SCHEMA;
-      this.onWarning = options2["onWarning"] || null;
-      this.legacy = options2["legacy"] || false;
-      this.json = options2["json"] || false;
-      this.listener = options2["listener"] || null;
-      this.implicitTypes = this.schema.compiledImplicit;
-      this.typeMap = this.schema.compiledTypeMap;
-      this.length = input.length;
-      this.position = 0;
-      this.line = 0;
-      this.lineStart = 0;
-      this.lineIndent = 0;
-      this.firstTabInLine = -1;
-      this.documents = [];
-    }
-    function generateError(state, message) {
-      var mark = {
-        name: state.filename,
-        buffer: state.input.slice(0, -1),
-        position: state.position,
-        line: state.line,
-        column: state.position - state.lineStart
-      };
-      mark.snippet = makeSnippet(mark);
-      return new YAMLException2(message, mark);
-    }
-    function throwError(state, message) {
-      throw generateError(state, message);
-    }
-    function throwWarning(state, message) {
-      if (state.onWarning) {
-        state.onWarning.call(null, generateError(state, message));
-      }
-    }
-    var directiveHandlers = {
-      YAML: function handleYamlDirective(state, name, args) {
-        var match, major, minor;
-        if (state.version !== null) {
-          throwError(state, "duplication of %YAML directive");
-        }
-        if (args.length !== 1) {
-          throwError(state, "YAML directive accepts exactly one argument");
-        }
-        match = /^([0-9]+)\.([0-9]+)$/.exec(args[0]);
-        if (match === null) {
-          throwError(state, "ill-formed argument of the YAML directive");
-        }
-        major = parseInt(match[1], 10);
-        minor = parseInt(match[2], 10);
-        if (major !== 1) {
-          throwError(state, "unacceptable YAML version of the document");
-        }
-        state.version = args[0];
-        state.checkLineBreaks = minor < 2;
-        if (minor !== 1 && minor !== 2) {
-          throwWarning(state, "unsupported YAML version of the document");
-        }
-      },
-      TAG: function handleTagDirective(state, name, args) {
-        var handle, prefix;
-        if (args.length !== 2) {
-          throwError(state, "TAG directive accepts exactly two arguments");
-        }
-        handle = args[0];
-        prefix = args[1];
-        if (!PATTERN_TAG_HANDLE.test(handle)) {
-          throwError(state, "ill-formed tag handle (first argument) of the TAG directive");
-        }
-        if (_hasOwnProperty.call(state.tagMap, handle)) {
-          throwError(state, 'there is a previously declared suffix for "' + handle + '" tag handle');
-        }
-        if (!PATTERN_TAG_URI.test(prefix)) {
-          throwError(state, "ill-formed tag prefix (second argument) of the TAG directive");
-        }
-        try {
-          prefix = decodeURIComponent(prefix);
-        } catch (err) {
-          throwError(state, "tag prefix is malformed: " + prefix);
-        }
-        state.tagMap[handle] = prefix;
-      }
-    };
-    function captureSegment(state, start, end, checkJson) {
-      var _position, _length, _character, _result;
-      if (start < end) {
-        _result = state.input.slice(start, end);
-        if (checkJson) {
-          for (_position = 0, _length = _result.length; _position < _length; _position += 1) {
-            _character = _result.charCodeAt(_position);
-            if (!(_character === 9 || 32 <= _character && _character <= 1114111)) {
-              throwError(state, "expected valid JSON character");
-            }
-          }
-        } else if (PATTERN_NON_PRINTABLE.test(_result)) {
-          throwError(state, "the stream contains non-printable characters");
-        }
-        state.result += _result;
-      }
-    }
-    function mergeMappings(state, destination, source, overridableKeys) {
-      var sourceKeys, key, index, quantity;
-      if (!common.isObject(source)) {
-        throwError(state, "cannot merge mappings; the provided source object is unacceptable");
-      }
-      sourceKeys = Object.keys(source);
-      for (index = 0, quantity = sourceKeys.length; index < quantity; index += 1) {
-        key = sourceKeys[index];
-        if (!_hasOwnProperty.call(destination, key)) {
-          destination[key] = source[key];
-          overridableKeys[key] = true;
-        }
-      }
-    }
-    function storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, valueNode, startLine, startLineStart, startPos) {
-      var index, quantity;
-      if (Array.isArray(keyNode)) {
-        keyNode = Array.prototype.slice.call(keyNode);
-        for (index = 0, quantity = keyNode.length; index < quantity; index += 1) {
-          if (Array.isArray(keyNode[index])) {
-            throwError(state, "nested arrays are not supported inside keys");
-          }
-          if (typeof keyNode === "object" && _class(keyNode[index]) === "[object Object]") {
-            keyNode[index] = "[object Object]";
-          }
-        }
-      }
-      if (typeof keyNode === "object" && _class(keyNode) === "[object Object]") {
-        keyNode = "[object Object]";
-      }
-      keyNode = String(keyNode);
-      if (_result === null) {
-        _result = {};
-      }
-      if (keyTag === "tag:yaml.org,2002:merge") {
-        if (Array.isArray(valueNode)) {
-          for (index = 0, quantity = valueNode.length; index < quantity; index += 1) {
-            mergeMappings(state, _result, valueNode[index], overridableKeys);
-          }
-        } else {
-          mergeMappings(state, _result, valueNode, overridableKeys);
-        }
-      } else {
-        if (!state.json && !_hasOwnProperty.call(overridableKeys, keyNode) && _hasOwnProperty.call(_result, keyNode)) {
-          state.line = startLine || state.line;
-          state.lineStart = startLineStart || state.lineStart;
-          state.position = startPos || state.position;
-          throwError(state, "duplicated mapping key");
-        }
-        if (keyNode === "__proto__") {
-          Object.defineProperty(_result, keyNode, {
-            configurable: true,
-            enumerable: true,
-            writable: true,
-            value: valueNode
-          });
-        } else {
-          _result[keyNode] = valueNode;
-        }
-        delete overridableKeys[keyNode];
-      }
-      return _result;
-    }
-    function readLineBreak(state) {
-      var ch;
-      ch = state.input.charCodeAt(state.position);
-      if (ch === 10) {
-        state.position++;
-      } else if (ch === 13) {
-        state.position++;
-        if (state.input.charCodeAt(state.position) === 10) {
-          state.position++;
-        }
-      } else {
-        throwError(state, "a line break is expected");
-      }
-      state.line += 1;
-      state.lineStart = state.position;
-      state.firstTabInLine = -1;
-    }
-    function skipSeparationSpace(state, allowComments, checkIndent) {
-      var lineBreaks = 0, ch = state.input.charCodeAt(state.position);
-      while (ch !== 0) {
-        while (is_WHITE_SPACE(ch)) {
-          if (ch === 9 && state.firstTabInLine === -1) {
-            state.firstTabInLine = state.position;
-          }
-          ch = state.input.charCodeAt(++state.position);
-        }
-        if (allowComments && ch === 35) {
-          do {
-            ch = state.input.charCodeAt(++state.position);
-          } while (ch !== 10 && ch !== 13 && ch !== 0);
-        }
-        if (is_EOL(ch)) {
-          readLineBreak(state);
-          ch = state.input.charCodeAt(state.position);
-          lineBreaks++;
-          state.lineIndent = 0;
-          while (ch === 32) {
-            state.lineIndent++;
-            ch = state.input.charCodeAt(++state.position);
-          }
-        } else {
-          break;
-        }
-      }
-      if (checkIndent !== -1 && lineBreaks !== 0 && state.lineIndent < checkIndent) {
-        throwWarning(state, "deficient indentation");
-      }
-      return lineBreaks;
-    }
-    function testDocumentSeparator(state) {
-      var _position = state.position, ch;
-      ch = state.input.charCodeAt(_position);
-      if ((ch === 45 || ch === 46) && ch === state.input.charCodeAt(_position + 1) && ch === state.input.charCodeAt(_position + 2)) {
-        _position += 3;
-        ch = state.input.charCodeAt(_position);
-        if (ch === 0 || is_WS_OR_EOL(ch)) {
-          return true;
-        }
-      }
-      return false;
-    }
-    function writeFoldedLines(state, count) {
-      if (count === 1) {
-        state.result += " ";
-      } else if (count > 1) {
-        state.result += common.repeat("\n", count - 1);
-      }
-    }
-    function readPlainScalar(state, nodeIndent, withinFlowCollection) {
-      var preceding, following, captureStart, captureEnd, hasPendingContent, _line, _lineStart, _lineIndent, _kind = state.kind, _result = state.result, ch;
-      ch = state.input.charCodeAt(state.position);
-      if (is_WS_OR_EOL(ch) || is_FLOW_INDICATOR(ch) || ch === 35 || ch === 38 || ch === 42 || ch === 33 || ch === 124 || ch === 62 || ch === 39 || ch === 34 || ch === 37 || ch === 64 || ch === 96) {
-        return false;
-      }
-      if (ch === 63 || ch === 45) {
-        following = state.input.charCodeAt(state.position + 1);
-        if (is_WS_OR_EOL(following) || withinFlowCollection && is_FLOW_INDICATOR(following)) {
-          return false;
-        }
-      }
-      state.kind = "scalar";
-      state.result = "";
-      captureStart = captureEnd = state.position;
-      hasPendingContent = false;
-      while (ch !== 0) {
-        if (ch === 58) {
-          following = state.input.charCodeAt(state.position + 1);
-          if (is_WS_OR_EOL(following) || withinFlowCollection && is_FLOW_INDICATOR(following)) {
-            break;
-          }
-        } else if (ch === 35) {
-          preceding = state.input.charCodeAt(state.position - 1);
-          if (is_WS_OR_EOL(preceding)) {
-            break;
-          }
-        } else if (state.position === state.lineStart && testDocumentSeparator(state) || withinFlowCollection && is_FLOW_INDICATOR(ch)) {
-          break;
-        } else if (is_EOL(ch)) {
-          _line = state.line;
-          _lineStart = state.lineStart;
-          _lineIndent = state.lineIndent;
-          skipSeparationSpace(state, false, -1);
-          if (state.lineIndent >= nodeIndent) {
-            hasPendingContent = true;
-            ch = state.input.charCodeAt(state.position);
-            continue;
-          } else {
-            state.position = captureEnd;
-            state.line = _line;
-            state.lineStart = _lineStart;
-            state.lineIndent = _lineIndent;
-            break;
-          }
-        }
-        if (hasPendingContent) {
-          captureSegment(state, captureStart, captureEnd, false);
-          writeFoldedLines(state, state.line - _line);
-          captureStart = captureEnd = state.position;
-          hasPendingContent = false;
-        }
-        if (!is_WHITE_SPACE(ch)) {
-          captureEnd = state.position + 1;
-        }
-        ch = state.input.charCodeAt(++state.position);
-      }
-      captureSegment(state, captureStart, captureEnd, false);
-      if (state.result) {
-        return true;
-      }
-      state.kind = _kind;
-      state.result = _result;
-      return false;
-    }
-    function readSingleQuotedScalar(state, nodeIndent) {
-      var ch, captureStart, captureEnd;
-      ch = state.input.charCodeAt(state.position);
-      if (ch !== 39) {
-        return false;
-      }
-      state.kind = "scalar";
-      state.result = "";
-      state.position++;
-      captureStart = captureEnd = state.position;
-      while ((ch = state.input.charCodeAt(state.position)) !== 0) {
-        if (ch === 39) {
-          captureSegment(state, captureStart, state.position, true);
-          ch = state.input.charCodeAt(++state.position);
-          if (ch === 39) {
-            captureStart = state.position;
-            state.position++;
-            captureEnd = state.position;
-          } else {
-            return true;
-          }
-        } else if (is_EOL(ch)) {
-          captureSegment(state, captureStart, captureEnd, true);
-          writeFoldedLines(state, skipSeparationSpace(state, false, nodeIndent));
-          captureStart = captureEnd = state.position;
-        } else if (state.position === state.lineStart && testDocumentSeparator(state)) {
-          throwError(state, "unexpected end of the document within a single quoted scalar");
-        } else {
-          state.position++;
-          captureEnd = state.position;
-        }
-      }
-      throwError(state, "unexpected end of the stream within a single quoted scalar");
-    }
-    function readDoubleQuotedScalar(state, nodeIndent) {
-      var captureStart, captureEnd, hexLength, hexResult, tmp, ch;
-      ch = state.input.charCodeAt(state.position);
-      if (ch !== 34) {
-        return false;
-      }
-      state.kind = "scalar";
-      state.result = "";
-      state.position++;
-      captureStart = captureEnd = state.position;
-      while ((ch = state.input.charCodeAt(state.position)) !== 0) {
-        if (ch === 34) {
-          captureSegment(state, captureStart, state.position, true);
-          state.position++;
-          return true;
-        } else if (ch === 92) {
-          captureSegment(state, captureStart, state.position, true);
-          ch = state.input.charCodeAt(++state.position);
-          if (is_EOL(ch)) {
-            skipSeparationSpace(state, false, nodeIndent);
-          } else if (ch < 256 && simpleEscapeCheck[ch]) {
-            state.result += simpleEscapeMap[ch];
-            state.position++;
-          } else if ((tmp = escapedHexLen(ch)) > 0) {
-            hexLength = tmp;
-            hexResult = 0;
-            for (; hexLength > 0; hexLength--) {
-              ch = state.input.charCodeAt(++state.position);
-              if ((tmp = fromHexCode(ch)) >= 0) {
-                hexResult = (hexResult << 4) + tmp;
-              } else {
-                throwError(state, "expected hexadecimal character");
-              }
-            }
-            state.result += charFromCodepoint(hexResult);
-            state.position++;
-          } else {
-            throwError(state, "unknown escape sequence");
-          }
-          captureStart = captureEnd = state.position;
-        } else if (is_EOL(ch)) {
-          captureSegment(state, captureStart, captureEnd, true);
-          writeFoldedLines(state, skipSeparationSpace(state, false, nodeIndent));
-          captureStart = captureEnd = state.position;
-        } else if (state.position === state.lineStart && testDocumentSeparator(state)) {
-          throwError(state, "unexpected end of the document within a double quoted scalar");
-        } else {
-          state.position++;
-          captureEnd = state.position;
-        }
-      }
-      throwError(state, "unexpected end of the stream within a double quoted scalar");
-    }
-    function readFlowCollection(state, nodeIndent) {
-      var readNext = true, _line, _lineStart, _pos, _tag = state.tag, _result, _anchor = state.anchor, following, terminator, isPair, isExplicitPair, isMapping, overridableKeys = Object.create(null), keyNode, keyTag, valueNode, ch;
-      ch = state.input.charCodeAt(state.position);
-      if (ch === 91) {
-        terminator = 93;
-        isMapping = false;
-        _result = [];
-      } else if (ch === 123) {
-        terminator = 125;
-        isMapping = true;
-        _result = {};
-      } else {
-        return false;
-      }
-      if (state.anchor !== null) {
-        state.anchorMap[state.anchor] = _result;
-      }
-      ch = state.input.charCodeAt(++state.position);
-      while (ch !== 0) {
-        skipSeparationSpace(state, true, nodeIndent);
-        ch = state.input.charCodeAt(state.position);
-        if (ch === terminator) {
-          state.position++;
-          state.tag = _tag;
-          state.anchor = _anchor;
-          state.kind = isMapping ? "mapping" : "sequence";
-          state.result = _result;
-          return true;
-        } else if (!readNext) {
-          throwError(state, "missed comma between flow collection entries");
-        } else if (ch === 44) {
-          throwError(state, "expected the node content, but found ','");
-        }
-        keyTag = keyNode = valueNode = null;
-        isPair = isExplicitPair = false;
-        if (ch === 63) {
-          following = state.input.charCodeAt(state.position + 1);
-          if (is_WS_OR_EOL(following)) {
-            isPair = isExplicitPair = true;
-            state.position++;
-            skipSeparationSpace(state, true, nodeIndent);
-          }
-        }
-        _line = state.line;
-        _lineStart = state.lineStart;
-        _pos = state.position;
-        composeNode(state, nodeIndent, CONTEXT_FLOW_IN, false, true);
-        keyTag = state.tag;
-        keyNode = state.result;
-        skipSeparationSpace(state, true, nodeIndent);
-        ch = state.input.charCodeAt(state.position);
-        if ((isExplicitPair || state.line === _line) && ch === 58) {
-          isPair = true;
-          ch = state.input.charCodeAt(++state.position);
-          skipSeparationSpace(state, true, nodeIndent);
-          composeNode(state, nodeIndent, CONTEXT_FLOW_IN, false, true);
-          valueNode = state.result;
-        }
-        if (isMapping) {
-          storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, valueNode, _line, _lineStart, _pos);
-        } else if (isPair) {
-          _result.push(storeMappingPair(state, null, overridableKeys, keyTag, keyNode, valueNode, _line, _lineStart, _pos));
-        } else {
-          _result.push(keyNode);
-        }
-        skipSeparationSpace(state, true, nodeIndent);
-        ch = state.input.charCodeAt(state.position);
-        if (ch === 44) {
-          readNext = true;
-          ch = state.input.charCodeAt(++state.position);
-        } else {
-          readNext = false;
-        }
-      }
-      throwError(state, "unexpected end of the stream within a flow collection");
-    }
-    function readBlockScalar(state, nodeIndent) {
-      var captureStart, folding, chomping = CHOMPING_CLIP, didReadContent = false, detectedIndent = false, textIndent = nodeIndent, emptyLines = 0, atMoreIndented = false, tmp, ch;
-      ch = state.input.charCodeAt(state.position);
-      if (ch === 124) {
-        folding = false;
-      } else if (ch === 62) {
-        folding = true;
-      } else {
-        return false;
-      }
-      state.kind = "scalar";
-      state.result = "";
-      while (ch !== 0) {
-        ch = state.input.charCodeAt(++state.position);
-        if (ch === 43 || ch === 45) {
-          if (CHOMPING_CLIP === chomping) {
-            chomping = ch === 43 ? CHOMPING_KEEP : CHOMPING_STRIP;
-          } else {
-            throwError(state, "repeat of a chomping mode identifier");
-          }
-        } else if ((tmp = fromDecimalCode(ch)) >= 0) {
-          if (tmp === 0) {
-            throwError(state, "bad explicit indentation width of a block scalar; it cannot be less than one");
-          } else if (!detectedIndent) {
-            textIndent = nodeIndent + tmp - 1;
-            detectedIndent = true;
-          } else {
-            throwError(state, "repeat of an indentation width identifier");
-          }
-        } else {
-          break;
-        }
-      }
-      if (is_WHITE_SPACE(ch)) {
-        do {
-          ch = state.input.charCodeAt(++state.position);
-        } while (is_WHITE_SPACE(ch));
-        if (ch === 35) {
-          do {
-            ch = state.input.charCodeAt(++state.position);
-          } while (!is_EOL(ch) && ch !== 0);
-        }
-      }
-      while (ch !== 0) {
-        readLineBreak(state);
-        state.lineIndent = 0;
-        ch = state.input.charCodeAt(state.position);
-        while ((!detectedIndent || state.lineIndent < textIndent) && ch === 32) {
-          state.lineIndent++;
-          ch = state.input.charCodeAt(++state.position);
-        }
-        if (!detectedIndent && state.lineIndent > textIndent) {
-          textIndent = state.lineIndent;
-        }
-        if (is_EOL(ch)) {
-          emptyLines++;
-          continue;
-        }
-        if (state.lineIndent < textIndent) {
-          if (chomping === CHOMPING_KEEP) {
-            state.result += common.repeat("\n", didReadContent ? 1 + emptyLines : emptyLines);
-          } else if (chomping === CHOMPING_CLIP) {
-            if (didReadContent) {
-              state.result += "\n";
-            }
-          }
-          break;
-        }
-        if (folding) {
-          if (is_WHITE_SPACE(ch)) {
-            atMoreIndented = true;
-            state.result += common.repeat("\n", didReadContent ? 1 + emptyLines : emptyLines);
-          } else if (atMoreIndented) {
-            atMoreIndented = false;
-            state.result += common.repeat("\n", emptyLines + 1);
-          } else if (emptyLines === 0) {
-            if (didReadContent) {
-              state.result += " ";
-            }
-          } else {
-            state.result += common.repeat("\n", emptyLines);
-          }
-        } else {
-          state.result += common.repeat("\n", didReadContent ? 1 + emptyLines : emptyLines);
-        }
-        didReadContent = true;
-        detectedIndent = true;
-        emptyLines = 0;
-        captureStart = state.position;
-        while (!is_EOL(ch) && ch !== 0) {
-          ch = state.input.charCodeAt(++state.position);
-        }
-        captureSegment(state, captureStart, state.position, false);
-      }
-      return true;
-    }
-    function readBlockSequence(state, nodeIndent) {
-      var _line, _tag = state.tag, _anchor = state.anchor, _result = [], following, detected = false, ch;
-      if (state.firstTabInLine !== -1)
-        return false;
-      if (state.anchor !== null) {
-        state.anchorMap[state.anchor] = _result;
-      }
-      ch = state.input.charCodeAt(state.position);
-      while (ch !== 0) {
-        if (state.firstTabInLine !== -1) {
-          state.position = state.firstTabInLine;
-          throwError(state, "tab characters must not be used in indentation");
-        }
-        if (ch !== 45) {
-          break;
-        }
-        following = state.input.charCodeAt(state.position + 1);
-        if (!is_WS_OR_EOL(following)) {
-          break;
-        }
-        detected = true;
-        state.position++;
-        if (skipSeparationSpace(state, true, -1)) {
-          if (state.lineIndent <= nodeIndent) {
-            _result.push(null);
-            ch = state.input.charCodeAt(state.position);
-            continue;
-          }
-        }
-        _line = state.line;
-        composeNode(state, nodeIndent, CONTEXT_BLOCK_IN, false, true);
-        _result.push(state.result);
-        skipSeparationSpace(state, true, -1);
-        ch = state.input.charCodeAt(state.position);
-        if ((state.line === _line || state.lineIndent > nodeIndent) && ch !== 0) {
-          throwError(state, "bad indentation of a sequence entry");
-        } else if (state.lineIndent < nodeIndent) {
-          break;
-        }
-      }
-      if (detected) {
-        state.tag = _tag;
-        state.anchor = _anchor;
-        state.kind = "sequence";
-        state.result = _result;
-        return true;
-      }
-      return false;
-    }
-    function readBlockMapping(state, nodeIndent, flowIndent) {
-      var following, allowCompact, _line, _keyLine, _keyLineStart, _keyPos, _tag = state.tag, _anchor = state.anchor, _result = {}, overridableKeys = Object.create(null), keyTag = null, keyNode = null, valueNode = null, atExplicitKey = false, detected = false, ch;
-      if (state.firstTabInLine !== -1)
-        return false;
-      if (state.anchor !== null) {
-        state.anchorMap[state.anchor] = _result;
-      }
-      ch = state.input.charCodeAt(state.position);
-      while (ch !== 0) {
-        if (!atExplicitKey && state.firstTabInLine !== -1) {
-          state.position = state.firstTabInLine;
-          throwError(state, "tab characters must not be used in indentation");
-        }
-        following = state.input.charCodeAt(state.position + 1);
-        _line = state.line;
-        if ((ch === 63 || ch === 58) && is_WS_OR_EOL(following)) {
-          if (ch === 63) {
-            if (atExplicitKey) {
-              storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, null, _keyLine, _keyLineStart, _keyPos);
-              keyTag = keyNode = valueNode = null;
-            }
-            detected = true;
-            atExplicitKey = true;
-            allowCompact = true;
-          } else if (atExplicitKey) {
-            atExplicitKey = false;
-            allowCompact = true;
-          } else {
-            throwError(state, "incomplete explicit mapping pair; a key node is missed; or followed by a non-tabulated empty line");
-          }
-          state.position += 1;
-          ch = following;
-        } else {
-          _keyLine = state.line;
-          _keyLineStart = state.lineStart;
-          _keyPos = state.position;
-          if (!composeNode(state, flowIndent, CONTEXT_FLOW_OUT, false, true)) {
-            break;
-          }
-          if (state.line === _line) {
-            ch = state.input.charCodeAt(state.position);
-            while (is_WHITE_SPACE(ch)) {
-              ch = state.input.charCodeAt(++state.position);
-            }
-            if (ch === 58) {
-              ch = state.input.charCodeAt(++state.position);
-              if (!is_WS_OR_EOL(ch)) {
-                throwError(state, "a whitespace character is expected after the key-value separator within a block mapping");
-              }
-              if (atExplicitKey) {
-                storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, null, _keyLine, _keyLineStart, _keyPos);
-                keyTag = keyNode = valueNode = null;
-              }
-              detected = true;
-              atExplicitKey = false;
-              allowCompact = false;
-              keyTag = state.tag;
-              keyNode = state.result;
-            } else if (detected) {
-              throwError(state, "can not read an implicit mapping pair; a colon is missed");
-            } else {
-              state.tag = _tag;
-              state.anchor = _anchor;
-              return true;
-            }
-          } else if (detected) {
-            throwError(state, "can not read a block mapping entry; a multiline key may not be an implicit key");
-          } else {
-            state.tag = _tag;
-            state.anchor = _anchor;
-            return true;
-          }
-        }
-        if (state.line === _line || state.lineIndent > nodeIndent) {
-          if (atExplicitKey) {
-            _keyLine = state.line;
-            _keyLineStart = state.lineStart;
-            _keyPos = state.position;
-          }
-          if (composeNode(state, nodeIndent, CONTEXT_BLOCK_OUT, true, allowCompact)) {
-            if (atExplicitKey) {
-              keyNode = state.result;
-            } else {
-              valueNode = state.result;
-            }
-          }
-          if (!atExplicitKey) {
-            storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, valueNode, _keyLine, _keyLineStart, _keyPos);
-            keyTag = keyNode = valueNode = null;
-          }
-          skipSeparationSpace(state, true, -1);
-          ch = state.input.charCodeAt(state.position);
-        }
-        if ((state.line === _line || state.lineIndent > nodeIndent) && ch !== 0) {
-          throwError(state, "bad indentation of a mapping entry");
-        } else if (state.lineIndent < nodeIndent) {
-          break;
-        }
-      }
-      if (atExplicitKey) {
-        storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, null, _keyLine, _keyLineStart, _keyPos);
-      }
-      if (detected) {
-        state.tag = _tag;
-        state.anchor = _anchor;
-        state.kind = "mapping";
-        state.result = _result;
-      }
-      return detected;
-    }
-    function readTagProperty(state) {
-      var _position, isVerbatim = false, isNamed = false, tagHandle, tagName, ch;
-      ch = state.input.charCodeAt(state.position);
-      if (ch !== 33)
-        return false;
-      if (state.tag !== null) {
-        throwError(state, "duplication of a tag property");
-      }
-      ch = state.input.charCodeAt(++state.position);
-      if (ch === 60) {
-        isVerbatim = true;
-        ch = state.input.charCodeAt(++state.position);
-      } else if (ch === 33) {
-        isNamed = true;
-        tagHandle = "!!";
-        ch = state.input.charCodeAt(++state.position);
-      } else {
-        tagHandle = "!";
-      }
-      _position = state.position;
-      if (isVerbatim) {
-        do {
-          ch = state.input.charCodeAt(++state.position);
-        } while (ch !== 0 && ch !== 62);
-        if (state.position < state.length) {
-          tagName = state.input.slice(_position, state.position);
-          ch = state.input.charCodeAt(++state.position);
-        } else {
-          throwError(state, "unexpected end of the stream within a verbatim tag");
-        }
-      } else {
-        while (ch !== 0 && !is_WS_OR_EOL(ch)) {
-          if (ch === 33) {
-            if (!isNamed) {
-              tagHandle = state.input.slice(_position - 1, state.position + 1);
-              if (!PATTERN_TAG_HANDLE.test(tagHandle)) {
-                throwError(state, "named tag handle cannot contain such characters");
-              }
-              isNamed = true;
-              _position = state.position + 1;
-            } else {
-              throwError(state, "tag suffix cannot contain exclamation marks");
-            }
-          }
-          ch = state.input.charCodeAt(++state.position);
-        }
-        tagName = state.input.slice(_position, state.position);
-        if (PATTERN_FLOW_INDICATORS.test(tagName)) {
-          throwError(state, "tag suffix cannot contain flow indicator characters");
-        }
-      }
-      if (tagName && !PATTERN_TAG_URI.test(tagName)) {
-        throwError(state, "tag name cannot contain such characters: " + tagName);
-      }
-      try {
-        tagName = decodeURIComponent(tagName);
-      } catch (err) {
-        throwError(state, "tag name is malformed: " + tagName);
-      }
-      if (isVerbatim) {
-        state.tag = tagName;
-      } else if (_hasOwnProperty.call(state.tagMap, tagHandle)) {
-        state.tag = state.tagMap[tagHandle] + tagName;
-      } else if (tagHandle === "!") {
-        state.tag = "!" + tagName;
-      } else if (tagHandle === "!!") {
-        state.tag = "tag:yaml.org,2002:" + tagName;
-      } else {
-        throwError(state, 'undeclared tag handle "' + tagHandle + '"');
-      }
-      return true;
-    }
-    function readAnchorProperty(state) {
-      var _position, ch;
-      ch = state.input.charCodeAt(state.position);
-      if (ch !== 38)
-        return false;
-      if (state.anchor !== null) {
-        throwError(state, "duplication of an anchor property");
-      }
-      ch = state.input.charCodeAt(++state.position);
-      _position = state.position;
-      while (ch !== 0 && !is_WS_OR_EOL(ch) && !is_FLOW_INDICATOR(ch)) {
-        ch = state.input.charCodeAt(++state.position);
-      }
-      if (state.position === _position) {
-        throwError(state, "name of an anchor node must contain at least one character");
-      }
-      state.anchor = state.input.slice(_position, state.position);
-      return true;
-    }
-    function readAlias(state) {
-      var _position, alias, ch;
-      ch = state.input.charCodeAt(state.position);
-      if (ch !== 42)
-        return false;
-      ch = state.input.charCodeAt(++state.position);
-      _position = state.position;
-      while (ch !== 0 && !is_WS_OR_EOL(ch) && !is_FLOW_INDICATOR(ch)) {
-        ch = state.input.charCodeAt(++state.position);
-      }
-      if (state.position === _position) {
-        throwError(state, "name of an alias node must contain at least one character");
-      }
-      alias = state.input.slice(_position, state.position);
-      if (!_hasOwnProperty.call(state.anchorMap, alias)) {
-        throwError(state, 'unidentified alias "' + alias + '"');
-      }
-      state.result = state.anchorMap[alias];
-      skipSeparationSpace(state, true, -1);
-      return true;
-    }
-    function composeNode(state, parentIndent, nodeContext, allowToSeek, allowCompact) {
-      var allowBlockStyles, allowBlockScalars, allowBlockCollections, indentStatus = 1, atNewLine = false, hasContent = false, typeIndex, typeQuantity, typeList, type, flowIndent, blockIndent;
-      if (state.listener !== null) {
-        state.listener("open", state);
-      }
-      state.tag = null;
-      state.anchor = null;
-      state.kind = null;
-      state.result = null;
-      allowBlockStyles = allowBlockScalars = allowBlockCollections = CONTEXT_BLOCK_OUT === nodeContext || CONTEXT_BLOCK_IN === nodeContext;
-      if (allowToSeek) {
-        if (skipSeparationSpace(state, true, -1)) {
-          atNewLine = true;
-          if (state.lineIndent > parentIndent) {
-            indentStatus = 1;
-          } else if (state.lineIndent === parentIndent) {
-            indentStatus = 0;
-          } else if (state.lineIndent < parentIndent) {
-            indentStatus = -1;
-          }
-        }
-      }
-      if (indentStatus === 1) {
-        while (readTagProperty(state) || readAnchorProperty(state)) {
-          if (skipSeparationSpace(state, true, -1)) {
-            atNewLine = true;
-            allowBlockCollections = allowBlockStyles;
-            if (state.lineIndent > parentIndent) {
-              indentStatus = 1;
-            } else if (state.lineIndent === parentIndent) {
-              indentStatus = 0;
-            } else if (state.lineIndent < parentIndent) {
-              indentStatus = -1;
-            }
-          } else {
-            allowBlockCollections = false;
-          }
-        }
-      }
-      if (allowBlockCollections) {
-        allowBlockCollections = atNewLine || allowCompact;
-      }
-      if (indentStatus === 1 || CONTEXT_BLOCK_OUT === nodeContext) {
-        if (CONTEXT_FLOW_IN === nodeContext || CONTEXT_FLOW_OUT === nodeContext) {
-          flowIndent = parentIndent;
-        } else {
-          flowIndent = parentIndent + 1;
-        }
-        blockIndent = state.position - state.lineStart;
-        if (indentStatus === 1) {
-          if (allowBlockCollections && (readBlockSequence(state, blockIndent) || readBlockMapping(state, blockIndent, flowIndent)) || readFlowCollection(state, flowIndent)) {
-            hasContent = true;
-          } else {
-            if (allowBlockScalars && readBlockScalar(state, flowIndent) || readSingleQuotedScalar(state, flowIndent) || readDoubleQuotedScalar(state, flowIndent)) {
-              hasContent = true;
-            } else if (readAlias(state)) {
-              hasContent = true;
-              if (state.tag !== null || state.anchor !== null) {
-                throwError(state, "alias node should not have any properties");
-              }
-            } else if (readPlainScalar(state, flowIndent, CONTEXT_FLOW_IN === nodeContext)) {
-              hasContent = true;
-              if (state.tag === null) {
-                state.tag = "?";
-              }
-            }
-            if (state.anchor !== null) {
-              state.anchorMap[state.anchor] = state.result;
-            }
-          }
-        } else if (indentStatus === 0) {
-          hasContent = allowBlockCollections && readBlockSequence(state, blockIndent);
-        }
-      }
-      if (state.tag === null) {
-        if (state.anchor !== null) {
-          state.anchorMap[state.anchor] = state.result;
-        }
-      } else if (state.tag === "?") {
-        if (state.result !== null && state.kind !== "scalar") {
-          throwError(state, 'unacceptable node kind for !<?> tag; it should be "scalar", not "' + state.kind + '"');
-        }
-        for (typeIndex = 0, typeQuantity = state.implicitTypes.length; typeIndex < typeQuantity; typeIndex += 1) {
-          type = state.implicitTypes[typeIndex];
-          if (type.resolve(state.result)) {
-            state.result = type.construct(state.result);
-            state.tag = type.tag;
-            if (state.anchor !== null) {
-              state.anchorMap[state.anchor] = state.result;
-            }
-            break;
-          }
-        }
-      } else if (state.tag !== "!") {
-        if (_hasOwnProperty.call(state.typeMap[state.kind || "fallback"], state.tag)) {
-          type = state.typeMap[state.kind || "fallback"][state.tag];
-        } else {
-          type = null;
-          typeList = state.typeMap.multi[state.kind || "fallback"];
-          for (typeIndex = 0, typeQuantity = typeList.length; typeIndex < typeQuantity; typeIndex += 1) {
-            if (state.tag.slice(0, typeList[typeIndex].tag.length) === typeList[typeIndex].tag) {
-              type = typeList[typeIndex];
-              break;
-            }
-          }
-        }
-        if (!type) {
-          throwError(state, "unknown tag !<" + state.tag + ">");
-        }
-        if (state.result !== null && type.kind !== state.kind) {
-          throwError(state, "unacceptable node kind for !<" + state.tag + '> tag; it should be "' + type.kind + '", not "' + state.kind + '"');
-        }
-        if (!type.resolve(state.result, state.tag)) {
-          throwError(state, "cannot resolve a node with !<" + state.tag + "> explicit tag");
-        } else {
-          state.result = type.construct(state.result, state.tag);
-          if (state.anchor !== null) {
-            state.anchorMap[state.anchor] = state.result;
-          }
-        }
-      }
-      if (state.listener !== null) {
-        state.listener("close", state);
-      }
-      return state.tag !== null || state.anchor !== null || hasContent;
-    }
-    function readDocument(state) {
-      var documentStart = state.position, _position, directiveName, directiveArgs, hasDirectives = false, ch;
-      state.version = null;
-      state.checkLineBreaks = state.legacy;
-      state.tagMap = Object.create(null);
-      state.anchorMap = Object.create(null);
-      while ((ch = state.input.charCodeAt(state.position)) !== 0) {
-        skipSeparationSpace(state, true, -1);
-        ch = state.input.charCodeAt(state.position);
-        if (state.lineIndent > 0 || ch !== 37) {
-          break;
-        }
-        hasDirectives = true;
-        ch = state.input.charCodeAt(++state.position);
-        _position = state.position;
-        while (ch !== 0 && !is_WS_OR_EOL(ch)) {
-          ch = state.input.charCodeAt(++state.position);
-        }
-        directiveName = state.input.slice(_position, state.position);
-        directiveArgs = [];
-        if (directiveName.length < 1) {
-          throwError(state, "directive name must not be less than one character in length");
-        }
-        while (ch !== 0) {
-          while (is_WHITE_SPACE(ch)) {
-            ch = state.input.charCodeAt(++state.position);
-          }
-          if (ch === 35) {
-            do {
-              ch = state.input.charCodeAt(++state.position);
-            } while (ch !== 0 && !is_EOL(ch));
-            break;
-          }
-          if (is_EOL(ch))
-            break;
-          _position = state.position;
-          while (ch !== 0 && !is_WS_OR_EOL(ch)) {
-            ch = state.input.charCodeAt(++state.position);
-          }
-          directiveArgs.push(state.input.slice(_position, state.position));
-        }
-        if (ch !== 0)
-          readLineBreak(state);
-        if (_hasOwnProperty.call(directiveHandlers, directiveName)) {
-          directiveHandlers[directiveName](state, directiveName, directiveArgs);
-        } else {
-          throwWarning(state, 'unknown document directive "' + directiveName + '"');
-        }
-      }
-      skipSeparationSpace(state, true, -1);
-      if (state.lineIndent === 0 && state.input.charCodeAt(state.position) === 45 && state.input.charCodeAt(state.position + 1) === 45 && state.input.charCodeAt(state.position + 2) === 45) {
-        state.position += 3;
-        skipSeparationSpace(state, true, -1);
-      } else if (hasDirectives) {
-        throwError(state, "directives end mark is expected");
-      }
-      composeNode(state, state.lineIndent - 1, CONTEXT_BLOCK_OUT, false, true);
-      skipSeparationSpace(state, true, -1);
-      if (state.checkLineBreaks && PATTERN_NON_ASCII_LINE_BREAKS.test(state.input.slice(documentStart, state.position))) {
-        throwWarning(state, "non-ASCII line breaks are interpreted as content");
-      }
-      state.documents.push(state.result);
-      if (state.position === state.lineStart && testDocumentSeparator(state)) {
-        if (state.input.charCodeAt(state.position) === 46) {
-          state.position += 3;
-          skipSeparationSpace(state, true, -1);
-        }
-        return;
-      }
-      if (state.position < state.length - 1) {
-        throwError(state, "end of the stream or a document separator is expected");
-      } else {
-        return;
-      }
-    }
-    function loadDocuments(input, options2) {
-      input = String(input);
-      options2 = options2 || {};
-      if (input.length !== 0) {
-        if (input.charCodeAt(input.length - 1) !== 10 && input.charCodeAt(input.length - 1) !== 13) {
-          input += "\n";
-        }
-        if (input.charCodeAt(0) === 65279) {
-          input = input.slice(1);
-        }
-      }
-      var state = new State(input, options2);
-      var nullpos = input.indexOf("\0");
-      if (nullpos !== -1) {
-        state.position = nullpos;
-        throwError(state, "null byte is not allowed in input");
-      }
-      state.input += "\0";
-      while (state.input.charCodeAt(state.position) === 32) {
-        state.lineIndent += 1;
-        state.position += 1;
-      }
-      while (state.position < state.length - 1) {
-        readDocument(state);
-      }
-      return state.documents;
-    }
-    function loadAll(input, iterator, options2) {
-      if (iterator !== null && typeof iterator === "object" && typeof options2 === "undefined") {
-        options2 = iterator;
-        iterator = null;
-      }
-      var documents = loadDocuments(input, options2);
-      if (typeof iterator !== "function") {
-        return documents;
-      }
-      for (var index = 0, length = documents.length; index < length; index += 1) {
-        iterator(documents[index]);
-      }
-    }
-    function load3(input, options2) {
-      var documents = loadDocuments(input, options2);
-      if (documents.length === 0) {
-        return void 0;
-      } else if (documents.length === 1) {
-        return documents[0];
-      }
-      throw new YAMLException2("expected a single document in the stream, but found more");
-    }
-    module2.exports.loadAll = loadAll;
-    module2.exports.load = load3;
-  }
-});
-
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/dumper.js
-var require_dumper = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/lib/dumper.js"(exports2, module2) {
-    "use strict";
-    var common = require_common();
-    var YAMLException2 = require_exception();
-    var DEFAULT_SCHEMA = require_default();
-    var _toString = Object.prototype.toString;
-    var _hasOwnProperty = Object.prototype.hasOwnProperty;
-    var CHAR_BOM = 65279;
-    var CHAR_TAB = 9;
-    var CHAR_LINE_FEED = 10;
-    var CHAR_CARRIAGE_RETURN = 13;
-    var CHAR_SPACE = 32;
-    var CHAR_EXCLAMATION = 33;
-    var CHAR_DOUBLE_QUOTE = 34;
-    var CHAR_SHARP = 35;
-    var CHAR_PERCENT = 37;
-    var CHAR_AMPERSAND = 38;
-    var CHAR_SINGLE_QUOTE = 39;
-    var CHAR_ASTERISK = 42;
-    var CHAR_COMMA = 44;
-    var CHAR_MINUS = 45;
-    var CHAR_COLON = 58;
-    var CHAR_EQUALS = 61;
-    var CHAR_GREATER_THAN = 62;
-    var CHAR_QUESTION = 63;
-    var CHAR_COMMERCIAL_AT = 64;
-    var CHAR_LEFT_SQUARE_BRACKET = 91;
-    var CHAR_RIGHT_SQUARE_BRACKET = 93;
-    var CHAR_GRAVE_ACCENT = 96;
-    var CHAR_LEFT_CURLY_BRACKET = 123;
-    var CHAR_VERTICAL_LINE = 124;
-    var CHAR_RIGHT_CURLY_BRACKET = 125;
-    var ESCAPE_SEQUENCES = {};
-    ESCAPE_SEQUENCES[0] = "\\0";
-    ESCAPE_SEQUENCES[7] = "\\a";
-    ESCAPE_SEQUENCES[8] = "\\b";
-    ESCAPE_SEQUENCES[9] = "\\t";
-    ESCAPE_SEQUENCES[10] = "\\n";
-    ESCAPE_SEQUENCES[11] = "\\v";
-    ESCAPE_SEQUENCES[12] = "\\f";
-    ESCAPE_SEQUENCES[13] = "\\r";
-    ESCAPE_SEQUENCES[27] = "\\e";
-    ESCAPE_SEQUENCES[34] = '\\"';
-    ESCAPE_SEQUENCES[92] = "\\\\";
-    ESCAPE_SEQUENCES[133] = "\\N";
-    ESCAPE_SEQUENCES[160] = "\\_";
-    ESCAPE_SEQUENCES[8232] = "\\L";
-    ESCAPE_SEQUENCES[8233] = "\\P";
-    var DEPRECATED_BOOLEANS_SYNTAX = [
-      "y",
-      "Y",
-      "yes",
-      "Yes",
-      "YES",
-      "on",
-      "On",
-      "ON",
-      "n",
-      "N",
-      "no",
-      "No",
-      "NO",
-      "off",
-      "Off",
-      "OFF"
-    ];
-    var DEPRECATED_BASE60_SYNTAX = /^[-+]?[0-9_]+(?::[0-9_]+)+(?:\.[0-9_]*)?$/;
-    function compileStyleMap(schema, map) {
-      var result, keys, index, length, tag, style, type;
-      if (map === null)
-        return {};
-      result = {};
-      keys = Object.keys(map);
-      for (index = 0, length = keys.length; index < length; index += 1) {
-        tag = keys[index];
-        style = String(map[tag]);
-        if (tag.slice(0, 2) === "!!") {
-          tag = "tag:yaml.org,2002:" + tag.slice(2);
-        }
-        type = schema.compiledTypeMap["fallback"][tag];
-        if (type && _hasOwnProperty.call(type.styleAliases, style)) {
-          style = type.styleAliases[style];
-        }
-        result[tag] = style;
-      }
-      return result;
-    }
-    function encodeHex(character) {
-      var string2, handle, length;
-      string2 = character.toString(16).toUpperCase();
-      if (character <= 255) {
-        handle = "x";
-        length = 2;
-      } else if (character <= 65535) {
-        handle = "u";
-        length = 4;
-      } else if (character <= 4294967295) {
-        handle = "U";
-        length = 8;
-      } else {
-        throw new YAMLException2("code point within a string may not be greater than 0xFFFFFFFF");
-      }
-      return "\\" + handle + common.repeat("0", length - string2.length) + string2;
-    }
-    var QUOTING_TYPE_SINGLE = 1;
-    var QUOTING_TYPE_DOUBLE = 2;
-    function State(options2) {
-      this.schema = options2["schema"] || DEFAULT_SCHEMA;
-      this.indent = Math.max(1, options2["indent"] || 2);
-      this.noArrayIndent = options2["noArrayIndent"] || false;
-      this.skipInvalid = options2["skipInvalid"] || false;
-      this.flowLevel = common.isNothing(options2["flowLevel"]) ? -1 : options2["flowLevel"];
-      this.styleMap = compileStyleMap(this.schema, options2["styles"] || null);
-      this.sortKeys = options2["sortKeys"] || false;
-      this.lineWidth = options2["lineWidth"] || 80;
-      this.noRefs = options2["noRefs"] || false;
-      this.noCompatMode = options2["noCompatMode"] || false;
-      this.condenseFlow = options2["condenseFlow"] || false;
-      this.quotingType = options2["quotingType"] === '"' ? QUOTING_TYPE_DOUBLE : QUOTING_TYPE_SINGLE;
-      this.forceQuotes = options2["forceQuotes"] || false;
-      this.replacer = typeof options2["replacer"] === "function" ? options2["replacer"] : null;
-      this.implicitTypes = this.schema.compiledImplicit;
-      this.explicitTypes = this.schema.compiledExplicit;
-      this.tag = null;
-      this.result = "";
-      this.duplicates = [];
-      this.usedDuplicates = null;
-    }
-    function indentString(string2, spaces) {
-      var ind = common.repeat(" ", spaces), position = 0, next = -1, result = "", line, length = string2.length;
-      while (position < length) {
-        next = string2.indexOf("\n", position);
-        if (next === -1) {
-          line = string2.slice(position);
-          position = length;
-        } else {
-          line = string2.slice(position, next + 1);
-          position = next + 1;
-        }
-        if (line.length && line !== "\n")
-          result += ind;
-        result += line;
-      }
-      return result;
-    }
-    function generateNextLine(state, level) {
-      return "\n" + common.repeat(" ", state.indent * level);
-    }
-    function testImplicitResolving(state, str) {
-      var index, length, type;
-      for (index = 0, length = state.implicitTypes.length; index < length; index += 1) {
-        type = state.implicitTypes[index];
-        if (type.resolve(str)) {
-          return true;
-        }
-      }
-      return false;
-    }
-    function isWhitespace(c) {
-      return c === CHAR_SPACE || c === CHAR_TAB;
-    }
-    function isPrintable(c) {
-      return 32 <= c && c <= 126 || 161 <= c && c <= 55295 && c !== 8232 && c !== 8233 || 57344 <= c && c <= 65533 && c !== CHAR_BOM || 65536 <= c && c <= 1114111;
-    }
-    function isNsCharOrWhitespace(c) {
-      return isPrintable(c) && c !== CHAR_BOM && c !== CHAR_CARRIAGE_RETURN && c !== CHAR_LINE_FEED;
-    }
-    function isPlainSafe(c, prev, inblock) {
-      var cIsNsCharOrWhitespace = isNsCharOrWhitespace(c);
-      var cIsNsChar = cIsNsCharOrWhitespace && !isWhitespace(c);
-      return (inblock ? cIsNsCharOrWhitespace : cIsNsCharOrWhitespace && c !== CHAR_COMMA && c !== CHAR_LEFT_SQUARE_BRACKET && c !== CHAR_RIGHT_SQUARE_BRACKET && c !== CHAR_LEFT_CURLY_BRACKET && c !== CHAR_RIGHT_CURLY_BRACKET) && c !== CHAR_SHARP && !(prev === CHAR_COLON && !cIsNsChar) || isNsCharOrWhitespace(prev) && !isWhitespace(prev) && c === CHAR_SHARP || prev === CHAR_COLON && cIsNsChar;
-    }
-    function isPlainSafeFirst(c) {
-      return isPrintable(c) && c !== CHAR_BOM && !isWhitespace(c) && c !== CHAR_MINUS && c !== CHAR_QUESTION && c !== CHAR_COLON && c !== CHAR_COMMA && c !== CHAR_LEFT_SQUARE_BRACKET && c !== CHAR_RIGHT_SQUARE_BRACKET && c !== CHAR_LEFT_CURLY_BRACKET && c !== CHAR_RIGHT_CURLY_BRACKET && c !== CHAR_SHARP && c !== CHAR_AMPERSAND && c !== CHAR_ASTERISK && c !== CHAR_EXCLAMATION && c !== CHAR_VERTICAL_LINE && c !== CHAR_EQUALS && c !== CHAR_GREATER_THAN && c !== CHAR_SINGLE_QUOTE && c !== CHAR_DOUBLE_QUOTE && c !== CHAR_PERCENT && c !== CHAR_COMMERCIAL_AT && c !== CHAR_GRAVE_ACCENT;
-    }
-    function isPlainSafeLast(c) {
-      return !isWhitespace(c) && c !== CHAR_COLON;
-    }
-    function codePointAt(string2, pos) {
-      var first = string2.charCodeAt(pos), second;
-      if (first >= 55296 && first <= 56319 && pos + 1 < string2.length) {
-        second = string2.charCodeAt(pos + 1);
-        if (second >= 56320 && second <= 57343) {
-          return (first - 55296) * 1024 + second - 56320 + 65536;
-        }
-      }
-      return first;
-    }
-    function needIndentIndicator(string2) {
-      var leadingSpaceRe = /^\n* /;
-      return leadingSpaceRe.test(string2);
-    }
-    var STYLE_PLAIN = 1;
-    var STYLE_SINGLE = 2;
-    var STYLE_LITERAL = 3;
-    var STYLE_FOLDED = 4;
-    var STYLE_DOUBLE = 5;
-    function chooseScalarStyle(string2, singleLineOnly, indentPerLevel, lineWidth, testAmbiguousType, quotingType, forceQuotes, inblock) {
-      var i;
-      var char = 0;
-      var prevChar = null;
-      var hasLineBreak = false;
-      var hasFoldableLine = false;
-      var shouldTrackWidth = lineWidth !== -1;
-      var previousLineBreak = -1;
-      var plain = isPlainSafeFirst(codePointAt(string2, 0)) && isPlainSafeLast(codePointAt(string2, string2.length - 1));
-      if (singleLineOnly || forceQuotes) {
-        for (i = 0; i < string2.length; char >= 65536 ? i += 2 : i++) {
-          char = codePointAt(string2, i);
-          if (!isPrintable(char)) {
-            return STYLE_DOUBLE;
-          }
-          plain = plain && isPlainSafe(char, prevChar, inblock);
-          prevChar = char;
-        }
-      } else {
-        for (i = 0; i < string2.length; char >= 65536 ? i += 2 : i++) {
-          char = codePointAt(string2, i);
-          if (char === CHAR_LINE_FEED) {
-            hasLineBreak = true;
-            if (shouldTrackWidth) {
-              hasFoldableLine = hasFoldableLine || i - previousLineBreak - 1 > lineWidth && string2[previousLineBreak + 1] !== " ";
-              previousLineBreak = i;
-            }
-          } else if (!isPrintable(char)) {
-            return STYLE_DOUBLE;
-          }
-          plain = plain && isPlainSafe(char, prevChar, inblock);
-          prevChar = char;
-        }
-        hasFoldableLine = hasFoldableLine || shouldTrackWidth && (i - previousLineBreak - 1 > lineWidth && string2[previousLineBreak + 1] !== " ");
-      }
-      if (!hasLineBreak && !hasFoldableLine) {
-        if (plain && !forceQuotes && !testAmbiguousType(string2)) {
-          return STYLE_PLAIN;
-        }
-        return quotingType === QUOTING_TYPE_DOUBLE ? STYLE_DOUBLE : STYLE_SINGLE;
-      }
-      if (indentPerLevel > 9 && needIndentIndicator(string2)) {
-        return STYLE_DOUBLE;
-      }
-      if (!forceQuotes) {
-        return hasFoldableLine ? STYLE_FOLDED : STYLE_LITERAL;
-      }
-      return quotingType === QUOTING_TYPE_DOUBLE ? STYLE_DOUBLE : STYLE_SINGLE;
-    }
-    function writeScalar(state, string2, level, iskey, inblock) {
-      state.dump = function() {
-        if (string2.length === 0) {
-          return state.quotingType === QUOTING_TYPE_DOUBLE ? '""' : "''";
-        }
-        if (!state.noCompatMode) {
-          if (DEPRECATED_BOOLEANS_SYNTAX.indexOf(string2) !== -1 || DEPRECATED_BASE60_SYNTAX.test(string2)) {
-            return state.quotingType === QUOTING_TYPE_DOUBLE ? '"' + string2 + '"' : "'" + string2 + "'";
-          }
-        }
-        var indent = state.indent * Math.max(1, level);
-        var lineWidth = state.lineWidth === -1 ? -1 : Math.max(Math.min(state.lineWidth, 40), state.lineWidth - indent);
-        var singleLineOnly = iskey || state.flowLevel > -1 && level >= state.flowLevel;
-        function testAmbiguity(string3) {
-          return testImplicitResolving(state, string3);
-        }
-        switch (chooseScalarStyle(string2, singleLineOnly, state.indent, lineWidth, testAmbiguity, state.quotingType, state.forceQuotes && !iskey, inblock)) {
-          case STYLE_PLAIN:
-            return string2;
-          case STYLE_SINGLE:
-            return "'" + string2.replace(/'/g, "''") + "'";
-          case STYLE_LITERAL:
-            return "|" + blockHeader(string2, state.indent) + dropEndingNewline(indentString(string2, indent));
-          case STYLE_FOLDED:
-            return ">" + blockHeader(string2, state.indent) + dropEndingNewline(indentString(foldString(string2, lineWidth), indent));
-          case STYLE_DOUBLE:
-            return '"' + escapeString(string2, lineWidth) + '"';
-          default:
-            throw new YAMLException2("impossible error: invalid scalar style");
-        }
-      }();
-    }
-    function blockHeader(string2, indentPerLevel) {
-      var indentIndicator = needIndentIndicator(string2) ? String(indentPerLevel) : "";
-      var clip = string2[string2.length - 1] === "\n";
-      var keep = clip && (string2[string2.length - 2] === "\n" || string2 === "\n");
-      var chomp = keep ? "+" : clip ? "" : "-";
-      return indentIndicator + chomp + "\n";
-    }
-    function dropEndingNewline(string2) {
-      return string2[string2.length - 1] === "\n" ? string2.slice(0, -1) : string2;
-    }
-    function foldString(string2, width) {
-      var lineRe = /(\n+)([^\n]*)/g;
-      var result = function() {
-        var nextLF = string2.indexOf("\n");
-        nextLF = nextLF !== -1 ? nextLF : string2.length;
-        lineRe.lastIndex = nextLF;
-        return foldLine(string2.slice(0, nextLF), width);
-      }();
-      var prevMoreIndented = string2[0] === "\n" || string2[0] === " ";
-      var moreIndented;
-      var match;
-      while (match = lineRe.exec(string2)) {
-        var prefix = match[1], line = match[2];
-        moreIndented = line[0] === " ";
-        result += prefix + (!prevMoreIndented && !moreIndented && line !== "" ? "\n" : "") + foldLine(line, width);
-        prevMoreIndented = moreIndented;
-      }
-      return result;
-    }
-    function foldLine(line, width) {
-      if (line === "" || line[0] === " ")
-        return line;
-      var breakRe = / [^ ]/g;
-      var match;
-      var start = 0, end, curr = 0, next = 0;
-      var result = "";
-      while (match = breakRe.exec(line)) {
-        next = match.index;
-        if (next - start > width) {
-          end = curr > start ? curr : next;
-          result += "\n" + line.slice(start, end);
-          start = end + 1;
-        }
-        curr = next;
-      }
-      result += "\n";
-      if (line.length - start > width && curr > start) {
-        result += line.slice(start, curr) + "\n" + line.slice(curr + 1);
-      } else {
-        result += line.slice(start);
-      }
-      return result.slice(1);
-    }
-    function escapeString(string2) {
-      var result = "";
-      var char = 0;
-      var escapeSeq;
-      for (var i = 0; i < string2.length; char >= 65536 ? i += 2 : i++) {
-        char = codePointAt(string2, i);
-        escapeSeq = ESCAPE_SEQUENCES[char];
-        if (!escapeSeq && isPrintable(char)) {
-          result += string2[i];
-          if (char >= 65536)
-            result += string2[i + 1];
-        } else {
-          result += escapeSeq || encodeHex(char);
-        }
-      }
-      return result;
-    }
-    function writeFlowSequence(state, level, object) {
-      var _result = "", _tag = state.tag, index, length, value;
-      for (index = 0, length = object.length; index < length; index += 1) {
-        value = object[index];
-        if (state.replacer) {
-          value = state.replacer.call(object, String(index), value);
-        }
-        if (writeNode(state, level, value, false, false) || typeof value === "undefined" && writeNode(state, level, null, false, false)) {
-          if (_result !== "")
-            _result += "," + (!state.condenseFlow ? " " : "");
-          _result += state.dump;
-        }
-      }
-      state.tag = _tag;
-      state.dump = "[" + _result + "]";
-    }
-    function writeBlockSequence(state, level, object, compact) {
-      var _result = "", _tag = state.tag, index, length, value;
-      for (index = 0, length = object.length; index < length; index += 1) {
-        value = object[index];
-        if (state.replacer) {
-          value = state.replacer.call(object, String(index), value);
-        }
-        if (writeNode(state, level + 1, value, true, true, false, true) || typeof value === "undefined" && writeNode(state, level + 1, null, true, true, false, true)) {
-          if (!compact || _result !== "") {
-            _result += generateNextLine(state, level);
-          }
-          if (state.dump && CHAR_LINE_FEED === state.dump.charCodeAt(0)) {
-            _result += "-";
-          } else {
-            _result += "- ";
-          }
-          _result += state.dump;
-        }
-      }
-      state.tag = _tag;
-      state.dump = _result || "[]";
-    }
-    function writeFlowMapping(state, level, object) {
-      var _result = "", _tag = state.tag, objectKeyList = Object.keys(object), index, length, objectKey, objectValue, pairBuffer;
-      for (index = 0, length = objectKeyList.length; index < length; index += 1) {
-        pairBuffer = "";
-        if (_result !== "")
-          pairBuffer += ", ";
-        if (state.condenseFlow)
-          pairBuffer += '"';
-        objectKey = objectKeyList[index];
-        objectValue = object[objectKey];
-        if (state.replacer) {
-          objectValue = state.replacer.call(object, objectKey, objectValue);
-        }
-        if (!writeNode(state, level, objectKey, false, false)) {
-          continue;
-        }
-        if (state.dump.length > 1024)
-          pairBuffer += "? ";
-        pairBuffer += state.dump + (state.condenseFlow ? '"' : "") + ":" + (state.condenseFlow ? "" : " ");
-        if (!writeNode(state, level, objectValue, false, false)) {
-          continue;
-        }
-        pairBuffer += state.dump;
-        _result += pairBuffer;
-      }
-      state.tag = _tag;
-      state.dump = "{" + _result + "}";
-    }
-    function writeBlockMapping(state, level, object, compact) {
-      var _result = "", _tag = state.tag, objectKeyList = Object.keys(object), index, length, objectKey, objectValue, explicitPair, pairBuffer;
-      if (state.sortKeys === true) {
-        objectKeyList.sort();
-      } else if (typeof state.sortKeys === "function") {
-        objectKeyList.sort(state.sortKeys);
-      } else if (state.sortKeys) {
-        throw new YAMLException2("sortKeys must be a boolean or a function");
-      }
-      for (index = 0, length = objectKeyList.length; index < length; index += 1) {
-        pairBuffer = "";
-        if (!compact || _result !== "") {
-          pairBuffer += generateNextLine(state, level);
-        }
-        objectKey = objectKeyList[index];
-        objectValue = object[objectKey];
-        if (state.replacer) {
-          objectValue = state.replacer.call(object, objectKey, objectValue);
-        }
-        if (!writeNode(state, level + 1, objectKey, true, true, true)) {
-          continue;
-        }
-        explicitPair = state.tag !== null && state.tag !== "?" || state.dump && state.dump.length > 1024;
-        if (explicitPair) {
-          if (state.dump && CHAR_LINE_FEED === state.dump.charCodeAt(0)) {
-            pairBuffer += "?";
-          } else {
-            pairBuffer += "? ";
-          }
-        }
-        pairBuffer += state.dump;
-        if (explicitPair) {
-          pairBuffer += generateNextLine(state, level);
-        }
-        if (!writeNode(state, level + 1, objectValue, true, explicitPair)) {
-          continue;
-        }
-        if (state.dump && CHAR_LINE_FEED === state.dump.charCodeAt(0)) {
-          pairBuffer += ":";
-        } else {
-          pairBuffer += ": ";
-        }
-        pairBuffer += state.dump;
-        _result += pairBuffer;
-      }
-      state.tag = _tag;
-      state.dump = _result || "{}";
-    }
-    function detectType(state, object, explicit) {
-      var _result, typeList, index, length, type, style;
-      typeList = explicit ? state.explicitTypes : state.implicitTypes;
-      for (index = 0, length = typeList.length; index < length; index += 1) {
-        type = typeList[index];
-        if ((type.instanceOf || type.predicate) && (!type.instanceOf || typeof object === "object" && object instanceof type.instanceOf) && (!type.predicate || type.predicate(object))) {
-          if (explicit) {
-            if (type.multi && type.representName) {
-              state.tag = type.representName(object);
-            } else {
-              state.tag = type.tag;
-            }
-          } else {
-            state.tag = "?";
-          }
-          if (type.represent) {
-            style = state.styleMap[type.tag] || type.defaultStyle;
-            if (_toString.call(type.represent) === "[object Function]") {
-              _result = type.represent(object, style);
-            } else if (_hasOwnProperty.call(type.represent, style)) {
-              _result = type.represent[style](object, style);
-            } else {
-              throw new YAMLException2("!<" + type.tag + '> tag resolver accepts not "' + style + '" style');
-            }
-            state.dump = _result;
-          }
-          return true;
-        }
-      }
-      return false;
-    }
-    function writeNode(state, level, object, block, compact, iskey, isblockseq) {
-      state.tag = null;
-      state.dump = object;
-      if (!detectType(state, object, false)) {
-        detectType(state, object, true);
-      }
-      var type = _toString.call(state.dump);
-      var inblock = block;
-      var tagStr;
-      if (block) {
-        block = state.flowLevel < 0 || state.flowLevel > level;
-      }
-      var objectOrArray = type === "[object Object]" || type === "[object Array]", duplicateIndex, duplicate;
-      if (objectOrArray) {
-        duplicateIndex = state.duplicates.indexOf(object);
-        duplicate = duplicateIndex !== -1;
-      }
-      if (state.tag !== null && state.tag !== "?" || duplicate || state.indent !== 2 && level > 0) {
-        compact = false;
-      }
-      if (duplicate && state.usedDuplicates[duplicateIndex]) {
-        state.dump = "*ref_" + duplicateIndex;
-      } else {
-        if (objectOrArray && duplicate && !state.usedDuplicates[duplicateIndex]) {
-          state.usedDuplicates[duplicateIndex] = true;
-        }
-        if (type === "[object Object]") {
-          if (block && Object.keys(state.dump).length !== 0) {
-            writeBlockMapping(state, level, state.dump, compact);
-            if (duplicate) {
-              state.dump = "&ref_" + duplicateIndex + state.dump;
-            }
-          } else {
-            writeFlowMapping(state, level, state.dump);
-            if (duplicate) {
-              state.dump = "&ref_" + duplicateIndex + " " + state.dump;
-            }
-          }
-        } else if (type === "[object Array]") {
-          if (block && state.dump.length !== 0) {
-            if (state.noArrayIndent && !isblockseq && level > 0) {
-              writeBlockSequence(state, level - 1, state.dump, compact);
-            } else {
-              writeBlockSequence(state, level, state.dump, compact);
-            }
-            if (duplicate) {
-              state.dump = "&ref_" + duplicateIndex + state.dump;
-            }
-          } else {
-            writeFlowSequence(state, level, state.dump);
-            if (duplicate) {
-              state.dump = "&ref_" + duplicateIndex + " " + state.dump;
-            }
-          }
-        } else if (type === "[object String]") {
-          if (state.tag !== "?") {
-            writeScalar(state, state.dump, level, iskey, inblock);
-          }
-        } else if (type === "[object Undefined]") {
-          return false;
-        } else {
-          if (state.skipInvalid)
-            return false;
-          throw new YAMLException2("unacceptable kind of an object to dump " + type);
-        }
-        if (state.tag !== null && state.tag !== "?") {
-          tagStr = encodeURI(state.tag[0] === "!" ? state.tag.slice(1) : state.tag).replace(/!/g, "%21");
-          if (state.tag[0] === "!") {
-            tagStr = "!" + tagStr;
-          } else if (tagStr.slice(0, 18) === "tag:yaml.org,2002:") {
-            tagStr = "!!" + tagStr.slice(18);
-          } else {
-            tagStr = "!<" + tagStr + ">";
-          }
-          state.dump = tagStr + " " + state.dump;
-        }
-      }
-      return true;
-    }
-    function getDuplicateReferences(object, state) {
-      var objects = [], duplicatesIndexes = [], index, length;
-      inspectNode(object, objects, duplicatesIndexes);
-      for (index = 0, length = duplicatesIndexes.length; index < length; index += 1) {
-        state.duplicates.push(objects[duplicatesIndexes[index]]);
-      }
-      state.usedDuplicates = new Array(length);
-    }
-    function inspectNode(object, objects, duplicatesIndexes) {
-      var objectKeyList, index, length;
-      if (object !== null && typeof object === "object") {
-        index = objects.indexOf(object);
-        if (index !== -1) {
-          if (duplicatesIndexes.indexOf(index) === -1) {
-            duplicatesIndexes.push(index);
-          }
-        } else {
-          objects.push(object);
-          if (Array.isArray(object)) {
-            for (index = 0, length = object.length; index < length; index += 1) {
-              inspectNode(object[index], objects, duplicatesIndexes);
-            }
-          } else {
-            objectKeyList = Object.keys(object);
-            for (index = 0, length = objectKeyList.length; index < length; index += 1) {
-              inspectNode(object[objectKeyList[index]], objects, duplicatesIndexes);
-            }
-          }
-        }
-      }
-    }
-    function dump3(input, options2) {
-      options2 = options2 || {};
-      var state = new State(options2);
-      if (!state.noRefs)
-        getDuplicateReferences(input, state);
-      var value = input;
-      if (state.replacer) {
-        value = state.replacer.call({ "": value }, "", value);
-      }
-      if (writeNode(state, 0, value, true, true))
-        return state.dump + "\n";
-      return "";
-    }
-    module2.exports.dump = dump3;
-  }
-});
-
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/index.js
-var require_js_yaml = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/js-yaml-npm-4.1.0-3606f32312-c7830dfd45.zip/node_modules/js-yaml/index.js"(exports2, module2) {
-    "use strict";
-    var loader = require_loader();
-    var dumper = require_dumper();
-    function renamed(from, to) {
-      return function() {
-        throw new Error("Function yaml." + from + " is removed in js-yaml 4. Use yaml." + to + " instead, which is now safe by default.");
-      };
-    }
-    module2.exports.Type = require_type();
-    module2.exports.Schema = require_schema2();
-    module2.exports.FAILSAFE_SCHEMA = require_failsafe();
-    module2.exports.JSON_SCHEMA = require_json();
-    module2.exports.CORE_SCHEMA = require_core();
-    module2.exports.DEFAULT_SCHEMA = require_default();
-    module2.exports.load = loader.load;
-    module2.exports.loadAll = loader.loadAll;
-    module2.exports.dump = dumper.dump;
-    module2.exports.YAMLException = require_exception();
-    module2.exports.types = {
-      binary: require_binary(),
-      float: require_float(),
-      map: require_map(),
-      null: require_null(),
-      pairs: require_pairs(),
-      set: require_set(),
-      timestamp: require_timestamp(),
-      bool: require_bool(),
-      int: require_int(),
-      merge: require_merge(),
-      omap: require_omap(),
-      seq: require_seq(),
-      str: require_str()
-    };
-    module2.exports.safeLoad = renamed("safeLoad", "load");
-    module2.exports.safeLoadAll = renamed("safeLoadAll", "loadAll");
-    module2.exports.safeDump = renamed("safeDump", "dump");
-  }
-});
-
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/lodash.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/lodash.js
 var require_lodash = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/lodash.js"(exports2, module2) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/lodash.js"(exports2, module2) {
     (function() {
       var undefined2;
-      var VERSION = "4.17.21";
+      var VERSION = "4.18.1";
       var LARGE_ARRAY_SIZE = 200;
-      var CORE_ERROR_TEXT = "Unsupported core-js use. Try https://npms.io/search?q=ponyfill.", FUNC_ERROR_TEXT = "Expected a function", INVALID_TEMPL_VAR_ERROR_TEXT = "Invalid `variable` option passed into `_.template`";
+      var CORE_ERROR_TEXT = "Unsupported core-js use. Try https://npms.io/search?q=ponyfill.", FUNC_ERROR_TEXT = "Expected a function", INVALID_TEMPL_VAR_ERROR_TEXT = "Invalid `variable` option passed into `_.template`", INVALID_TEMPL_IMPORTS_ERROR_TEXT = "Invalid `imports` option passed into `_.template`";
       var HASH_UNDEFINED = "__lodash_hash_undefined__";
       var MAX_MEMOIZE_SIZE = 500;
       var PLACEHOLDER = "__lodash_placeholder__";
@@ -8991,9 +6177,9 @@ var require_lodash = __commonJS({
         }
         return result;
       }
-      function mapToArray(map) {
-        var index = -1, result = Array(map.size);
-        map.forEach(function(value, key) {
+      function mapToArray(map2) {
+        var index = -1, result = Array(map2.size);
+        map2.forEach(function(value, key) {
           result[++index] = [key, value];
         });
         return result;
@@ -9014,16 +6200,16 @@ var require_lodash = __commonJS({
         }
         return result;
       }
-      function setToArray(set) {
-        var index = -1, result = Array(set.size);
-        set.forEach(function(value) {
+      function setToArray(set2) {
+        var index = -1, result = Array(set2.size);
+        set2.forEach(function(value) {
           result[++index] = value;
         });
         return result;
       }
-      function setToPairs(set) {
-        var index = -1, result = Array(set.size);
-        set.forEach(function(value) {
+      function setToPairs(set2) {
+        var index = -1, result = Array(set2.size);
+        set2.forEach(function(value) {
           result[++index] = [value, value];
         });
         return result;
@@ -9087,8 +6273,10 @@ var require_lodash = __commonJS({
         var nativeObjectToString = objectProto.toString;
         var objectCtorString = funcToString.call(Object2);
         var oldDash = root._;
-        var reIsNative = RegExp2("^" + funcToString.call(hasOwnProperty).replace(reRegExpChar, "\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, "$1.*?") + "$");
-        var Buffer5 = moduleExports ? context.Buffer : undefined2, Symbol2 = context.Symbol, Uint8Array2 = context.Uint8Array, allocUnsafe = Buffer5 ? Buffer5.allocUnsafe : undefined2, getPrototype = overArg(Object2.getPrototypeOf, Object2), objectCreate = Object2.create, propertyIsEnumerable = objectProto.propertyIsEnumerable, splice = arrayProto.splice, spreadableSymbol = Symbol2 ? Symbol2.isConcatSpreadable : undefined2, symIterator = Symbol2 ? Symbol2.iterator : undefined2, symToStringTag = Symbol2 ? Symbol2.toStringTag : undefined2;
+        var reIsNative = RegExp2(
+          "^" + funcToString.call(hasOwnProperty).replace(reRegExpChar, "\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, "$1.*?") + "$"
+        );
+        var Buffer4 = moduleExports ? context.Buffer : undefined2, Symbol2 = context.Symbol, Uint8Array2 = context.Uint8Array, allocUnsafe = Buffer4 ? Buffer4.allocUnsafe : undefined2, getPrototype = overArg(Object2.getPrototypeOf, Object2), objectCreate = Object2.create, propertyIsEnumerable = objectProto.propertyIsEnumerable, splice = arrayProto.splice, spreadableSymbol = Symbol2 ? Symbol2.isConcatSpreadable : undefined2, symIterator = Symbol2 ? Symbol2.iterator : undefined2, symToStringTag = Symbol2 ? Symbol2.toStringTag : undefined2;
         var defineProperty = function() {
           try {
             var func = getNative(Object2, "defineProperty");
@@ -9098,7 +6286,7 @@ var require_lodash = __commonJS({
           }
         }();
         var ctxClearTimeout = context.clearTimeout !== root.clearTimeout && context.clearTimeout, ctxNow = Date2 && Date2.now !== root.Date.now && Date2.now, ctxSetTimeout = context.setTimeout !== root.setTimeout && context.setTimeout;
-        var nativeCeil = Math2.ceil, nativeFloor = Math2.floor, nativeGetSymbols = Object2.getOwnPropertySymbols, nativeIsBuffer = Buffer5 ? Buffer5.isBuffer : undefined2, nativeIsFinite = context.isFinite, nativeJoin = arrayProto.join, nativeKeys = overArg(Object2.keys, Object2), nativeMax = Math2.max, nativeMin = Math2.min, nativeNow = Date2.now, nativeParseInt = context.parseInt, nativeRandom = Math2.random, nativeReverse = arrayProto.reverse;
+        var nativeCeil = Math2.ceil, nativeFloor = Math2.floor, nativeGetSymbols = Object2.getOwnPropertySymbols, nativeIsBuffer = Buffer4 ? Buffer4.isBuffer : undefined2, nativeIsFinite = context.isFinite, nativeJoin = arrayProto.join, nativeKeys = overArg(Object2.keys, Object2), nativeMax = Math2.max, nativeMin = Math2.min, nativeNow = Date2.now, nativeParseInt = context.parseInt, nativeRandom = Math2.random, nativeReverse = arrayProto.reverse;
         var DataView2 = getNative(context, "DataView"), Map2 = getNative(context, "Map"), Promise2 = getNative(context, "Promise"), Set2 = getNative(context, "Set"), WeakMap2 = getNative(context, "WeakMap"), nativeCreate = getNative(Object2, "create");
         var metaMap = WeakMap2 && new WeakMap2();
         var realNames = {};
@@ -9119,7 +6307,7 @@ var require_lodash = __commonJS({
           function object() {
           }
           return function(proto) {
-            if (!isObject(proto)) {
+            if (!isObject2(proto)) {
               return {};
             }
             if (objectCreate) {
@@ -9194,11 +6382,11 @@ var require_lodash = __commonJS({
               index += dir;
               var iterIndex = -1, value = array[index];
               while (++iterIndex < iterLength) {
-                var data = iteratees[iterIndex], iteratee2 = data.iteratee, type = data.type, computed = iteratee2(value);
-                if (type == LAZY_MAP_FLAG) {
+                var data = iteratees[iterIndex], iteratee2 = data.iteratee, type2 = data.type, computed = iteratee2(value);
+                if (type2 == LAZY_MAP_FLAG) {
                   value = computed;
                 } else if (!computed) {
-                  if (type == LAZY_FILTER_FLAG) {
+                  if (type2 == LAZY_FILTER_FLAG) {
                     continue outer;
                   } else {
                     break outer;
@@ -9375,13 +6563,13 @@ var require_lodash = __commonJS({
         function stackSet(key, value) {
           var data = this.__data__;
           if (data instanceof ListCache) {
-            var pairs = data.__data__;
-            if (!Map2 || pairs.length < LARGE_ARRAY_SIZE - 1) {
-              pairs.push([key, value]);
+            var pairs2 = data.__data__;
+            if (!Map2 || pairs2.length < LARGE_ARRAY_SIZE - 1) {
+              pairs2.push([key, value]);
               this.size = ++data.size;
               return this;
             }
-            data = this.__data__ = new MapCache(pairs);
+            data = this.__data__ = new MapCache(pairs2);
           }
           data.set(key, value);
           this.size = data.size;
@@ -9481,7 +6669,7 @@ var require_lodash = __commonJS({
           if (result2 !== undefined2) {
             return result2;
           }
-          if (!isObject(value)) {
+          if (!isObject2(value)) {
             return value;
           }
           var isArr = isArray(value);
@@ -9828,7 +7016,7 @@ var require_lodash = __commonJS({
           return true;
         }
         function baseIsNative(value) {
-          if (!isObject(value) || isMasked(value)) {
+          if (!isObject2(value) || isMasked(value)) {
             return false;
           }
           var pattern = isFunction(value) ? reIsNative : reIsHostCtor;
@@ -9868,7 +7056,7 @@ var require_lodash = __commonJS({
           return result2;
         }
         function baseKeysIn(object) {
-          if (!isObject(object)) {
+          if (!isObject2(object)) {
             return nativeKeysIn(object);
           }
           var isProto = isPrototype(object), result2 = [];
@@ -9913,7 +7101,7 @@ var require_lodash = __commonJS({
           }
           baseFor(source, function(srcValue, key) {
             stack || (stack = new Stack());
-            if (isObject(srcValue)) {
+            if (isObject2(srcValue)) {
               baseMergeDeep(object, source, key, srcIndex, baseMerge, customizer, stack);
             } else {
               var newValue = customizer ? customizer(safeGet(object, key), srcValue, key + "", object, source, stack) : undefined2;
@@ -9953,7 +7141,7 @@ var require_lodash = __commonJS({
               newValue = objValue;
               if (isArguments(objValue)) {
                 newValue = toPlainObject(objValue);
-              } else if (!isObject(objValue) || isFunction(objValue)) {
+              } else if (!isObject2(objValue) || isFunction(objValue)) {
                 newValue = initCloneObject(srcValue);
               }
             } else {
@@ -10092,7 +7280,7 @@ var require_lodash = __commonJS({
           return shuffleSelf(array, baseClamp(n, 0, array.length));
         }
         function baseSet(object, path, value, customizer) {
-          if (!isObject(object)) {
+          if (!isObject2(object)) {
             return object;
           }
           path = castPath(path, object);
@@ -10106,7 +7294,7 @@ var require_lodash = __commonJS({
               var objValue = nested[key];
               newValue = customizer ? customizer(objValue, key, nested) : undefined2;
               if (newValue === undefined2) {
-                newValue = isObject(objValue) ? objValue : isIndex(path[index + 1]) ? [] : {};
+                newValue = isObject2(objValue) ? objValue : isIndex(path[index + 1]) ? [] : {};
               }
             }
             assignValue(nested, key, newValue);
@@ -10238,9 +7426,9 @@ var require_lodash = __commonJS({
             isCommon = false;
             includes2 = arrayIncludesWith;
           } else if (length >= LARGE_ARRAY_SIZE) {
-            var set2 = iteratee2 ? null : createSet(array);
-            if (set2) {
-              return setToArray(set2);
+            var set3 = iteratee2 ? null : createSet(array);
+            if (set3) {
+              return setToArray(set3);
             }
             isCommon = false;
             includes2 = cacheHas;
@@ -10274,8 +7462,21 @@ var require_lodash = __commonJS({
         }
         function baseUnset(object, path) {
           path = castPath(path, object);
-          object = parent(object, path);
-          return object == null || delete object[toKey(last(path))];
+          var index = -1, length = path.length;
+          if (!length) {
+            return true;
+          }
+          while (++index < length) {
+            var key = toKey(path[index]);
+            if (key === "__proto__" && !hasOwnProperty.call(object, "__proto__")) {
+              return false;
+            }
+            if ((key === "constructor" || key === "prototype") && index < length - 1) {
+              return false;
+            }
+          }
+          var obj = parent(object, path);
+          return obj == null || delete obj[toKey(last(path))];
         }
         function baseUpdate(object, path, updater, customizer) {
           return baseSet(object, path, updater(baseGet(object, path)), customizer);
@@ -10329,7 +7530,7 @@ var require_lodash = __commonJS({
           if (isArray(value)) {
             return value;
           }
-          return isKey(value, object) ? [value] : stringToPath(toString(value));
+          return isKey(value, object) ? [value] : stringToPath(toString2(value));
         }
         var castRest = baseRest;
         function castSlice(array, start, end) {
@@ -10522,7 +7723,7 @@ var require_lodash = __commonJS({
         }
         function createCaseFirst(methodName) {
           return function(string2) {
-            string2 = toString(string2);
+            string2 = toString2(string2);
             var strSymbols = hasUnicode(string2) ? stringToArray(string2) : undefined2;
             var chr = strSymbols ? strSymbols[0] : string2.charAt(0);
             var trailing = strSymbols ? castSlice(strSymbols, 1).join("") : string2.slice(1);
@@ -10556,7 +7757,7 @@ var require_lodash = __commonJS({
                 return new Ctor(args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
             }
             var thisBinding = baseCreate(Ctor.prototype), result2 = Ctor.apply(thisBinding, args);
-            return isObject(result2) ? result2 : thisBinding;
+            return isObject2(result2) ? result2 : thisBinding;
           };
         }
         function createCurry(func, bitmask, arity) {
@@ -10569,7 +7770,18 @@ var require_lodash = __commonJS({
             var holders = length < 3 && args[0] !== placeholder && args[length - 1] !== placeholder ? [] : replaceHolders(args, placeholder);
             length -= holders.length;
             if (length < arity) {
-              return createRecurry(func, bitmask, createHybrid, wrapper.placeholder, undefined2, args, holders, undefined2, undefined2, arity - length);
+              return createRecurry(
+                func,
+                bitmask,
+                createHybrid,
+                wrapper.placeholder,
+                undefined2,
+                args,
+                holders,
+                undefined2,
+                undefined2,
+                arity - length
+              );
             }
             var fn = this && this !== root && this instanceof wrapper ? Ctor : func;
             return apply(fn, this, args);
@@ -10647,7 +7859,18 @@ var require_lodash = __commonJS({
             length -= holdersCount;
             if (isCurried && length < arity) {
               var newHolders = replaceHolders(args, placeholder);
-              return createRecurry(func, bitmask, createHybrid, wrapper.placeholder, thisArg, args, newHolders, argPos, ary2, arity - length);
+              return createRecurry(
+                func,
+                bitmask,
+                createHybrid,
+                wrapper.placeholder,
+                thisArg,
+                args,
+                newHolders,
+                argPos,
+                ary2,
+                arity - length
+              );
             }
             var thisBinding = isBind ? thisArg : this, fn = isBindKey ? thisBinding[func] : func;
             length = args.length;
@@ -10787,8 +8010,8 @@ var require_lodash = __commonJS({
             number2 = toNumber(number2);
             precision = precision == null ? 0 : nativeMin(toInteger(precision), 292);
             if (precision && nativeIsFinite(number2)) {
-              var pair = (toString(number2) + "e").split("e"), value = func(pair[0] + "e" + (+pair[1] + precision));
-              pair = (toString(value) + "e").split("e");
+              var pair = (toString2(number2) + "e").split("e"), value = func(pair[0] + "e" + (+pair[1] + precision));
+              pair = (toString2(value) + "e").split("e");
               return +(pair[0] + "e" + (+pair[1] - precision));
             }
             return func(number2);
@@ -10870,7 +8093,7 @@ var require_lodash = __commonJS({
           return objValue;
         }
         function customDefaultsMerge(objValue, srcValue, key, object, source, stack) {
-          if (isObject(objValue) && isObject(srcValue)) {
+          if (isObject2(objValue) && isObject2(srcValue)) {
             stack.set(srcValue, objValue);
             baseMerge(objValue, srcValue, undefined2, customDefaultsMerge, stack);
             stack["delete"](srcValue);
@@ -11043,8 +8266,8 @@ var require_lodash = __commonJS({
           result2 = result2 === iteratee ? baseIteratee : result2;
           return arguments.length ? result2(arguments[0], arguments[1]) : result2;
         }
-        function getMapData(map2, key) {
-          var data = map2.__data__;
+        function getMapData(map3, key) {
+          var data = map3.__data__;
           return isKeyable(key) ? data[typeof key == "string" ? "string" : "hash"] : data.map;
         }
         function getMatchData(object) {
@@ -11213,16 +8436,16 @@ var require_lodash = __commonJS({
           return isArray(value) || isArguments(value) || !!(spreadableSymbol && value && value[spreadableSymbol]);
         }
         function isIndex(value, length) {
-          var type = typeof value;
+          var type2 = typeof value;
           length = length == null ? MAX_SAFE_INTEGER : length;
-          return !!length && (type == "number" || type != "symbol" && reIsUint.test(value)) && (value > -1 && value % 1 == 0 && value < length);
+          return !!length && (type2 == "number" || type2 != "symbol" && reIsUint.test(value)) && (value > -1 && value % 1 == 0 && value < length);
         }
         function isIterateeCall(value, index, object) {
-          if (!isObject(object)) {
+          if (!isObject2(object)) {
             return false;
           }
-          var type = typeof index;
-          if (type == "number" ? isArrayLike(object) && isIndex(index, object.length) : type == "string" && index in object) {
+          var type2 = typeof index;
+          if (type2 == "number" ? isArrayLike(object) && isIndex(index, object.length) : type2 == "string" && index in object) {
             return eq(object[index], value);
           }
           return false;
@@ -11231,15 +8454,15 @@ var require_lodash = __commonJS({
           if (isArray(value)) {
             return false;
           }
-          var type = typeof value;
-          if (type == "number" || type == "symbol" || type == "boolean" || value == null || isSymbol(value)) {
+          var type2 = typeof value;
+          if (type2 == "number" || type2 == "symbol" || type2 == "boolean" || value == null || isSymbol(value)) {
             return true;
           }
           return reIsPlainProp.test(value) || !reIsDeepProp.test(value) || object != null && value in Object2(object);
         }
         function isKeyable(value) {
-          var type = typeof value;
-          return type == "string" || type == "number" || type == "symbol" || type == "boolean" ? value !== "__proto__" : value === null;
+          var type2 = typeof value;
+          return type2 == "string" || type2 == "number" || type2 == "symbol" || type2 == "boolean" ? value !== "__proto__" : value === null;
         }
         function isLaziable(func) {
           var funcName = getFuncName(func), other = lodash[funcName];
@@ -11261,7 +8484,7 @@ var require_lodash = __commonJS({
           return value === proto;
         }
         function isStrictComparable(value) {
-          return value === value && !isObject(value);
+          return value === value && !isObject2(value);
         }
         function matchesStrictComparable(key, srcValue) {
           return function(object) {
@@ -11576,11 +8799,11 @@ var require_lodash = __commonJS({
           depth = depth === undefined2 ? 1 : toInteger(depth);
           return baseFlatten(array, depth);
         }
-        function fromPairs(pairs) {
-          var index = -1, length = pairs == null ? 0 : pairs.length, result2 = {};
+        function fromPairs(pairs2) {
+          var index = -1, length = pairs2 == null ? 0 : pairs2.length, result2 = {};
           while (++index < length) {
-            var pair = pairs[index];
-            result2[pair[0]] = pair[1];
+            var pair = pairs2[index];
+            baseAssignValue(result2, pair[0], pair[1]);
           }
           return result2;
         }
@@ -11882,7 +9105,7 @@ var require_lodash = __commonJS({
         }
         function wrapperNext() {
           if (this.__values__ === undefined2) {
-            this.__values__ = toArray(this.value());
+            this.__values__ = toArray2(this.value());
           }
           var done = this.__index__ >= this.__values__.length, value = done ? undefined2 : this.__values__[this.__index__++];
           return { "done": done, "value": value };
@@ -11948,14 +9171,14 @@ var require_lodash = __commonJS({
         var find = createFind(findIndex);
         var findLast = createFind(findLastIndex);
         function flatMap(collection, iteratee2) {
-          return baseFlatten(map(collection, iteratee2), 1);
+          return baseFlatten(map2(collection, iteratee2), 1);
         }
         function flatMapDeep(collection, iteratee2) {
-          return baseFlatten(map(collection, iteratee2), INFINITY);
+          return baseFlatten(map2(collection, iteratee2), INFINITY);
         }
         function flatMapDepth(collection, iteratee2, depth) {
           depth = depth === undefined2 ? 1 : toInteger(depth);
-          return baseFlatten(map(collection, iteratee2), depth);
+          return baseFlatten(map2(collection, iteratee2), depth);
         }
         function forEach(collection, iteratee2) {
           var func = isArray(collection) ? arrayEach : baseEach;
@@ -11991,7 +9214,7 @@ var require_lodash = __commonJS({
         var keyBy = createAggregator(function(result2, value, key) {
           baseAssignValue(result2, key, value);
         });
-        function map(collection, iteratee2) {
+        function map2(collection, iteratee2) {
           var func = isArray(collection) ? arrayMap : baseMap;
           return func(collection, getIteratee(iteratee2, 3));
         }
@@ -12143,7 +9366,7 @@ var require_lodash = __commonJS({
             throw new TypeError2(FUNC_ERROR_TEXT);
           }
           wait = toNumber(wait) || 0;
-          if (isObject(options2)) {
+          if (isObject2(options2)) {
             leading = !!options2.leading;
             maxing = "maxWait" in options2;
             maxWait = maxing ? nativeMax(toNumber(options2.maxWait) || 0, wait) : maxWait;
@@ -12313,7 +9536,7 @@ var require_lodash = __commonJS({
           if (typeof func != "function") {
             throw new TypeError2(FUNC_ERROR_TEXT);
           }
-          if (isObject(options2)) {
+          if (isObject2(options2)) {
             leading = "leading" in options2 ? !!options2.leading : leading;
             trailing = "trailing" in options2 ? !!options2.trailing : trailing;
           }
@@ -12373,7 +9596,7 @@ var require_lodash = __commonJS({
         function isArrayLikeObject(value) {
           return isObjectLike(value) && isArrayLike(value);
         }
-        function isBoolean(value) {
+        function isBoolean2(value) {
           return value === true || value === false || isObjectLike(value) && baseGetTag(value) == boolTag;
         }
         var isBuffer = nativeIsBuffer || stubFalse;
@@ -12421,21 +9644,21 @@ var require_lodash = __commonJS({
           return typeof value == "number" && nativeIsFinite(value);
         }
         function isFunction(value) {
-          if (!isObject(value)) {
+          if (!isObject2(value)) {
             return false;
           }
           var tag = baseGetTag(value);
           return tag == funcTag || tag == genTag || tag == asyncTag || tag == proxyTag;
         }
-        function isInteger(value) {
+        function isInteger2(value) {
           return typeof value == "number" && value == toInteger(value);
         }
         function isLength(value) {
           return typeof value == "number" && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
         }
-        function isObject(value) {
-          var type = typeof value;
-          return value != null && (type == "object" || type == "function");
+        function isObject2(value) {
+          var type2 = typeof value;
+          return value != null && (type2 == "object" || type2 == "function");
         }
         function isObjectLike(value) {
           return value != null && typeof value == "object";
@@ -12457,7 +9680,7 @@ var require_lodash = __commonJS({
           }
           return baseIsNative(value);
         }
-        function isNull(value) {
+        function isNull2(value) {
           return value === null;
         }
         function isNil(value) {
@@ -12479,7 +9702,7 @@ var require_lodash = __commonJS({
         }
         var isRegExp = nodeIsRegExp ? baseUnary(nodeIsRegExp) : baseIsRegExp;
         function isSafeInteger(value) {
-          return isInteger(value) && value >= -MAX_SAFE_INTEGER && value <= MAX_SAFE_INTEGER;
+          return isInteger2(value) && value >= -MAX_SAFE_INTEGER && value <= MAX_SAFE_INTEGER;
         }
         var isSet = nodeIsSet ? baseUnary(nodeIsSet) : baseIsSet;
         function isString(value) {
@@ -12502,7 +9725,7 @@ var require_lodash = __commonJS({
         var lte = createRelationalOperation(function(value, other) {
           return value <= other;
         });
-        function toArray(value) {
+        function toArray2(value) {
           if (!value) {
             return [];
           }
@@ -12540,16 +9763,16 @@ var require_lodash = __commonJS({
           if (isSymbol(value)) {
             return NAN;
           }
-          if (isObject(value)) {
+          if (isObject2(value)) {
             var other = typeof value.valueOf == "function" ? value.valueOf() : value;
-            value = isObject(other) ? other + "" : other;
+            value = isObject2(other) ? other + "" : other;
           }
           if (typeof value != "string") {
             return value === 0 ? value : +value;
           }
           value = baseTrim(value);
-          var isBinary = reIsBinary.test(value);
-          return isBinary || reIsOctal.test(value) ? freeParseInt(value.slice(2), isBinary ? 2 : 8) : reIsBadHex.test(value) ? NAN : +value;
+          var isBinary2 = reIsBinary.test(value);
+          return isBinary2 || reIsOctal.test(value) ? freeParseInt(value.slice(2), isBinary2 ? 2 : 8) : reIsBadHex.test(value) ? NAN : +value;
         }
         function toPlainObject(value) {
           return copyObject(value, keysIn(value));
@@ -12557,7 +9780,7 @@ var require_lodash = __commonJS({
         function toSafeInteger(value) {
           return value ? baseClamp(toInteger(value), -MAX_SAFE_INTEGER, MAX_SAFE_INTEGER) : value === 0 ? value : 0;
         }
-        function toString(value) {
+        function toString2(value) {
           return value == null ? "" : baseToString(value);
         }
         var assign = createAssigner(function(object, source) {
@@ -12685,7 +9908,7 @@ var require_lodash = __commonJS({
           });
           return result2;
         }
-        var merge = createAssigner(function(object, source, srcIndex) {
+        var merge2 = createAssigner(function(object, source, srcIndex) {
           baseMerge(object, source, srcIndex);
         });
         var mergeWith = createAssigner(function(object, source, srcIndex, customizer) {
@@ -12747,7 +9970,7 @@ var require_lodash = __commonJS({
           }
           return object;
         }
-        function set(object, path, value) {
+        function set2(object, path, value) {
           return object == null ? object : baseSet(object, path, value);
         }
         function setWith(object, path, value, customizer) {
@@ -12763,7 +9986,7 @@ var require_lodash = __commonJS({
             var Ctor = object && object.constructor;
             if (isArrLike) {
               accumulator = isArr ? new Ctor() : [];
-            } else if (isObject(object)) {
+            } else if (isObject2(object)) {
               accumulator = isFunction(Ctor) ? baseCreate(getPrototype(object)) : {};
             } else {
               accumulator = {};
@@ -12857,14 +10080,14 @@ var require_lodash = __commonJS({
           return result2 + (index ? capitalize(word) : word);
         });
         function capitalize(string2) {
-          return upperFirst(toString(string2).toLowerCase());
+          return upperFirst(toString2(string2).toLowerCase());
         }
         function deburr(string2) {
-          string2 = toString(string2);
+          string2 = toString2(string2);
           return string2 && string2.replace(reLatin, deburrLetter).replace(reComboMark, "");
         }
         function endsWith(string2, target, position) {
-          string2 = toString(string2);
+          string2 = toString2(string2);
           target = baseToString(target);
           var length = string2.length;
           position = position === undefined2 ? length : baseClamp(toInteger(position), 0, length);
@@ -12873,11 +10096,11 @@ var require_lodash = __commonJS({
           return position >= 0 && string2.slice(position, end) == target;
         }
         function escape(string2) {
-          string2 = toString(string2);
+          string2 = toString2(string2);
           return string2 && reHasUnescapedHtml.test(string2) ? string2.replace(reUnescapedHtml, escapeHtmlChar) : string2;
         }
         function escapeRegExp(string2) {
-          string2 = toString(string2);
+          string2 = toString2(string2);
           return string2 && reHasRegExpChar.test(string2) ? string2.replace(reRegExpChar, "\\$&") : string2;
         }
         var kebabCase = createCompounder(function(result2, word, index) {
@@ -12888,7 +10111,7 @@ var require_lodash = __commonJS({
         });
         var lowerFirst = createCaseFirst("toLowerCase");
         function pad(string2, length, chars) {
-          string2 = toString(string2);
+          string2 = toString2(string2);
           length = toInteger(length);
           var strLength = length ? stringSize(string2) : 0;
           if (!length || strLength >= length) {
@@ -12898,13 +10121,13 @@ var require_lodash = __commonJS({
           return createPadding(nativeFloor(mid), chars) + string2 + createPadding(nativeCeil(mid), chars);
         }
         function padEnd(string2, length, chars) {
-          string2 = toString(string2);
+          string2 = toString2(string2);
           length = toInteger(length);
           var strLength = length ? stringSize(string2) : 0;
           return length && strLength < length ? string2 + createPadding(length - strLength, chars) : string2;
         }
-        function padStart(string2, length, chars) {
-          string2 = toString(string2);
+        function padStart2(string2, length, chars) {
+          string2 = toString2(string2);
           length = toInteger(length);
           var strLength = length ? stringSize(string2) : 0;
           return length && strLength < length ? createPadding(length - strLength, chars) + string2 : string2;
@@ -12915,18 +10138,18 @@ var require_lodash = __commonJS({
           } else if (radix) {
             radix = +radix;
           }
-          return nativeParseInt(toString(string2).replace(reTrimStart, ""), radix || 0);
+          return nativeParseInt(toString2(string2).replace(reTrimStart, ""), radix || 0);
         }
-        function repeat(string2, n, guard) {
+        function repeat2(string2, n, guard) {
           if (guard ? isIterateeCall(string2, n, guard) : n === undefined2) {
             n = 1;
           } else {
             n = toInteger(n);
           }
-          return baseRepeat(toString(string2), n);
+          return baseRepeat(toString2(string2), n);
         }
         function replace() {
-          var args = arguments, string2 = toString(args[0]);
+          var args = arguments, string2 = toString2(args[0]);
           return args.length < 3 ? string2 : string2.replace(args[1], args[2]);
         }
         var snakeCase = createCompounder(function(result2, word, index) {
@@ -12940,7 +10163,7 @@ var require_lodash = __commonJS({
           if (!limit) {
             return [];
           }
-          string2 = toString(string2);
+          string2 = toString2(string2);
           if (string2 && (typeof separator == "string" || separator != null && !isRegExp(separator))) {
             separator = baseToString(separator);
             if (!separator && hasUnicode(string2)) {
@@ -12953,7 +10176,7 @@ var require_lodash = __commonJS({
           return result2 + (index ? " " : "") + upperFirst(word);
         });
         function startsWith(string2, target, position) {
-          string2 = toString(string2);
+          string2 = toString2(string2);
           position = position == null ? 0 : baseClamp(toInteger(position), 0, string2.length);
           target = baseToString(target);
           return string2.slice(position, position + target.length) == target;
@@ -12963,11 +10186,19 @@ var require_lodash = __commonJS({
           if (guard && isIterateeCall(string2, options2, guard)) {
             options2 = undefined2;
           }
-          string2 = toString(string2);
-          options2 = assignInWith({}, options2, settings, customDefaultsAssignIn);
-          var imports = assignInWith({}, options2.imports, settings.imports, customDefaultsAssignIn), importsKeys = keys(imports), importsValues = baseValues(imports, importsKeys);
+          string2 = toString2(string2);
+          options2 = assignWith({}, options2, settings, customDefaultsAssignIn);
+          var imports = assignWith({}, options2.imports, settings.imports, customDefaultsAssignIn), importsKeys = keys(imports), importsValues = baseValues(imports, importsKeys);
+          arrayEach(importsKeys, function(key) {
+            if (reForbiddenIdentifierChars.test(key)) {
+              throw new Error2(INVALID_TEMPL_IMPORTS_ERROR_TEXT);
+            }
+          });
           var isEscaping, isEvaluating, index = 0, interpolate = options2.interpolate || reNoMatch, source = "__p += '";
-          var reDelimiters = RegExp2((options2.escape || reNoMatch).source + "|" + interpolate.source + "|" + (interpolate === reInterpolate ? reEsTemplate : reNoMatch).source + "|" + (options2.evaluate || reNoMatch).source + "|$", "g");
+          var reDelimiters = RegExp2(
+            (options2.escape || reNoMatch).source + "|" + interpolate.source + "|" + (interpolate === reInterpolate ? reEsTemplate : reNoMatch).source + "|" + (options2.evaluate || reNoMatch).source + "|$",
+            "g"
+          );
           var sourceURL = "//# sourceURL=" + (hasOwnProperty.call(options2, "sourceURL") ? (options2.sourceURL + "").replace(/\s/g, " ") : "lodash.templateSources[" + ++templateCounter + "]") + "\n";
           string2.replace(reDelimiters, function(match, escapeValue, interpolateValue, esTemplateValue, evaluateValue, offset) {
             interpolateValue || (interpolateValue = esTemplateValue);
@@ -13005,13 +10236,13 @@ var require_lodash = __commonJS({
           return result2;
         }
         function toLower(value) {
-          return toString(value).toLowerCase();
+          return toString2(value).toLowerCase();
         }
         function toUpper(value) {
-          return toString(value).toUpperCase();
+          return toString2(value).toUpperCase();
         }
         function trim(string2, chars, guard) {
-          string2 = toString(string2);
+          string2 = toString2(string2);
           if (string2 && (guard || chars === undefined2)) {
             return baseTrim(string2);
           }
@@ -13022,7 +10253,7 @@ var require_lodash = __commonJS({
           return castSlice(strSymbols, start, end).join("");
         }
         function trimEnd(string2, chars, guard) {
-          string2 = toString(string2);
+          string2 = toString2(string2);
           if (string2 && (guard || chars === undefined2)) {
             return string2.slice(0, trimmedEndIndex(string2) + 1);
           }
@@ -13033,7 +10264,7 @@ var require_lodash = __commonJS({
           return castSlice(strSymbols, 0, end).join("");
         }
         function trimStart(string2, chars, guard) {
-          string2 = toString(string2);
+          string2 = toString2(string2);
           if (string2 && (guard || chars === undefined2)) {
             return string2.replace(reTrimStart, "");
           }
@@ -13045,12 +10276,12 @@ var require_lodash = __commonJS({
         }
         function truncate(string2, options2) {
           var length = DEFAULT_TRUNC_LENGTH, omission = DEFAULT_TRUNC_OMISSION;
-          if (isObject(options2)) {
+          if (isObject2(options2)) {
             var separator = "separator" in options2 ? options2.separator : separator;
             length = "length" in options2 ? toInteger(options2.length) : length;
             omission = "omission" in options2 ? baseToString(options2.omission) : omission;
           }
-          string2 = toString(string2);
+          string2 = toString2(string2);
           var strLength = string2.length;
           if (hasUnicode(string2)) {
             var strSymbols = stringToArray(string2);
@@ -13074,7 +10305,7 @@ var require_lodash = __commonJS({
             if (string2.slice(end).search(separator)) {
               var match, substring = result2;
               if (!separator.global) {
-                separator = RegExp2(separator.source, toString(reFlags.exec(separator)) + "g");
+                separator = RegExp2(separator.source, toString2(reFlags.exec(separator)) + "g");
               }
               separator.lastIndex = 0;
               while (match = separator.exec(substring)) {
@@ -13091,7 +10322,7 @@ var require_lodash = __commonJS({
           return result2 + omission;
         }
         function unescape(string2) {
-          string2 = toString(string2);
+          string2 = toString2(string2);
           return string2 && reHasEscapedHtml.test(string2) ? string2.replace(reEscapedHtml, unescapeHtmlChar) : string2;
         }
         var upperCase = createCompounder(function(result2, word, index) {
@@ -13099,7 +10330,7 @@ var require_lodash = __commonJS({
         });
         var upperFirst = createCaseFirst("toUpperCase");
         function words(string2, pattern, guard) {
-          string2 = toString(string2);
+          string2 = toString2(string2);
           pattern = guard ? undefined2 : pattern;
           if (pattern === undefined2) {
             return hasUnicodeWord(string2) ? unicodeWords(string2) : asciiWords(string2);
@@ -13120,9 +10351,9 @@ var require_lodash = __commonJS({
           });
           return object;
         });
-        function cond(pairs) {
-          var length = pairs == null ? 0 : pairs.length, toIteratee = getIteratee();
-          pairs = !length ? [] : arrayMap(pairs, function(pair) {
+        function cond(pairs2) {
+          var length = pairs2 == null ? 0 : pairs2.length, toIteratee = getIteratee();
+          pairs2 = !length ? [] : arrayMap(pairs2, function(pair) {
             if (typeof pair[1] != "function") {
               throw new TypeError2(FUNC_ERROR_TEXT);
             }
@@ -13131,7 +10362,7 @@ var require_lodash = __commonJS({
           return baseRest(function(args) {
             var index = -1;
             while (++index < length) {
-              var pair = pairs[index];
+              var pair = pairs2[index];
               if (apply(pair[0], this, args)) {
                 return apply(pair[1], this, args);
               }
@@ -13175,13 +10406,13 @@ var require_lodash = __commonJS({
         });
         function mixin(object, source, options2) {
           var props = keys(source), methodNames = baseFunctions(source, props);
-          if (options2 == null && !(isObject(source) && (methodNames.length || !props.length))) {
+          if (options2 == null && !(isObject2(source) && (methodNames.length || !props.length))) {
             options2 = source;
             source = object;
             object = this;
             methodNames = baseFunctions(source, keys(source));
           }
-          var chain2 = !(isObject(options2) && "chain" in options2) || !!options2.chain, isFunc = isFunction(object);
+          var chain2 = !(isObject2(options2) && "chain" in options2) || !!options2.chain, isFunc = isFunction(object);
           arrayEach(methodNames, function(methodName) {
             var func = source[methodName];
             object[methodName] = func;
@@ -13260,11 +10491,11 @@ var require_lodash = __commonJS({
           if (isArray(value)) {
             return arrayMap(value, toKey);
           }
-          return isSymbol(value) ? [value] : copyArray(stringToPath(toString(value)));
+          return isSymbol(value) ? [value] : copyArray(stringToPath(toString2(value)));
         }
         function uniqueId(prefix) {
           var id = ++idCounter;
-          return toString(prefix) + id;
+          return toString2(prefix) + id;
         }
         var add = createMathOperation(function(augend, addend) {
           return augend + addend;
@@ -13366,13 +10597,13 @@ var require_lodash = __commonJS({
         lodash.keyBy = keyBy;
         lodash.keys = keys;
         lodash.keysIn = keysIn;
-        lodash.map = map;
+        lodash.map = map2;
         lodash.mapKeys = mapKeys;
         lodash.mapValues = mapValues;
         lodash.matches = matches;
         lodash.matchesProperty = matchesProperty;
         lodash.memoize = memoize;
-        lodash.merge = merge;
+        lodash.merge = merge2;
         lodash.mergeWith = mergeWith;
         lodash.method = method;
         lodash.methodOf = methodOf;
@@ -13407,7 +10638,7 @@ var require_lodash = __commonJS({
         lodash.rest = rest;
         lodash.reverse = reverse;
         lodash.sampleSize = sampleSize;
-        lodash.set = set;
+        lodash.set = set2;
         lodash.setWith = setWith;
         lodash.shuffle = shuffle;
         lodash.slice = slice;
@@ -13424,7 +10655,7 @@ var require_lodash = __commonJS({
         lodash.tap = tap;
         lodash.throttle = throttle;
         lodash.thru = thru;
-        lodash.toArray = toArray;
+        lodash.toArray = toArray2;
         lodash.toPairs = toPairs;
         lodash.toPairsIn = toPairsIn;
         lodash.toPath = toPath;
@@ -13507,7 +10738,7 @@ var require_lodash = __commonJS({
         lodash.isArrayBuffer = isArrayBuffer;
         lodash.isArrayLike = isArrayLike;
         lodash.isArrayLikeObject = isArrayLikeObject;
-        lodash.isBoolean = isBoolean;
+        lodash.isBoolean = isBoolean2;
         lodash.isBuffer = isBuffer;
         lodash.isDate = isDate;
         lodash.isElement = isElement;
@@ -13517,7 +10748,7 @@ var require_lodash = __commonJS({
         lodash.isError = isError;
         lodash.isFinite = isFinite;
         lodash.isFunction = isFunction;
-        lodash.isInteger = isInteger;
+        lodash.isInteger = isInteger2;
         lodash.isLength = isLength;
         lodash.isMap = isMap;
         lodash.isMatch = isMatch;
@@ -13525,9 +10756,9 @@ var require_lodash = __commonJS({
         lodash.isNaN = isNaN2;
         lodash.isNative = isNative;
         lodash.isNil = isNil;
-        lodash.isNull = isNull;
+        lodash.isNull = isNull2;
         lodash.isNumber = isNumber;
-        lodash.isObject = isObject;
+        lodash.isObject = isObject2;
         lodash.isObjectLike = isObjectLike;
         lodash.isPlainObject = isPlainObject;
         lodash.isRegExp = isRegExp;
@@ -13565,12 +10796,12 @@ var require_lodash = __commonJS({
         lodash.now = now;
         lodash.pad = pad;
         lodash.padEnd = padEnd;
-        lodash.padStart = padStart;
+        lodash.padStart = padStart2;
         lodash.parseInt = parseInt2;
         lodash.random = random;
         lodash.reduce = reduce;
         lodash.reduceRight = reduceRight;
-        lodash.repeat = repeat;
+        lodash.repeat = repeat2;
         lodash.replace = replace;
         lodash.result = result;
         lodash.round = round;
@@ -13598,7 +10829,7 @@ var require_lodash = __commonJS({
         lodash.toLower = toLower;
         lodash.toNumber = toNumber;
         lodash.toSafeInteger = toSafeInteger;
-        lodash.toString = toString;
+        lodash.toString = toString2;
         lodash.toUpper = toUpper;
         lodash.trim = trim;
         lodash.trimEnd = trimEnd;
@@ -13643,12 +10874,12 @@ var require_lodash = __commonJS({
           };
         });
         arrayEach(["filter", "map", "takeWhile"], function(methodName, index) {
-          var type = index + 1, isFilter = type == LAZY_FILTER_FLAG || type == LAZY_WHILE_FLAG;
+          var type2 = index + 1, isFilter = type2 == LAZY_FILTER_FLAG || type2 == LAZY_WHILE_FLAG;
           LazyWrapper.prototype[methodName] = function(iteratee2) {
             var result2 = this.clone();
             result2.__iteratees__.push({
               "iteratee": getIteratee(iteratee2, 3),
-              "type": type
+              "type": type2
             });
             result2.__filtered__ = result2.__filtered__ || isFilter;
             return result2;
@@ -13796,9 +11027,9 @@ var require_lodash = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/ieee754-npm-1.2.1-fb63b3caeb-5144c0c981.zip/node_modules/ieee754/index.js
+// node_modules/.pnpm/ieee754@1.2.1/node_modules/ieee754/index.js
 var require_ieee754 = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/ieee754-npm-1.2.1-fb63b3caeb-5144c0c981.zip/node_modules/ieee754/index.js"(exports2) {
+  "node_modules/.pnpm/ieee754@1.2.1/node_modules/ieee754/index.js"(exports2) {
     exports2.read = function(buffer, offset, isLE, mLen, nBytes) {
       var e, m;
       var eLen = nBytes * 8 - mLen - 1;
@@ -13879,11 +11110,12 @@ var require_ieee754 = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/promise-all-properties-npm-3.0.4-c7eac3ea65-d74514f88d.zip/node_modules/promise-all-properties/lib/promiseAllProperties.js
+// node_modules/.pnpm/promise-all-properties@3.1.1/node_modules/promise-all-properties/lib/promiseAllProperties.js
 var require_promiseAllProperties = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/promise-all-properties-npm-3.0.4-c7eac3ea65-d74514f88d.zip/node_modules/promise-all-properties/lib/promiseAllProperties.js"(exports2) {
+  "node_modules/.pnpm/promise-all-properties@3.1.1/node_modules/promise-all-properties/lib/promiseAllProperties.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.promiseAllProperties = void 0;
     function promiseAllProperties2(promisesMap) {
       if (!(typeof process !== void 0 && process.env.NODE_ENV === "production") && (promisesMap === null || typeof promisesMap !== "object" || Array.isArray(promisesMap))) {
         return Promise.reject(new TypeError("The input argument must be a plain object"));
@@ -13900,12 +11132,13 @@ var require_promiseAllProperties = __commonJS({
       });
     }
     exports2.default = promiseAllProperties2;
+    exports2.promiseAllProperties = promiseAllProperties2;
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/grammar-error.js
+// node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/grammar-error.js
 var require_grammar_error = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/grammar-error.js"(exports2, module2) {
+  "node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/grammar-error.js"(exports2, module2) {
     "use strict";
     var setProtoOf = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function(d, b) {
       d.__proto__ = b;
@@ -13928,22 +11161,22 @@ var require_grammar_error = __commonJS({
         this.diagnostics = diagnostics;
       }
       toString() {
-        let str = super.toString();
+        let str2 = super.toString();
         if (this.location) {
-          str += "\n at ";
+          str2 += "\n at ";
           if (this.location.source !== void 0 && this.location.source !== null) {
-            str += `${this.location.source}:`;
+            str2 += `${this.location.source}:`;
           }
-          str += `${this.location.start.line}:${this.location.start.column}`;
+          str2 += `${this.location.start.line}:${this.location.start.column}`;
         }
         for (const diag of this.diagnostics) {
-          str += "\n from ";
+          str2 += "\n from ";
           if (diag.location.source !== void 0 && diag.location.source !== null) {
-            str += `${diag.location.source}:`;
+            str2 += `${diag.location.source}:`;
           }
-          str += `${diag.location.start.line}:${diag.location.start.column}: ${diag.message}`;
+          str2 += `${diag.location.start.line}:${diag.location.start.column}: ${diag.message}`;
         }
-        return str;
+        return str2;
       }
       format(sources) {
         const srcLines = sources.map(({ source, text }) => ({
@@ -13951,7 +11184,7 @@ var require_grammar_error = __commonJS({
           text: text.split(/\r\n|\n|\r/g)
         }));
         function entry(location, indent, message = "") {
-          let str2 = "";
+          let str3 = "";
           const src = srcLines.find(({ source }) => source === location.source);
           const s = location.start;
           if (src) {
@@ -13959,47 +11192,53 @@ var require_grammar_error = __commonJS({
             const line = src.text[s.line - 1];
             const last = s.line === e.line ? e.column : line.length + 1;
             if (message) {
-              str2 += `
+              str3 += `
 note: ${message}`;
             }
-            str2 += `
+            str3 += `
  --> ${location.source}:${s.line}:${s.column}
 ${"".padEnd(indent)} |
 ${s.line.toString().padStart(indent)} | ${line}
 ${"".padEnd(indent)} | ${"".padEnd(s.column - 1)}${"".padEnd(last - s.column, "^")}`;
           } else {
-            str2 += `
+            str3 += `
  at ${location.source}:${s.line}:${s.column}`;
             if (message) {
-              str2 += `: ${message}`;
+              str3 += `: ${message}`;
             }
           }
-          return str2;
+          return str3;
         }
         let maxLine;
         if (this.location) {
-          maxLine = this.diagnostics.reduce((t, { location }) => Math.max(t, location.start.line), this.location.start.line);
+          maxLine = this.diagnostics.reduce(
+            (t, { location }) => Math.max(t, location.start.line),
+            this.location.start.line
+          );
         } else {
-          maxLine = Math.max.apply(null, this.diagnostics.map((d) => d.location.start.line));
+          maxLine = Math.max.apply(
+            null,
+            this.diagnostics.map((d) => d.location.start.line)
+          );
         }
         maxLine = maxLine.toString().length;
-        let str = `Error: ${this.message}`;
+        let str2 = `Error: ${this.message}`;
         if (this.location) {
-          str += entry(this.location, maxLine);
+          str2 += entry(this.location, maxLine);
         }
         for (const diag of this.diagnostics) {
-          str += entry(diag.location, maxLine, diag.message);
+          str2 += entry(diag.location, maxLine, diag.message);
         }
-        return str;
+        return str2;
       }
     };
     module2.exports = GrammarError;
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/compiler/visitor.js
+// node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/compiler/visitor.js
 var require_visitor = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/compiler/visitor.js"(exports2, module2) {
+  "node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/compiler/visitor.js"(exports2, module2) {
     "use strict";
     var visitor2 = {
       build(functions) {
@@ -14048,9 +11287,9 @@ var require_visitor = __commonJS({
           class: visitNop,
           any: visitNop
         };
-        Object.keys(DEFAULT_FUNCTIONS).forEach((type) => {
-          if (!Object.prototype.hasOwnProperty.call(functions, type)) {
-            functions[type] = DEFAULT_FUNCTIONS[type];
+        Object.keys(DEFAULT_FUNCTIONS).forEach((type2) => {
+          if (!Object.prototype.hasOwnProperty.call(functions, type2)) {
+            functions[type2] = DEFAULT_FUNCTIONS[type2];
           }
         });
         return visit;
@@ -14060,9 +11299,9 @@ var require_visitor = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/compiler/asts.js
+// node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/compiler/asts.js
 var require_asts = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/compiler/asts.js"(exports2, module2) {
+  "node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/compiler/asts.js"(exports2, module2) {
     "use strict";
     var visitor2 = require_visitor();
     var asts = {
@@ -14118,9 +11357,9 @@ var require_asts = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/compiler/opcodes.js
+// node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/compiler/opcodes.js
 var require_opcodes = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/compiler/opcodes.js"(exports2, module2) {
+  "node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/compiler/opcodes.js"(exports2, module2) {
     "use strict";
     var opcodes = {
       PUSH: 0,
@@ -14161,9 +11400,9 @@ var require_opcodes = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/compiler/passes/inference-match-result.js
+// node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/compiler/passes/inference-match-result.js
 var require_inference_match_result = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/compiler/passes/inference-match-result.js"(exports2, module2) {
+  "node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/compiler/passes/inference-match-result.js"(exports2, module2) {
     "use strict";
     var visitor2 = require_visitor();
     var asts = require_asts();
@@ -14213,7 +11452,10 @@ var require_inference_match_result = __commonJS({
               oldResult = node.match;
               node.match = inference(node.expression);
               if (++count > 6) {
-                throw new GrammarError("Infinity cycle detected when trying to evaluate node match result", node.location);
+                throw new GrammarError(
+                  "Infinity cycle detected when trying to evaluate node match result",
+                  node.location
+                );
               }
             } while (oldResult !== node.match);
           }
@@ -14262,9 +11504,9 @@ var require_inference_match_result = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/compiler/passes/generate-bytecode.js
+// node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/compiler/passes/generate-bytecode.js
 var require_generate_bytecode = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/compiler/passes/generate-bytecode.js"(exports2, module2) {
+  "node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/compiler/passes/generate-bytecode.js"(exports2, module2) {
     "use strict";
     var asts = require_asts();
     var op = require_opcodes();
@@ -14317,7 +11559,11 @@ var require_generate_bytecode = __commonJS({
         if (match === NEVER_MATCH) {
           return elseCode;
         }
-        return condCode.concat([thenCode.length, elseCode.length], thenCode, elseCode);
+        return condCode.concat(
+          [thenCode.length, elseCode.length],
+          thenCode,
+          elseCode
+        );
       }
       function buildLoop(condCode, bodyCode) {
         return condCode.concat([bodyCode.length], bodyCode);
@@ -14328,18 +11574,59 @@ var require_generate_bytecode = __commonJS({
       }
       function buildSimplePredicate(expression, negative, context) {
         const match = expression.match | 0;
-        return buildSequence([op.PUSH_CURR_POS], [op.SILENT_FAILS_ON], generate3(expression, {
-          sp: context.sp + 1,
-          env: cloneEnv(context.env),
-          action: null
-        }), [op.SILENT_FAILS_OFF], buildCondition(negative ? -match : match, [negative ? op.IF_ERROR : op.IF_NOT_ERROR], buildSequence([op.POP], [negative ? op.POP : op.POP_CURR_POS], [op.PUSH_UNDEFINED]), buildSequence([op.POP], [negative ? op.POP_CURR_POS : op.POP], [op.PUSH_FAILED])));
+        return buildSequence(
+          [op.PUSH_CURR_POS],
+          [op.SILENT_FAILS_ON],
+          generate3(expression, {
+            sp: context.sp + 1,
+            env: cloneEnv(context.env),
+            action: null
+          }),
+          [op.SILENT_FAILS_OFF],
+          buildCondition(
+            negative ? -match : match,
+            [negative ? op.IF_ERROR : op.IF_NOT_ERROR],
+            buildSequence(
+              [op.POP],
+              [negative ? op.POP : op.POP_CURR_POS],
+              [op.PUSH_UNDEFINED]
+            ),
+            buildSequence(
+              [op.POP],
+              [negative ? op.POP_CURR_POS : op.POP],
+              [op.PUSH_FAILED]
+            )
+          )
+        );
       }
       function buildSemanticPredicate(node, negative, context) {
-        const functionIndex = addFunctionConst(true, Object.keys(context.env), node.code);
-        return buildSequence([op.UPDATE_SAVED_POS], buildCall(functionIndex, 0, context.env, context.sp), buildCondition(node.match | 0, [op.IF], buildSequence([op.POP], negative ? [op.PUSH_FAILED] : [op.PUSH_UNDEFINED]), buildSequence([op.POP], negative ? [op.PUSH_UNDEFINED] : [op.PUSH_FAILED])));
+        const functionIndex = addFunctionConst(
+          true,
+          Object.keys(context.env),
+          node.code
+        );
+        return buildSequence(
+          [op.UPDATE_SAVED_POS],
+          buildCall(functionIndex, 0, context.env, context.sp),
+          buildCondition(
+            node.match | 0,
+            [op.IF],
+            buildSequence(
+              [op.POP],
+              negative ? [op.PUSH_FAILED] : [op.PUSH_UNDEFINED]
+            ),
+            buildSequence(
+              [op.POP],
+              negative ? [op.PUSH_UNDEFINED] : [op.PUSH_FAILED]
+            )
+          )
+        );
       }
       function buildAppendLoop(expressionCode) {
-        return buildLoop([op.WHILE_NOT_ERROR], buildSequence([op.APPEND], expressionCode));
+        return buildLoop(
+          [op.WHILE_NOT_ERROR],
+          buildSequence([op.APPEND], expressionCode)
+        );
       }
       const generate3 = visitor2.build({
         grammar(node) {
@@ -14359,8 +11646,15 @@ var require_generate_bytecode = __commonJS({
         },
         named(node, context) {
           const match = node.match | 0;
-          const nameIndex = match === NEVER_MATCH ? null : addExpectedConst({ type: "rule", value: node.name });
-          return buildSequence([op.SILENT_FAILS_ON], generate3(node.expression, context), [op.SILENT_FAILS_OFF], buildCondition(match, [op.IF_ERROR], [op.FAIL, nameIndex], []));
+          const nameIndex = match === NEVER_MATCH ? null : addExpectedConst(
+            { type: "rule", value: node.name }
+          );
+          return buildSequence(
+            [op.SILENT_FAILS_ON],
+            generate3(node.expression, context),
+            [op.SILENT_FAILS_OFF],
+            buildCondition(match, [op.IF_ERROR], [op.FAIL, nameIndex], [])
+          );
         },
         choice(node, context) {
           function buildAlternativesCode(alternatives, context2) {
@@ -14373,7 +11667,18 @@ var require_generate_bytecode = __commonJS({
             if (match === ALWAYS_MATCH) {
               return first;
             }
-            return buildSequence(first, alternatives.length > 1 ? buildCondition(SOMETIMES_MATCH, [op.IF_ERROR], buildSequence([op.POP], buildAlternativesCode(alternatives.slice(1), context2)), []) : []);
+            return buildSequence(
+              first,
+              alternatives.length > 1 ? buildCondition(
+                SOMETIMES_MATCH,
+                [op.IF_ERROR],
+                buildSequence(
+                  [op.POP],
+                  buildAlternativesCode(alternatives.slice(1), context2)
+                ),
+                []
+              ) : []
+            );
           }
           return buildAlternativesCode(node.alternatives, context);
         },
@@ -14387,41 +11692,84 @@ var require_generate_bytecode = __commonJS({
           });
           const match = node.expression.match | 0;
           const functionIndex = emitCall && match !== NEVER_MATCH ? addFunctionConst(false, Object.keys(env), node.code) : null;
-          return emitCall ? buildSequence([op.PUSH_CURR_POS], expressionCode, buildCondition(match, [op.IF_NOT_ERROR], buildSequence([op.LOAD_SAVED_POS, 1], buildCall(functionIndex, 1, env, context.sp + 2)), []), [op.NIP]) : expressionCode;
+          return emitCall ? buildSequence(
+            [op.PUSH_CURR_POS],
+            expressionCode,
+            buildCondition(
+              match,
+              [op.IF_NOT_ERROR],
+              buildSequence(
+                [op.LOAD_SAVED_POS, 1],
+                buildCall(functionIndex, 1, env, context.sp + 2)
+              ),
+              []
+            ),
+            [op.NIP]
+          ) : expressionCode;
         },
         sequence(node, context) {
           function buildElementsCode(elements, context2) {
             if (elements.length > 0) {
               const processedCount = node.elements.length - elements.length + 1;
-              return buildSequence(generate3(elements[0], {
-                sp: context2.sp,
-                env: context2.env,
-                pluck: context2.pluck,
-                action: null
-              }), buildCondition(elements[0].match | 0, [op.IF_NOT_ERROR], buildElementsCode(elements.slice(1), {
-                sp: context2.sp + 1,
-                env: context2.env,
-                pluck: context2.pluck,
-                action: context2.action
-              }), buildSequence(processedCount > 1 ? [op.POP_N, processedCount] : [op.POP], [op.POP_CURR_POS], [op.PUSH_FAILED])));
+              return buildSequence(
+                generate3(elements[0], {
+                  sp: context2.sp,
+                  env: context2.env,
+                  pluck: context2.pluck,
+                  action: null
+                }),
+                buildCondition(
+                  elements[0].match | 0,
+                  [op.IF_NOT_ERROR],
+                  buildElementsCode(elements.slice(1), {
+                    sp: context2.sp + 1,
+                    env: context2.env,
+                    pluck: context2.pluck,
+                    action: context2.action
+                  }),
+                  buildSequence(
+                    processedCount > 1 ? [op.POP_N, processedCount] : [op.POP],
+                    [op.POP_CURR_POS],
+                    [op.PUSH_FAILED]
+                  )
+                )
+              );
             } else {
               if (context2.pluck.length > 0) {
-                return buildSequence([op.PLUCK, node.elements.length + 1, context2.pluck.length], context2.pluck.map((eSP) => context2.sp - eSP));
+                return buildSequence(
+                  [op.PLUCK, node.elements.length + 1, context2.pluck.length],
+                  context2.pluck.map((eSP) => context2.sp - eSP)
+                );
               }
               if (context2.action) {
-                const functionIndex = addFunctionConst(false, Object.keys(context2.env), context2.action.code);
-                return buildSequence([op.LOAD_SAVED_POS, node.elements.length], buildCall(functionIndex, node.elements.length + 1, context2.env, context2.sp));
+                const functionIndex = addFunctionConst(
+                  false,
+                  Object.keys(context2.env),
+                  context2.action.code
+                );
+                return buildSequence(
+                  [op.LOAD_SAVED_POS, node.elements.length],
+                  buildCall(
+                    functionIndex,
+                    node.elements.length + 1,
+                    context2.env,
+                    context2.sp
+                  )
+                );
               } else {
                 return buildSequence([op.WRAP, node.elements.length], [op.NIP]);
               }
             }
           }
-          return buildSequence([op.PUSH_CURR_POS], buildElementsCode(node.elements, {
-            sp: context.sp + 1,
-            env: context.env,
-            pluck: [],
-            action: context.action
-          }));
+          return buildSequence(
+            [op.PUSH_CURR_POS],
+            buildElementsCode(node.elements, {
+              sp: context.sp + 1,
+              env: context.env,
+              pluck: [],
+              action: context.action
+            })
+          );
         },
         labeled(node, context) {
           let env = context.env;
@@ -14441,11 +11789,20 @@ var require_generate_bytecode = __commonJS({
           });
         },
         text(node, context) {
-          return buildSequence([op.PUSH_CURR_POS], generate3(node.expression, {
-            sp: context.sp + 1,
-            env: cloneEnv(context.env),
-            action: null
-          }), buildCondition(node.match | 0, [op.IF_NOT_ERROR], buildSequence([op.POP], [op.TEXT]), [op.NIP]));
+          return buildSequence(
+            [op.PUSH_CURR_POS],
+            generate3(node.expression, {
+              sp: context.sp + 1,
+              env: cloneEnv(context.env),
+              action: null
+            }),
+            buildCondition(
+              node.match | 0,
+              [op.IF_NOT_ERROR],
+              buildSequence([op.POP], [op.TEXT]),
+              [op.NIP]
+            )
+          );
         },
         simple_and(node, context) {
           return buildSimplePredicate(node.expression, false, context);
@@ -14454,11 +11811,19 @@ var require_generate_bytecode = __commonJS({
           return buildSimplePredicate(node.expression, true, context);
         },
         optional(node, context) {
-          return buildSequence(generate3(node.expression, {
-            sp: context.sp,
-            env: cloneEnv(context.env),
-            action: null
-          }), buildCondition(-(node.expression.match | 0), [op.IF_ERROR], buildSequence([op.POP], [op.PUSH_NULL]), []));
+          return buildSequence(
+            generate3(node.expression, {
+              sp: context.sp,
+              env: cloneEnv(context.env),
+              action: null
+            }),
+            buildCondition(
+              -(node.expression.match | 0),
+              [op.IF_ERROR],
+              buildSequence([op.POP], [op.PUSH_NULL]),
+              []
+            )
+          );
         },
         zero_or_more(node, context) {
           const expressionCode = generate3(node.expression, {
@@ -14466,7 +11831,12 @@ var require_generate_bytecode = __commonJS({
             env: cloneEnv(context.env),
             action: null
           });
-          return buildSequence([op.PUSH_EMPTY_ARRAY], expressionCode, buildAppendLoop(expressionCode), [op.POP]);
+          return buildSequence(
+            [op.PUSH_EMPTY_ARRAY],
+            expressionCode,
+            buildAppendLoop(expressionCode),
+            [op.POP]
+          );
         },
         one_or_more(node, context) {
           const expressionCode = generate3(node.expression, {
@@ -14474,7 +11844,16 @@ var require_generate_bytecode = __commonJS({
             env: cloneEnv(context.env),
             action: null
           });
-          return buildSequence([op.PUSH_EMPTY_ARRAY], expressionCode, buildCondition(node.expression.match | 0, [op.IF_NOT_ERROR], buildSequence(buildAppendLoop(expressionCode), [op.POP]), buildSequence([op.POP], [op.POP], [op.PUSH_FAILED])));
+          return buildSequence(
+            [op.PUSH_EMPTY_ARRAY],
+            expressionCode,
+            buildCondition(
+              node.expression.match | 0,
+              [op.IF_NOT_ERROR],
+              buildSequence(buildAppendLoop(expressionCode), [op.POP]),
+              buildSequence([op.POP], [op.POP], [op.PUSH_FAILED])
+            )
+          );
         },
         group(node, context) {
           return generate3(node.expression, {
@@ -14496,13 +11875,20 @@ var require_generate_bytecode = __commonJS({
           if (node.value.length > 0) {
             const match = node.match | 0;
             const needConst = match === SOMETIMES_MATCH || match === ALWAYS_MATCH && !node.ignoreCase;
-            const stringIndex = needConst ? addLiteralConst(node.ignoreCase ? node.value.toLowerCase() : node.value) : null;
+            const stringIndex = needConst ? addLiteralConst(
+              node.ignoreCase ? node.value.toLowerCase() : node.value
+            ) : null;
             const expectedIndex = match !== ALWAYS_MATCH ? addExpectedConst({
               type: "literal",
               value: node.value,
               ignoreCase: node.ignoreCase
             }) : null;
-            return buildCondition(match, node.ignoreCase ? [op.MATCH_STRING_IC, stringIndex] : [op.MATCH_STRING, stringIndex], node.ignoreCase ? [op.ACCEPT_N, node.value.length] : [op.ACCEPT_STRING, stringIndex], [op.FAIL, expectedIndex]);
+            return buildCondition(
+              match,
+              node.ignoreCase ? [op.MATCH_STRING_IC, stringIndex] : [op.MATCH_STRING, stringIndex],
+              node.ignoreCase ? [op.ACCEPT_N, node.value.length] : [op.ACCEPT_STRING, stringIndex],
+              [op.FAIL, expectedIndex]
+            );
           }
           return [op.PUSH_EMPTY_STRING];
         },
@@ -14515,14 +11901,24 @@ var require_generate_bytecode = __commonJS({
             inverted: node.inverted,
             ignoreCase: node.ignoreCase
           }) : null;
-          return buildCondition(match, [op.MATCH_CHAR_CLASS, classIndex], [op.ACCEPT_N, 1], [op.FAIL, expectedIndex]);
+          return buildCondition(
+            match,
+            [op.MATCH_CHAR_CLASS, classIndex],
+            [op.ACCEPT_N, 1],
+            [op.FAIL, expectedIndex]
+          );
         },
         any(node) {
           const match = node.match | 0;
           const expectedIndex = match !== ALWAYS_MATCH ? addExpectedConst({
             type: "any"
           }) : null;
-          return buildCondition(match, [op.MATCH_ANY], [op.ACCEPT_N, 1], [op.FAIL, expectedIndex]);
+          return buildCondition(
+            match,
+            [op.MATCH_ANY],
+            [op.ACCEPT_N, 1],
+            [op.FAIL, expectedIndex]
+          );
         }
       });
       generate3(ast2);
@@ -14531,21 +11927,23 @@ var require_generate_bytecode = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/compiler/stack.js
+// node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/compiler/stack.js
 var require_stack = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/compiler/stack.js"(exports2, module2) {
+  "node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/compiler/stack.js"(exports2, module2) {
     "use strict";
     var Stack = class {
-      constructor(ruleName, varName, type) {
+      constructor(ruleName, varName, type2) {
         this.sp = -1;
         this.maxSp = -1;
         this.varName = varName;
         this.ruleName = ruleName;
-        this.type = type;
+        this.type = type2;
       }
       name(i) {
         if (i < 0) {
-          throw new RangeError(`Rule '${this.ruleName}': The variable stack underflow: attempt to use a variable '${this.varName}<x>' at an index ${i}`);
+          throw new RangeError(
+            `Rule '${this.ruleName}': The variable stack underflow: attempt to use a variable '${this.varName}<x>' at an index ${i}`
+          );
         }
         return this.varName + i;
       }
@@ -14568,13 +11966,17 @@ var require_stack = __commonJS({
       }
       index(i) {
         if (i < 0) {
-          throw new RangeError(`Rule '${this.ruleName}': The variable stack overflow: attempt to get a variable at a negative index ${i}`);
+          throw new RangeError(
+            `Rule '${this.ruleName}': The variable stack overflow: attempt to get a variable at a negative index ${i}`
+          );
         }
         return this.name(this.sp - i);
       }
       result() {
         if (this.maxSp < 0) {
-          throw new RangeError(`Rule '${this.ruleName}': The variable stack is empty, can't get the result'`);
+          throw new RangeError(
+            `Rule '${this.ruleName}': The variable stack is empty, can't get the result'`
+          );
         }
         return this.name(0);
       }
@@ -14592,7 +11994,9 @@ var require_stack = __commonJS({
           this.sp = baseSp;
           generateElse();
           if (thenSp !== this.sp) {
-            throw new Error("Rule '" + this.ruleName + "', position " + pos + ": Branches of a condition can't move the stack pointer differently (before: " + baseSp + ", after then: " + thenSp + ", after else: " + this.sp + ").");
+            throw new Error(
+              "Rule '" + this.ruleName + "', position " + pos + ": Branches of a condition can't move the stack pointer differently (before: " + baseSp + ", after then: " + thenSp + ", after else: " + this.sp + ")."
+            );
           }
         }
       }
@@ -14600,7 +12004,9 @@ var require_stack = __commonJS({
         const baseSp = this.sp;
         generateBody();
         if (baseSp !== this.sp) {
-          throw new Error("Rule '" + this.ruleName + "', position " + pos + ": Body of a loop can't move the stack pointer (before: " + baseSp + ", after: " + this.sp + ").");
+          throw new Error(
+            "Rule '" + this.ruleName + "', position " + pos + ": Body of a loop can't move the stack pointer (before: " + baseSp + ", after: " + this.sp + ")."
+          );
         }
       }
     };
@@ -14608,17 +12014,17 @@ var require_stack = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/version.js
+// node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/version.js
 var require_version = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/version.js"(exports2, module2) {
+  "node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/version.js"(exports2, module2) {
     "use strict";
     module2.exports = "1.2.0";
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/compiler/passes/generate-js.js
+// node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/compiler/passes/generate-js.js
 var require_generate_js = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/compiler/passes/generate-js.js"(exports2, module2) {
+  "node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/compiler/passes/generate-js.js"(exports2, module2) {
     "use strict";
     var asts = require_asts();
     var op = require_opcodes();
@@ -14654,7 +12060,9 @@ var require_generate_js = __commonJS({
           return '"' + stringEscape(literal) + '"';
         }
         function buildRegexp(cls) {
-          return "/^[" + (cls.inverted ? "^" : "") + cls.value.map((part) => Array.isArray(part) ? regexpClassEscape(part[0]) + "-" + regexpClassEscape(part[1]) : regexpClassEscape(part)).join("") + "]/" + (cls.ignoreCase ? "i" : "");
+          return "/^[" + (cls.inverted ? "^" : "") + cls.value.map(
+            (part) => Array.isArray(part) ? regexpClassEscape(part[0]) + "-" + regexpClassEscape(part[1]) : regexpClassEscape(part)
+          ).join("") + "]/" + (cls.ignoreCase ? "i" : "");
         }
         function buildExpectation(e2) {
           switch (e2.type) {
@@ -14665,7 +12073,9 @@ var require_generate_js = __commonJS({
               return 'peg$literalExpectation("' + stringEscape(e2.value) + '", ' + e2.ignoreCase + ")";
             }
             case "class": {
-              const parts = e2.value.map((part) => Array.isArray(part) ? '["' + stringEscape(part[0]) + '", "' + stringEscape(part[1]) + '"]' : '"' + stringEscape(part) + '"').join(", ");
+              const parts = e2.value.map(
+                (part) => Array.isArray(part) ? '["' + stringEscape(part[0]) + '", "' + stringEscape(part[1]) + '"]' : '"' + stringEscape(part) + '"'
+              ).join(", ");
               return "peg$classExpectation([" + parts + "], " + e2.inverted + ", " + e2.ignoreCase + ")";
             }
             case "any":
@@ -14677,7 +12087,15 @@ var require_generate_js = __commonJS({
         function buildFunc(a) {
           return "function(" + a.params.join(", ") + ") {" + a.body + "}";
         }
-        return ast2.literals.map((c, i) => "var " + l(i) + " = " + buildLiteral(c) + ";").concat("", ast2.classes.map((c, i) => "var " + r(i) + " = " + buildRegexp(c) + ";")).concat("", ast2.expectations.map((c, i) => "var " + e(i) + " = " + buildExpectation(c) + ";")).concat("", ast2.functions.map((c, i) => "var " + f(i) + " = " + buildFunc(c) + ";")).join("\n");
+        return ast2.literals.map(
+          (c, i) => "var " + l(i) + " = " + buildLiteral(c) + ";"
+        ).concat("", ast2.classes.map(
+          (c, i) => "var " + r(i) + " = " + buildRegexp(c) + ";"
+        )).concat("", ast2.expectations.map(
+          (c, i) => "var " + e(i) + " = " + buildExpectation(c) + ";"
+        )).concat("", ast2.functions.map(
+          (c, i) => "var " + f(i) + " = " + buildFunc(c) + ";"
+        )).join("\n");
       }
       function generateRuleHeader(ruleNameCode, ruleIndexCode) {
         const parts = [];
@@ -14774,14 +12192,18 @@ var require_generate_js = __commonJS({
             const thenLength = bc[ip + baseLength - 2];
             const elseLength = bc[ip + baseLength - 1];
             let thenCode, elseCode;
-            stack.checkedIf(ip, () => {
-              ip += baseLength;
-              thenCode = compile(bc.slice(ip, ip + thenLength));
-              ip += thenLength;
-            }, elseLength > 0 ? () => {
-              elseCode = compile(bc.slice(ip, ip + elseLength));
-              ip += elseLength;
-            } : null);
+            stack.checkedIf(
+              ip,
+              () => {
+                ip += baseLength;
+                thenCode = compile(bc.slice(ip, ip + thenLength));
+                ip += thenLength;
+              },
+              elseLength > 0 ? () => {
+                elseCode = compile(bc.slice(ip, ip + elseLength));
+                ip += elseLength;
+              } : null
+            );
             parts2.push("if (" + cond + ") {");
             parts2.push(indent2(thenCode));
             if (elseLength > 0) {
@@ -14806,7 +12228,9 @@ var require_generate_js = __commonJS({
           function compileCall() {
             const baseLength = 4;
             const paramsLength = bc[ip + baseLength - 1];
-            const value2 = f(bc[ip + 1]) + "(" + bc.slice(ip + baseLength, ip + baseLength + paramsLength).map((p) => stack.index(p)).join(", ") + ")";
+            const value2 = f(bc[ip + 1]) + "(" + bc.slice(ip + baseLength, ip + baseLength + paramsLength).map(
+              (p) => stack.index(p)
+            ).join(", ") + ")";
             stack.pop(bc[ip + 2]);
             parts2.push(stack.push(value2));
             ip += baseLength + paramsLength;
@@ -14861,11 +12285,15 @@ var require_generate_js = __commonJS({
                 ip++;
                 break;
               case op.WRAP:
-                parts2.push(stack.push("[" + stack.pop(bc[ip + 1]).join(", ") + "]"));
+                parts2.push(
+                  stack.push("[" + stack.pop(bc[ip + 1]).join(", ") + "]")
+                );
                 ip += 2;
                 break;
               case op.TEXT:
-                parts2.push(stack.push("input.substring(" + stack.pop() + ", peg$currPos)"));
+                parts2.push(
+                  stack.push("input.substring(" + stack.pop() + ", peg$currPos)")
+                );
                 ip++;
                 break;
               case op.PLUCK: {
@@ -14895,22 +12323,37 @@ var require_generate_js = __commonJS({
                 compileCondition("input.length > peg$currPos", 0);
                 break;
               case op.MATCH_STRING:
-                compileCondition(ast2.literals[bc[ip + 1]].length > 1 ? "input.substr(peg$currPos, " + ast2.literals[bc[ip + 1]].length + ") === " + l(bc[ip + 1]) : "input.charCodeAt(peg$currPos) === " + ast2.literals[bc[ip + 1]].charCodeAt(0), 1);
+                compileCondition(
+                  ast2.literals[bc[ip + 1]].length > 1 ? "input.substr(peg$currPos, " + ast2.literals[bc[ip + 1]].length + ") === " + l(bc[ip + 1]) : "input.charCodeAt(peg$currPos) === " + ast2.literals[bc[ip + 1]].charCodeAt(0),
+                  1
+                );
                 break;
               case op.MATCH_STRING_IC:
-                compileCondition("input.substr(peg$currPos, " + ast2.literals[bc[ip + 1]].length + ").toLowerCase() === " + l(bc[ip + 1]), 1);
+                compileCondition(
+                  "input.substr(peg$currPos, " + ast2.literals[bc[ip + 1]].length + ").toLowerCase() === " + l(bc[ip + 1]),
+                  1
+                );
                 break;
               case op.MATCH_CHAR_CLASS:
-                compileCondition(r(bc[ip + 1]) + ".test(input.charAt(peg$currPos))", 1);
+                compileCondition(
+                  r(bc[ip + 1]) + ".test(input.charAt(peg$currPos))",
+                  1
+                );
                 break;
               case op.ACCEPT_N:
-                parts2.push(stack.push(bc[ip + 1] > 1 ? "input.substr(peg$currPos, " + bc[ip + 1] + ")" : "input.charAt(peg$currPos)"));
-                parts2.push(bc[ip + 1] > 1 ? "peg$currPos += " + bc[ip + 1] + ";" : "peg$currPos++;");
+                parts2.push(stack.push(
+                  bc[ip + 1] > 1 ? "input.substr(peg$currPos, " + bc[ip + 1] + ")" : "input.charAt(peg$currPos)"
+                ));
+                parts2.push(
+                  bc[ip + 1] > 1 ? "peg$currPos += " + bc[ip + 1] + ";" : "peg$currPos++;"
+                );
                 ip += 2;
                 break;
               case op.ACCEPT_STRING:
                 parts2.push(stack.push(l(bc[ip + 1])));
-                parts2.push(ast2.literals[bc[ip + 1]].length > 1 ? "peg$currPos += " + ast2.literals[bc[ip + 1]].length + ";" : "peg$currPos++;");
+                parts2.push(
+                  ast2.literals[bc[ip + 1]].length > 1 ? "peg$currPos += " + ast2.literals[bc[ip + 1]].length + ";" : "peg$currPos++;"
+                );
                 ip += 2;
                 break;
               case op.FAIL:
@@ -14953,9 +12396,15 @@ var require_generate_js = __commonJS({
           parts.push("  var startPos = peg$currPos;");
         }
         parts.push(indent2(stack.defines()));
-        parts.push(indent2(generateRuleHeader('"' + stringEscape(rule.name) + '"', asts.indexOfRule(ast2, rule.name))));
+        parts.push(indent2(generateRuleHeader(
+          '"' + stringEscape(rule.name) + '"',
+          asts.indexOfRule(ast2, rule.name)
+        )));
         parts.push(indent2(code));
-        parts.push(indent2(generateRuleFooter('"' + stringEscape(rule.name) + '"', stack.result())));
+        parts.push(indent2(generateRuleFooter(
+          '"' + stringEscape(rule.name) + '"',
+          stack.result()
+        )));
         parts.push("}");
         return parts.join("\n");
       }
@@ -15182,7 +12631,9 @@ var require_generate_js = __commonJS({
             ""
           ].join("\n"));
         }
-        const startRuleFunctions = "{ " + options2.allowedStartRules.map((r2) => r2 + ": peg$parse" + r2).join(", ") + " }";
+        const startRuleFunctions = "{ " + options2.allowedStartRules.map(
+          (r2) => r2 + ": peg$parse" + r2
+        ).join(", ") + " }";
         const startRuleFunction = "peg$parse" + options2.allowedStartRules[0];
         parts.push([
           "function peg$parse(input, options) {",
@@ -15456,7 +12907,9 @@ var require_generate_js = __commonJS({
             ].join("\n"));
             if (dependencyVars.length > 0) {
               dependencyVars.forEach((variable) => {
-                parts.push("var " + variable + ' = require("' + stringEscape(options2.dependencies[variable]) + '");');
+                parts.push(
+                  "var " + variable + ' = require("' + stringEscape(options2.dependencies[variable]) + '");'
+                );
               });
               parts.push("");
             }
@@ -15471,20 +12924,32 @@ var require_generate_js = __commonJS({
           es() {
             const parts = [];
             const dependencyVars = Object.keys(options2.dependencies);
-            parts.push(generateGeneratedByComment(), "");
+            parts.push(
+              generateGeneratedByComment(),
+              ""
+            );
             if (dependencyVars.length > 0) {
               dependencyVars.forEach((variable) => {
-                parts.push("import " + variable + ' from "' + stringEscape(options2.dependencies[variable]) + '";');
+                parts.push(
+                  "import " + variable + ' from "' + stringEscape(options2.dependencies[variable]) + '";'
+                );
               });
               parts.push("");
             }
-            parts.push(toplevelCode, "", "export " + generateParserExports() + ";", "");
+            parts.push(
+              toplevelCode,
+              "",
+              "export " + generateParserExports() + ";",
+              ""
+            );
             return parts.join("\n");
           },
           amd() {
             const dependencyVars = Object.keys(options2.dependencies);
             const dependencyIds = dependencyVars.map((v) => options2.dependencies[v]);
-            const dependencies = "[" + dependencyIds.map((id) => '"' + stringEscape(id) + '"').join(", ") + "]";
+            const dependencies = "[" + dependencyIds.map(
+              (id) => '"' + stringEscape(id) + '"'
+            ).join(", ") + "]";
             const params = dependencyVars.join(", ");
             return [
               generateGeneratedByComment(),
@@ -15515,8 +12980,12 @@ var require_generate_js = __commonJS({
             const parts = [];
             const dependencyVars = Object.keys(options2.dependencies);
             const dependencyIds = dependencyVars.map((v) => options2.dependencies[v]);
-            const dependencies = "[" + dependencyIds.map((id) => '"' + stringEscape(id) + '"').join(", ") + "]";
-            const requires = dependencyIds.map((id) => 'require("' + stringEscape(id) + '")').join(", ");
+            const dependencies = "[" + dependencyIds.map(
+              (id) => '"' + stringEscape(id) + '"'
+            ).join(", ") + "]";
+            const requires = dependencyIds.map(
+              (id) => 'require("' + stringEscape(id) + '")'
+            ).join(", ");
             const params = dependencyVars.join(", ");
             parts.push([
               generateGeneratedByComment(),
@@ -15554,9 +13023,9 @@ var require_generate_js = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/compiler/passes/remove-proxy-rules.js
+// node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/compiler/passes/remove-proxy-rules.js
 var require_remove_proxy_rules = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/compiler/passes/remove-proxy-rules.js"(exports2, module2) {
+  "node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/compiler/passes/remove-proxy-rules.js"(exports2, module2) {
     "use strict";
     var visitor2 = require_visitor();
     function removeProxyRules2(ast2, options2) {
@@ -15591,9 +13060,9 @@ var require_remove_proxy_rules = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/compiler/passes/report-duplicate-labels.js
+// node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/compiler/passes/report-duplicate-labels.js
 var require_report_duplicate_labels = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/compiler/passes/report-duplicate-labels.js"(exports2, module2) {
+  "node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/compiler/passes/report-duplicate-labels.js"(exports2, module2) {
     "use strict";
     var GrammarError = require_grammar_error();
     var visitor2 = require_visitor();
@@ -15621,10 +13090,14 @@ var require_report_duplicate_labels = __commonJS({
         labeled(node, env) {
           const label = node.label;
           if (label && Object.prototype.hasOwnProperty.call(env, label)) {
-            throw new GrammarError(`Label "${node.label}" is already defined`, node.labelLocation, [{
-              message: "Original label location",
-              location: env[label]
-            }]);
+            throw new GrammarError(
+              `Label "${node.label}" is already defined`,
+              node.labelLocation,
+              [{
+                message: "Original label location",
+                location: env[label]
+              }]
+            );
           }
           check(node.expression, env);
           env[node.label] = node.labelLocation;
@@ -15643,9 +13116,9 @@ var require_report_duplicate_labels = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/compiler/passes/report-duplicate-rules.js
+// node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/compiler/passes/report-duplicate-rules.js
 var require_report_duplicate_rules = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/compiler/passes/report-duplicate-rules.js"(exports2, module2) {
+  "node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/compiler/passes/report-duplicate-rules.js"(exports2, module2) {
     "use strict";
     var GrammarError = require_grammar_error();
     var visitor2 = require_visitor();
@@ -15654,10 +13127,14 @@ var require_report_duplicate_rules = __commonJS({
       const check = visitor2.build({
         rule(node) {
           if (Object.prototype.hasOwnProperty.call(rules, node.name)) {
-            throw new GrammarError(`Rule "${node.name}" is already defined`, node.nameLocation, [{
-              message: "Original rule location",
-              location: rules[node.name]
-            }]);
+            throw new GrammarError(
+              `Rule "${node.name}" is already defined`,
+              node.nameLocation,
+              [{
+                message: "Original rule location",
+                location: rules[node.name]
+              }]
+            );
           }
           rules[node.name] = node.nameLocation;
         }
@@ -15668,9 +13145,9 @@ var require_report_duplicate_rules = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/compiler/passes/report-infinite-recursion.js
+// node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/compiler/passes/report-infinite-recursion.js
 var require_report_infinite_recursion = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/compiler/passes/report-infinite-recursion.js"(exports2, module2) {
+  "node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/compiler/passes/report-infinite-recursion.js"(exports2, module2) {
     "use strict";
     var GrammarError = require_grammar_error();
     var asts = require_asts();
@@ -15695,12 +13172,16 @@ var require_report_infinite_recursion = __commonJS({
           const rule = asts.findRule(ast2, node.name);
           if (visitedRules.indexOf(node.name) !== -1) {
             visitedRules.push(node.name);
-            throw new GrammarError("Possible infinite loop when parsing (left recursion: " + visitedRules.join(" -> ") + ")", rule.nameLocation, backtraceRefs.map((ref, i, a) => {
-              return {
-                message: i + 1 !== a.length ? `Step ${i + 1}: call of the rule "${ref.name}" without input consumption` : `Step ${i + 1}: call itself without input consumption - left recursion`,
-                location: ref.location
-              };
-            }));
+            throw new GrammarError(
+              "Possible infinite loop when parsing (left recursion: " + visitedRules.join(" -> ") + ")",
+              rule.nameLocation,
+              backtraceRefs.map((ref, i, a) => {
+                return {
+                  message: i + 1 !== a.length ? `Step ${i + 1}: call of the rule "${ref.name}" without input consumption` : `Step ${i + 1}: call itself without input consumption - left recursion`,
+                  location: ref.location
+                };
+              })
+            );
           }
           check(rule);
           backtraceRefs.pop();
@@ -15712,9 +13193,9 @@ var require_report_infinite_recursion = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/compiler/passes/report-infinite-repetition.js
+// node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/compiler/passes/report-infinite-repetition.js
 var require_report_infinite_repetition = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/compiler/passes/report-infinite-repetition.js"(exports2, module2) {
+  "node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/compiler/passes/report-infinite-repetition.js"(exports2, module2) {
     "use strict";
     var GrammarError = require_grammar_error();
     var asts = require_asts();
@@ -15723,12 +13204,18 @@ var require_report_infinite_repetition = __commonJS({
       const check = visitor2.build({
         zero_or_more(node) {
           if (!asts.alwaysConsumesOnSuccess(ast2, node.expression)) {
-            throw new GrammarError("Possible infinite loop when parsing (repetition used with an expression that may not consume any input)", node.location);
+            throw new GrammarError(
+              "Possible infinite loop when parsing (repetition used with an expression that may not consume any input)",
+              node.location
+            );
           }
         },
         one_or_more(node) {
           if (!asts.alwaysConsumesOnSuccess(ast2, node.expression)) {
-            throw new GrammarError("Possible infinite loop when parsing (repetition used with an expression that may not consume any input)", node.location);
+            throw new GrammarError(
+              "Possible infinite loop when parsing (repetition used with an expression that may not consume any input)",
+              node.location
+            );
           }
         }
       });
@@ -15738,9 +13225,9 @@ var require_report_infinite_repetition = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/compiler/passes/report-undefined-rules.js
+// node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/compiler/passes/report-undefined-rules.js
 var require_report_undefined_rules = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/compiler/passes/report-undefined-rules.js"(exports2, module2) {
+  "node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/compiler/passes/report-undefined-rules.js"(exports2, module2) {
     "use strict";
     var GrammarError = require_grammar_error();
     var asts = require_asts();
@@ -15749,7 +13236,10 @@ var require_report_undefined_rules = __commonJS({
       const check = visitor2.build({
         rule_ref(node) {
           if (!asts.findRule(ast2, node.name)) {
-            throw new GrammarError(`Rule "${node.name}" is not defined`, node.location);
+            throw new GrammarError(
+              `Rule "${node.name}" is not defined`,
+              node.location
+            );
           }
         }
       });
@@ -15759,9 +13249,9 @@ var require_report_undefined_rules = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/compiler/passes/report-incorrect-plucking.js
+// node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/compiler/passes/report-incorrect-plucking.js
 var require_report_incorrect_plucking = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/compiler/passes/report-incorrect-plucking.js"(exports2, module2) {
+  "node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/compiler/passes/report-incorrect-plucking.js"(exports2, module2) {
     "use strict";
     var GrammarError = require_grammar_error();
     var visitor2 = require_visitor();
@@ -15773,10 +13263,14 @@ var require_report_incorrect_plucking = __commonJS({
         labeled(node, action) {
           if (node.pick) {
             if (action) {
-              throw new GrammarError('"@" cannot be used with an action block', node.labelLocation, [{
-                message: "Action block location",
-                location: action.codeLocation
-              }]);
+              throw new GrammarError(
+                '"@" cannot be used with an action block',
+                node.labelLocation,
+                [{
+                  message: "Action block location",
+                  location: action.codeLocation
+                }]
+              );
             }
           }
           check(node.expression);
@@ -15788,9 +13282,9 @@ var require_report_incorrect_plucking = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/compiler/index.js
+// node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/compiler/index.js
 var require_compiler = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/compiler/index.js"(exports, module) {
+  "node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/compiler/index.js"(exports, module) {
     "use strict";
     var generateBytecode = require_generate_bytecode();
     var generateJS = require_generate_js();
@@ -15865,9 +13359,9 @@ var require_compiler = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/parser.js
+// node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/parser.js
 var require_parser = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/parser.js"(exports2, module2) {
+  "node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/parser.js"(exports2, module2) {
     "use strict";
     var OPS_TO_PREFIXED_TYPES = {
       "$": "text",
@@ -15902,17 +13396,17 @@ var require_parser = __commonJS({
       return self2;
     }
     peg$subclass(peg$SyntaxError, Error);
-    function peg$padEnd(str, targetLength, padString) {
+    function peg$padEnd(str2, targetLength, padString) {
       padString = padString || " ";
-      if (str.length > targetLength) {
-        return str;
+      if (str2.length > targetLength) {
+        return str2;
       }
-      targetLength -= str.length;
+      targetLength -= str2.length;
       padString += padString.repeat(targetLength);
-      return str + padString.slice(0, targetLength);
+      return str2 + padString.slice(0, targetLength);
     }
     peg$SyntaxError.prototype.format = function(sources) {
-      var str = "Error: " + this.message;
+      var str2 = "Error: " + this.message;
       if (this.location) {
         var src = null;
         var k;
@@ -15929,12 +13423,12 @@ var require_parser = __commonJS({
           var filler = peg$padEnd("", s.line.toString().length);
           var line = src[s.line - 1];
           var last = s.line === e.line ? e.column : line.length + 1;
-          str += "\n --> " + loc + "\n" + filler + " |\n" + s.line + " | " + line + "\n" + filler + " | " + peg$padEnd("", s.column - 1) + peg$padEnd("", last - s.column, "^");
+          str2 += "\n --> " + loc + "\n" + filler + " |\n" + s.line + " | " + line + "\n" + filler + " | " + peg$padEnd("", s.column - 1) + peg$padEnd("", last - s.column, "^");
         } else {
-          str += "\n at " + loc;
+          str2 += "\n at " + loc;
         }
       }
-      return str;
+      return str2;
     };
     peg$SyntaxError.buildMessage = function(expected, found) {
       var DESCRIBE_EXPECTATION_FNS = {
@@ -16295,7 +13789,9 @@ var require_parser = __commonJS({
       };
       var peg$f20 = function(begin, end) {
         if (begin.charCodeAt(0) > end.charCodeAt(0)) {
-          error("Invalid character range: " + text() + ".");
+          error(
+            "Invalid character range: " + text() + "."
+          );
         }
         return [begin, end];
       };
@@ -16363,7 +13859,11 @@ var require_parser = __commonJS({
       }
       function expected(description, location2) {
         location2 = location2 !== void 0 ? location2 : peg$computeLocation(peg$savedPos, peg$currPos);
-        throw peg$buildStructuredError([peg$otherExpectation(description)], input.substring(peg$savedPos, peg$currPos), location2);
+        throw peg$buildStructuredError(
+          [peg$otherExpectation(description)],
+          input.substring(peg$savedPos, peg$currPos),
+          location2
+        );
       }
       function error(message, location2) {
         location2 = location2 !== void 0 ? location2 : peg$computeLocation(peg$savedPos, peg$currPos);
@@ -16443,7 +13943,12 @@ var require_parser = __commonJS({
         return new peg$SyntaxError(message, null, null, location2);
       }
       function peg$buildStructuredError(expected2, found, location2) {
-        return new peg$SyntaxError(peg$SyntaxError.buildMessage(expected2, found), expected2, found, location2);
+        return new peg$SyntaxError(
+          peg$SyntaxError.buildMessage(expected2, found),
+          expected2,
+          found,
+          location2
+        );
       }
       function peg$parseGrammar() {
         var s0, s1, s2, s3, s4, s5, s6, s7;
@@ -19184,7 +16689,11 @@ var require_parser = __commonJS({
         if (peg$result !== peg$FAILED && peg$currPos < input.length) {
           peg$fail(peg$endExpectation());
         }
-        throw peg$buildStructuredError(peg$maxFailExpected, peg$maxFailPos < input.length ? input.charAt(peg$maxFailPos) : null, peg$maxFailPos < input.length ? peg$computeLocation(peg$maxFailPos, peg$maxFailPos + 1) : peg$computeLocation(peg$maxFailPos, peg$maxFailPos));
+        throw peg$buildStructuredError(
+          peg$maxFailExpected,
+          peg$maxFailPos < input.length ? input.charAt(peg$maxFailPos) : null,
+          peg$maxFailPos < input.length ? peg$computeLocation(peg$maxFailPos, peg$maxFailPos + 1) : peg$computeLocation(peg$maxFailPos, peg$maxFailPos)
+        );
       }
     }
     module2.exports = {
@@ -19194,9 +16703,9 @@ var require_parser = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/peg.js
+// node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/peg.js
 var require_peg = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/lib/peg.js"(exports2, module2) {
+  "node_modules/.pnpm/peggy@1.2.0/node_modules/peggy/lib/peg.js"(exports2, module2) {
     "use strict";
     var GrammarError = require_grammar_error();
     var compiler2 = require_compiler();
@@ -19274,19 +16783,23 @@ var require_peg = __commonJS({
         plugins.forEach((p) => {
           p.use(config, options2);
         });
-        return peg.compiler.compile(config.parser.parse(grammar, {
-          grammarSource: options2.grammarSource,
-          reservedWords: config.reservedWords
-        }), config.passes, options2);
+        return peg.compiler.compile(
+          config.parser.parse(grammar, {
+            grammarSource: options2.grammarSource,
+            reservedWords: config.reservedWords
+          }),
+          config.passes,
+          options2
+        );
       }
     };
     module2.exports = peg;
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/@popperjs-core-npm-2.11.2-5358ac2a25-5695bf020e.zip/node_modules/@popperjs/core/dist/cjs/popper.js
+// node_modules/.pnpm/@popperjs+core@2.11.8/node_modules/@popperjs/core/dist/cjs/popper.js
 var require_popper = __commonJS({
-  "pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/@popperjs-core-npm-2.11.2-5358ac2a25-5695bf020e.zip/node_modules/@popperjs/core/dist/cjs/popper.js"(exports2) {
+  "node_modules/.pnpm/@popperjs+core@2.11.8/node_modules/@popperjs/core/dist/cjs/popper.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     function getWindow(node) {
@@ -19317,32 +16830,47 @@ var require_popper = __commonJS({
     var max = Math.max;
     var min = Math.min;
     var round = Math.round;
-    function getBoundingClientRect(element, includeScale) {
+    function getUAString() {
+      var uaData = navigator.userAgentData;
+      if (uaData != null && uaData.brands && Array.isArray(uaData.brands)) {
+        return uaData.brands.map(function(item) {
+          return item.brand + "/" + item.version;
+        }).join(" ");
+      }
+      return navigator.userAgent;
+    }
+    function isLayoutViewport() {
+      return !/^((?!chrome|android).)*safari/i.test(getUAString());
+    }
+    function getBoundingClientRect(element, includeScale, isFixedStrategy) {
       if (includeScale === void 0) {
         includeScale = false;
       }
-      var rect = element.getBoundingClientRect();
+      if (isFixedStrategy === void 0) {
+        isFixedStrategy = false;
+      }
+      var clientRect = element.getBoundingClientRect();
       var scaleX = 1;
       var scaleY = 1;
-      if (isHTMLElement(element) && includeScale) {
-        var offsetHeight = element.offsetHeight;
-        var offsetWidth = element.offsetWidth;
-        if (offsetWidth > 0) {
-          scaleX = round(rect.width) / offsetWidth || 1;
-        }
-        if (offsetHeight > 0) {
-          scaleY = round(rect.height) / offsetHeight || 1;
-        }
+      if (includeScale && isHTMLElement(element)) {
+        scaleX = element.offsetWidth > 0 ? round(clientRect.width) / element.offsetWidth || 1 : 1;
+        scaleY = element.offsetHeight > 0 ? round(clientRect.height) / element.offsetHeight || 1 : 1;
       }
+      var _ref = isElement(element) ? getWindow(element) : window, visualViewport = _ref.visualViewport;
+      var addVisualOffsets = !isLayoutViewport() && isFixedStrategy;
+      var x = (clientRect.left + (addVisualOffsets && visualViewport ? visualViewport.offsetLeft : 0)) / scaleX;
+      var y = (clientRect.top + (addVisualOffsets && visualViewport ? visualViewport.offsetTop : 0)) / scaleY;
+      var width = clientRect.width / scaleX;
+      var height = clientRect.height / scaleY;
       return {
-        width: rect.width / scaleX,
-        height: rect.height / scaleY,
-        top: rect.top / scaleY,
-        right: rect.right / scaleX,
-        bottom: rect.bottom / scaleY,
-        left: rect.left / scaleX,
-        x: rect.left / scaleX,
-        y: rect.top / scaleY
+        width,
+        height,
+        top: y,
+        right: x + width,
+        bottom: y + height,
+        left: x,
+        x,
+        y
       };
     }
     function getWindowScroll(node) {
@@ -19396,7 +16924,7 @@ var require_popper = __commonJS({
       var isOffsetParentAnElement = isHTMLElement(offsetParent);
       var offsetParentIsScaled = isHTMLElement(offsetParent) && isElementScaled(offsetParent);
       var documentElement = getDocumentElement(offsetParent);
-      var rect = getBoundingClientRect(elementOrVirtualElement, offsetParentIsScaled);
+      var rect = getBoundingClientRect(elementOrVirtualElement, offsetParentIsScaled, isFixed);
       var scroll = {
         scrollLeft: 0,
         scrollTop: 0
@@ -19478,8 +17006,8 @@ var require_popper = __commonJS({
       return element.offsetParent;
     }
     function getContainingBlock(element) {
-      var isFirefox = navigator.userAgent.toLowerCase().indexOf("firefox") !== -1;
-      var isIE = navigator.userAgent.indexOf("Trident") !== -1;
+      var isFirefox = /firefox/i.test(getUAString());
+      var isIE = /Trident/i.test(getUAString());
       if (isIE && isHTMLElement(element)) {
         var elementCss = getComputedStyle(element);
         if (elementCss.position === "fixed") {
@@ -19487,6 +17015,9 @@ var require_popper = __commonJS({
         }
       }
       var currentNode = getParentNode(element);
+      if (isShadowRoot(currentNode)) {
+        currentNode = currentNode.host;
+      }
       while (isHTMLElement(currentNode) && ["html", "body"].indexOf(getNodeName(currentNode)) < 0) {
         var css = getComputedStyle(currentNode);
         if (css.transform !== "none" || css.perspective !== "none" || css.contain === "paint" || ["transform", "perspective"].indexOf(css.willChange) !== -1 || isFirefox && css.willChange === "filter" || isFirefox && css.filter && css.filter !== "none") {
@@ -19527,7 +17058,7 @@ var require_popper = __commonJS({
       return acc.concat([placement, placement + "-" + start, placement + "-" + end]);
     }, []);
     var beforeRead = "beforeRead";
-    var read3 = "read";
+    var read2 = "read";
     var afterRead = "afterRead";
     var beforeMain = "beforeMain";
     var main = "main";
@@ -19535,20 +17066,20 @@ var require_popper = __commonJS({
     var beforeWrite = "beforeWrite";
     var write2 = "write";
     var afterWrite = "afterWrite";
-    var modifierPhases = [beforeRead, read3, afterRead, beforeMain, main, afterMain, beforeWrite, write2, afterWrite];
+    var modifierPhases = [beforeRead, read2, afterRead, beforeMain, main, afterMain, beforeWrite, write2, afterWrite];
     function order(modifiers) {
-      var map = /* @__PURE__ */ new Map();
+      var map2 = /* @__PURE__ */ new Map();
       var visited = /* @__PURE__ */ new Set();
       var result = [];
       modifiers.forEach(function(modifier) {
-        map.set(modifier.name, modifier);
+        map2.set(modifier.name, modifier);
       });
       function sort(modifier) {
         visited.add(modifier.name);
         var requires = [].concat(modifier.requires || [], modifier.requiresIfExists || []);
         requires.forEach(function(dep) {
           if (!visited.has(dep)) {
-            var depModifier = map.get(dep);
+            var depModifier = map2.get(dep);
             if (depModifier) {
               sort(depModifier);
             }
@@ -19585,89 +17116,6 @@ var require_popper = __commonJS({
         return pending;
       };
     }
-    function format(str) {
-      for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-        args[_key - 1] = arguments[_key];
-      }
-      return [].concat(args).reduce(function(p, c) {
-        return p.replace(/%s/, c);
-      }, str);
-    }
-    var INVALID_MODIFIER_ERROR = 'Popper: modifier "%s" provided an invalid %s property, expected %s but got %s';
-    var MISSING_DEPENDENCY_ERROR = 'Popper: modifier "%s" requires "%s", but "%s" modifier is not available';
-    var VALID_PROPERTIES = ["name", "enabled", "phase", "fn", "effect", "requires", "options"];
-    function validateModifiers(modifiers) {
-      modifiers.forEach(function(modifier) {
-        [].concat(Object.keys(modifier), VALID_PROPERTIES).filter(function(value, index, self2) {
-          return self2.indexOf(value) === index;
-        }).forEach(function(key) {
-          switch (key) {
-            case "name":
-              if (typeof modifier.name !== "string") {
-                console.error(format(INVALID_MODIFIER_ERROR, String(modifier.name), '"name"', '"string"', '"' + String(modifier.name) + '"'));
-              }
-              break;
-            case "enabled":
-              if (typeof modifier.enabled !== "boolean") {
-                console.error(format(INVALID_MODIFIER_ERROR, modifier.name, '"enabled"', '"boolean"', '"' + String(modifier.enabled) + '"'));
-              }
-              break;
-            case "phase":
-              if (modifierPhases.indexOf(modifier.phase) < 0) {
-                console.error(format(INVALID_MODIFIER_ERROR, modifier.name, '"phase"', "either " + modifierPhases.join(", "), '"' + String(modifier.phase) + '"'));
-              }
-              break;
-            case "fn":
-              if (typeof modifier.fn !== "function") {
-                console.error(format(INVALID_MODIFIER_ERROR, modifier.name, '"fn"', '"function"', '"' + String(modifier.fn) + '"'));
-              }
-              break;
-            case "effect":
-              if (modifier.effect != null && typeof modifier.effect !== "function") {
-                console.error(format(INVALID_MODIFIER_ERROR, modifier.name, '"effect"', '"function"', '"' + String(modifier.fn) + '"'));
-              }
-              break;
-            case "requires":
-              if (modifier.requires != null && !Array.isArray(modifier.requires)) {
-                console.error(format(INVALID_MODIFIER_ERROR, modifier.name, '"requires"', '"array"', '"' + String(modifier.requires) + '"'));
-              }
-              break;
-            case "requiresIfExists":
-              if (!Array.isArray(modifier.requiresIfExists)) {
-                console.error(format(INVALID_MODIFIER_ERROR, modifier.name, '"requiresIfExists"', '"array"', '"' + String(modifier.requiresIfExists) + '"'));
-              }
-              break;
-            case "options":
-            case "data":
-              break;
-            default:
-              console.error('PopperJS: an invalid property has been provided to the "' + modifier.name + '" modifier, valid properties are ' + VALID_PROPERTIES.map(function(s) {
-                return '"' + s + '"';
-              }).join(", ") + '; but "' + key + '" was provided.');
-          }
-          modifier.requires && modifier.requires.forEach(function(requirement) {
-            if (modifiers.find(function(mod) {
-              return mod.name === requirement;
-            }) == null) {
-              console.error(format(MISSING_DEPENDENCY_ERROR, String(modifier.name), requirement, requirement));
-            }
-          });
-        });
-      });
-    }
-    function uniqueBy(arr, fn) {
-      var identifiers = /* @__PURE__ */ new Set();
-      return arr.filter(function(item) {
-        var identifier = fn(item);
-        if (!identifiers.has(identifier)) {
-          identifiers.add(identifier);
-          return true;
-        }
-      });
-    }
-    function getBasePlacement(placement) {
-      return placement.split("-")[0];
-    }
     function mergeByName(modifiers) {
       var merged = modifiers.reduce(function(merged2, current) {
         var existing = merged2[current.name];
@@ -19681,7 +17129,7 @@ var require_popper = __commonJS({
         return merged[key];
       });
     }
-    function getViewportRect(element) {
+    function getViewportRect(element, strategy) {
       var win = getWindow(element);
       var html = getDocumentElement(element);
       var visualViewport = win.visualViewport;
@@ -19692,7 +17140,8 @@ var require_popper = __commonJS({
       if (visualViewport) {
         width = visualViewport.width;
         height = visualViewport.height;
-        if (!/^((?!chrome|android).)*safari/i.test(navigator.userAgent)) {
+        var layoutViewport = isLayoutViewport();
+        if (layoutViewport || !layoutViewport && strategy === "fixed") {
           x = visualViewport.offsetLeft;
           y = visualViewport.offsetTop;
         }
@@ -19746,8 +17195,8 @@ var require_popper = __commonJS({
         bottom: rect.y + rect.height
       });
     }
-    function getInnerBoundingClientRect(element) {
-      var rect = getBoundingClientRect(element);
+    function getInnerBoundingClientRect(element, strategy) {
+      var rect = getBoundingClientRect(element, false, strategy === "fixed");
       rect.top = rect.top + element.clientTop;
       rect.left = rect.left + element.clientLeft;
       rect.bottom = rect.top + element.clientHeight;
@@ -19758,8 +17207,8 @@ var require_popper = __commonJS({
       rect.y = rect.top;
       return rect;
     }
-    function getClientRectFromMixedType(element, clippingParent) {
-      return clippingParent === viewport ? rectToClientRect(getViewportRect(element)) : isElement(clippingParent) ? getInnerBoundingClientRect(clippingParent) : rectToClientRect(getDocumentRect(getDocumentElement(element)));
+    function getClientRectFromMixedType(element, clippingParent, strategy) {
+      return clippingParent === viewport ? rectToClientRect(getViewportRect(element, strategy)) : isElement(clippingParent) ? getInnerBoundingClientRect(clippingParent, strategy) : rectToClientRect(getDocumentRect(getDocumentElement(element)));
     }
     function getClippingParents(element) {
       var clippingParents2 = listScrollParents(getParentNode(element));
@@ -19772,23 +17221,26 @@ var require_popper = __commonJS({
         return isElement(clippingParent) && contains(clippingParent, clipperElement) && getNodeName(clippingParent) !== "body";
       });
     }
-    function getClippingRect(element, boundary, rootBoundary) {
+    function getClippingRect(element, boundary, rootBoundary, strategy) {
       var mainClippingParents = boundary === "clippingParents" ? getClippingParents(element) : [].concat(boundary);
       var clippingParents2 = [].concat(mainClippingParents, [rootBoundary]);
       var firstClippingParent = clippingParents2[0];
       var clippingRect = clippingParents2.reduce(function(accRect, clippingParent) {
-        var rect = getClientRectFromMixedType(element, clippingParent);
+        var rect = getClientRectFromMixedType(element, clippingParent, strategy);
         accRect.top = max(rect.top, accRect.top);
         accRect.right = min(rect.right, accRect.right);
         accRect.bottom = min(rect.bottom, accRect.bottom);
         accRect.left = max(rect.left, accRect.left);
         return accRect;
-      }, getClientRectFromMixedType(element, firstClippingParent));
+      }, getClientRectFromMixedType(element, firstClippingParent, strategy));
       clippingRect.width = clippingRect.right - clippingRect.left;
       clippingRect.height = clippingRect.bottom - clippingRect.top;
       clippingRect.x = clippingRect.left;
       clippingRect.y = clippingRect.top;
       return clippingRect;
+    }
+    function getBasePlacement(placement) {
+      return placement.split("-")[0];
     }
     function getVariation(placement) {
       return placement.split("-")[1];
@@ -19869,12 +17321,12 @@ var require_popper = __commonJS({
       if (options2 === void 0) {
         options2 = {};
       }
-      var _options = options2, _options$placement = _options.placement, placement = _options$placement === void 0 ? state.placement : _options$placement, _options$boundary = _options.boundary, boundary = _options$boundary === void 0 ? clippingParents : _options$boundary, _options$rootBoundary = _options.rootBoundary, rootBoundary = _options$rootBoundary === void 0 ? viewport : _options$rootBoundary, _options$elementConte = _options.elementContext, elementContext = _options$elementConte === void 0 ? popper : _options$elementConte, _options$altBoundary = _options.altBoundary, altBoundary = _options$altBoundary === void 0 ? false : _options$altBoundary, _options$padding = _options.padding, padding = _options$padding === void 0 ? 0 : _options$padding;
+      var _options = options2, _options$placement = _options.placement, placement = _options$placement === void 0 ? state.placement : _options$placement, _options$strategy = _options.strategy, strategy = _options$strategy === void 0 ? state.strategy : _options$strategy, _options$boundary = _options.boundary, boundary = _options$boundary === void 0 ? clippingParents : _options$boundary, _options$rootBoundary = _options.rootBoundary, rootBoundary = _options$rootBoundary === void 0 ? viewport : _options$rootBoundary, _options$elementConte = _options.elementContext, elementContext = _options$elementConte === void 0 ? popper : _options$elementConte, _options$altBoundary = _options.altBoundary, altBoundary = _options$altBoundary === void 0 ? false : _options$altBoundary, _options$padding = _options.padding, padding = _options$padding === void 0 ? 0 : _options$padding;
       var paddingObject = mergePaddingObject(typeof padding !== "number" ? padding : expandToHashMap(padding, basePlacements));
       var altContext = elementContext === popper ? reference : popper;
       var popperRect = state.rects.popper;
       var element = state.elements[altBoundary ? altContext : elementContext];
-      var clippingClientRect = getClippingRect(isElement(element) ? element : element.contextElement || getDocumentElement(state.elements.popper), boundary, rootBoundary);
+      var clippingClientRect = getClippingRect(isElement(element) ? element : element.contextElement || getDocumentElement(state.elements.popper), boundary, rootBoundary, strategy);
       var referenceClientRect = getBoundingClientRect(state.elements.reference);
       var popperOffsets2 = computeOffsets({
         reference: referenceClientRect,
@@ -19901,8 +17353,6 @@ var require_popper = __commonJS({
       }
       return overflowOffsets;
     }
-    var INVALID_ELEMENT_ERROR = "Popper: Invalid reference or popper argument provided. They must be either a DOM element or virtual element.";
-    var INFINITE_LOOP_ERROR = "Popper: An infinite loop in the modifiers cycle has been detected! The cycle has been interrupted to prevent a browser crash.";
     var DEFAULT_OPTIONS = {
       placement: "bottom",
       modifiers: [],
@@ -19953,28 +17403,6 @@ var require_popper = __commonJS({
             state.orderedModifiers = orderedModifiers.filter(function(m) {
               return m.enabled;
             });
-            if (process.env.NODE_ENV !== "production") {
-              var modifiers = uniqueBy([].concat(orderedModifiers, state.options.modifiers), function(_ref) {
-                var name = _ref.name;
-                return name;
-              });
-              validateModifiers(modifiers);
-              if (getBasePlacement(state.options.placement) === auto) {
-                var flipModifier = state.orderedModifiers.find(function(_ref2) {
-                  var name = _ref2.name;
-                  return name === "flip";
-                });
-                if (!flipModifier) {
-                  console.error(['Popper: "auto" placements require the "flip" modifier be', "present and enabled to work."].join(" "));
-                }
-              }
-              var _getComputedStyle = getComputedStyle(popper2), marginTop = _getComputedStyle.marginTop, marginRight = _getComputedStyle.marginRight, marginBottom = _getComputedStyle.marginBottom, marginLeft = _getComputedStyle.marginLeft;
-              if ([marginTop, marginRight, marginBottom, marginLeft].some(function(margin) {
-                return parseFloat(margin);
-              })) {
-                console.warn(['Popper: CSS "margin" styles cannot be used to apply padding', "between the popper and its reference element or boundary.", "To replicate margin, use the `offset` modifier, as well as", "the `padding` option in the `preventOverflow` and `flip`", "modifiers."].join(" "));
-              }
-            }
             runModifierEffects();
             return instance.update();
           },
@@ -19984,9 +17412,6 @@ var require_popper = __commonJS({
             }
             var _state$elements = state.elements, reference3 = _state$elements.reference, popper3 = _state$elements.popper;
             if (!areValidElements(reference3, popper3)) {
-              if (process.env.NODE_ENV !== "production") {
-                console.error(INVALID_ELEMENT_ERROR);
-              }
               return;
             }
             state.rects = {
@@ -19998,15 +17423,7 @@ var require_popper = __commonJS({
             state.orderedModifiers.forEach(function(modifier) {
               return state.modifiersData[modifier.name] = Object.assign({}, modifier.data);
             });
-            var __debug_loops__ = 0;
             for (var index = 0; index < state.orderedModifiers.length; index++) {
-              if (process.env.NODE_ENV !== "production") {
-                __debug_loops__ += 1;
-                if (__debug_loops__ > 100) {
-                  console.error(INFINITE_LOOP_ERROR);
-                  break;
-                }
-              }
               if (state.reset === true) {
                 state.reset = false;
                 index = -1;
@@ -20035,9 +17452,6 @@ var require_popper = __commonJS({
           }
         };
         if (!areValidElements(reference2, popper2)) {
-          if (process.env.NODE_ENV !== "production") {
-            console.error(INVALID_ELEMENT_ERROR);
-          }
           return instance;
         }
         instance.setOptions(options2).then(function(state2) {
@@ -20046,8 +17460,8 @@ var require_popper = __commonJS({
           }
         });
         function runModifierEffects() {
-          state.orderedModifiers.forEach(function(_ref3) {
-            var name = _ref3.name, _ref3$options = _ref3.options, options3 = _ref3$options === void 0 ? {} : _ref3$options, effect2 = _ref3.effect;
+          state.orderedModifiers.forEach(function(_ref) {
+            var name = _ref.name, _ref$options = _ref.options, options3 = _ref$options === void 0 ? {} : _ref$options, effect2 = _ref.effect;
             if (typeof effect2 === "function") {
               var cleanupFn = effect2({
                 state,
@@ -20128,9 +17542,8 @@ var require_popper = __commonJS({
       bottom: "auto",
       left: "auto"
     };
-    function roundOffsetsByDPR(_ref) {
+    function roundOffsetsByDPR(_ref, win) {
       var x = _ref.x, y = _ref.y;
-      var win = window;
       var dpr = win.devicePixelRatio || 1;
       return {
         x: round(x * dpr) / dpr || 0,
@@ -20169,13 +17582,13 @@ var require_popper = __commonJS({
         offsetParent = offsetParent;
         if (placement === top || (placement === left || placement === right) && variation === end) {
           sideY = bottom;
-          var offsetY = isFixed && win.visualViewport ? win.visualViewport.height : offsetParent[heightProp];
+          var offsetY = isFixed && offsetParent === win && win.visualViewport ? win.visualViewport.height : offsetParent[heightProp];
           y -= offsetY - popperRect.height;
           y *= gpuAcceleration ? 1 : -1;
         }
         if (placement === left || (placement === top || placement === bottom) && variation === end) {
           sideX = right;
-          var offsetX = isFixed && win.visualViewport ? win.visualViewport.width : offsetParent[widthProp];
+          var offsetX = isFixed && offsetParent === win && win.visualViewport ? win.visualViewport.width : offsetParent[widthProp];
           x -= offsetX - popperRect.width;
           x *= gpuAcceleration ? 1 : -1;
         }
@@ -20186,7 +17599,7 @@ var require_popper = __commonJS({
       var _ref4 = roundOffsets === true ? roundOffsetsByDPR({
         x,
         y
-      }) : {
+      }, getWindow(popper2)) : {
         x,
         y
       };
@@ -20201,14 +17614,6 @@ var require_popper = __commonJS({
     function computeStyles(_ref5) {
       var state = _ref5.state, options2 = _ref5.options;
       var _options$gpuAccelerat = options2.gpuAcceleration, gpuAcceleration = _options$gpuAccelerat === void 0 ? true : _options$gpuAccelerat, _options$adaptive = options2.adaptive, adaptive = _options$adaptive === void 0 ? true : _options$adaptive, _options$roundOffsets = options2.roundOffsets, roundOffsets = _options$roundOffsets === void 0 ? true : _options$roundOffsets;
-      if (process.env.NODE_ENV !== "production") {
-        var transitionProperty = getComputedStyle(state.elements.popper).transitionProperty || "";
-        if (adaptive && ["transform", "top", "right", "bottom", "left"].some(function(property) {
-          return transitionProperty.indexOf(property) >= 0;
-        })) {
-          console.warn(["Popper: Detected CSS transitions on at least one of the following", 'CSS properties: "transform", "top", "right", "bottom", "left".', "\n\n", 'Disable the "computeStyles" modifier\'s `adaptive` option to allow', "for smooth transitions, or remove these properties from the CSS", "transition declaration on the popper element if only transitioning", "opacity or background-color for example.", "\n\n", "We recommend using the popper element as a wrapper around an inner", "element that can have any CSS property transitioned for animations."].join(" "));
-        }
-      }
       var commonStyles = {
         placement: getBasePlacement(state.placement),
         variation: getVariation(state.placement),
@@ -20381,9 +17786,6 @@ var require_popper = __commonJS({
       });
       if (allowedPlacements.length === 0) {
         allowedPlacements = placements$1;
-        if (process.env.NODE_ENV !== "production") {
-          console.error(["Popper: The `allowedAutoPlacements` option did not allow any", "placements. Ensure the `placement` option matches the variation", "of the allowed placements.", 'For example, "auto" cannot be used to allow "bottom-start".', 'Use "auto-start" instead.'].join(" "));
-        }
       }
       var overflows = allowedPlacements.reduce(function(acc, placement2) {
         acc[placement2] = detectOverflow(state, {
@@ -20649,15 +18051,7 @@ var require_popper = __commonJS({
           return;
         }
       }
-      if (process.env.NODE_ENV !== "production") {
-        if (!isHTMLElement(arrowElement)) {
-          console.error(['Popper: "arrow" element must be an HTMLElement (not an SVGElement).', "To use an SVG arrow, wrap it in an HTMLElement that will be used as", "the arrow."].join(" "));
-        }
-      }
       if (!contains(state.elements.popper, arrowElement)) {
-        if (process.env.NODE_ENV !== "production") {
-          console.error(['Popper: "arrow" modifier\'s `element` must be a child of the popper', "element."].join(" "));
-        }
         return;
       }
       state.elements.arrow = arrowElement;
@@ -20748,18 +18142,20 @@ var require_popper = __commonJS({
   }
 });
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/main.ts
-__export(exports, {
+// src/main.ts
+var main_exports = {};
+__export(main_exports, {
   default: () => AnkiBridgePlugin
 });
+module.exports = __toCommonJS(main_exports);
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/assets/flashcard.svg_content
+// src/assets/flashcard.svg_content
 var flashcard_default = '<path fill="currentColor" stroke="currentColor" d="m98.69029,0.55335l-54.30674,0a1.1128,1.14693 0 0 0 -1.1128,1.15682l0,26.36956l-42.32491,14.67282a1.1128,1.14693 0 0 0 -0.7003,1.45344c0.09593,0.30651 9.89052,30.40359 13.18097,40.38981c2.6573,8.05819 2.20642,13.55555 2.19683,13.61488a1.1128,1.14693 0 0 0 0.4221,0.98873a1.08402,1.11727 0 0 0 0.69071,0.24718a1.10321,1.13704 0 0 0 0.35495,-0.05932l51.47676,-17.79722a1.1224,1.15682 0 0 0 0.75786,-0.98873c0,-0.2373 0.58518,-5.71489 -2.16805,-14.14879c-0.62355,-1.92803 -1.48694,-4.56795 -2.47503,-7.60337l34.00766,0a1.1128,1.14693 0 0 0 1.1224,-1.14693l0,-55.99205a1.1224,1.15682 0 0 0 -1.1224,-1.15682zm-31.55182,79.09878l-49.24156,17.02601a41.33682,42.60458 0 0 0 -2.35991,-12.85355c-2.87794,-8.86895 -11.02251,-33.73563 -12.81643,-39.25277l49.35668,-17.115c1.8131,5.53691 10.00564,30.65078 12.96032,39.70759a35.96466,37.06766 0 0 1 2.1009,12.48772zm30.43902,-23.07707l-33.65272,0c-4.25935,-13.03152 -10.08238,-30.9474 -10.08238,-30.9474a1.1224,1.15682 0 0 0 -1.41978,-0.72178l-6.91665,2.39274l0,-24.44152l52.07154,0l0,53.71796z" />';
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/utils/file.ts
-var import_obsidian = __toModule(require("obsidian"));
+// src/utils/file.ts
+var import_obsidian = require("obsidian");
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/error.ts
+// src/error.ts
 var AnkiBridgeError = class extends Error {
   constructor(msg, console_msg) {
     super(msg);
@@ -20769,7 +18165,7 @@ var AnkiBridgeError = class extends Error {
   }
 };
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/utils/file.ts
+// src/utils/file.ts
 function getDefaultDeckForFolder(folder, maps) {
   do {
     const match = maps.find((e) => e.folder == folder.path);
@@ -20789,8 +18185,8 @@ function getFullPath(adapter, normalisedPath) {
   return adapter.getFullPath(normalisedPath);
 }
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/utils/yup.ts
-var yup = __toModule(require_lib());
+// src/utils/yup.ts
+var yup = __toESM(require_lib());
 yup.addMethod(yup.string, "emptyAsUndefined", function() {
   return this.transform((value) => value === "" ? void 0 : value);
 });
@@ -20810,13 +18206,2660 @@ yup.addMethod(yup.boolean, "nullAsUndefined", function() {
 });
 var yup_default = yup;
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/notes/base.ts
-var import_js_yaml = __toModule(require_js_yaml());
+// node_modules/.pnpm/js-yaml@4.1.1/node_modules/js-yaml/dist/js-yaml.mjs
+function isNothing(subject) {
+  return typeof subject === "undefined" || subject === null;
+}
+function isObject(subject) {
+  return typeof subject === "object" && subject !== null;
+}
+function toArray(sequence) {
+  if (Array.isArray(sequence))
+    return sequence;
+  else if (isNothing(sequence))
+    return [];
+  return [sequence];
+}
+function extend(target, source) {
+  var index, length, key, sourceKeys;
+  if (source) {
+    sourceKeys = Object.keys(source);
+    for (index = 0, length = sourceKeys.length; index < length; index += 1) {
+      key = sourceKeys[index];
+      target[key] = source[key];
+    }
+  }
+  return target;
+}
+function repeat(string2, count) {
+  var result = "", cycle;
+  for (cycle = 0; cycle < count; cycle += 1) {
+    result += string2;
+  }
+  return result;
+}
+function isNegativeZero(number2) {
+  return number2 === 0 && Number.NEGATIVE_INFINITY === 1 / number2;
+}
+var isNothing_1 = isNothing;
+var isObject_1 = isObject;
+var toArray_1 = toArray;
+var repeat_1 = repeat;
+var isNegativeZero_1 = isNegativeZero;
+var extend_1 = extend;
+var common = {
+  isNothing: isNothing_1,
+  isObject: isObject_1,
+  toArray: toArray_1,
+  repeat: repeat_1,
+  isNegativeZero: isNegativeZero_1,
+  extend: extend_1
+};
+function formatError(exception2, compact) {
+  var where = "", message = exception2.reason || "(unknown reason)";
+  if (!exception2.mark)
+    return message;
+  if (exception2.mark.name) {
+    where += 'in "' + exception2.mark.name + '" ';
+  }
+  where += "(" + (exception2.mark.line + 1) + ":" + (exception2.mark.column + 1) + ")";
+  if (!compact && exception2.mark.snippet) {
+    where += "\n\n" + exception2.mark.snippet;
+  }
+  return message + " " + where;
+}
+function YAMLException$1(reason, mark) {
+  Error.call(this);
+  this.name = "YAMLException";
+  this.reason = reason;
+  this.mark = mark;
+  this.message = formatError(this, false);
+  if (Error.captureStackTrace) {
+    Error.captureStackTrace(this, this.constructor);
+  } else {
+    this.stack = new Error().stack || "";
+  }
+}
+YAMLException$1.prototype = Object.create(Error.prototype);
+YAMLException$1.prototype.constructor = YAMLException$1;
+YAMLException$1.prototype.toString = function toString(compact) {
+  return this.name + ": " + formatError(this, compact);
+};
+var exception = YAMLException$1;
+function getLine(buffer, lineStart, lineEnd, position, maxLineLength) {
+  var head = "";
+  var tail = "";
+  var maxHalfLength = Math.floor(maxLineLength / 2) - 1;
+  if (position - lineStart > maxHalfLength) {
+    head = " ... ";
+    lineStart = position - maxHalfLength + head.length;
+  }
+  if (lineEnd - position > maxHalfLength) {
+    tail = " ...";
+    lineEnd = position + maxHalfLength - tail.length;
+  }
+  return {
+    str: head + buffer.slice(lineStart, lineEnd).replace(/\t/g, "\u2192") + tail,
+    pos: position - lineStart + head.length
+  };
+}
+function padStart(string2, max) {
+  return common.repeat(" ", max - string2.length) + string2;
+}
+function makeSnippet(mark, options2) {
+  options2 = Object.create(options2 || null);
+  if (!mark.buffer)
+    return null;
+  if (!options2.maxLength)
+    options2.maxLength = 79;
+  if (typeof options2.indent !== "number")
+    options2.indent = 1;
+  if (typeof options2.linesBefore !== "number")
+    options2.linesBefore = 3;
+  if (typeof options2.linesAfter !== "number")
+    options2.linesAfter = 2;
+  var re = /\r?\n|\r|\0/g;
+  var lineStarts = [0];
+  var lineEnds = [];
+  var match;
+  var foundLineNo = -1;
+  while (match = re.exec(mark.buffer)) {
+    lineEnds.push(match.index);
+    lineStarts.push(match.index + match[0].length);
+    if (mark.position <= match.index && foundLineNo < 0) {
+      foundLineNo = lineStarts.length - 2;
+    }
+  }
+  if (foundLineNo < 0)
+    foundLineNo = lineStarts.length - 1;
+  var result = "", i, line;
+  var lineNoLength = Math.min(mark.line + options2.linesAfter, lineEnds.length).toString().length;
+  var maxLineLength = options2.maxLength - (options2.indent + lineNoLength + 3);
+  for (i = 1; i <= options2.linesBefore; i++) {
+    if (foundLineNo - i < 0)
+      break;
+    line = getLine(
+      mark.buffer,
+      lineStarts[foundLineNo - i],
+      lineEnds[foundLineNo - i],
+      mark.position - (lineStarts[foundLineNo] - lineStarts[foundLineNo - i]),
+      maxLineLength
+    );
+    result = common.repeat(" ", options2.indent) + padStart((mark.line - i + 1).toString(), lineNoLength) + " | " + line.str + "\n" + result;
+  }
+  line = getLine(mark.buffer, lineStarts[foundLineNo], lineEnds[foundLineNo], mark.position, maxLineLength);
+  result += common.repeat(" ", options2.indent) + padStart((mark.line + 1).toString(), lineNoLength) + " | " + line.str + "\n";
+  result += common.repeat("-", options2.indent + lineNoLength + 3 + line.pos) + "^\n";
+  for (i = 1; i <= options2.linesAfter; i++) {
+    if (foundLineNo + i >= lineEnds.length)
+      break;
+    line = getLine(
+      mark.buffer,
+      lineStarts[foundLineNo + i],
+      lineEnds[foundLineNo + i],
+      mark.position - (lineStarts[foundLineNo] - lineStarts[foundLineNo + i]),
+      maxLineLength
+    );
+    result += common.repeat(" ", options2.indent) + padStart((mark.line + i + 1).toString(), lineNoLength) + " | " + line.str + "\n";
+  }
+  return result.replace(/\n$/, "");
+}
+var snippet = makeSnippet;
+var TYPE_CONSTRUCTOR_OPTIONS = [
+  "kind",
+  "multi",
+  "resolve",
+  "construct",
+  "instanceOf",
+  "predicate",
+  "represent",
+  "representName",
+  "defaultStyle",
+  "styleAliases"
+];
+var YAML_NODE_KINDS = [
+  "scalar",
+  "sequence",
+  "mapping"
+];
+function compileStyleAliases(map2) {
+  var result = {};
+  if (map2 !== null) {
+    Object.keys(map2).forEach(function(style) {
+      map2[style].forEach(function(alias) {
+        result[String(alias)] = style;
+      });
+    });
+  }
+  return result;
+}
+function Type$1(tag, options2) {
+  options2 = options2 || {};
+  Object.keys(options2).forEach(function(name) {
+    if (TYPE_CONSTRUCTOR_OPTIONS.indexOf(name) === -1) {
+      throw new exception('Unknown option "' + name + '" is met in definition of "' + tag + '" YAML type.');
+    }
+  });
+  this.options = options2;
+  this.tag = tag;
+  this.kind = options2["kind"] || null;
+  this.resolve = options2["resolve"] || function() {
+    return true;
+  };
+  this.construct = options2["construct"] || function(data) {
+    return data;
+  };
+  this.instanceOf = options2["instanceOf"] || null;
+  this.predicate = options2["predicate"] || null;
+  this.represent = options2["represent"] || null;
+  this.representName = options2["representName"] || null;
+  this.defaultStyle = options2["defaultStyle"] || null;
+  this.multi = options2["multi"] || false;
+  this.styleAliases = compileStyleAliases(options2["styleAliases"] || null);
+  if (YAML_NODE_KINDS.indexOf(this.kind) === -1) {
+    throw new exception('Unknown kind "' + this.kind + '" is specified for "' + tag + '" YAML type.');
+  }
+}
+var type = Type$1;
+function compileList(schema2, name) {
+  var result = [];
+  schema2[name].forEach(function(currentType) {
+    var newIndex = result.length;
+    result.forEach(function(previousType, previousIndex) {
+      if (previousType.tag === currentType.tag && previousType.kind === currentType.kind && previousType.multi === currentType.multi) {
+        newIndex = previousIndex;
+      }
+    });
+    result[newIndex] = currentType;
+  });
+  return result;
+}
+function compileMap() {
+  var result = {
+    scalar: {},
+    sequence: {},
+    mapping: {},
+    fallback: {},
+    multi: {
+      scalar: [],
+      sequence: [],
+      mapping: [],
+      fallback: []
+    }
+  }, index, length;
+  function collectType(type2) {
+    if (type2.multi) {
+      result.multi[type2.kind].push(type2);
+      result.multi["fallback"].push(type2);
+    } else {
+      result[type2.kind][type2.tag] = result["fallback"][type2.tag] = type2;
+    }
+  }
+  for (index = 0, length = arguments.length; index < length; index += 1) {
+    arguments[index].forEach(collectType);
+  }
+  return result;
+}
+function Schema$1(definition) {
+  return this.extend(definition);
+}
+Schema$1.prototype.extend = function extend2(definition) {
+  var implicit = [];
+  var explicit = [];
+  if (definition instanceof type) {
+    explicit.push(definition);
+  } else if (Array.isArray(definition)) {
+    explicit = explicit.concat(definition);
+  } else if (definition && (Array.isArray(definition.implicit) || Array.isArray(definition.explicit))) {
+    if (definition.implicit)
+      implicit = implicit.concat(definition.implicit);
+    if (definition.explicit)
+      explicit = explicit.concat(definition.explicit);
+  } else {
+    throw new exception("Schema.extend argument should be a Type, [ Type ], or a schema definition ({ implicit: [...], explicit: [...] })");
+  }
+  implicit.forEach(function(type$1) {
+    if (!(type$1 instanceof type)) {
+      throw new exception("Specified list of YAML types (or a single Type object) contains a non-Type object.");
+    }
+    if (type$1.loadKind && type$1.loadKind !== "scalar") {
+      throw new exception("There is a non-scalar type in the implicit list of a schema. Implicit resolving of such types is not supported.");
+    }
+    if (type$1.multi) {
+      throw new exception("There is a multi type in the implicit list of a schema. Multi tags can only be listed as explicit.");
+    }
+  });
+  explicit.forEach(function(type$1) {
+    if (!(type$1 instanceof type)) {
+      throw new exception("Specified list of YAML types (or a single Type object) contains a non-Type object.");
+    }
+  });
+  var result = Object.create(Schema$1.prototype);
+  result.implicit = (this.implicit || []).concat(implicit);
+  result.explicit = (this.explicit || []).concat(explicit);
+  result.compiledImplicit = compileList(result, "implicit");
+  result.compiledExplicit = compileList(result, "explicit");
+  result.compiledTypeMap = compileMap(result.compiledImplicit, result.compiledExplicit);
+  return result;
+};
+var schema = Schema$1;
+var str = new type("tag:yaml.org,2002:str", {
+  kind: "scalar",
+  construct: function(data) {
+    return data !== null ? data : "";
+  }
+});
+var seq = new type("tag:yaml.org,2002:seq", {
+  kind: "sequence",
+  construct: function(data) {
+    return data !== null ? data : [];
+  }
+});
+var map = new type("tag:yaml.org,2002:map", {
+  kind: "mapping",
+  construct: function(data) {
+    return data !== null ? data : {};
+  }
+});
+var failsafe = new schema({
+  explicit: [
+    str,
+    seq,
+    map
+  ]
+});
+function resolveYamlNull(data) {
+  if (data === null)
+    return true;
+  var max = data.length;
+  return max === 1 && data === "~" || max === 4 && (data === "null" || data === "Null" || data === "NULL");
+}
+function constructYamlNull() {
+  return null;
+}
+function isNull(object) {
+  return object === null;
+}
+var _null = new type("tag:yaml.org,2002:null", {
+  kind: "scalar",
+  resolve: resolveYamlNull,
+  construct: constructYamlNull,
+  predicate: isNull,
+  represent: {
+    canonical: function() {
+      return "~";
+    },
+    lowercase: function() {
+      return "null";
+    },
+    uppercase: function() {
+      return "NULL";
+    },
+    camelcase: function() {
+      return "Null";
+    },
+    empty: function() {
+      return "";
+    }
+  },
+  defaultStyle: "lowercase"
+});
+function resolveYamlBoolean(data) {
+  if (data === null)
+    return false;
+  var max = data.length;
+  return max === 4 && (data === "true" || data === "True" || data === "TRUE") || max === 5 && (data === "false" || data === "False" || data === "FALSE");
+}
+function constructYamlBoolean(data) {
+  return data === "true" || data === "True" || data === "TRUE";
+}
+function isBoolean(object) {
+  return Object.prototype.toString.call(object) === "[object Boolean]";
+}
+var bool = new type("tag:yaml.org,2002:bool", {
+  kind: "scalar",
+  resolve: resolveYamlBoolean,
+  construct: constructYamlBoolean,
+  predicate: isBoolean,
+  represent: {
+    lowercase: function(object) {
+      return object ? "true" : "false";
+    },
+    uppercase: function(object) {
+      return object ? "TRUE" : "FALSE";
+    },
+    camelcase: function(object) {
+      return object ? "True" : "False";
+    }
+  },
+  defaultStyle: "lowercase"
+});
+function isHexCode(c) {
+  return 48 <= c && c <= 57 || 65 <= c && c <= 70 || 97 <= c && c <= 102;
+}
+function isOctCode(c) {
+  return 48 <= c && c <= 55;
+}
+function isDecCode(c) {
+  return 48 <= c && c <= 57;
+}
+function resolveYamlInteger(data) {
+  if (data === null)
+    return false;
+  var max = data.length, index = 0, hasDigits = false, ch;
+  if (!max)
+    return false;
+  ch = data[index];
+  if (ch === "-" || ch === "+") {
+    ch = data[++index];
+  }
+  if (ch === "0") {
+    if (index + 1 === max)
+      return true;
+    ch = data[++index];
+    if (ch === "b") {
+      index++;
+      for (; index < max; index++) {
+        ch = data[index];
+        if (ch === "_")
+          continue;
+        if (ch !== "0" && ch !== "1")
+          return false;
+        hasDigits = true;
+      }
+      return hasDigits && ch !== "_";
+    }
+    if (ch === "x") {
+      index++;
+      for (; index < max; index++) {
+        ch = data[index];
+        if (ch === "_")
+          continue;
+        if (!isHexCode(data.charCodeAt(index)))
+          return false;
+        hasDigits = true;
+      }
+      return hasDigits && ch !== "_";
+    }
+    if (ch === "o") {
+      index++;
+      for (; index < max; index++) {
+        ch = data[index];
+        if (ch === "_")
+          continue;
+        if (!isOctCode(data.charCodeAt(index)))
+          return false;
+        hasDigits = true;
+      }
+      return hasDigits && ch !== "_";
+    }
+  }
+  if (ch === "_")
+    return false;
+  for (; index < max; index++) {
+    ch = data[index];
+    if (ch === "_")
+      continue;
+    if (!isDecCode(data.charCodeAt(index))) {
+      return false;
+    }
+    hasDigits = true;
+  }
+  if (!hasDigits || ch === "_")
+    return false;
+  return true;
+}
+function constructYamlInteger(data) {
+  var value = data, sign = 1, ch;
+  if (value.indexOf("_") !== -1) {
+    value = value.replace(/_/g, "");
+  }
+  ch = value[0];
+  if (ch === "-" || ch === "+") {
+    if (ch === "-")
+      sign = -1;
+    value = value.slice(1);
+    ch = value[0];
+  }
+  if (value === "0")
+    return 0;
+  if (ch === "0") {
+    if (value[1] === "b")
+      return sign * parseInt(value.slice(2), 2);
+    if (value[1] === "x")
+      return sign * parseInt(value.slice(2), 16);
+    if (value[1] === "o")
+      return sign * parseInt(value.slice(2), 8);
+  }
+  return sign * parseInt(value, 10);
+}
+function isInteger(object) {
+  return Object.prototype.toString.call(object) === "[object Number]" && (object % 1 === 0 && !common.isNegativeZero(object));
+}
+var int = new type("tag:yaml.org,2002:int", {
+  kind: "scalar",
+  resolve: resolveYamlInteger,
+  construct: constructYamlInteger,
+  predicate: isInteger,
+  represent: {
+    binary: function(obj) {
+      return obj >= 0 ? "0b" + obj.toString(2) : "-0b" + obj.toString(2).slice(1);
+    },
+    octal: function(obj) {
+      return obj >= 0 ? "0o" + obj.toString(8) : "-0o" + obj.toString(8).slice(1);
+    },
+    decimal: function(obj) {
+      return obj.toString(10);
+    },
+    hexadecimal: function(obj) {
+      return obj >= 0 ? "0x" + obj.toString(16).toUpperCase() : "-0x" + obj.toString(16).toUpperCase().slice(1);
+    }
+  },
+  defaultStyle: "decimal",
+  styleAliases: {
+    binary: [2, "bin"],
+    octal: [8, "oct"],
+    decimal: [10, "dec"],
+    hexadecimal: [16, "hex"]
+  }
+});
+var YAML_FLOAT_PATTERN = new RegExp(
+  "^(?:[-+]?(?:[0-9][0-9_]*)(?:\\.[0-9_]*)?(?:[eE][-+]?[0-9]+)?|\\.[0-9_]+(?:[eE][-+]?[0-9]+)?|[-+]?\\.(?:inf|Inf|INF)|\\.(?:nan|NaN|NAN))$"
+);
+function resolveYamlFloat(data) {
+  if (data === null)
+    return false;
+  if (!YAML_FLOAT_PATTERN.test(data) || data[data.length - 1] === "_") {
+    return false;
+  }
+  return true;
+}
+function constructYamlFloat(data) {
+  var value, sign;
+  value = data.replace(/_/g, "").toLowerCase();
+  sign = value[0] === "-" ? -1 : 1;
+  if ("+-".indexOf(value[0]) >= 0) {
+    value = value.slice(1);
+  }
+  if (value === ".inf") {
+    return sign === 1 ? Number.POSITIVE_INFINITY : Number.NEGATIVE_INFINITY;
+  } else if (value === ".nan") {
+    return NaN;
+  }
+  return sign * parseFloat(value, 10);
+}
+var SCIENTIFIC_WITHOUT_DOT = /^[-+]?[0-9]+e/;
+function representYamlFloat(object, style) {
+  var res;
+  if (isNaN(object)) {
+    switch (style) {
+      case "lowercase":
+        return ".nan";
+      case "uppercase":
+        return ".NAN";
+      case "camelcase":
+        return ".NaN";
+    }
+  } else if (Number.POSITIVE_INFINITY === object) {
+    switch (style) {
+      case "lowercase":
+        return ".inf";
+      case "uppercase":
+        return ".INF";
+      case "camelcase":
+        return ".Inf";
+    }
+  } else if (Number.NEGATIVE_INFINITY === object) {
+    switch (style) {
+      case "lowercase":
+        return "-.inf";
+      case "uppercase":
+        return "-.INF";
+      case "camelcase":
+        return "-.Inf";
+    }
+  } else if (common.isNegativeZero(object)) {
+    return "-0.0";
+  }
+  res = object.toString(10);
+  return SCIENTIFIC_WITHOUT_DOT.test(res) ? res.replace("e", ".e") : res;
+}
+function isFloat(object) {
+  return Object.prototype.toString.call(object) === "[object Number]" && (object % 1 !== 0 || common.isNegativeZero(object));
+}
+var float = new type("tag:yaml.org,2002:float", {
+  kind: "scalar",
+  resolve: resolveYamlFloat,
+  construct: constructYamlFloat,
+  predicate: isFloat,
+  represent: representYamlFloat,
+  defaultStyle: "lowercase"
+});
+var json = failsafe.extend({
+  implicit: [
+    _null,
+    bool,
+    int,
+    float
+  ]
+});
+var core = json;
+var YAML_DATE_REGEXP = new RegExp(
+  "^([0-9][0-9][0-9][0-9])-([0-9][0-9])-([0-9][0-9])$"
+);
+var YAML_TIMESTAMP_REGEXP = new RegExp(
+  "^([0-9][0-9][0-9][0-9])-([0-9][0-9]?)-([0-9][0-9]?)(?:[Tt]|[ \\t]+)([0-9][0-9]?):([0-9][0-9]):([0-9][0-9])(?:\\.([0-9]*))?(?:[ \\t]*(Z|([-+])([0-9][0-9]?)(?::([0-9][0-9]))?))?$"
+);
+function resolveYamlTimestamp(data) {
+  if (data === null)
+    return false;
+  if (YAML_DATE_REGEXP.exec(data) !== null)
+    return true;
+  if (YAML_TIMESTAMP_REGEXP.exec(data) !== null)
+    return true;
+  return false;
+}
+function constructYamlTimestamp(data) {
+  var match, year, month, day, hour, minute, second, fraction = 0, delta = null, tz_hour, tz_minute, date;
+  match = YAML_DATE_REGEXP.exec(data);
+  if (match === null)
+    match = YAML_TIMESTAMP_REGEXP.exec(data);
+  if (match === null)
+    throw new Error("Date resolve error");
+  year = +match[1];
+  month = +match[2] - 1;
+  day = +match[3];
+  if (!match[4]) {
+    return new Date(Date.UTC(year, month, day));
+  }
+  hour = +match[4];
+  minute = +match[5];
+  second = +match[6];
+  if (match[7]) {
+    fraction = match[7].slice(0, 3);
+    while (fraction.length < 3) {
+      fraction += "0";
+    }
+    fraction = +fraction;
+  }
+  if (match[9]) {
+    tz_hour = +match[10];
+    tz_minute = +(match[11] || 0);
+    delta = (tz_hour * 60 + tz_minute) * 6e4;
+    if (match[9] === "-")
+      delta = -delta;
+  }
+  date = new Date(Date.UTC(year, month, day, hour, minute, second, fraction));
+  if (delta)
+    date.setTime(date.getTime() - delta);
+  return date;
+}
+function representYamlTimestamp(object) {
+  return object.toISOString();
+}
+var timestamp = new type("tag:yaml.org,2002:timestamp", {
+  kind: "scalar",
+  resolve: resolveYamlTimestamp,
+  construct: constructYamlTimestamp,
+  instanceOf: Date,
+  represent: representYamlTimestamp
+});
+function resolveYamlMerge(data) {
+  return data === "<<" || data === null;
+}
+var merge = new type("tag:yaml.org,2002:merge", {
+  kind: "scalar",
+  resolve: resolveYamlMerge
+});
+var BASE64_MAP = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=\n\r";
+function resolveYamlBinary(data) {
+  if (data === null)
+    return false;
+  var code, idx, bitlen = 0, max = data.length, map2 = BASE64_MAP;
+  for (idx = 0; idx < max; idx++) {
+    code = map2.indexOf(data.charAt(idx));
+    if (code > 64)
+      continue;
+    if (code < 0)
+      return false;
+    bitlen += 6;
+  }
+  return bitlen % 8 === 0;
+}
+function constructYamlBinary(data) {
+  var idx, tailbits, input = data.replace(/[\r\n=]/g, ""), max = input.length, map2 = BASE64_MAP, bits = 0, result = [];
+  for (idx = 0; idx < max; idx++) {
+    if (idx % 4 === 0 && idx) {
+      result.push(bits >> 16 & 255);
+      result.push(bits >> 8 & 255);
+      result.push(bits & 255);
+    }
+    bits = bits << 6 | map2.indexOf(input.charAt(idx));
+  }
+  tailbits = max % 4 * 6;
+  if (tailbits === 0) {
+    result.push(bits >> 16 & 255);
+    result.push(bits >> 8 & 255);
+    result.push(bits & 255);
+  } else if (tailbits === 18) {
+    result.push(bits >> 10 & 255);
+    result.push(bits >> 2 & 255);
+  } else if (tailbits === 12) {
+    result.push(bits >> 4 & 255);
+  }
+  return new Uint8Array(result);
+}
+function representYamlBinary(object) {
+  var result = "", bits = 0, idx, tail, max = object.length, map2 = BASE64_MAP;
+  for (idx = 0; idx < max; idx++) {
+    if (idx % 3 === 0 && idx) {
+      result += map2[bits >> 18 & 63];
+      result += map2[bits >> 12 & 63];
+      result += map2[bits >> 6 & 63];
+      result += map2[bits & 63];
+    }
+    bits = (bits << 8) + object[idx];
+  }
+  tail = max % 3;
+  if (tail === 0) {
+    result += map2[bits >> 18 & 63];
+    result += map2[bits >> 12 & 63];
+    result += map2[bits >> 6 & 63];
+    result += map2[bits & 63];
+  } else if (tail === 2) {
+    result += map2[bits >> 10 & 63];
+    result += map2[bits >> 4 & 63];
+    result += map2[bits << 2 & 63];
+    result += map2[64];
+  } else if (tail === 1) {
+    result += map2[bits >> 2 & 63];
+    result += map2[bits << 4 & 63];
+    result += map2[64];
+    result += map2[64];
+  }
+  return result;
+}
+function isBinary(obj) {
+  return Object.prototype.toString.call(obj) === "[object Uint8Array]";
+}
+var binary = new type("tag:yaml.org,2002:binary", {
+  kind: "scalar",
+  resolve: resolveYamlBinary,
+  construct: constructYamlBinary,
+  predicate: isBinary,
+  represent: representYamlBinary
+});
+var _hasOwnProperty$3 = Object.prototype.hasOwnProperty;
+var _toString$2 = Object.prototype.toString;
+function resolveYamlOmap(data) {
+  if (data === null)
+    return true;
+  var objectKeys = [], index, length, pair, pairKey, pairHasKey, object = data;
+  for (index = 0, length = object.length; index < length; index += 1) {
+    pair = object[index];
+    pairHasKey = false;
+    if (_toString$2.call(pair) !== "[object Object]")
+      return false;
+    for (pairKey in pair) {
+      if (_hasOwnProperty$3.call(pair, pairKey)) {
+        if (!pairHasKey)
+          pairHasKey = true;
+        else
+          return false;
+      }
+    }
+    if (!pairHasKey)
+      return false;
+    if (objectKeys.indexOf(pairKey) === -1)
+      objectKeys.push(pairKey);
+    else
+      return false;
+  }
+  return true;
+}
+function constructYamlOmap(data) {
+  return data !== null ? data : [];
+}
+var omap = new type("tag:yaml.org,2002:omap", {
+  kind: "sequence",
+  resolve: resolveYamlOmap,
+  construct: constructYamlOmap
+});
+var _toString$1 = Object.prototype.toString;
+function resolveYamlPairs(data) {
+  if (data === null)
+    return true;
+  var index, length, pair, keys, result, object = data;
+  result = new Array(object.length);
+  for (index = 0, length = object.length; index < length; index += 1) {
+    pair = object[index];
+    if (_toString$1.call(pair) !== "[object Object]")
+      return false;
+    keys = Object.keys(pair);
+    if (keys.length !== 1)
+      return false;
+    result[index] = [keys[0], pair[keys[0]]];
+  }
+  return true;
+}
+function constructYamlPairs(data) {
+  if (data === null)
+    return [];
+  var index, length, pair, keys, result, object = data;
+  result = new Array(object.length);
+  for (index = 0, length = object.length; index < length; index += 1) {
+    pair = object[index];
+    keys = Object.keys(pair);
+    result[index] = [keys[0], pair[keys[0]]];
+  }
+  return result;
+}
+var pairs = new type("tag:yaml.org,2002:pairs", {
+  kind: "sequence",
+  resolve: resolveYamlPairs,
+  construct: constructYamlPairs
+});
+var _hasOwnProperty$2 = Object.prototype.hasOwnProperty;
+function resolveYamlSet(data) {
+  if (data === null)
+    return true;
+  var key, object = data;
+  for (key in object) {
+    if (_hasOwnProperty$2.call(object, key)) {
+      if (object[key] !== null)
+        return false;
+    }
+  }
+  return true;
+}
+function constructYamlSet(data) {
+  return data !== null ? data : {};
+}
+var set = new type("tag:yaml.org,2002:set", {
+  kind: "mapping",
+  resolve: resolveYamlSet,
+  construct: constructYamlSet
+});
+var _default = core.extend({
+  implicit: [
+    timestamp,
+    merge
+  ],
+  explicit: [
+    binary,
+    omap,
+    pairs,
+    set
+  ]
+});
+var _hasOwnProperty$1 = Object.prototype.hasOwnProperty;
+var CONTEXT_FLOW_IN = 1;
+var CONTEXT_FLOW_OUT = 2;
+var CONTEXT_BLOCK_IN = 3;
+var CONTEXT_BLOCK_OUT = 4;
+var CHOMPING_CLIP = 1;
+var CHOMPING_STRIP = 2;
+var CHOMPING_KEEP = 3;
+var PATTERN_NON_PRINTABLE = /[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x84\x86-\x9F\uFFFE\uFFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]/;
+var PATTERN_NON_ASCII_LINE_BREAKS = /[\x85\u2028\u2029]/;
+var PATTERN_FLOW_INDICATORS = /[,\[\]\{\}]/;
+var PATTERN_TAG_HANDLE = /^(?:!|!!|![a-z\-]+!)$/i;
+var PATTERN_TAG_URI = /^(?:!|[^,\[\]\{\}])(?:%[0-9a-f]{2}|[0-9a-z\-#;\/\?:@&=\+\$,_\.!~\*'\(\)\[\]])*$/i;
+function _class(obj) {
+  return Object.prototype.toString.call(obj);
+}
+function is_EOL(c) {
+  return c === 10 || c === 13;
+}
+function is_WHITE_SPACE(c) {
+  return c === 9 || c === 32;
+}
+function is_WS_OR_EOL(c) {
+  return c === 9 || c === 32 || c === 10 || c === 13;
+}
+function is_FLOW_INDICATOR(c) {
+  return c === 44 || c === 91 || c === 93 || c === 123 || c === 125;
+}
+function fromHexCode(c) {
+  var lc;
+  if (48 <= c && c <= 57) {
+    return c - 48;
+  }
+  lc = c | 32;
+  if (97 <= lc && lc <= 102) {
+    return lc - 97 + 10;
+  }
+  return -1;
+}
+function escapedHexLen(c) {
+  if (c === 120) {
+    return 2;
+  }
+  if (c === 117) {
+    return 4;
+  }
+  if (c === 85) {
+    return 8;
+  }
+  return 0;
+}
+function fromDecimalCode(c) {
+  if (48 <= c && c <= 57) {
+    return c - 48;
+  }
+  return -1;
+}
+function simpleEscapeSequence(c) {
+  return c === 48 ? "\0" : c === 97 ? "\x07" : c === 98 ? "\b" : c === 116 ? "	" : c === 9 ? "	" : c === 110 ? "\n" : c === 118 ? "\v" : c === 102 ? "\f" : c === 114 ? "\r" : c === 101 ? "\x1B" : c === 32 ? " " : c === 34 ? '"' : c === 47 ? "/" : c === 92 ? "\\" : c === 78 ? "\x85" : c === 95 ? "\xA0" : c === 76 ? "\u2028" : c === 80 ? "\u2029" : "";
+}
+function charFromCodepoint(c) {
+  if (c <= 65535) {
+    return String.fromCharCode(c);
+  }
+  return String.fromCharCode(
+    (c - 65536 >> 10) + 55296,
+    (c - 65536 & 1023) + 56320
+  );
+}
+function setProperty(object, key, value) {
+  if (key === "__proto__") {
+    Object.defineProperty(object, key, {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value
+    });
+  } else {
+    object[key] = value;
+  }
+}
+var simpleEscapeCheck = new Array(256);
+var simpleEscapeMap = new Array(256);
+for (i = 0; i < 256; i++) {
+  simpleEscapeCheck[i] = simpleEscapeSequence(i) ? 1 : 0;
+  simpleEscapeMap[i] = simpleEscapeSequence(i);
+}
+var i;
+function State$1(input, options2) {
+  this.input = input;
+  this.filename = options2["filename"] || null;
+  this.schema = options2["schema"] || _default;
+  this.onWarning = options2["onWarning"] || null;
+  this.legacy = options2["legacy"] || false;
+  this.json = options2["json"] || false;
+  this.listener = options2["listener"] || null;
+  this.implicitTypes = this.schema.compiledImplicit;
+  this.typeMap = this.schema.compiledTypeMap;
+  this.length = input.length;
+  this.position = 0;
+  this.line = 0;
+  this.lineStart = 0;
+  this.lineIndent = 0;
+  this.firstTabInLine = -1;
+  this.documents = [];
+}
+function generateError(state, message) {
+  var mark = {
+    name: state.filename,
+    buffer: state.input.slice(0, -1),
+    position: state.position,
+    line: state.line,
+    column: state.position - state.lineStart
+  };
+  mark.snippet = snippet(mark);
+  return new exception(message, mark);
+}
+function throwError(state, message) {
+  throw generateError(state, message);
+}
+function throwWarning(state, message) {
+  if (state.onWarning) {
+    state.onWarning.call(null, generateError(state, message));
+  }
+}
+var directiveHandlers = {
+  YAML: function handleYamlDirective(state, name, args) {
+    var match, major, minor;
+    if (state.version !== null) {
+      throwError(state, "duplication of %YAML directive");
+    }
+    if (args.length !== 1) {
+      throwError(state, "YAML directive accepts exactly one argument");
+    }
+    match = /^([0-9]+)\.([0-9]+)$/.exec(args[0]);
+    if (match === null) {
+      throwError(state, "ill-formed argument of the YAML directive");
+    }
+    major = parseInt(match[1], 10);
+    minor = parseInt(match[2], 10);
+    if (major !== 1) {
+      throwError(state, "unacceptable YAML version of the document");
+    }
+    state.version = args[0];
+    state.checkLineBreaks = minor < 2;
+    if (minor !== 1 && minor !== 2) {
+      throwWarning(state, "unsupported YAML version of the document");
+    }
+  },
+  TAG: function handleTagDirective(state, name, args) {
+    var handle, prefix;
+    if (args.length !== 2) {
+      throwError(state, "TAG directive accepts exactly two arguments");
+    }
+    handle = args[0];
+    prefix = args[1];
+    if (!PATTERN_TAG_HANDLE.test(handle)) {
+      throwError(state, "ill-formed tag handle (first argument) of the TAG directive");
+    }
+    if (_hasOwnProperty$1.call(state.tagMap, handle)) {
+      throwError(state, 'there is a previously declared suffix for "' + handle + '" tag handle');
+    }
+    if (!PATTERN_TAG_URI.test(prefix)) {
+      throwError(state, "ill-formed tag prefix (second argument) of the TAG directive");
+    }
+    try {
+      prefix = decodeURIComponent(prefix);
+    } catch (err) {
+      throwError(state, "tag prefix is malformed: " + prefix);
+    }
+    state.tagMap[handle] = prefix;
+  }
+};
+function captureSegment(state, start, end, checkJson) {
+  var _position, _length, _character, _result;
+  if (start < end) {
+    _result = state.input.slice(start, end);
+    if (checkJson) {
+      for (_position = 0, _length = _result.length; _position < _length; _position += 1) {
+        _character = _result.charCodeAt(_position);
+        if (!(_character === 9 || 32 <= _character && _character <= 1114111)) {
+          throwError(state, "expected valid JSON character");
+        }
+      }
+    } else if (PATTERN_NON_PRINTABLE.test(_result)) {
+      throwError(state, "the stream contains non-printable characters");
+    }
+    state.result += _result;
+  }
+}
+function mergeMappings(state, destination, source, overridableKeys) {
+  var sourceKeys, key, index, quantity;
+  if (!common.isObject(source)) {
+    throwError(state, "cannot merge mappings; the provided source object is unacceptable");
+  }
+  sourceKeys = Object.keys(source);
+  for (index = 0, quantity = sourceKeys.length; index < quantity; index += 1) {
+    key = sourceKeys[index];
+    if (!_hasOwnProperty$1.call(destination, key)) {
+      setProperty(destination, key, source[key]);
+      overridableKeys[key] = true;
+    }
+  }
+}
+function storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, valueNode, startLine, startLineStart, startPos) {
+  var index, quantity;
+  if (Array.isArray(keyNode)) {
+    keyNode = Array.prototype.slice.call(keyNode);
+    for (index = 0, quantity = keyNode.length; index < quantity; index += 1) {
+      if (Array.isArray(keyNode[index])) {
+        throwError(state, "nested arrays are not supported inside keys");
+      }
+      if (typeof keyNode === "object" && _class(keyNode[index]) === "[object Object]") {
+        keyNode[index] = "[object Object]";
+      }
+    }
+  }
+  if (typeof keyNode === "object" && _class(keyNode) === "[object Object]") {
+    keyNode = "[object Object]";
+  }
+  keyNode = String(keyNode);
+  if (_result === null) {
+    _result = {};
+  }
+  if (keyTag === "tag:yaml.org,2002:merge") {
+    if (Array.isArray(valueNode)) {
+      for (index = 0, quantity = valueNode.length; index < quantity; index += 1) {
+        mergeMappings(state, _result, valueNode[index], overridableKeys);
+      }
+    } else {
+      mergeMappings(state, _result, valueNode, overridableKeys);
+    }
+  } else {
+    if (!state.json && !_hasOwnProperty$1.call(overridableKeys, keyNode) && _hasOwnProperty$1.call(_result, keyNode)) {
+      state.line = startLine || state.line;
+      state.lineStart = startLineStart || state.lineStart;
+      state.position = startPos || state.position;
+      throwError(state, "duplicated mapping key");
+    }
+    setProperty(_result, keyNode, valueNode);
+    delete overridableKeys[keyNode];
+  }
+  return _result;
+}
+function readLineBreak(state) {
+  var ch;
+  ch = state.input.charCodeAt(state.position);
+  if (ch === 10) {
+    state.position++;
+  } else if (ch === 13) {
+    state.position++;
+    if (state.input.charCodeAt(state.position) === 10) {
+      state.position++;
+    }
+  } else {
+    throwError(state, "a line break is expected");
+  }
+  state.line += 1;
+  state.lineStart = state.position;
+  state.firstTabInLine = -1;
+}
+function skipSeparationSpace(state, allowComments, checkIndent) {
+  var lineBreaks = 0, ch = state.input.charCodeAt(state.position);
+  while (ch !== 0) {
+    while (is_WHITE_SPACE(ch)) {
+      if (ch === 9 && state.firstTabInLine === -1) {
+        state.firstTabInLine = state.position;
+      }
+      ch = state.input.charCodeAt(++state.position);
+    }
+    if (allowComments && ch === 35) {
+      do {
+        ch = state.input.charCodeAt(++state.position);
+      } while (ch !== 10 && ch !== 13 && ch !== 0);
+    }
+    if (is_EOL(ch)) {
+      readLineBreak(state);
+      ch = state.input.charCodeAt(state.position);
+      lineBreaks++;
+      state.lineIndent = 0;
+      while (ch === 32) {
+        state.lineIndent++;
+        ch = state.input.charCodeAt(++state.position);
+      }
+    } else {
+      break;
+    }
+  }
+  if (checkIndent !== -1 && lineBreaks !== 0 && state.lineIndent < checkIndent) {
+    throwWarning(state, "deficient indentation");
+  }
+  return lineBreaks;
+}
+function testDocumentSeparator(state) {
+  var _position = state.position, ch;
+  ch = state.input.charCodeAt(_position);
+  if ((ch === 45 || ch === 46) && ch === state.input.charCodeAt(_position + 1) && ch === state.input.charCodeAt(_position + 2)) {
+    _position += 3;
+    ch = state.input.charCodeAt(_position);
+    if (ch === 0 || is_WS_OR_EOL(ch)) {
+      return true;
+    }
+  }
+  return false;
+}
+function writeFoldedLines(state, count) {
+  if (count === 1) {
+    state.result += " ";
+  } else if (count > 1) {
+    state.result += common.repeat("\n", count - 1);
+  }
+}
+function readPlainScalar(state, nodeIndent, withinFlowCollection) {
+  var preceding, following, captureStart, captureEnd, hasPendingContent, _line, _lineStart, _lineIndent, _kind = state.kind, _result = state.result, ch;
+  ch = state.input.charCodeAt(state.position);
+  if (is_WS_OR_EOL(ch) || is_FLOW_INDICATOR(ch) || ch === 35 || ch === 38 || ch === 42 || ch === 33 || ch === 124 || ch === 62 || ch === 39 || ch === 34 || ch === 37 || ch === 64 || ch === 96) {
+    return false;
+  }
+  if (ch === 63 || ch === 45) {
+    following = state.input.charCodeAt(state.position + 1);
+    if (is_WS_OR_EOL(following) || withinFlowCollection && is_FLOW_INDICATOR(following)) {
+      return false;
+    }
+  }
+  state.kind = "scalar";
+  state.result = "";
+  captureStart = captureEnd = state.position;
+  hasPendingContent = false;
+  while (ch !== 0) {
+    if (ch === 58) {
+      following = state.input.charCodeAt(state.position + 1);
+      if (is_WS_OR_EOL(following) || withinFlowCollection && is_FLOW_INDICATOR(following)) {
+        break;
+      }
+    } else if (ch === 35) {
+      preceding = state.input.charCodeAt(state.position - 1);
+      if (is_WS_OR_EOL(preceding)) {
+        break;
+      }
+    } else if (state.position === state.lineStart && testDocumentSeparator(state) || withinFlowCollection && is_FLOW_INDICATOR(ch)) {
+      break;
+    } else if (is_EOL(ch)) {
+      _line = state.line;
+      _lineStart = state.lineStart;
+      _lineIndent = state.lineIndent;
+      skipSeparationSpace(state, false, -1);
+      if (state.lineIndent >= nodeIndent) {
+        hasPendingContent = true;
+        ch = state.input.charCodeAt(state.position);
+        continue;
+      } else {
+        state.position = captureEnd;
+        state.line = _line;
+        state.lineStart = _lineStart;
+        state.lineIndent = _lineIndent;
+        break;
+      }
+    }
+    if (hasPendingContent) {
+      captureSegment(state, captureStart, captureEnd, false);
+      writeFoldedLines(state, state.line - _line);
+      captureStart = captureEnd = state.position;
+      hasPendingContent = false;
+    }
+    if (!is_WHITE_SPACE(ch)) {
+      captureEnd = state.position + 1;
+    }
+    ch = state.input.charCodeAt(++state.position);
+  }
+  captureSegment(state, captureStart, captureEnd, false);
+  if (state.result) {
+    return true;
+  }
+  state.kind = _kind;
+  state.result = _result;
+  return false;
+}
+function readSingleQuotedScalar(state, nodeIndent) {
+  var ch, captureStart, captureEnd;
+  ch = state.input.charCodeAt(state.position);
+  if (ch !== 39) {
+    return false;
+  }
+  state.kind = "scalar";
+  state.result = "";
+  state.position++;
+  captureStart = captureEnd = state.position;
+  while ((ch = state.input.charCodeAt(state.position)) !== 0) {
+    if (ch === 39) {
+      captureSegment(state, captureStart, state.position, true);
+      ch = state.input.charCodeAt(++state.position);
+      if (ch === 39) {
+        captureStart = state.position;
+        state.position++;
+        captureEnd = state.position;
+      } else {
+        return true;
+      }
+    } else if (is_EOL(ch)) {
+      captureSegment(state, captureStart, captureEnd, true);
+      writeFoldedLines(state, skipSeparationSpace(state, false, nodeIndent));
+      captureStart = captureEnd = state.position;
+    } else if (state.position === state.lineStart && testDocumentSeparator(state)) {
+      throwError(state, "unexpected end of the document within a single quoted scalar");
+    } else {
+      state.position++;
+      captureEnd = state.position;
+    }
+  }
+  throwError(state, "unexpected end of the stream within a single quoted scalar");
+}
+function readDoubleQuotedScalar(state, nodeIndent) {
+  var captureStart, captureEnd, hexLength, hexResult, tmp, ch;
+  ch = state.input.charCodeAt(state.position);
+  if (ch !== 34) {
+    return false;
+  }
+  state.kind = "scalar";
+  state.result = "";
+  state.position++;
+  captureStart = captureEnd = state.position;
+  while ((ch = state.input.charCodeAt(state.position)) !== 0) {
+    if (ch === 34) {
+      captureSegment(state, captureStart, state.position, true);
+      state.position++;
+      return true;
+    } else if (ch === 92) {
+      captureSegment(state, captureStart, state.position, true);
+      ch = state.input.charCodeAt(++state.position);
+      if (is_EOL(ch)) {
+        skipSeparationSpace(state, false, nodeIndent);
+      } else if (ch < 256 && simpleEscapeCheck[ch]) {
+        state.result += simpleEscapeMap[ch];
+        state.position++;
+      } else if ((tmp = escapedHexLen(ch)) > 0) {
+        hexLength = tmp;
+        hexResult = 0;
+        for (; hexLength > 0; hexLength--) {
+          ch = state.input.charCodeAt(++state.position);
+          if ((tmp = fromHexCode(ch)) >= 0) {
+            hexResult = (hexResult << 4) + tmp;
+          } else {
+            throwError(state, "expected hexadecimal character");
+          }
+        }
+        state.result += charFromCodepoint(hexResult);
+        state.position++;
+      } else {
+        throwError(state, "unknown escape sequence");
+      }
+      captureStart = captureEnd = state.position;
+    } else if (is_EOL(ch)) {
+      captureSegment(state, captureStart, captureEnd, true);
+      writeFoldedLines(state, skipSeparationSpace(state, false, nodeIndent));
+      captureStart = captureEnd = state.position;
+    } else if (state.position === state.lineStart && testDocumentSeparator(state)) {
+      throwError(state, "unexpected end of the document within a double quoted scalar");
+    } else {
+      state.position++;
+      captureEnd = state.position;
+    }
+  }
+  throwError(state, "unexpected end of the stream within a double quoted scalar");
+}
+function readFlowCollection(state, nodeIndent) {
+  var readNext = true, _line, _lineStart, _pos, _tag = state.tag, _result, _anchor = state.anchor, following, terminator, isPair, isExplicitPair, isMapping, overridableKeys = /* @__PURE__ */ Object.create(null), keyNode, keyTag, valueNode, ch;
+  ch = state.input.charCodeAt(state.position);
+  if (ch === 91) {
+    terminator = 93;
+    isMapping = false;
+    _result = [];
+  } else if (ch === 123) {
+    terminator = 125;
+    isMapping = true;
+    _result = {};
+  } else {
+    return false;
+  }
+  if (state.anchor !== null) {
+    state.anchorMap[state.anchor] = _result;
+  }
+  ch = state.input.charCodeAt(++state.position);
+  while (ch !== 0) {
+    skipSeparationSpace(state, true, nodeIndent);
+    ch = state.input.charCodeAt(state.position);
+    if (ch === terminator) {
+      state.position++;
+      state.tag = _tag;
+      state.anchor = _anchor;
+      state.kind = isMapping ? "mapping" : "sequence";
+      state.result = _result;
+      return true;
+    } else if (!readNext) {
+      throwError(state, "missed comma between flow collection entries");
+    } else if (ch === 44) {
+      throwError(state, "expected the node content, but found ','");
+    }
+    keyTag = keyNode = valueNode = null;
+    isPair = isExplicitPair = false;
+    if (ch === 63) {
+      following = state.input.charCodeAt(state.position + 1);
+      if (is_WS_OR_EOL(following)) {
+        isPair = isExplicitPair = true;
+        state.position++;
+        skipSeparationSpace(state, true, nodeIndent);
+      }
+    }
+    _line = state.line;
+    _lineStart = state.lineStart;
+    _pos = state.position;
+    composeNode(state, nodeIndent, CONTEXT_FLOW_IN, false, true);
+    keyTag = state.tag;
+    keyNode = state.result;
+    skipSeparationSpace(state, true, nodeIndent);
+    ch = state.input.charCodeAt(state.position);
+    if ((isExplicitPair || state.line === _line) && ch === 58) {
+      isPair = true;
+      ch = state.input.charCodeAt(++state.position);
+      skipSeparationSpace(state, true, nodeIndent);
+      composeNode(state, nodeIndent, CONTEXT_FLOW_IN, false, true);
+      valueNode = state.result;
+    }
+    if (isMapping) {
+      storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, valueNode, _line, _lineStart, _pos);
+    } else if (isPair) {
+      _result.push(storeMappingPair(state, null, overridableKeys, keyTag, keyNode, valueNode, _line, _lineStart, _pos));
+    } else {
+      _result.push(keyNode);
+    }
+    skipSeparationSpace(state, true, nodeIndent);
+    ch = state.input.charCodeAt(state.position);
+    if (ch === 44) {
+      readNext = true;
+      ch = state.input.charCodeAt(++state.position);
+    } else {
+      readNext = false;
+    }
+  }
+  throwError(state, "unexpected end of the stream within a flow collection");
+}
+function readBlockScalar(state, nodeIndent) {
+  var captureStart, folding, chomping = CHOMPING_CLIP, didReadContent = false, detectedIndent = false, textIndent = nodeIndent, emptyLines = 0, atMoreIndented = false, tmp, ch;
+  ch = state.input.charCodeAt(state.position);
+  if (ch === 124) {
+    folding = false;
+  } else if (ch === 62) {
+    folding = true;
+  } else {
+    return false;
+  }
+  state.kind = "scalar";
+  state.result = "";
+  while (ch !== 0) {
+    ch = state.input.charCodeAt(++state.position);
+    if (ch === 43 || ch === 45) {
+      if (CHOMPING_CLIP === chomping) {
+        chomping = ch === 43 ? CHOMPING_KEEP : CHOMPING_STRIP;
+      } else {
+        throwError(state, "repeat of a chomping mode identifier");
+      }
+    } else if ((tmp = fromDecimalCode(ch)) >= 0) {
+      if (tmp === 0) {
+        throwError(state, "bad explicit indentation width of a block scalar; it cannot be less than one");
+      } else if (!detectedIndent) {
+        textIndent = nodeIndent + tmp - 1;
+        detectedIndent = true;
+      } else {
+        throwError(state, "repeat of an indentation width identifier");
+      }
+    } else {
+      break;
+    }
+  }
+  if (is_WHITE_SPACE(ch)) {
+    do {
+      ch = state.input.charCodeAt(++state.position);
+    } while (is_WHITE_SPACE(ch));
+    if (ch === 35) {
+      do {
+        ch = state.input.charCodeAt(++state.position);
+      } while (!is_EOL(ch) && ch !== 0);
+    }
+  }
+  while (ch !== 0) {
+    readLineBreak(state);
+    state.lineIndent = 0;
+    ch = state.input.charCodeAt(state.position);
+    while ((!detectedIndent || state.lineIndent < textIndent) && ch === 32) {
+      state.lineIndent++;
+      ch = state.input.charCodeAt(++state.position);
+    }
+    if (!detectedIndent && state.lineIndent > textIndent) {
+      textIndent = state.lineIndent;
+    }
+    if (is_EOL(ch)) {
+      emptyLines++;
+      continue;
+    }
+    if (state.lineIndent < textIndent) {
+      if (chomping === CHOMPING_KEEP) {
+        state.result += common.repeat("\n", didReadContent ? 1 + emptyLines : emptyLines);
+      } else if (chomping === CHOMPING_CLIP) {
+        if (didReadContent) {
+          state.result += "\n";
+        }
+      }
+      break;
+    }
+    if (folding) {
+      if (is_WHITE_SPACE(ch)) {
+        atMoreIndented = true;
+        state.result += common.repeat("\n", didReadContent ? 1 + emptyLines : emptyLines);
+      } else if (atMoreIndented) {
+        atMoreIndented = false;
+        state.result += common.repeat("\n", emptyLines + 1);
+      } else if (emptyLines === 0) {
+        if (didReadContent) {
+          state.result += " ";
+        }
+      } else {
+        state.result += common.repeat("\n", emptyLines);
+      }
+    } else {
+      state.result += common.repeat("\n", didReadContent ? 1 + emptyLines : emptyLines);
+    }
+    didReadContent = true;
+    detectedIndent = true;
+    emptyLines = 0;
+    captureStart = state.position;
+    while (!is_EOL(ch) && ch !== 0) {
+      ch = state.input.charCodeAt(++state.position);
+    }
+    captureSegment(state, captureStart, state.position, false);
+  }
+  return true;
+}
+function readBlockSequence(state, nodeIndent) {
+  var _line, _tag = state.tag, _anchor = state.anchor, _result = [], following, detected = false, ch;
+  if (state.firstTabInLine !== -1)
+    return false;
+  if (state.anchor !== null) {
+    state.anchorMap[state.anchor] = _result;
+  }
+  ch = state.input.charCodeAt(state.position);
+  while (ch !== 0) {
+    if (state.firstTabInLine !== -1) {
+      state.position = state.firstTabInLine;
+      throwError(state, "tab characters must not be used in indentation");
+    }
+    if (ch !== 45) {
+      break;
+    }
+    following = state.input.charCodeAt(state.position + 1);
+    if (!is_WS_OR_EOL(following)) {
+      break;
+    }
+    detected = true;
+    state.position++;
+    if (skipSeparationSpace(state, true, -1)) {
+      if (state.lineIndent <= nodeIndent) {
+        _result.push(null);
+        ch = state.input.charCodeAt(state.position);
+        continue;
+      }
+    }
+    _line = state.line;
+    composeNode(state, nodeIndent, CONTEXT_BLOCK_IN, false, true);
+    _result.push(state.result);
+    skipSeparationSpace(state, true, -1);
+    ch = state.input.charCodeAt(state.position);
+    if ((state.line === _line || state.lineIndent > nodeIndent) && ch !== 0) {
+      throwError(state, "bad indentation of a sequence entry");
+    } else if (state.lineIndent < nodeIndent) {
+      break;
+    }
+  }
+  if (detected) {
+    state.tag = _tag;
+    state.anchor = _anchor;
+    state.kind = "sequence";
+    state.result = _result;
+    return true;
+  }
+  return false;
+}
+function readBlockMapping(state, nodeIndent, flowIndent) {
+  var following, allowCompact, _line, _keyLine, _keyLineStart, _keyPos, _tag = state.tag, _anchor = state.anchor, _result = {}, overridableKeys = /* @__PURE__ */ Object.create(null), keyTag = null, keyNode = null, valueNode = null, atExplicitKey = false, detected = false, ch;
+  if (state.firstTabInLine !== -1)
+    return false;
+  if (state.anchor !== null) {
+    state.anchorMap[state.anchor] = _result;
+  }
+  ch = state.input.charCodeAt(state.position);
+  while (ch !== 0) {
+    if (!atExplicitKey && state.firstTabInLine !== -1) {
+      state.position = state.firstTabInLine;
+      throwError(state, "tab characters must not be used in indentation");
+    }
+    following = state.input.charCodeAt(state.position + 1);
+    _line = state.line;
+    if ((ch === 63 || ch === 58) && is_WS_OR_EOL(following)) {
+      if (ch === 63) {
+        if (atExplicitKey) {
+          storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, null, _keyLine, _keyLineStart, _keyPos);
+          keyTag = keyNode = valueNode = null;
+        }
+        detected = true;
+        atExplicitKey = true;
+        allowCompact = true;
+      } else if (atExplicitKey) {
+        atExplicitKey = false;
+        allowCompact = true;
+      } else {
+        throwError(state, "incomplete explicit mapping pair; a key node is missed; or followed by a non-tabulated empty line");
+      }
+      state.position += 1;
+      ch = following;
+    } else {
+      _keyLine = state.line;
+      _keyLineStart = state.lineStart;
+      _keyPos = state.position;
+      if (!composeNode(state, flowIndent, CONTEXT_FLOW_OUT, false, true)) {
+        break;
+      }
+      if (state.line === _line) {
+        ch = state.input.charCodeAt(state.position);
+        while (is_WHITE_SPACE(ch)) {
+          ch = state.input.charCodeAt(++state.position);
+        }
+        if (ch === 58) {
+          ch = state.input.charCodeAt(++state.position);
+          if (!is_WS_OR_EOL(ch)) {
+            throwError(state, "a whitespace character is expected after the key-value separator within a block mapping");
+          }
+          if (atExplicitKey) {
+            storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, null, _keyLine, _keyLineStart, _keyPos);
+            keyTag = keyNode = valueNode = null;
+          }
+          detected = true;
+          atExplicitKey = false;
+          allowCompact = false;
+          keyTag = state.tag;
+          keyNode = state.result;
+        } else if (detected) {
+          throwError(state, "can not read an implicit mapping pair; a colon is missed");
+        } else {
+          state.tag = _tag;
+          state.anchor = _anchor;
+          return true;
+        }
+      } else if (detected) {
+        throwError(state, "can not read a block mapping entry; a multiline key may not be an implicit key");
+      } else {
+        state.tag = _tag;
+        state.anchor = _anchor;
+        return true;
+      }
+    }
+    if (state.line === _line || state.lineIndent > nodeIndent) {
+      if (atExplicitKey) {
+        _keyLine = state.line;
+        _keyLineStart = state.lineStart;
+        _keyPos = state.position;
+      }
+      if (composeNode(state, nodeIndent, CONTEXT_BLOCK_OUT, true, allowCompact)) {
+        if (atExplicitKey) {
+          keyNode = state.result;
+        } else {
+          valueNode = state.result;
+        }
+      }
+      if (!atExplicitKey) {
+        storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, valueNode, _keyLine, _keyLineStart, _keyPos);
+        keyTag = keyNode = valueNode = null;
+      }
+      skipSeparationSpace(state, true, -1);
+      ch = state.input.charCodeAt(state.position);
+    }
+    if ((state.line === _line || state.lineIndent > nodeIndent) && ch !== 0) {
+      throwError(state, "bad indentation of a mapping entry");
+    } else if (state.lineIndent < nodeIndent) {
+      break;
+    }
+  }
+  if (atExplicitKey) {
+    storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, null, _keyLine, _keyLineStart, _keyPos);
+  }
+  if (detected) {
+    state.tag = _tag;
+    state.anchor = _anchor;
+    state.kind = "mapping";
+    state.result = _result;
+  }
+  return detected;
+}
+function readTagProperty(state) {
+  var _position, isVerbatim = false, isNamed = false, tagHandle, tagName, ch;
+  ch = state.input.charCodeAt(state.position);
+  if (ch !== 33)
+    return false;
+  if (state.tag !== null) {
+    throwError(state, "duplication of a tag property");
+  }
+  ch = state.input.charCodeAt(++state.position);
+  if (ch === 60) {
+    isVerbatim = true;
+    ch = state.input.charCodeAt(++state.position);
+  } else if (ch === 33) {
+    isNamed = true;
+    tagHandle = "!!";
+    ch = state.input.charCodeAt(++state.position);
+  } else {
+    tagHandle = "!";
+  }
+  _position = state.position;
+  if (isVerbatim) {
+    do {
+      ch = state.input.charCodeAt(++state.position);
+    } while (ch !== 0 && ch !== 62);
+    if (state.position < state.length) {
+      tagName = state.input.slice(_position, state.position);
+      ch = state.input.charCodeAt(++state.position);
+    } else {
+      throwError(state, "unexpected end of the stream within a verbatim tag");
+    }
+  } else {
+    while (ch !== 0 && !is_WS_OR_EOL(ch)) {
+      if (ch === 33) {
+        if (!isNamed) {
+          tagHandle = state.input.slice(_position - 1, state.position + 1);
+          if (!PATTERN_TAG_HANDLE.test(tagHandle)) {
+            throwError(state, "named tag handle cannot contain such characters");
+          }
+          isNamed = true;
+          _position = state.position + 1;
+        } else {
+          throwError(state, "tag suffix cannot contain exclamation marks");
+        }
+      }
+      ch = state.input.charCodeAt(++state.position);
+    }
+    tagName = state.input.slice(_position, state.position);
+    if (PATTERN_FLOW_INDICATORS.test(tagName)) {
+      throwError(state, "tag suffix cannot contain flow indicator characters");
+    }
+  }
+  if (tagName && !PATTERN_TAG_URI.test(tagName)) {
+    throwError(state, "tag name cannot contain such characters: " + tagName);
+  }
+  try {
+    tagName = decodeURIComponent(tagName);
+  } catch (err) {
+    throwError(state, "tag name is malformed: " + tagName);
+  }
+  if (isVerbatim) {
+    state.tag = tagName;
+  } else if (_hasOwnProperty$1.call(state.tagMap, tagHandle)) {
+    state.tag = state.tagMap[tagHandle] + tagName;
+  } else if (tagHandle === "!") {
+    state.tag = "!" + tagName;
+  } else if (tagHandle === "!!") {
+    state.tag = "tag:yaml.org,2002:" + tagName;
+  } else {
+    throwError(state, 'undeclared tag handle "' + tagHandle + '"');
+  }
+  return true;
+}
+function readAnchorProperty(state) {
+  var _position, ch;
+  ch = state.input.charCodeAt(state.position);
+  if (ch !== 38)
+    return false;
+  if (state.anchor !== null) {
+    throwError(state, "duplication of an anchor property");
+  }
+  ch = state.input.charCodeAt(++state.position);
+  _position = state.position;
+  while (ch !== 0 && !is_WS_OR_EOL(ch) && !is_FLOW_INDICATOR(ch)) {
+    ch = state.input.charCodeAt(++state.position);
+  }
+  if (state.position === _position) {
+    throwError(state, "name of an anchor node must contain at least one character");
+  }
+  state.anchor = state.input.slice(_position, state.position);
+  return true;
+}
+function readAlias(state) {
+  var _position, alias, ch;
+  ch = state.input.charCodeAt(state.position);
+  if (ch !== 42)
+    return false;
+  ch = state.input.charCodeAt(++state.position);
+  _position = state.position;
+  while (ch !== 0 && !is_WS_OR_EOL(ch) && !is_FLOW_INDICATOR(ch)) {
+    ch = state.input.charCodeAt(++state.position);
+  }
+  if (state.position === _position) {
+    throwError(state, "name of an alias node must contain at least one character");
+  }
+  alias = state.input.slice(_position, state.position);
+  if (!_hasOwnProperty$1.call(state.anchorMap, alias)) {
+    throwError(state, 'unidentified alias "' + alias + '"');
+  }
+  state.result = state.anchorMap[alias];
+  skipSeparationSpace(state, true, -1);
+  return true;
+}
+function composeNode(state, parentIndent, nodeContext, allowToSeek, allowCompact) {
+  var allowBlockStyles, allowBlockScalars, allowBlockCollections, indentStatus = 1, atNewLine = false, hasContent = false, typeIndex, typeQuantity, typeList, type2, flowIndent, blockIndent;
+  if (state.listener !== null) {
+    state.listener("open", state);
+  }
+  state.tag = null;
+  state.anchor = null;
+  state.kind = null;
+  state.result = null;
+  allowBlockStyles = allowBlockScalars = allowBlockCollections = CONTEXT_BLOCK_OUT === nodeContext || CONTEXT_BLOCK_IN === nodeContext;
+  if (allowToSeek) {
+    if (skipSeparationSpace(state, true, -1)) {
+      atNewLine = true;
+      if (state.lineIndent > parentIndent) {
+        indentStatus = 1;
+      } else if (state.lineIndent === parentIndent) {
+        indentStatus = 0;
+      } else if (state.lineIndent < parentIndent) {
+        indentStatus = -1;
+      }
+    }
+  }
+  if (indentStatus === 1) {
+    while (readTagProperty(state) || readAnchorProperty(state)) {
+      if (skipSeparationSpace(state, true, -1)) {
+        atNewLine = true;
+        allowBlockCollections = allowBlockStyles;
+        if (state.lineIndent > parentIndent) {
+          indentStatus = 1;
+        } else if (state.lineIndent === parentIndent) {
+          indentStatus = 0;
+        } else if (state.lineIndent < parentIndent) {
+          indentStatus = -1;
+        }
+      } else {
+        allowBlockCollections = false;
+      }
+    }
+  }
+  if (allowBlockCollections) {
+    allowBlockCollections = atNewLine || allowCompact;
+  }
+  if (indentStatus === 1 || CONTEXT_BLOCK_OUT === nodeContext) {
+    if (CONTEXT_FLOW_IN === nodeContext || CONTEXT_FLOW_OUT === nodeContext) {
+      flowIndent = parentIndent;
+    } else {
+      flowIndent = parentIndent + 1;
+    }
+    blockIndent = state.position - state.lineStart;
+    if (indentStatus === 1) {
+      if (allowBlockCollections && (readBlockSequence(state, blockIndent) || readBlockMapping(state, blockIndent, flowIndent)) || readFlowCollection(state, flowIndent)) {
+        hasContent = true;
+      } else {
+        if (allowBlockScalars && readBlockScalar(state, flowIndent) || readSingleQuotedScalar(state, flowIndent) || readDoubleQuotedScalar(state, flowIndent)) {
+          hasContent = true;
+        } else if (readAlias(state)) {
+          hasContent = true;
+          if (state.tag !== null || state.anchor !== null) {
+            throwError(state, "alias node should not have any properties");
+          }
+        } else if (readPlainScalar(state, flowIndent, CONTEXT_FLOW_IN === nodeContext)) {
+          hasContent = true;
+          if (state.tag === null) {
+            state.tag = "?";
+          }
+        }
+        if (state.anchor !== null) {
+          state.anchorMap[state.anchor] = state.result;
+        }
+      }
+    } else if (indentStatus === 0) {
+      hasContent = allowBlockCollections && readBlockSequence(state, blockIndent);
+    }
+  }
+  if (state.tag === null) {
+    if (state.anchor !== null) {
+      state.anchorMap[state.anchor] = state.result;
+    }
+  } else if (state.tag === "?") {
+    if (state.result !== null && state.kind !== "scalar") {
+      throwError(state, 'unacceptable node kind for !<?> tag; it should be "scalar", not "' + state.kind + '"');
+    }
+    for (typeIndex = 0, typeQuantity = state.implicitTypes.length; typeIndex < typeQuantity; typeIndex += 1) {
+      type2 = state.implicitTypes[typeIndex];
+      if (type2.resolve(state.result)) {
+        state.result = type2.construct(state.result);
+        state.tag = type2.tag;
+        if (state.anchor !== null) {
+          state.anchorMap[state.anchor] = state.result;
+        }
+        break;
+      }
+    }
+  } else if (state.tag !== "!") {
+    if (_hasOwnProperty$1.call(state.typeMap[state.kind || "fallback"], state.tag)) {
+      type2 = state.typeMap[state.kind || "fallback"][state.tag];
+    } else {
+      type2 = null;
+      typeList = state.typeMap.multi[state.kind || "fallback"];
+      for (typeIndex = 0, typeQuantity = typeList.length; typeIndex < typeQuantity; typeIndex += 1) {
+        if (state.tag.slice(0, typeList[typeIndex].tag.length) === typeList[typeIndex].tag) {
+          type2 = typeList[typeIndex];
+          break;
+        }
+      }
+    }
+    if (!type2) {
+      throwError(state, "unknown tag !<" + state.tag + ">");
+    }
+    if (state.result !== null && type2.kind !== state.kind) {
+      throwError(state, "unacceptable node kind for !<" + state.tag + '> tag; it should be "' + type2.kind + '", not "' + state.kind + '"');
+    }
+    if (!type2.resolve(state.result, state.tag)) {
+      throwError(state, "cannot resolve a node with !<" + state.tag + "> explicit tag");
+    } else {
+      state.result = type2.construct(state.result, state.tag);
+      if (state.anchor !== null) {
+        state.anchorMap[state.anchor] = state.result;
+      }
+    }
+  }
+  if (state.listener !== null) {
+    state.listener("close", state);
+  }
+  return state.tag !== null || state.anchor !== null || hasContent;
+}
+function readDocument(state) {
+  var documentStart = state.position, _position, directiveName, directiveArgs, hasDirectives = false, ch;
+  state.version = null;
+  state.checkLineBreaks = state.legacy;
+  state.tagMap = /* @__PURE__ */ Object.create(null);
+  state.anchorMap = /* @__PURE__ */ Object.create(null);
+  while ((ch = state.input.charCodeAt(state.position)) !== 0) {
+    skipSeparationSpace(state, true, -1);
+    ch = state.input.charCodeAt(state.position);
+    if (state.lineIndent > 0 || ch !== 37) {
+      break;
+    }
+    hasDirectives = true;
+    ch = state.input.charCodeAt(++state.position);
+    _position = state.position;
+    while (ch !== 0 && !is_WS_OR_EOL(ch)) {
+      ch = state.input.charCodeAt(++state.position);
+    }
+    directiveName = state.input.slice(_position, state.position);
+    directiveArgs = [];
+    if (directiveName.length < 1) {
+      throwError(state, "directive name must not be less than one character in length");
+    }
+    while (ch !== 0) {
+      while (is_WHITE_SPACE(ch)) {
+        ch = state.input.charCodeAt(++state.position);
+      }
+      if (ch === 35) {
+        do {
+          ch = state.input.charCodeAt(++state.position);
+        } while (ch !== 0 && !is_EOL(ch));
+        break;
+      }
+      if (is_EOL(ch))
+        break;
+      _position = state.position;
+      while (ch !== 0 && !is_WS_OR_EOL(ch)) {
+        ch = state.input.charCodeAt(++state.position);
+      }
+      directiveArgs.push(state.input.slice(_position, state.position));
+    }
+    if (ch !== 0)
+      readLineBreak(state);
+    if (_hasOwnProperty$1.call(directiveHandlers, directiveName)) {
+      directiveHandlers[directiveName](state, directiveName, directiveArgs);
+    } else {
+      throwWarning(state, 'unknown document directive "' + directiveName + '"');
+    }
+  }
+  skipSeparationSpace(state, true, -1);
+  if (state.lineIndent === 0 && state.input.charCodeAt(state.position) === 45 && state.input.charCodeAt(state.position + 1) === 45 && state.input.charCodeAt(state.position + 2) === 45) {
+    state.position += 3;
+    skipSeparationSpace(state, true, -1);
+  } else if (hasDirectives) {
+    throwError(state, "directives end mark is expected");
+  }
+  composeNode(state, state.lineIndent - 1, CONTEXT_BLOCK_OUT, false, true);
+  skipSeparationSpace(state, true, -1);
+  if (state.checkLineBreaks && PATTERN_NON_ASCII_LINE_BREAKS.test(state.input.slice(documentStart, state.position))) {
+    throwWarning(state, "non-ASCII line breaks are interpreted as content");
+  }
+  state.documents.push(state.result);
+  if (state.position === state.lineStart && testDocumentSeparator(state)) {
+    if (state.input.charCodeAt(state.position) === 46) {
+      state.position += 3;
+      skipSeparationSpace(state, true, -1);
+    }
+    return;
+  }
+  if (state.position < state.length - 1) {
+    throwError(state, "end of the stream or a document separator is expected");
+  } else {
+    return;
+  }
+}
+function loadDocuments(input, options2) {
+  input = String(input);
+  options2 = options2 || {};
+  if (input.length !== 0) {
+    if (input.charCodeAt(input.length - 1) !== 10 && input.charCodeAt(input.length - 1) !== 13) {
+      input += "\n";
+    }
+    if (input.charCodeAt(0) === 65279) {
+      input = input.slice(1);
+    }
+  }
+  var state = new State$1(input, options2);
+  var nullpos = input.indexOf("\0");
+  if (nullpos !== -1) {
+    state.position = nullpos;
+    throwError(state, "null byte is not allowed in input");
+  }
+  state.input += "\0";
+  while (state.input.charCodeAt(state.position) === 32) {
+    state.lineIndent += 1;
+    state.position += 1;
+  }
+  while (state.position < state.length - 1) {
+    readDocument(state);
+  }
+  return state.documents;
+}
+function loadAll$1(input, iterator, options2) {
+  if (iterator !== null && typeof iterator === "object" && typeof options2 === "undefined") {
+    options2 = iterator;
+    iterator = null;
+  }
+  var documents = loadDocuments(input, options2);
+  if (typeof iterator !== "function") {
+    return documents;
+  }
+  for (var index = 0, length = documents.length; index < length; index += 1) {
+    iterator(documents[index]);
+  }
+}
+function load$1(input, options2) {
+  var documents = loadDocuments(input, options2);
+  if (documents.length === 0) {
+    return void 0;
+  } else if (documents.length === 1) {
+    return documents[0];
+  }
+  throw new exception("expected a single document in the stream, but found more");
+}
+var loadAll_1 = loadAll$1;
+var load_1 = load$1;
+var loader = {
+  loadAll: loadAll_1,
+  load: load_1
+};
+var _toString = Object.prototype.toString;
+var _hasOwnProperty = Object.prototype.hasOwnProperty;
+var CHAR_BOM = 65279;
+var CHAR_TAB = 9;
+var CHAR_LINE_FEED = 10;
+var CHAR_CARRIAGE_RETURN = 13;
+var CHAR_SPACE = 32;
+var CHAR_EXCLAMATION = 33;
+var CHAR_DOUBLE_QUOTE = 34;
+var CHAR_SHARP = 35;
+var CHAR_PERCENT = 37;
+var CHAR_AMPERSAND = 38;
+var CHAR_SINGLE_QUOTE = 39;
+var CHAR_ASTERISK = 42;
+var CHAR_COMMA = 44;
+var CHAR_MINUS = 45;
+var CHAR_COLON = 58;
+var CHAR_EQUALS = 61;
+var CHAR_GREATER_THAN = 62;
+var CHAR_QUESTION = 63;
+var CHAR_COMMERCIAL_AT = 64;
+var CHAR_LEFT_SQUARE_BRACKET = 91;
+var CHAR_RIGHT_SQUARE_BRACKET = 93;
+var CHAR_GRAVE_ACCENT = 96;
+var CHAR_LEFT_CURLY_BRACKET = 123;
+var CHAR_VERTICAL_LINE = 124;
+var CHAR_RIGHT_CURLY_BRACKET = 125;
+var ESCAPE_SEQUENCES = {};
+ESCAPE_SEQUENCES[0] = "\\0";
+ESCAPE_SEQUENCES[7] = "\\a";
+ESCAPE_SEQUENCES[8] = "\\b";
+ESCAPE_SEQUENCES[9] = "\\t";
+ESCAPE_SEQUENCES[10] = "\\n";
+ESCAPE_SEQUENCES[11] = "\\v";
+ESCAPE_SEQUENCES[12] = "\\f";
+ESCAPE_SEQUENCES[13] = "\\r";
+ESCAPE_SEQUENCES[27] = "\\e";
+ESCAPE_SEQUENCES[34] = '\\"';
+ESCAPE_SEQUENCES[92] = "\\\\";
+ESCAPE_SEQUENCES[133] = "\\N";
+ESCAPE_SEQUENCES[160] = "\\_";
+ESCAPE_SEQUENCES[8232] = "\\L";
+ESCAPE_SEQUENCES[8233] = "\\P";
+var DEPRECATED_BOOLEANS_SYNTAX = [
+  "y",
+  "Y",
+  "yes",
+  "Yes",
+  "YES",
+  "on",
+  "On",
+  "ON",
+  "n",
+  "N",
+  "no",
+  "No",
+  "NO",
+  "off",
+  "Off",
+  "OFF"
+];
+var DEPRECATED_BASE60_SYNTAX = /^[-+]?[0-9_]+(?::[0-9_]+)+(?:\.[0-9_]*)?$/;
+function compileStyleMap(schema2, map2) {
+  var result, keys, index, length, tag, style, type2;
+  if (map2 === null)
+    return {};
+  result = {};
+  keys = Object.keys(map2);
+  for (index = 0, length = keys.length; index < length; index += 1) {
+    tag = keys[index];
+    style = String(map2[tag]);
+    if (tag.slice(0, 2) === "!!") {
+      tag = "tag:yaml.org,2002:" + tag.slice(2);
+    }
+    type2 = schema2.compiledTypeMap["fallback"][tag];
+    if (type2 && _hasOwnProperty.call(type2.styleAliases, style)) {
+      style = type2.styleAliases[style];
+    }
+    result[tag] = style;
+  }
+  return result;
+}
+function encodeHex(character) {
+  var string2, handle, length;
+  string2 = character.toString(16).toUpperCase();
+  if (character <= 255) {
+    handle = "x";
+    length = 2;
+  } else if (character <= 65535) {
+    handle = "u";
+    length = 4;
+  } else if (character <= 4294967295) {
+    handle = "U";
+    length = 8;
+  } else {
+    throw new exception("code point within a string may not be greater than 0xFFFFFFFF");
+  }
+  return "\\" + handle + common.repeat("0", length - string2.length) + string2;
+}
+var QUOTING_TYPE_SINGLE = 1;
+var QUOTING_TYPE_DOUBLE = 2;
+function State(options2) {
+  this.schema = options2["schema"] || _default;
+  this.indent = Math.max(1, options2["indent"] || 2);
+  this.noArrayIndent = options2["noArrayIndent"] || false;
+  this.skipInvalid = options2["skipInvalid"] || false;
+  this.flowLevel = common.isNothing(options2["flowLevel"]) ? -1 : options2["flowLevel"];
+  this.styleMap = compileStyleMap(this.schema, options2["styles"] || null);
+  this.sortKeys = options2["sortKeys"] || false;
+  this.lineWidth = options2["lineWidth"] || 80;
+  this.noRefs = options2["noRefs"] || false;
+  this.noCompatMode = options2["noCompatMode"] || false;
+  this.condenseFlow = options2["condenseFlow"] || false;
+  this.quotingType = options2["quotingType"] === '"' ? QUOTING_TYPE_DOUBLE : QUOTING_TYPE_SINGLE;
+  this.forceQuotes = options2["forceQuotes"] || false;
+  this.replacer = typeof options2["replacer"] === "function" ? options2["replacer"] : null;
+  this.implicitTypes = this.schema.compiledImplicit;
+  this.explicitTypes = this.schema.compiledExplicit;
+  this.tag = null;
+  this.result = "";
+  this.duplicates = [];
+  this.usedDuplicates = null;
+}
+function indentString(string2, spaces) {
+  var ind = common.repeat(" ", spaces), position = 0, next = -1, result = "", line, length = string2.length;
+  while (position < length) {
+    next = string2.indexOf("\n", position);
+    if (next === -1) {
+      line = string2.slice(position);
+      position = length;
+    } else {
+      line = string2.slice(position, next + 1);
+      position = next + 1;
+    }
+    if (line.length && line !== "\n")
+      result += ind;
+    result += line;
+  }
+  return result;
+}
+function generateNextLine(state, level) {
+  return "\n" + common.repeat(" ", state.indent * level);
+}
+function testImplicitResolving(state, str2) {
+  var index, length, type2;
+  for (index = 0, length = state.implicitTypes.length; index < length; index += 1) {
+    type2 = state.implicitTypes[index];
+    if (type2.resolve(str2)) {
+      return true;
+    }
+  }
+  return false;
+}
+function isWhitespace(c) {
+  return c === CHAR_SPACE || c === CHAR_TAB;
+}
+function isPrintable(c) {
+  return 32 <= c && c <= 126 || 161 <= c && c <= 55295 && c !== 8232 && c !== 8233 || 57344 <= c && c <= 65533 && c !== CHAR_BOM || 65536 <= c && c <= 1114111;
+}
+function isNsCharOrWhitespace(c) {
+  return isPrintable(c) && c !== CHAR_BOM && c !== CHAR_CARRIAGE_RETURN && c !== CHAR_LINE_FEED;
+}
+function isPlainSafe(c, prev, inblock) {
+  var cIsNsCharOrWhitespace = isNsCharOrWhitespace(c);
+  var cIsNsChar = cIsNsCharOrWhitespace && !isWhitespace(c);
+  return (inblock ? cIsNsCharOrWhitespace : cIsNsCharOrWhitespace && c !== CHAR_COMMA && c !== CHAR_LEFT_SQUARE_BRACKET && c !== CHAR_RIGHT_SQUARE_BRACKET && c !== CHAR_LEFT_CURLY_BRACKET && c !== CHAR_RIGHT_CURLY_BRACKET) && c !== CHAR_SHARP && !(prev === CHAR_COLON && !cIsNsChar) || isNsCharOrWhitespace(prev) && !isWhitespace(prev) && c === CHAR_SHARP || prev === CHAR_COLON && cIsNsChar;
+}
+function isPlainSafeFirst(c) {
+  return isPrintable(c) && c !== CHAR_BOM && !isWhitespace(c) && c !== CHAR_MINUS && c !== CHAR_QUESTION && c !== CHAR_COLON && c !== CHAR_COMMA && c !== CHAR_LEFT_SQUARE_BRACKET && c !== CHAR_RIGHT_SQUARE_BRACKET && c !== CHAR_LEFT_CURLY_BRACKET && c !== CHAR_RIGHT_CURLY_BRACKET && c !== CHAR_SHARP && c !== CHAR_AMPERSAND && c !== CHAR_ASTERISK && c !== CHAR_EXCLAMATION && c !== CHAR_VERTICAL_LINE && c !== CHAR_EQUALS && c !== CHAR_GREATER_THAN && c !== CHAR_SINGLE_QUOTE && c !== CHAR_DOUBLE_QUOTE && c !== CHAR_PERCENT && c !== CHAR_COMMERCIAL_AT && c !== CHAR_GRAVE_ACCENT;
+}
+function isPlainSafeLast(c) {
+  return !isWhitespace(c) && c !== CHAR_COLON;
+}
+function codePointAt(string2, pos) {
+  var first = string2.charCodeAt(pos), second;
+  if (first >= 55296 && first <= 56319 && pos + 1 < string2.length) {
+    second = string2.charCodeAt(pos + 1);
+    if (second >= 56320 && second <= 57343) {
+      return (first - 55296) * 1024 + second - 56320 + 65536;
+    }
+  }
+  return first;
+}
+function needIndentIndicator(string2) {
+  var leadingSpaceRe = /^\n* /;
+  return leadingSpaceRe.test(string2);
+}
+var STYLE_PLAIN = 1;
+var STYLE_SINGLE = 2;
+var STYLE_LITERAL = 3;
+var STYLE_FOLDED = 4;
+var STYLE_DOUBLE = 5;
+function chooseScalarStyle(string2, singleLineOnly, indentPerLevel, lineWidth, testAmbiguousType, quotingType, forceQuotes, inblock) {
+  var i;
+  var char = 0;
+  var prevChar = null;
+  var hasLineBreak = false;
+  var hasFoldableLine = false;
+  var shouldTrackWidth = lineWidth !== -1;
+  var previousLineBreak = -1;
+  var plain = isPlainSafeFirst(codePointAt(string2, 0)) && isPlainSafeLast(codePointAt(string2, string2.length - 1));
+  if (singleLineOnly || forceQuotes) {
+    for (i = 0; i < string2.length; char >= 65536 ? i += 2 : i++) {
+      char = codePointAt(string2, i);
+      if (!isPrintable(char)) {
+        return STYLE_DOUBLE;
+      }
+      plain = plain && isPlainSafe(char, prevChar, inblock);
+      prevChar = char;
+    }
+  } else {
+    for (i = 0; i < string2.length; char >= 65536 ? i += 2 : i++) {
+      char = codePointAt(string2, i);
+      if (char === CHAR_LINE_FEED) {
+        hasLineBreak = true;
+        if (shouldTrackWidth) {
+          hasFoldableLine = hasFoldableLine || i - previousLineBreak - 1 > lineWidth && string2[previousLineBreak + 1] !== " ";
+          previousLineBreak = i;
+        }
+      } else if (!isPrintable(char)) {
+        return STYLE_DOUBLE;
+      }
+      plain = plain && isPlainSafe(char, prevChar, inblock);
+      prevChar = char;
+    }
+    hasFoldableLine = hasFoldableLine || shouldTrackWidth && (i - previousLineBreak - 1 > lineWidth && string2[previousLineBreak + 1] !== " ");
+  }
+  if (!hasLineBreak && !hasFoldableLine) {
+    if (plain && !forceQuotes && !testAmbiguousType(string2)) {
+      return STYLE_PLAIN;
+    }
+    return quotingType === QUOTING_TYPE_DOUBLE ? STYLE_DOUBLE : STYLE_SINGLE;
+  }
+  if (indentPerLevel > 9 && needIndentIndicator(string2)) {
+    return STYLE_DOUBLE;
+  }
+  if (!forceQuotes) {
+    return hasFoldableLine ? STYLE_FOLDED : STYLE_LITERAL;
+  }
+  return quotingType === QUOTING_TYPE_DOUBLE ? STYLE_DOUBLE : STYLE_SINGLE;
+}
+function writeScalar(state, string2, level, iskey, inblock) {
+  state.dump = function() {
+    if (string2.length === 0) {
+      return state.quotingType === QUOTING_TYPE_DOUBLE ? '""' : "''";
+    }
+    if (!state.noCompatMode) {
+      if (DEPRECATED_BOOLEANS_SYNTAX.indexOf(string2) !== -1 || DEPRECATED_BASE60_SYNTAX.test(string2)) {
+        return state.quotingType === QUOTING_TYPE_DOUBLE ? '"' + string2 + '"' : "'" + string2 + "'";
+      }
+    }
+    var indent = state.indent * Math.max(1, level);
+    var lineWidth = state.lineWidth === -1 ? -1 : Math.max(Math.min(state.lineWidth, 40), state.lineWidth - indent);
+    var singleLineOnly = iskey || state.flowLevel > -1 && level >= state.flowLevel;
+    function testAmbiguity(string3) {
+      return testImplicitResolving(state, string3);
+    }
+    switch (chooseScalarStyle(
+      string2,
+      singleLineOnly,
+      state.indent,
+      lineWidth,
+      testAmbiguity,
+      state.quotingType,
+      state.forceQuotes && !iskey,
+      inblock
+    )) {
+      case STYLE_PLAIN:
+        return string2;
+      case STYLE_SINGLE:
+        return "'" + string2.replace(/'/g, "''") + "'";
+      case STYLE_LITERAL:
+        return "|" + blockHeader(string2, state.indent) + dropEndingNewline(indentString(string2, indent));
+      case STYLE_FOLDED:
+        return ">" + blockHeader(string2, state.indent) + dropEndingNewline(indentString(foldString(string2, lineWidth), indent));
+      case STYLE_DOUBLE:
+        return '"' + escapeString(string2) + '"';
+      default:
+        throw new exception("impossible error: invalid scalar style");
+    }
+  }();
+}
+function blockHeader(string2, indentPerLevel) {
+  var indentIndicator = needIndentIndicator(string2) ? String(indentPerLevel) : "";
+  var clip = string2[string2.length - 1] === "\n";
+  var keep = clip && (string2[string2.length - 2] === "\n" || string2 === "\n");
+  var chomp = keep ? "+" : clip ? "" : "-";
+  return indentIndicator + chomp + "\n";
+}
+function dropEndingNewline(string2) {
+  return string2[string2.length - 1] === "\n" ? string2.slice(0, -1) : string2;
+}
+function foldString(string2, width) {
+  var lineRe = /(\n+)([^\n]*)/g;
+  var result = function() {
+    var nextLF = string2.indexOf("\n");
+    nextLF = nextLF !== -1 ? nextLF : string2.length;
+    lineRe.lastIndex = nextLF;
+    return foldLine(string2.slice(0, nextLF), width);
+  }();
+  var prevMoreIndented = string2[0] === "\n" || string2[0] === " ";
+  var moreIndented;
+  var match;
+  while (match = lineRe.exec(string2)) {
+    var prefix = match[1], line = match[2];
+    moreIndented = line[0] === " ";
+    result += prefix + (!prevMoreIndented && !moreIndented && line !== "" ? "\n" : "") + foldLine(line, width);
+    prevMoreIndented = moreIndented;
+  }
+  return result;
+}
+function foldLine(line, width) {
+  if (line === "" || line[0] === " ")
+    return line;
+  var breakRe = / [^ ]/g;
+  var match;
+  var start = 0, end, curr = 0, next = 0;
+  var result = "";
+  while (match = breakRe.exec(line)) {
+    next = match.index;
+    if (next - start > width) {
+      end = curr > start ? curr : next;
+      result += "\n" + line.slice(start, end);
+      start = end + 1;
+    }
+    curr = next;
+  }
+  result += "\n";
+  if (line.length - start > width && curr > start) {
+    result += line.slice(start, curr) + "\n" + line.slice(curr + 1);
+  } else {
+    result += line.slice(start);
+  }
+  return result.slice(1);
+}
+function escapeString(string2) {
+  var result = "";
+  var char = 0;
+  var escapeSeq;
+  for (var i = 0; i < string2.length; char >= 65536 ? i += 2 : i++) {
+    char = codePointAt(string2, i);
+    escapeSeq = ESCAPE_SEQUENCES[char];
+    if (!escapeSeq && isPrintable(char)) {
+      result += string2[i];
+      if (char >= 65536)
+        result += string2[i + 1];
+    } else {
+      result += escapeSeq || encodeHex(char);
+    }
+  }
+  return result;
+}
+function writeFlowSequence(state, level, object) {
+  var _result = "", _tag = state.tag, index, length, value;
+  for (index = 0, length = object.length; index < length; index += 1) {
+    value = object[index];
+    if (state.replacer) {
+      value = state.replacer.call(object, String(index), value);
+    }
+    if (writeNode(state, level, value, false, false) || typeof value === "undefined" && writeNode(state, level, null, false, false)) {
+      if (_result !== "")
+        _result += "," + (!state.condenseFlow ? " " : "");
+      _result += state.dump;
+    }
+  }
+  state.tag = _tag;
+  state.dump = "[" + _result + "]";
+}
+function writeBlockSequence(state, level, object, compact) {
+  var _result = "", _tag = state.tag, index, length, value;
+  for (index = 0, length = object.length; index < length; index += 1) {
+    value = object[index];
+    if (state.replacer) {
+      value = state.replacer.call(object, String(index), value);
+    }
+    if (writeNode(state, level + 1, value, true, true, false, true) || typeof value === "undefined" && writeNode(state, level + 1, null, true, true, false, true)) {
+      if (!compact || _result !== "") {
+        _result += generateNextLine(state, level);
+      }
+      if (state.dump && CHAR_LINE_FEED === state.dump.charCodeAt(0)) {
+        _result += "-";
+      } else {
+        _result += "- ";
+      }
+      _result += state.dump;
+    }
+  }
+  state.tag = _tag;
+  state.dump = _result || "[]";
+}
+function writeFlowMapping(state, level, object) {
+  var _result = "", _tag = state.tag, objectKeyList = Object.keys(object), index, length, objectKey, objectValue, pairBuffer;
+  for (index = 0, length = objectKeyList.length; index < length; index += 1) {
+    pairBuffer = "";
+    if (_result !== "")
+      pairBuffer += ", ";
+    if (state.condenseFlow)
+      pairBuffer += '"';
+    objectKey = objectKeyList[index];
+    objectValue = object[objectKey];
+    if (state.replacer) {
+      objectValue = state.replacer.call(object, objectKey, objectValue);
+    }
+    if (!writeNode(state, level, objectKey, false, false)) {
+      continue;
+    }
+    if (state.dump.length > 1024)
+      pairBuffer += "? ";
+    pairBuffer += state.dump + (state.condenseFlow ? '"' : "") + ":" + (state.condenseFlow ? "" : " ");
+    if (!writeNode(state, level, objectValue, false, false)) {
+      continue;
+    }
+    pairBuffer += state.dump;
+    _result += pairBuffer;
+  }
+  state.tag = _tag;
+  state.dump = "{" + _result + "}";
+}
+function writeBlockMapping(state, level, object, compact) {
+  var _result = "", _tag = state.tag, objectKeyList = Object.keys(object), index, length, objectKey, objectValue, explicitPair, pairBuffer;
+  if (state.sortKeys === true) {
+    objectKeyList.sort();
+  } else if (typeof state.sortKeys === "function") {
+    objectKeyList.sort(state.sortKeys);
+  } else if (state.sortKeys) {
+    throw new exception("sortKeys must be a boolean or a function");
+  }
+  for (index = 0, length = objectKeyList.length; index < length; index += 1) {
+    pairBuffer = "";
+    if (!compact || _result !== "") {
+      pairBuffer += generateNextLine(state, level);
+    }
+    objectKey = objectKeyList[index];
+    objectValue = object[objectKey];
+    if (state.replacer) {
+      objectValue = state.replacer.call(object, objectKey, objectValue);
+    }
+    if (!writeNode(state, level + 1, objectKey, true, true, true)) {
+      continue;
+    }
+    explicitPair = state.tag !== null && state.tag !== "?" || state.dump && state.dump.length > 1024;
+    if (explicitPair) {
+      if (state.dump && CHAR_LINE_FEED === state.dump.charCodeAt(0)) {
+        pairBuffer += "?";
+      } else {
+        pairBuffer += "? ";
+      }
+    }
+    pairBuffer += state.dump;
+    if (explicitPair) {
+      pairBuffer += generateNextLine(state, level);
+    }
+    if (!writeNode(state, level + 1, objectValue, true, explicitPair)) {
+      continue;
+    }
+    if (state.dump && CHAR_LINE_FEED === state.dump.charCodeAt(0)) {
+      pairBuffer += ":";
+    } else {
+      pairBuffer += ": ";
+    }
+    pairBuffer += state.dump;
+    _result += pairBuffer;
+  }
+  state.tag = _tag;
+  state.dump = _result || "{}";
+}
+function detectType(state, object, explicit) {
+  var _result, typeList, index, length, type2, style;
+  typeList = explicit ? state.explicitTypes : state.implicitTypes;
+  for (index = 0, length = typeList.length; index < length; index += 1) {
+    type2 = typeList[index];
+    if ((type2.instanceOf || type2.predicate) && (!type2.instanceOf || typeof object === "object" && object instanceof type2.instanceOf) && (!type2.predicate || type2.predicate(object))) {
+      if (explicit) {
+        if (type2.multi && type2.representName) {
+          state.tag = type2.representName(object);
+        } else {
+          state.tag = type2.tag;
+        }
+      } else {
+        state.tag = "?";
+      }
+      if (type2.represent) {
+        style = state.styleMap[type2.tag] || type2.defaultStyle;
+        if (_toString.call(type2.represent) === "[object Function]") {
+          _result = type2.represent(object, style);
+        } else if (_hasOwnProperty.call(type2.represent, style)) {
+          _result = type2.represent[style](object, style);
+        } else {
+          throw new exception("!<" + type2.tag + '> tag resolver accepts not "' + style + '" style');
+        }
+        state.dump = _result;
+      }
+      return true;
+    }
+  }
+  return false;
+}
+function writeNode(state, level, object, block, compact, iskey, isblockseq) {
+  state.tag = null;
+  state.dump = object;
+  if (!detectType(state, object, false)) {
+    detectType(state, object, true);
+  }
+  var type2 = _toString.call(state.dump);
+  var inblock = block;
+  var tagStr;
+  if (block) {
+    block = state.flowLevel < 0 || state.flowLevel > level;
+  }
+  var objectOrArray = type2 === "[object Object]" || type2 === "[object Array]", duplicateIndex, duplicate;
+  if (objectOrArray) {
+    duplicateIndex = state.duplicates.indexOf(object);
+    duplicate = duplicateIndex !== -1;
+  }
+  if (state.tag !== null && state.tag !== "?" || duplicate || state.indent !== 2 && level > 0) {
+    compact = false;
+  }
+  if (duplicate && state.usedDuplicates[duplicateIndex]) {
+    state.dump = "*ref_" + duplicateIndex;
+  } else {
+    if (objectOrArray && duplicate && !state.usedDuplicates[duplicateIndex]) {
+      state.usedDuplicates[duplicateIndex] = true;
+    }
+    if (type2 === "[object Object]") {
+      if (block && Object.keys(state.dump).length !== 0) {
+        writeBlockMapping(state, level, state.dump, compact);
+        if (duplicate) {
+          state.dump = "&ref_" + duplicateIndex + state.dump;
+        }
+      } else {
+        writeFlowMapping(state, level, state.dump);
+        if (duplicate) {
+          state.dump = "&ref_" + duplicateIndex + " " + state.dump;
+        }
+      }
+    } else if (type2 === "[object Array]") {
+      if (block && state.dump.length !== 0) {
+        if (state.noArrayIndent && !isblockseq && level > 0) {
+          writeBlockSequence(state, level - 1, state.dump, compact);
+        } else {
+          writeBlockSequence(state, level, state.dump, compact);
+        }
+        if (duplicate) {
+          state.dump = "&ref_" + duplicateIndex + state.dump;
+        }
+      } else {
+        writeFlowSequence(state, level, state.dump);
+        if (duplicate) {
+          state.dump = "&ref_" + duplicateIndex + " " + state.dump;
+        }
+      }
+    } else if (type2 === "[object String]") {
+      if (state.tag !== "?") {
+        writeScalar(state, state.dump, level, iskey, inblock);
+      }
+    } else if (type2 === "[object Undefined]") {
+      return false;
+    } else {
+      if (state.skipInvalid)
+        return false;
+      throw new exception("unacceptable kind of an object to dump " + type2);
+    }
+    if (state.tag !== null && state.tag !== "?") {
+      tagStr = encodeURI(
+        state.tag[0] === "!" ? state.tag.slice(1) : state.tag
+      ).replace(/!/g, "%21");
+      if (state.tag[0] === "!") {
+        tagStr = "!" + tagStr;
+      } else if (tagStr.slice(0, 18) === "tag:yaml.org,2002:") {
+        tagStr = "!!" + tagStr.slice(18);
+      } else {
+        tagStr = "!<" + tagStr + ">";
+      }
+      state.dump = tagStr + " " + state.dump;
+    }
+  }
+  return true;
+}
+function getDuplicateReferences(object, state) {
+  var objects = [], duplicatesIndexes = [], index, length;
+  inspectNode(object, objects, duplicatesIndexes);
+  for (index = 0, length = duplicatesIndexes.length; index < length; index += 1) {
+    state.duplicates.push(objects[duplicatesIndexes[index]]);
+  }
+  state.usedDuplicates = new Array(length);
+}
+function inspectNode(object, objects, duplicatesIndexes) {
+  var objectKeyList, index, length;
+  if (object !== null && typeof object === "object") {
+    index = objects.indexOf(object);
+    if (index !== -1) {
+      if (duplicatesIndexes.indexOf(index) === -1) {
+        duplicatesIndexes.push(index);
+      }
+    } else {
+      objects.push(object);
+      if (Array.isArray(object)) {
+        for (index = 0, length = object.length; index < length; index += 1) {
+          inspectNode(object[index], objects, duplicatesIndexes);
+        }
+      } else {
+        objectKeyList = Object.keys(object);
+        for (index = 0, length = objectKeyList.length; index < length; index += 1) {
+          inspectNode(object[objectKeyList[index]], objects, duplicatesIndexes);
+        }
+      }
+    }
+  }
+}
+function dump$1(input, options2) {
+  options2 = options2 || {};
+  var state = new State(options2);
+  if (!state.noRefs)
+    getDuplicateReferences(input, state);
+  var value = input;
+  if (state.replacer) {
+    value = state.replacer.call({ "": value }, "", value);
+  }
+  if (writeNode(state, 0, value, true, true))
+    return state.dump + "\n";
+  return "";
+}
+var dump_1 = dump$1;
+var dumper = {
+  dump: dump_1
+};
+function renamed(from, to) {
+  return function() {
+    throw new Error("Function yaml." + from + " is removed in js-yaml 4. Use yaml." + to + " instead, which is now safe by default.");
+  };
+}
+var load = loader.load;
+var loadAll = loader.loadAll;
+var dump = dumper.dump;
+var YAMLException = exception;
+var safeLoad = renamed("safeLoad", "load");
+var safeLoadAll = renamed("safeLoadAll", "loadAll");
+var safeDump = renamed("safeDump", "dump");
+
+// src/notes/base.ts
 var ParseConfig = class {
   static fromResult(result) {
     return __async(this, null, function* () {
       const configStr = result.config || "";
-      const configObj = (0, import_js_yaml.load)(configStr) || { id: null };
+      const configObj = load(configStr) || { id: null };
       const validatedConfig = yield ParseConfigSchema.validate(configObj);
       return validatedConfig;
     });
@@ -20888,16 +20931,16 @@ var NoteBase = class {
     if (this.isCloze) {
       if (this.config.enhancedCloze) {
         return {
-          Content: fields[NoteField.Frontlike] || "",
-          "Note": fields[NoteField.Backlike] || ""
+          Content: fields[0 /* Frontlike */] || "",
+          "Note": fields[1 /* Backlike */] || ""
         };
       }
       return {
-        Text: fields[NoteField.Frontlike] || "",
-        "Back Extra": fields[NoteField.Backlike] || ""
+        Text: fields[0 /* Frontlike */] || "",
+        "Back Extra": fields[1 /* Backlike */] || ""
       };
     }
-    return { Front: fields[NoteField.Frontlike] || "", Back: fields[NoteField.Backlike] || "" };
+    return { Front: fields[0 /* Frontlike */] || "", Back: fields[1 /* Backlike */] || "" };
   }
   normaliseNoteInfoFields(noteInfo) {
     var _a, _b;
@@ -20906,8 +20949,8 @@ var NoteBase = class {
     const frontlike = isCloze ? isEnhancedCloze ? "Content" : "Text" : "Front";
     const backlike = isCloze ? isEnhancedCloze ? "Note" : "Back Extra" : "Back";
     return {
-      [NoteField.Frontlike]: ((_a = noteInfo.fields[frontlike]) == null ? void 0 : _a.value) || "",
-      [NoteField.Backlike]: ((_b = noteInfo.fields[backlike]) == null ? void 0 : _b.value) || ""
+      [0 /* Frontlike */]: ((_a = noteInfo.fields[frontlike]) == null ? void 0 : _a.value) || "",
+      [1 /* Backlike */]: ((_b = noteInfo.fields[backlike]) == null ? void 0 : _b.value) || ""
     };
   }
   shouldUpdateFile() {
@@ -20937,12 +20980,15 @@ var NoteBase = class {
       return this.scopedConfig.deckName;
     }
     if (this.metadata) {
-      const metaDeckName = (_d = (_c = this.metadata) == null ? void 0 : _c.frontmatter) == null ? void 0 : _d["anki_deck"];
+      const metaDeckName = (_d = (_c = this.metadata) == null ? void 0 : _c.frontmatter) == null ? void 0 : _d["deckName"];
       if (metaDeckName) {
         return metaDeckName;
       }
     }
-    const resolvedDefaultDeck = getDefaultDeckForFolder(this.source.file.parent, plugin.settings.defaultDeckMaps);
+    const resolvedDefaultDeck = getDefaultDeckForFolder(
+      this.source.file.parent,
+      plugin.settings.defaultDeckMaps
+    );
     if (resolvedDefaultDeck) {
       return resolvedDefaultDeck;
     }
@@ -20952,7 +20998,7 @@ var NoteBase = class {
     var _a, _b, _c;
     let noteTags;
     if (this.metadata) {
-      noteTags = (_b = (_a = this.metadata) == null ? void 0 : _a.frontmatter) == null ? void 0 : _b["anki_tags"];
+      noteTags = (_b = (_a = this.metadata) == null ? void 0 : _a.frontmatter) == null ? void 0 : _b["tags"];
     }
     return [
       plugin.settings.tagInAnki,
@@ -20969,7 +21015,7 @@ function hasID(note) {
   return note.id !== null;
 }
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/utils/encoding.ts
+// src/utils/encoding.ts
 function arrayBufferToBase64(buffer) {
   return new Promise((resolve, reject) => {
     const blob = new Blob([buffer]);
@@ -20994,16 +21040,7 @@ function fileTypeToMediaType(fileType) {
   }
 }
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/entities/note.ts
-var NoteField = /* @__PURE__ */ ((NoteField2) => {
-  NoteField2[NoteField2["Frontlike"] = 0] = "Frontlike";
-  NoteField2[NoteField2["Backlike"] = 1] = "Backlike";
-  NoteField2[NoteField2["Title"] = 2] = "Title";
-  NoteField2[NoteField2["Author"] = 3] = "Author";
-  NoteField2[NoteField2["Sequence"] = 4] = "Sequence";
-  NoteField2[NoteField2["Prompt"] = 5] = "Prompt";
-  return NoteField2;
-})(NoteField || {});
+// src/entities/note.ts
 var FragmentProcessingResult = class extends Array {
   renderAsText() {
     let text = "";
@@ -21028,10 +21065,10 @@ var NoteAction = /* @__PURE__ */ ((NoteAction2) => {
   return NoteAction2;
 })(NoteAction || {});
 var Media2 = class {
-  constructor(filename, path, type, data, fields) {
+  constructor(filename, path, type2, data, fields) {
     this.filename = filename;
     this.path = path;
-    this.type = type;
+    this.type = type2;
     this.data = data;
     this.fields = fields;
   }
@@ -21042,7 +21079,7 @@ var Media2 = class {
   }
 };
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/grammars/Lib.pegjs
+// src/grammars/Lib.pegjs
 var Lib_default = `_ = [ \\f\\r\\t\\v\\u00a0\\u1680\\u2000-\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000\\ufeff]
 Newline = '\\n'
 Integer = digits:[0-9]+ {return parseInt(digits.join("", 10))}
@@ -21081,7 +21118,7 @@ AnkiCodeBlock =
     {return linesToStr(content)}
 `;
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/consts.ts
+// src/consts.ts
 var LATEST_MIGRATION_VERSION = 0;
 var PLUGIN_NAME = "AnkiBridge";
 var DOCUMENTATION_URL = "https://jeppeklitgaard.github.io/ObsidianAnkiBridge/";
@@ -21089,16 +21126,16 @@ var GRAMMAR_LIBRARIES = {
   lib: Lib_default
 };
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/services/anki.ts
-var import_lodash = __toModule(require_lodash());
+// src/services/anki.ts
+var import_lodash = __toESM(require_lodash());
 var _Anki = class {
   constructor(app, plugin) {
     this.app = app;
     this.plugin = plugin;
   }
   getHostString() {
-    const str = `http://${this.plugin.settings.ankiConnectAddress}:${this.plugin.settings.ankiConnectPort}`;
-    return str;
+    const str2 = `http://${this.plugin.settings.ankiConnectAddress}:${this.plugin.settings.ankiConnectPort}`;
+    return str2;
   }
   cardsInfo(cardIds) {
     return __async(this, null, function* () {
@@ -21262,22 +21299,29 @@ var _Anki = class {
 var Anki = _Anki;
 Anki.version = 6;
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/notes/basic.ts
+// src/notes/basic.ts
 var BasicNote = class extends NoteBase {
   constructor(blueprint, id, frontlike, backlike, source, sourceText, {
     config,
     medias = [],
     isCloze = false
   }) {
-    super(blueprint, id, { [NoteField.Frontlike]: frontlike, [NoteField.Backlike]: backlike }, source, sourceText, {
-      config,
-      medias,
-      isCloze
-    });
+    super(
+      blueprint,
+      id,
+      { [0 /* Frontlike */]: frontlike, [1 /* Backlike */]: backlike },
+      source,
+      sourceText,
+      {
+        config,
+        medias,
+        isCloze
+      }
+    );
   }
 };
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/notes/recite.ts
+// src/notes/recite.ts
 var ReciteNote = class extends NoteBase {
   constructor(blueprint, id, {
     line,
@@ -21290,46 +21334,53 @@ var ReciteNote = class extends NoteBase {
     config,
     medias = []
   }) {
-    super(blueprint, id, {
-      [NoteField.Frontlike]: line,
-      [NoteField.Backlike]: context,
-      [NoteField.Title]: title,
-      [NoteField.Author]: author,
-      [NoteField.Sequence]: sequence,
-      [NoteField.Prompt]: prompt
-    }, source, sourceText, {
-      config,
-      medias,
-      isCloze: false
-    });
+    super(
+      blueprint,
+      id,
+      {
+        [0 /* Frontlike */]: line,
+        [1 /* Backlike */]: context,
+        [2 /* Title */]: title,
+        [3 /* Author */]: author,
+        [4 /* Sequence */]: sequence,
+        [5 /* Prompt */]: prompt
+      },
+      source,
+      sourceText,
+      {
+        config,
+        medias,
+        isCloze: false
+      }
+    );
   }
   getModelName() {
     return "LPCG 1.0";
   }
   fieldsToAnkiFields(fields) {
     return {
-      Line: fields[NoteField.Frontlike] || "",
-      Context: fields[NoteField.Backlike] || "",
-      Title: fields[NoteField.Title] || "",
-      Author: fields[NoteField.Author] || "",
-      Sequence: fields[NoteField.Sequence] || "",
-      Prompt: fields[NoteField.Prompt] || ""
+      Line: fields[0 /* Frontlike */] || "",
+      Context: fields[1 /* Backlike */] || "",
+      Title: fields[2 /* Title */] || "",
+      Author: fields[3 /* Author */] || "",
+      Sequence: fields[4 /* Sequence */] || "",
+      Prompt: fields[5 /* Prompt */] || ""
     };
   }
   normaliseNoteInfoFields(noteInfo) {
     var _a, _b, _c, _d, _e, _f;
     return {
-      [NoteField.Frontlike]: ((_a = noteInfo.fields["Line"]) == null ? void 0 : _a.value) || "",
-      [NoteField.Backlike]: ((_b = noteInfo.fields["Context"]) == null ? void 0 : _b.value) || "",
-      [NoteField.Title]: ((_c = noteInfo.fields["Title"]) == null ? void 0 : _c.value) || "",
-      [NoteField.Author]: ((_d = noteInfo.fields["Author"]) == null ? void 0 : _d.value) || "",
-      [NoteField.Sequence]: ((_e = noteInfo.fields["Sequence"]) == null ? void 0 : _e.value) || "",
-      [NoteField.Prompt]: ((_f = noteInfo.fields["Prompt"]) == null ? void 0 : _f.value) || ""
+      [0 /* Frontlike */]: ((_a = noteInfo.fields["Line"]) == null ? void 0 : _a.value) || "",
+      [1 /* Backlike */]: ((_b = noteInfo.fields["Context"]) == null ? void 0 : _b.value) || "",
+      [2 /* Title */]: ((_c = noteInfo.fields["Title"]) == null ? void 0 : _c.value) || "",
+      [3 /* Author */]: ((_d = noteInfo.fields["Author"]) == null ? void 0 : _d.value) || "",
+      [4 /* Sequence */]: ((_e = noteInfo.fields["Sequence"]) == null ? void 0 : _e.value) || "",
+      [5 /* Prompt */]: ((_f = noteInfo.fields["Prompt"]) == null ? void 0 : _f.value) || ""
     };
   }
 };
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/processors/base.ts
+// src/processors/base.ts
 var Processor = class {
   constructor(app, plugin) {
     this.app = app;
@@ -21338,15 +21389,15 @@ var Processor = class {
 };
 Processor.configurable = true;
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/processors/postprocessors/base.ts
+// src/processors/postprocessors/base.ts
 var Postprocessor = class extends Processor {
 };
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/processors/postprocessors/cloze.ts
+// src/processors/postprocessors/cloze.ts
 var ClozePostprocessor = class extends Postprocessor {
   postprocess(note, domField, ctx) {
     return __async(this, null, function* () {
-      if (ctx.noteField != NoteField.Frontlike || note.config.cloze === false) {
+      if (ctx.noteField != 0 /* Frontlike */ || note.config.cloze === false) {
         return;
       }
       let clozeIterator = 1;
@@ -21361,7 +21412,9 @@ var ClozePostprocessor = class extends Postprocessor {
       if (this.plugin.settings.boldToCloze) {
         targets = targets.concat(Array.from(domField.content.querySelectorAll("strong")));
       }
-      const reservedClozeIndices = new Set(targets.map((target) => /(?:\[c(\d+)\])$/.exec(target.textContent || "")).filter((match) => match !== null).map((match) => Number(match[1])));
+      const reservedClozeIndices = new Set(
+        targets.map((target) => /(?:\[c(\d+)\])$/.exec(target.textContent || "")).filter((match) => match !== null).map((match) => Number(match[1]))
+      );
       targets.forEach((target) => {
         const content = target.textContent;
         const mat = /(?:\[c(\d+)\])$/.exec(content || "");
@@ -21394,7 +21447,7 @@ ClozePostprocessor.displayName = "ClozePostprocessor";
 ClozePostprocessor.weight = 70;
 ClozePostprocessor.defaultConfigState = true;
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/processors/postprocessors/debug.ts
+// src/processors/postprocessors/debug.ts
 var DebugPostprocessor = class extends Postprocessor {
   postprocess(note, domField, ctx) {
     return __async(this, null, function* () {
@@ -21416,8 +21469,8 @@ FinalDebugPostprocessor.id = "FinalDebugPostprocessor";
 FinalDebugPostprocessor.displayName = "FinalDebugPostprocessor";
 FinalDebugPostprocessor.weight = 100;
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/utils/index.ts
-var import_obsidian2 = __toModule(require("obsidian"));
+// src/utils/index.ts
+var import_obsidian2 = require("obsidian");
 function escapeMarkdown(string2, skips = []) {
   const replacements = [
     [/\*/g, "\\*", "asterisks"],
@@ -21467,7 +21520,7 @@ function markdownLinkToTextAndHref(vault, markdownLink) {
   };
 }
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/processors/postprocessors/link.ts
+// src/processors/postprocessors/link.ts
 var LinkPostprocessor = class extends Postprocessor {
   postprocess(note, domField, ctx) {
     return __async(this, null, function* () {
@@ -21478,7 +21531,10 @@ var LinkPostprocessor = class extends Postprocessor {
         link.removeAttribute("data-href");
         link.removeAttribute("aria-label");
         link.removeAttribute("rel");
-        link.setAttribute("href", renderObsidianURIOpen(this.app.vault, link.getAttribute("href") || void 0));
+        link.setAttribute(
+          "href",
+          renderObsidianURIOpen(this.app.vault, link.getAttribute("href") || void 0)
+        );
       });
     });
   }
@@ -21488,20 +21544,23 @@ LinkPostprocessor.displayName = "LinkPostprocessor";
 LinkPostprocessor.weight = 70;
 LinkPostprocessor.defaultConfigState = true;
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/processors/postprocessors/link-to-source.ts
+// src/processors/postprocessors/link-to-source.ts
 var LinkToSourcePostprocessor = class extends Postprocessor {
   postprocess(note, domField, ctx) {
     return __async(this, null, function* () {
       const isReciteModel = note.getModelName() === "LPCG 1.0";
       const noteField = Number(ctx.noteField);
       if (isReciteModel) {
-        if (noteField !== NoteField.Frontlike) {
+        if (noteField !== 0 /* Frontlike */) {
           return;
         }
-      } else if (noteField === NoteField.Backlike) {
+      } else if (noteField === 1 /* Backlike */) {
         return;
       }
-      const link = markdownLinkToTextAndHref(this.app.vault, `[[${note.source.file.name}|Source]]`);
+      const link = markdownLinkToTextAndHref(
+        this.app.vault,
+        `[[${note.source.file.name}|Source]]`
+      );
       const anchor = createEl("a");
       anchor.text = link.text;
       anchor.href = link.uri;
@@ -21517,12 +21576,10 @@ LinkToSourcePostprocessor.displayName = "LinkToSourcePostprocessor";
 LinkToSourcePostprocessor.weight = 90;
 LinkToSourcePostprocessor.defaultConfigState = true;
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/strtok3-npm-7.0.0-alpha.7-449148f894-364f11278c.zip/node_modules/strtok3/lib/FsPromise.js
-var import_node_fs = __toModule(require("fs"));
-var pathExists = import_node_fs.default.existsSync;
-var createReadStream = import_node_fs.default.createReadStream;
+// node_modules/.pnpm/strtok3@7.1.1/node_modules/strtok3/lib/index.js
+var import_promises2 = require("fs/promises");
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peek-readable-npm-5.0.0-alpha.5-290fcea102-cab949ed45.zip/node_modules/peek-readable/lib/EndOfFileStream.js
+// node_modules/.pnpm/peek-readable@5.4.2/node_modules/peek-readable/lib/EndOfStreamError.js
 var defaultMessages = "End-Of-Stream";
 var EndOfStreamError = class extends Error {
   constructor() {
@@ -21530,11 +21587,7 @@ var EndOfStreamError = class extends Error {
   }
 };
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/peek-readable-npm-5.0.0-alpha.5-290fcea102-cab949ed45.zip/node_modules/peek-readable/lib/StreamReader.js
-var maxStreamReadSize = 1 * 1024 * 1024;
-
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/strtok3-npm-7.0.0-alpha.7-449148f894-364f11278c.zip/node_modules/strtok3/lib/AbstractTokenizer.js
-var import_node_buffer = __toModule(require("buffer"));
+// node_modules/.pnpm/strtok3@7.1.1/node_modules/strtok3/lib/AbstractTokenizer.js
 var AbstractTokenizer = class {
   constructor(fileInfo) {
     this.position = 0;
@@ -21543,7 +21596,7 @@ var AbstractTokenizer = class {
   }
   readToken(_0) {
     return __async(this, arguments, function* (token, position = this.position) {
-      const uint8Array = import_node_buffer.Buffer.alloc(token.len);
+      const uint8Array = new Uint8Array(token.len);
       const len = yield this.readBuffer(uint8Array, { position });
       if (len < token.len)
         throw new EndOfStreamError();
@@ -21552,7 +21605,7 @@ var AbstractTokenizer = class {
   }
   peekToken(_0) {
     return __async(this, arguments, function* (token, position = this.position) {
-      const uint8Array = import_node_buffer.Buffer.alloc(token.len);
+      const uint8Array = new Uint8Array(token.len);
       const len = yield this.peekBuffer(uint8Array, { position });
       if (len < token.len)
         throw new EndOfStreamError();
@@ -21613,7 +21666,7 @@ var AbstractTokenizer = class {
   }
 };
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/strtok3-npm-7.0.0-alpha.7-449148f894-364f11278c.zip/node_modules/strtok3/lib/BufferTokenizer.js
+// node_modules/.pnpm/strtok3@7.1.1/node_modules/strtok3/lib/BufferTokenizer.js
 var BufferTokenizer = class extends AbstractTokenizer {
   constructor(uint8Array, fileInfo) {
     super(fileInfo);
@@ -21651,17 +21704,20 @@ var BufferTokenizer = class extends AbstractTokenizer {
   }
 };
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/strtok3-npm-7.0.0-alpha.7-449148f894-364f11278c.zip/node_modules/strtok3/lib/core.js
+// node_modules/.pnpm/strtok3@7.1.1/node_modules/strtok3/lib/core.js
 function fromBuffer(uint8Array, fileInfo) {
   return new BufferTokenizer(uint8Array, fileInfo);
 }
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/file-type-npm-17.1.1-1243a4bed9-fb52169bbb.zip/node_modules/file-type/core.js
-var import_node_buffer3 = __toModule(require("buffer"));
+// node_modules/.pnpm/strtok3@7.1.1/node_modules/strtok3/lib/FileTokenizer.js
+var import_promises = require("fs/promises");
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/token-types-npm-5.0.0-alpha.2-1fdc0995e7-ee23eeed6f.zip/node_modules/token-types/lib/index.js
-var ieee754 = __toModule(require_ieee754());
-var import_node_buffer2 = __toModule(require("buffer"));
+// node_modules/.pnpm/file-type@17.1.6/node_modules/file-type/core.js
+var import_node_buffer2 = require("buffer");
+
+// node_modules/.pnpm/token-types@5.0.1/node_modules/token-types/lib/index.js
+var ieee754 = __toESM(require_ieee754(), 1);
+var import_node_buffer = require("buffer");
 function dv(array) {
   return new DataView(array.buffer, array.byteOffset);
 }
@@ -21741,7 +21797,7 @@ var StringType = class {
     this.encoding = encoding;
   }
   get(uint8Array, offset) {
-    return import_node_buffer2.Buffer.from(uint8Array).toString(this.encoding, offset, offset + this.len);
+    return import_node_buffer.Buffer.from(uint8Array).toString(this.encoding, offset, offset + this.len);
   }
 };
 var AnsiStringType = class {
@@ -21749,11 +21805,11 @@ var AnsiStringType = class {
     this.len = len;
   }
   static decode(buffer, offset, until) {
-    let str = "";
+    let str2 = "";
     for (let i = offset; i < until; ++i) {
-      str += AnsiStringType.codePointToString(AnsiStringType.singleByteDecoder(buffer[i]));
+      str2 += AnsiStringType.codePointToString(AnsiStringType.singleByteDecoder(buffer[i]));
     }
-    return str;
+    return str2;
   }
   static inRange(a, min, max) {
     return min <= a && a <= max;
@@ -21911,7 +21967,7 @@ AnsiStringType.windows1252 = [
   255
 ];
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/file-type-npm-17.1.1-1243a4bed9-fb52169bbb.zip/node_modules/file-type/util.js
+// node_modules/.pnpm/file-type@17.1.6/node_modules/file-type/util.js
 function stringToBytes(string2) {
   return [...string2].map((character) => character.charCodeAt(0));
 }
@@ -21934,7 +21990,7 @@ var uint32SyncSafeToken = {
   len: 4
 };
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/file-type-npm-17.1.1-1243a4bed9-fb52169bbb.zip/node_modules/file-type/supported.js
+// node_modules/.pnpm/file-type@17.1.6/node_modules/file-type/supported.js
 var extensions = [
   "jpg",
   "png",
@@ -22213,7 +22269,7 @@ var mimeTypes = [
   "application/zstd"
 ];
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/.yarn/cache/file-type-npm-17.1.1-1243a4bed9-fb52169bbb.zip/node_modules/file-type/core.js
+// node_modules/.pnpm/file-type@17.1.6/node_modules/file-type/core.js
 var minimumBytes = 4100;
 function fileTypeFromBuffer(input) {
   return __async(this, null, function* () {
@@ -22262,10 +22318,7 @@ var FileTypeParser = class {
   }
   parse(tokenizer) {
     return __async(this, null, function* () {
-      this.buffer = import_node_buffer3.Buffer.alloc(minimumBytes);
-      if (tokenizer.fileInfo.size === void 0) {
-        tokenizer.fileInfo.size = Number.MAX_SAFE_INTEGER;
-      }
+      this.buffer = import_node_buffer2.Buffer.alloc(minimumBytes);
       if (tokenizer.fileInfo.size === void 0) {
         tokenizer.fileInfo.size = Number.MAX_SAFE_INTEGER;
       }
@@ -22313,6 +22366,10 @@ var FileTypeParser = class {
           ext: "Z",
           mime: "application/x-compress"
         };
+      }
+      if (this.check([239, 187, 191])) {
+        this.tokenizer.ignore(3);
+        return this.parse(tokenizer);
       }
       if (this.check([71, 73, 70])) {
         return {
@@ -22423,8 +22480,8 @@ var FileTypeParser = class {
               };
             }
             if (zipHeader.filename.endsWith(".rels") || zipHeader.filename.endsWith(".xml")) {
-              const type = zipHeader.filename.split("/")[0];
-              switch (type) {
+              const type2 = zipHeader.filename.split("/")[0];
+              switch (type2) {
                 case "_rels":
                   break;
                 case "word":
@@ -22459,7 +22516,7 @@ var FileTypeParser = class {
               };
             }
             if (zipHeader.filename === "mimetype" && zipHeader.compressedSize === zipHeader.uncompressedSize) {
-              const mimeType = yield tokenizer.readToken(new StringType(zipHeader.compressedSize, "utf-8"));
+              const mimeType = (yield tokenizer.readToken(new StringType(zipHeader.compressedSize, "utf-8"))).trim();
               switch (mimeType) {
                 case "application/epub+zip":
                   return {
@@ -22507,39 +22564,39 @@ var FileTypeParser = class {
       }
       if (this.checkString("OggS")) {
         yield tokenizer.ignore(28);
-        const type = import_node_buffer3.Buffer.alloc(8);
-        yield tokenizer.readBuffer(type);
-        if (_check(type, [79, 112, 117, 115, 72, 101, 97, 100])) {
+        const type2 = import_node_buffer2.Buffer.alloc(8);
+        yield tokenizer.readBuffer(type2);
+        if (_check(type2, [79, 112, 117, 115, 72, 101, 97, 100])) {
           return {
             ext: "opus",
             mime: "audio/opus"
           };
         }
-        if (_check(type, [128, 116, 104, 101, 111, 114, 97])) {
+        if (_check(type2, [128, 116, 104, 101, 111, 114, 97])) {
           return {
             ext: "ogv",
             mime: "video/ogg"
           };
         }
-        if (_check(type, [1, 118, 105, 100, 101, 111, 0])) {
+        if (_check(type2, [1, 118, 105, 100, 101, 111, 0])) {
           return {
             ext: "ogm",
             mime: "video/ogg"
           };
         }
-        if (_check(type, [127, 70, 76, 65, 67])) {
+        if (_check(type2, [127, 70, 76, 65, 67])) {
           return {
             ext: "oga",
             mime: "audio/ogg"
           };
         }
-        if (_check(type, [83, 112, 101, 101, 120, 32, 32])) {
+        if (_check(type2, [83, 112, 101, 101, 120, 32, 32])) {
           return {
             ext: "spx",
             mime: "audio/ogg"
           };
         }
-        if (_check(type, [1, 118, 111, 114, 98, 105, 115])) {
+        if (_check(type2, [1, 118, 111, 114, 98, 105, 115])) {
           return {
             ext: "ogg",
             mime: "audio/ogg"
@@ -22661,9 +22718,9 @@ var FileTypeParser = class {
       if (this.checkString("%PDF")) {
         yield tokenizer.ignore(1350);
         const maxBufferSize = 10 * 1024 * 1024;
-        const buffer = import_node_buffer3.Buffer.alloc(Math.min(maxBufferSize, tokenizer.fileInfo.size));
+        const buffer = import_node_buffer2.Buffer.alloc(Math.min(maxBufferSize, tokenizer.fileInfo.size));
         yield tokenizer.readBuffer(buffer, { mayBeLess: true });
-        if (buffer.includes(import_node_buffer3.Buffer.from("AIPrivateData"))) {
+        if (buffer.includes(import_node_buffer2.Buffer.from("AIPrivateData"))) {
           return {
             ext: "ai",
             mime: "application/postscript"
@@ -22704,11 +22761,11 @@ var FileTypeParser = class {
             const msb = yield tokenizer.peekNumber(UINT8);
             let mask = 128;
             let ic = 0;
-            while ((msb & mask) === 0) {
+            while ((msb & mask) === 0 && mask !== 0) {
               ++ic;
               mask >>= 1;
             }
-            const id = import_node_buffer3.Buffer.alloc(ic + 1);
+            const id = import_node_buffer2.Buffer.alloc(ic + 1);
             yield tokenizer.readBuffer(id);
             return id;
           });
@@ -22725,7 +22782,7 @@ var FileTypeParser = class {
             };
           });
         }
-        function readChildren(level, children) {
+        function readChildren(children) {
           return __async(this, null, function* () {
             while (children > 0) {
               const element = yield readElement();
@@ -22739,7 +22796,7 @@ var FileTypeParser = class {
           });
         }
         const re = yield readElement();
-        const docType = yield readChildren(1, re.len);
+        const docType = yield readChildren(re.len);
         switch (docType) {
           case "webm":
             return {
@@ -22982,12 +23039,6 @@ var FileTypeParser = class {
           mime: "video/quicktime"
         };
       }
-      if (this.check([239, 187, 191]) && this.checkString("<?xml", { offset: 3 })) {
-        return {
-          ext: "xml",
-          mime: "application/xml"
-        };
-      }
       if (this.check([73, 73, 82, 79, 8, 0, 0, 0, 24])) {
         return {
           ext: "orf",
@@ -23009,7 +23060,7 @@ var FileTypeParser = class {
       if (this.check([48, 38, 178, 117, 142, 102, 207, 17, 166, 217])) {
         function readHeader() {
           return __async(this, null, function* () {
-            const guid = import_node_buffer3.Buffer.alloc(16);
+            const guid = import_node_buffer2.Buffer.alloc(16);
             yield tokenizer.readBuffer(guid);
             return {
               id: guid,
@@ -23022,7 +23073,7 @@ var FileTypeParser = class {
           const header = yield readHeader();
           let payload = header.size - 24;
           if (_check(header.id, [145, 7, 220, 183, 183, 169, 207, 17, 142, 230, 0, 192, 12, 32, 83, 101])) {
-            const typeId = import_node_buffer3.Buffer.alloc(16);
+            const typeId = import_node_buffer2.Buffer.alloc(16);
             payload -= yield tokenizer.readBuffer(typeId);
             if (_check(typeId, [64, 158, 105, 248, 77, 91, 207, 17, 168, 253, 0, 128, 95, 92, 68, 43])) {
               return {
@@ -23065,8 +23116,8 @@ var FileTypeParser = class {
       }
       if (this.check([0, 0, 0, 12, 106, 80, 32, 32, 13, 10, 135, 10])) {
         yield tokenizer.ignore(20);
-        const type = yield tokenizer.readToken(new StringType(4, "ascii"));
-        switch (type) {
+        const type2 = yield tokenizer.readToken(new StringType(4, "ascii"));
+        switch (type2) {
           case "jp2 ":
             return {
               ext: "jp2",
@@ -23097,11 +23148,14 @@ var FileTypeParser = class {
           mime: "image/jxl"
         };
       }
-      if (this.check([254, 255, 0, 60, 0, 63, 0, 120, 0, 109, 0, 108]) || this.check([255, 254, 60, 0, 63, 0, 120, 0, 109, 0, 108, 0])) {
-        return {
-          ext: "xml",
-          mime: "application/xml"
-        };
+      if (this.check([254, 255])) {
+        if (this.check([0, 60, 0, 63, 0, 120, 0, 109, 0, 108], { offset: 2 })) {
+          return {
+            ext: "xml",
+            mime: "application/xml"
+          };
+        }
+        return void 0;
       }
       if (this.check([0, 0, 1, 186]) || this.check([0, 0, 1, 179])) {
         return {
@@ -23171,8 +23225,8 @@ var FileTypeParser = class {
         if (jsonSize > 12 && this.buffer.length >= jsonSize + 16) {
           try {
             const header = this.buffer.slice(16, jsonSize + 16).toString();
-            const json = JSON.parse(header);
-            if (json.files) {
+            const json2 = JSON.parse(header);
+            if (json2.files) {
               return {
                 ext: "asar",
                 mime: "application/x-asar"
@@ -23249,11 +23303,20 @@ var FileTypeParser = class {
           mime: "application/x-tar"
         };
       }
-      if (this.check([255, 254, 255, 14, 83, 0, 107, 0, 101, 0, 116, 0, 99, 0, 104, 0, 85, 0, 112, 0, 32, 0, 77, 0, 111, 0, 100, 0, 101, 0, 108, 0])) {
-        return {
-          ext: "skp",
-          mime: "application/vnd.sketchup.skp"
-        };
+      if (this.check([255, 254])) {
+        if (this.check([60, 0, 63, 0, 120, 0, 109, 0, 108, 0], { offset: 2 })) {
+          return {
+            ext: "xml",
+            mime: "application/xml"
+          };
+        }
+        if (this.check([255, 14, 83, 0, 107, 0, 101, 0, 116, 0, 99, 0, 104, 0, 85, 0, 112, 0, 32, 0, 77, 0, 111, 0, 100, 0, 101, 0, 108, 0], { offset: 2 })) {
+          return {
+            ext: "skp",
+            mime: "application/vnd.sketchup.skp"
+          };
+        }
+        return void 0;
       }
       if (this.checkString("-----BEGIN PGP MESSAGE-----")) {
         return {
@@ -23363,10 +23426,10 @@ var FileTypeParser = class {
 var supportedExtensions = new Set(extensions);
 var supportedMimeTypes = new Set(mimeTypes);
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/processors/postprocessors/media.ts
-var import_obsidian3 = __toModule(require("obsidian"));
+// src/processors/postprocessors/media.ts
+var import_obsidian3 = require("obsidian");
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/utils/media.ts
+// src/utils/media.ts
 function isVideo(src) {
   return new Promise(function(response, reject) {
     const video = createEl("video");
@@ -23379,65 +23442,67 @@ function isVideo(src) {
   });
 }
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/processors/postprocessors/media.ts
+// src/processors/postprocessors/media.ts
 var MediaPostprocessor = class extends Postprocessor {
   postprocess(note, domField, ctx) {
     return __async(this, null, function* () {
       const embeds = Array.from(domField.content.querySelectorAll("span.internal-embed"));
-      yield Promise.all(embeds.map((embed) => __async(this, null, function* () {
-        const alt = embed.innerHTML;
-        const srcpath = embed.getAttribute("src");
-        const linkpath = (0, import_obsidian3.getLinkpath)(srcpath);
-        const file = this.app.metadataCache.getFirstLinkpathDest(linkpath, srcpath);
-        if (file === null) {
-          throw new Error("Could not find embed");
-        }
-        const resourcepath = this.app.vault.adapter.getResourcePath(file.path);
-        if (!(file instanceof import_obsidian3.TFile)) {
-          console.warn("Offending linkpath: ", linkpath);
-          console.warn("Offending file: ", file);
-          throw TypeError("Embed was not a file. Contact developer on GitHub.");
-        }
-        const path = getFullPath(this.app.vault.adapter, file.path);
-        const data = yield this.app.vault.readBinary(file);
-        const fileType = (yield fileTypeFromBuffer(data)) || {
-          mime: "application/octet-stream",
-          ext: ""
-        };
-        let mediaType = fileTypeToMediaType(fileType);
-        if (mediaType === "video") {
-          const videoCheck = yield isVideo(resourcepath);
-          mediaType = videoCheck ? "video" : "audio";
-        }
-        const media = new Media2(srcpath, path, mediaType, data, [ctx.noteField]);
-        note.medias.push(media);
-        let mediaEl;
-        switch (mediaType) {
-          case "image": {
-            mediaEl = createEl("img");
-            mediaEl.src = media.filename;
-            break;
+      yield Promise.all(
+        embeds.map((embed) => __async(this, null, function* () {
+          const alt = embed.innerHTML;
+          const srcpath = embed.getAttribute("src");
+          const linkpath = (0, import_obsidian3.getLinkpath)(srcpath);
+          const file = this.app.metadataCache.getFirstLinkpathDest(linkpath, srcpath);
+          if (file === null) {
+            throw new Error("Could not find embed");
           }
-          case "audio": {
-            mediaEl = createEl("audio");
-            break;
+          const resourcepath = this.app.vault.adapter.getResourcePath(file.path);
+          if (!(file instanceof import_obsidian3.TFile)) {
+            console.warn("Offending linkpath: ", linkpath);
+            console.warn("Offending file: ", file);
+            throw TypeError("Embed was not a file. Contact developer on GitHub.");
           }
-          case "video": {
-            mediaEl = createEl("video");
-            break;
+          const path = getFullPath(this.app.vault.adapter, file.path);
+          const data = yield this.app.vault.readBinary(file);
+          const fileType = (yield fileTypeFromBuffer(data)) || {
+            mime: "application/octet-stream",
+            ext: ""
+          };
+          let mediaType = fileTypeToMediaType(fileType);
+          if (mediaType === "video") {
+            const videoCheck = yield isVideo(resourcepath);
+            mediaType = videoCheck ? "video" : "audio";
           }
-        }
-        if (mediaType === "audio" || mediaType == "video") {
-          mediaEl = mediaEl;
-          mediaEl.controls = true;
-          const sourceEl = createEl("source");
-          sourceEl.src = media.filename.split("/").pop();
-          sourceEl.type = fileType.mime;
-          mediaEl.appendChild(sourceEl);
-        }
-        mediaEl.setAttribute("alt", alt);
-        embed.replaceWith(mediaEl);
-      })));
+          const media = new Media2(srcpath, path, mediaType, data, [ctx.noteField]);
+          note.medias.push(media);
+          let mediaEl;
+          switch (mediaType) {
+            case "image": {
+              mediaEl = createEl("img");
+              mediaEl.src = media.filename;
+              break;
+            }
+            case "audio": {
+              mediaEl = createEl("audio");
+              break;
+            }
+            case "video": {
+              mediaEl = createEl("video");
+              break;
+            }
+          }
+          if (mediaType === "audio" || mediaType == "video") {
+            mediaEl = mediaEl;
+            mediaEl.controls = true;
+            const sourceEl = createEl("source");
+            sourceEl.src = media.filename.split("/").pop();
+            sourceEl.type = fileType.mime;
+            mediaEl.appendChild(sourceEl);
+          }
+          mediaEl.setAttribute("alt", alt);
+          embed.replaceWith(mediaEl);
+        }))
+      );
     });
   }
 };
@@ -23446,7 +23511,7 @@ MediaPostprocessor.displayName = "MediaPostprocessor";
 MediaPostprocessor.weight = 70;
 MediaPostprocessor.defaultConfigState = true;
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/processors/postprocessors/index.ts
+// src/processors/postprocessors/index.ts
 var POSTPROCESSORS = [
   InitialDebugPostprocessor,
   FinalDebugPostprocessor,
@@ -23456,11 +23521,11 @@ var POSTPROCESSORS = [
   ClozePostprocessor
 ];
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/processors/preprocessors/base.ts
+// src/processors/preprocessors/base.ts
 var Preprocessor = class extends Processor {
 };
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/processors/preprocessors/debug.ts
+// src/processors/preprocessors/debug.ts
 var DebugPreprocessor = class extends Preprocessor {
   preprocess(note, strField, ctx) {
     return __async(this, null, function* () {
@@ -23483,12 +23548,12 @@ FinalDebugPreprocessor.id = "FinalDebugPreprocessor";
 FinalDebugPreprocessor.displayName = "FinalDebugPrepProcessor";
 FinalDebugPreprocessor.weight = 100;
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/processors/preprocessors/math.ts
+// src/processors/preprocessors/math.ts
 var MathPreprocessor = class extends Preprocessor {
   preprocess(note, strField, ctx) {
     return __async(this, null, function* () {
       if (strField !== null) {
-        const mathBlockRegex = /\$\$(.*?)\$\$/gis;
+        const mathBlockRegex = new RegExp("\\$\\$(.*?)\\$\\$", "gis");
         strField = strField.replace(mathBlockRegex, (match, group1) => {
           return String.raw`\\(` + escapeMarkdown(group1) + String.raw` \\)`;
         });
@@ -23506,14 +23571,14 @@ MathPreprocessor.displayName = "MathPreprocessor";
 MathPreprocessor.weight = 20;
 MathPreprocessor.defaultConfigState = true;
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/processors/preprocessors/index.ts
+// src/processors/preprocessors/index.ts
 var PREPROCESSORS = [
   InitialDebugPreprocessor,
   FinalDebugPreprocessor,
   MathPreprocessor
 ];
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/processors/index.ts
+// src/processors/index.ts
 function getProcessorById(id) {
   const result = [...PREPROCESSORS, ...POSTPROCESSORS].find((o) => o.id === id);
   if (result === void 0) {
@@ -23522,13 +23587,13 @@ function getProcessorById(id) {
   return result;
 }
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/processors/html.ts
-var import_obsidian4 = __toModule(require("obsidian"));
+// src/processors/html.ts
+var import_obsidian4 = require("obsidian");
 function processMarkdownToHtml(note, field, ctx) {
   return __async(this, null, function* () {
     const body = createEl("body");
     if (field !== null) {
-      field = field.replace(/(?<!\n)\n(?!\n)/g, "\n\n");
+      field = field.replace(new RegExp("(?<!\\n)\\n(?!\\n)", "g"), "\n\n");
       yield import_obsidian4.MarkdownRenderer.renderMarkdown(field, body, "", {});
     }
     const template = createEl("template");
@@ -23537,7 +23602,7 @@ function processMarkdownToHtml(note, field, ctx) {
   });
 }
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/utils/recite.ts
+// src/utils/recite.ts
 var RECITE_LINE_REGEX = /[^，。！？；：”]+[，。！？；：”]+/g;
 function toReciteCards(text, contextLines = 3, reciteLines = 2) {
   const safeContextLines = Math.max(0, Math.floor(contextLines));
@@ -23582,10 +23647,10 @@ function toReciteCards(text, contextLines = 3, reciteLines = 2) {
   return cards;
 }
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/services/bridge.ts
-var import_lodash2 = __toModule(require_lodash());
-var import_obsidian5 = __toModule(require("obsidian"));
-var import_promise_all_properties = __toModule(require_promiseAllProperties());
+// src/services/bridge.ts
+var import_lodash2 = __toESM(require_lodash());
+var import_obsidian5 = require("obsidian");
+var import_promise_all_properties = __toESM(require_promiseAllProperties());
 var NotePairDelta = class {
   constructor(shouldChangeModel = false, shouldUpdateFields = false, shouldUpdateTags = false, cardsToUpdate = []) {
     this.shouldChangeModel = shouldChangeModel;
@@ -23639,12 +23704,15 @@ var Bridge = class {
   }
   renderFields(note) {
     return __async(this, null, function* () {
-      const promisedTransforms = import_lodash2.default.transform(note.fields, (result, field, noteField) => {
-        const ctx = {
-          noteField
-        };
-        result[noteField] = this.processField(note, field, ctx);
-      });
+      const promisedTransforms = import_lodash2.default.transform(
+        note.fields,
+        (result, field, noteField) => {
+          const ctx = {
+            noteField
+          };
+          result[noteField] = this.processField(note, field, ctx);
+        }
+      );
       return yield (0, import_promise_all_properties.default)(promisedTransforms);
     });
   }
@@ -23696,9 +23764,11 @@ ${import_lodash2.default.capitalize(e)}`);
   }
   storeMediaFiles(note) {
     return __async(this, null, function* () {
-      yield Promise.all(note.medias.map((media) => __async(this, null, function* () {
-        yield this.plugin.anki.storeMediaFile(media.filename, { path: media.path });
-      })));
+      yield Promise.all(
+        note.medias.map((media) => __async(this, null, function* () {
+          yield this.plugin.anki.storeMediaFile(media.filename, { path: media.path });
+        }))
+      );
     });
   }
   easyAddNote(note, renderedFields) {
@@ -23726,7 +23796,7 @@ ${import_lodash2.default.capitalize(e)}`);
   }
   buildReciteNotes(note) {
     var _a, _b;
-    const sourceText = note.fields[NoteField.Frontlike] || "";
+    const sourceText = note.fields[0 /* Frontlike */] || "";
     const title = note.config.title;
     const contextLines = (_a = note.config.contextLines) != null ? _a : 3;
     const reciteLines = (_b = note.config.reciteLines) != null ? _b : 2;
@@ -23738,17 +23808,24 @@ ${import_lodash2.default.capitalize(e)}`);
     });
     return cards.map((card, idx) => {
       var _a2;
-      const reciteNote = new ReciteNote(note.blueprint, (_a2 = sourceIds[idx]) != null ? _a2 : null, {
-        line: card.recite,
-        context: card.context,
-        title: title || "",
-        author: "",
-        sequence: String(idx + 1),
-        prompt: ""
-      }, note.source, note.sourceText, {
-        config: __spreadValues({}, noteConfig),
-        medias: note.medias
-      });
+      const reciteNote = new ReciteNote(
+        note.blueprint,
+        (_a2 = sourceIds[idx]) != null ? _a2 : null,
+        {
+          line: card.recite,
+          context: card.context,
+          title: title || "",
+          author: "",
+          sequence: String(idx + 1),
+          prompt: ""
+        },
+        note.source,
+        note.sourceText,
+        {
+          config: __spreadValues({}, noteConfig),
+          medias: note.medias
+        }
+      );
       if (note.metadata) {
         reciteNote.setMetaData(note.metadata);
       }
@@ -23778,21 +23855,21 @@ ${import_lodash2.default.capitalize(e)}`);
   }
   resolveBatchAction(actions, hadStaleDeletes) {
     if (import_lodash2.default.isEmpty(actions)) {
-      return NoteAction.Checked;
+      return 5 /* Checked */;
     }
-    if (actions.includes(NoteAction.Recreated)) {
-      return NoteAction.Recreated;
+    if (actions.includes(1 /* Recreated */)) {
+      return 1 /* Recreated */;
     }
-    if (actions.includes(NoteAction.Created)) {
-      return NoteAction.Created;
+    if (actions.includes(0 /* Created */)) {
+      return 0 /* Created */;
     }
-    if (hadStaleDeletes || actions.includes(NoteAction.Updated)) {
-      return NoteAction.Updated;
+    if (hadStaleDeletes || actions.includes(3 /* Updated */)) {
+      return 3 /* Updated */;
     }
-    if (actions.every((action) => action === NoteAction.Skipped)) {
-      return NoteAction.Skipped;
+    if (actions.every((action) => action === 4 /* Skipped */)) {
+      return 4 /* Skipped */;
     }
-    return NoteAction.Checked;
+    return 5 /* Checked */;
   }
   processReciteNote(note) {
     return __async(this, null, function* () {
@@ -23804,7 +23881,7 @@ ${import_lodash2.default.capitalize(e)}`);
         note.config.delete = void 0;
         note.config.enabled = false;
         note.id = null;
-        return NoteAction.Deleted;
+        return 2 /* Deleted */;
       }
       const reciteNotes = this.buildReciteNotes(note);
       const actions = [];
@@ -23822,7 +23899,7 @@ ${import_lodash2.default.capitalize(e)}`);
     return __async(this, null, function* () {
       const anki = this.plugin.anki;
       if (note.config.enabled === false) {
-        return NoteAction.Skipped;
+        return 4 /* Skipped */;
       }
       if (note.config.recite) {
         return this.processReciteNote(note);
@@ -23834,26 +23911,26 @@ ${import_lodash2.default.capitalize(e)}`);
         note.config.delete = void 0;
         note.config.enabled = false;
         note.id = null;
-        return NoteAction.Deleted;
+        return 2 /* Deleted */;
       }
       const renderedFields = yield this.renderFields(note);
       if (!hasID(note)) {
         yield this.easyAddNote(note, renderedFields);
-        return NoteAction.Created;
+        return 0 /* Created */;
       }
       const noteInfo = yield anki.noteInfo(note);
       if (import_lodash2.default.isEmpty(noteInfo)) {
         yield this.easyAddNote(note, renderedFields);
-        return NoteAction.Created;
+        return 0 /* Created */;
       }
       const notePairDelta = yield this.notePairChanges(note, noteInfo, renderedFields);
       if (!notePairDelta.shouldUpdate()) {
-        return NoteAction.Checked;
+        return 5 /* Checked */;
       }
       if (notePairDelta.shouldChangeModel) {
         yield anki.deleteNote(note);
         yield this.easyAddNote(note, renderedFields);
-        return NoteAction.Recreated;
+        return 1 /* Recreated */;
       }
       if (notePairDelta.shouldUpdateFields) {
         yield this.easyUpdateNoteFields(note, renderedFields);
@@ -23866,7 +23943,7 @@ ${import_lodash2.default.capitalize(e)}`);
         const deckName = note.getDeckName(this.plugin);
         yield anki.changeDeck(notePairDelta.cardsToUpdate, deckName);
       }
-      return NoteAction.Updated;
+      return 3 /* Updated */;
     });
   }
   processFileResults(results) {
@@ -23883,13 +23960,13 @@ ${import_lodash2.default.capitalize(e)}`);
           action = yield this.processNote(note);
         } catch (e) {
           if (!this.handleError(e, note)) {
-            action = NoteAction.NonFatalError;
+            action = 6 /* NonFatalError */;
           } else {
             throw e;
           }
         }
         actions.push(action);
-        shouldUpdateSource = shouldUpdateSource || note.shouldUpdateFile() || action === NoteAction.Deleted;
+        shouldUpdateSource = shouldUpdateSource || note.shouldUpdateFile() || action === 2 /* Deleted */;
         this.plugin.debug(`${NoteAction[action]}: ${note.id}`);
       }
       if (shouldUpdateSource) {
@@ -23900,9 +23977,9 @@ ${import_lodash2.default.capitalize(e)}`);
   }
 };
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/blueprints/base.ts
-var import_lodash3 = __toModule(require_lodash());
-var import_obsidian6 = __toModule(require("obsidian"));
+// src/blueprints/base.ts
+var import_lodash3 = __toESM(require_lodash());
+var import_obsidian6 = require("obsidian");
 var Blueprint = class {
   constructor(app, plugin) {
     this.app = app;
@@ -23934,7 +24011,9 @@ var Blueprint = class {
         switch (result["type"]) {
           case "line": {
             try {
-              const vResult = yield ParseLineResultSchema.validate(result);
+              const vResult = yield ParseLineResultSchema.validate(
+                result
+              );
               newFragment.text += vResult.text;
             } catch (e) {
               for (const error of e.errors) {
@@ -23957,7 +24036,9 @@ var Blueprint = class {
             };
             const sourceText = fragment.text.split("\n").slice(localFrom - 1, localTo - 1).join("\n") + "\n";
             try {
-              const vResult = yield ParseNoteResultSchema.validate(result);
+              const vResult = yield ParseNoteResultSchema.validate(
+                result
+              );
               const front = vResult.front;
               const back = vResult.back;
               const parseConfig = yield ParseConfig.fromResult(vResult);
@@ -24013,16 +24094,17 @@ var Blueprint = class {
 };
 var CodeBlockBlueprint = class extends Blueprint {
   setup() {
-    var __superGet = (key) => super[key];
     return __async(this, null, function* () {
-      yield __superGet("setup").call(this);
-      this.editorPostprocessor = this.plugin.registerMarkdownCodeBlockProcessor(this.codeBlockLanguage, this.codeBlockProcessor.bind(this));
+      yield __superGet(CodeBlockBlueprint.prototype, this, "setup").call(this);
+      this.editorPostprocessor = this.plugin.registerMarkdownCodeBlockProcessor(
+        this.codeBlockLanguage,
+        this.codeBlockProcessor.bind(this)
+      );
     });
   }
   teardown() {
-    var __superGet = (key) => super[key];
     return __async(this, null, function* () {
-      yield __superGet("teardown").call(this);
+      yield __superGet(CodeBlockBlueprint.prototype, this, "teardown").call(this);
       import_obsidian6.MarkdownPreviewRenderer.unregisterPostProcessor(this.editorPostprocessor);
       import_obsidian6.MarkdownPreviewRenderer.unregisterCodeBlockPostProcessor(this.codeBlockLanguage);
     });
@@ -24064,7 +24146,7 @@ var CodeBlockBlueprint = class extends Blueprint {
       const fieldsEl = containerEl.createDiv("ankibridge-card-fields");
       const frontEl = fieldsEl.createDiv("ankibridge-card-front ankibridge-card-content");
       if (typeof front == "string") {
-        front = front.replace(/(?<!\n)\n(?!\n)/g, "\n\n");
+        front = front.replace(new RegExp("(?<!\\n)\\n(?!\\n)", "g"), "\n\n");
       }
       import_obsidian6.MarkdownRenderer.renderMarkdown(front, frontEl, ctx.sourcePath, renderChild);
       this.includeImages(frontEl, ctx.sourcePath);
@@ -24073,7 +24155,7 @@ var CodeBlockBlueprint = class extends Blueprint {
         const separatorEl = fieldsEl.createDiv("ankibridge-card-separator");
         const backEl = fieldsEl.createDiv("ankibridge-card-back ankibridge-card-content");
         if (typeof back == "string") {
-          back = back.replace(/(?<!\n)\n(?!\n)/g, "\n\n");
+          back = back.replace(new RegExp("(?<!\\n)\\n(?!\\n)", "g"), "\n\n");
         }
         import_obsidian6.MarkdownRenderer.renderMarkdown(back, backEl, ctx.sourcePath, renderChild);
         this.includeImages(backEl, ctx.sourcePath);
@@ -24132,7 +24214,7 @@ var DefaultBlueprintConfig = {
   deck: "Default"
 };
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/grammars/BasicCodeBlock.pegjs
+// src/grammars/BasicCodeBlock.pegjs
 var BasicCodeBlock_default = `start = (note / MiscLine)*
 
 note =
@@ -24170,7 +24252,7 @@ AnkiCodeBlockStarter = AnkiCodeBlockStart _* Newline
 AnkiCodeBlockEnder = AnkiCodeBlockEnd _* Newline?
 `;
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/grammars/BasicCodeBlockProcessor.pegjs
+// src/grammars/BasicCodeBlockProcessor.pegjs
 var BasicCodeBlockProcessor_default = `start = note
 
 note =
@@ -24201,10 +24283,10 @@ FrontBackSeparator = '==='
 FrontBack = FrontBackSeparator _* Newline?
 `;
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/grammars/utils.js.static
+// src/grammars/utils.js.static
 var utils_js_default = "function linesToStr(lines) {\n    let str = ''\n    lines.forEach((lineObj) => {\n        str += lineObj.text\n    })\n\n    return str\n}\n";
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/utils/grammar.ts
+// src/utils/grammar.ts
 function makeGrammar(grammar, libraries) {
   let finalGrammar = "";
   finalGrammar += "{{\n";
@@ -24221,9 +24303,8 @@ function makeGrammar(grammar, libraries) {
   return finalGrammar;
 }
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/blueprints/basic-codeblock.ts
-var import_js_yaml2 = __toModule(require_js_yaml());
-var import_peggy = __toModule(require_peg());
+// src/blueprints/basic-codeblock.ts
+var import_peggy = __toESM(require_peg());
 var BasicCodeBlockBlueprint = class extends CodeBlockBlueprint {
   constructor() {
     super(...arguments);
@@ -24233,14 +24314,17 @@ var BasicCodeBlockBlueprint = class extends CodeBlockBlueprint {
     return __async(this, null, function* () {
       const grammar = yield makeGrammar(BasicCodeBlock_default, GRAMMAR_LIBRARIES);
       this.parser = (0, import_peggy.generate)(grammar);
-      const codeblockGrammar = yield makeGrammar(BasicCodeBlockProcessor_default, GRAMMAR_LIBRARIES);
+      const codeblockGrammar = yield makeGrammar(
+        BasicCodeBlockProcessor_default,
+        GRAMMAR_LIBRARIES
+      );
       this.codeblockParser = (0, import_peggy.generate)(codeblockGrammar);
     });
   }
   renderAsText(note) {
-    const front = note.fields[NoteField.Frontlike];
-    const back = note.fields[NoteField.Backlike];
-    const config = (0, import_js_yaml2.dump)({
+    const front = note.fields[0 /* Frontlike */];
+    const back = note.fields[1 /* Backlike */];
+    const config = dump({
       id: note.id,
       deck: note.config.deck || note.config.deckName,
       tags: note.config.tags,
@@ -24254,17 +24338,17 @@ var BasicCodeBlockBlueprint = class extends CodeBlockBlueprint {
       reciteLines: note.config.reciteLines,
       reciteIds: note.config.reciteIds
     });
-    let str = "";
-    str += "```anki\n";
-    str += config;
-    str += "---\n";
-    str += front;
+    let str2 = "";
+    str2 += "```anki\n";
+    str2 += config;
+    str2 += "---\n";
+    str2 += front;
     if (back !== null) {
-      str += "===\n";
-      str += back;
+      str2 += "===\n";
+      str2 += back;
     }
-    str += "```\n";
-    return str;
+    str2 += "```\n";
+    return str2;
   }
   codeBlockProcessor(source, el, ctx) {
     return __async(this, null, function* () {
@@ -24276,7 +24360,7 @@ var BasicCodeBlockBlueprint = class extends CodeBlockBlueprint {
       } catch (error) {
         console.warn(error);
         let msg;
-        if (error instanceof import_js_yaml2.YAMLException) {
+        if (error instanceof YAMLException) {
           msg = "Invalid configuration: " + error.message;
         } else {
           msg = error;
@@ -24292,12 +24376,11 @@ BasicCodeBlockBlueprint.displayName = "BasicCodeblock";
 BasicCodeBlockBlueprint.weight = 50;
 BasicCodeBlockBlueprint.defaultConfigState = true;
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/grammars/CardSandwich.pegjs
+// src/grammars/CardSandwich.pegjs
 var CardSandwich_default = 'start = (note / MiscLine)*\n\nnote =\n    AnkiStart _* Newline\n    config:AnkiConfigCodeBlock?\n    front:(!(AnkiMiddle _* Newline) line:MiscLine {return line})*\n    AnkiMiddle _* Newline\n    back:(!(AnkiEnd _* Newline?) line:MiscLine {return line})*\n    AnkiEnd _* Newline?\n    {\n        return {\n            "type": "note",\n            "config": config,\n            "front": linesToStr(front),\n            "back": linesToStr(back),\n            "location": location()\n        }\n    }\n';
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/blueprints/sandwich.ts
-var import_js_yaml3 = __toModule(require_js_yaml());
-var import_peggy2 = __toModule(require_peg());
+// src/blueprints/sandwich.ts
+var import_peggy2 = __toESM(require_peg());
 var SandwichBlueprint = class extends Blueprint {
   setupParser() {
     return __async(this, null, function* () {
@@ -24306,9 +24389,9 @@ var SandwichBlueprint = class extends Blueprint {
     });
   }
   renderAsText(note) {
-    const front = note.fields[NoteField.Frontlike];
-    const back = note.fields[NoteField.Backlike];
-    const config = (0, import_js_yaml3.dump)({
+    const front = note.fields[0 /* Frontlike */];
+    const back = note.fields[1 /* Backlike */];
+    const config = dump({
       id: note.id,
       deck: note.config.deck,
       tags: note.config.tags,
@@ -24317,16 +24400,16 @@ var SandwichBlueprint = class extends Blueprint {
       cloze: note.config.cloze,
       enhancedCloze: note.config.enhancedCloze
     });
-    let str = "";
-    str += "#anki/start\n";
-    str += "```anki-config\n";
-    str += config;
-    str += "```\n";
-    str += front;
-    str += "#anki/---\n";
-    str += back;
-    str += "#anki/end\n";
-    return str;
+    let str2 = "";
+    str2 += "#anki/start\n";
+    str2 += "```anki-config\n";
+    str2 += config;
+    str2 += "```\n";
+    str2 += front;
+    str2 += "#anki/---\n";
+    str2 += back;
+    str2 += "#anki/end\n";
+    return str2;
   }
 };
 SandwichBlueprint.id = "Sandwich";
@@ -24334,7 +24417,7 @@ SandwichBlueprint.displayName = "Sandwich";
 SandwichBlueprint.weight = 50;
 SandwichBlueprint.defaultConfigState = true;
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/blueprints/index.ts
+// src/blueprints/index.ts
 var BLUEPRINTS = [
   BasicCodeBlockBlueprint,
   SandwichBlueprint
@@ -24347,8 +24430,7 @@ function getBlueprintById(id) {
   return result;
 }
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/utils/heading-scope.ts
-var import_js_yaml4 = __toModule(require_js_yaml());
+// src/utils/heading-scope.ts
 var HeadingScopeSchema = yup_default.object({
   deck: yup_default.string().emptyAsUndefined().nullAsUndefined(),
   deckName: yup_default.string().emptyAsUndefined().nullAsUndefined(),
@@ -24356,7 +24438,7 @@ var HeadingScopeSchema = yup_default.object({
   headingAsTag: yup_default.boolean().nullAsUndefined()
 });
 function parseHeadingScope(configText) {
-  const configObj = (0, import_js_yaml4.load)(configText) || {};
+  const configObj = load(configText) || {};
   return HeadingScopeSchema.validateSync(configObj);
 }
 function isFenceStart(line) {
@@ -24389,7 +24471,9 @@ function resolveHeadingScopeForLine(source, lineNumber) {
           throw new Error("Unexpected anki-scope parser state");
         }
         if (activeScopeHeading.scope !== void 0) {
-          throw new Error(`Multiple anki-scope blocks found for heading on line ${activeScopeHeading.startLine}`);
+          throw new Error(
+            `Multiple anki-scope blocks found for heading on line ${activeScopeHeading.startLine}`
+          );
         }
         activeScopeHeading.scope = parseHeadingScope(activeScopeBuffer.join("\n"));
         activeScopeFence = null;
@@ -24459,8 +24543,8 @@ function resolveHeadingScopeForLine(source, lineNumber) {
   return resolved;
 }
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/services/reader.ts
-var import_lodash4 = __toModule(require_lodash());
+// src/services/reader.ts
+var import_lodash4 = __toESM(require_lodash());
 var Reader = class {
   constructor(app, plugin) {
     this.app = app;
@@ -24477,18 +24561,22 @@ var Reader = class {
   }
   setup() {
     return __async(this, null, function* () {
-      yield Promise.all(this.blueprints.map((bp) => __async(this, null, function* () {
-        this.plugin.debug("Setting up blueprint: ", bp);
-        yield bp.setup();
-      })));
+      yield Promise.all(
+        this.blueprints.map((bp) => __async(this, null, function* () {
+          this.plugin.debug("Setting up blueprint: ", bp);
+          yield bp.setup();
+        }))
+      );
     });
   }
   teardown() {
     return __async(this, null, function* () {
-      yield Promise.all(this.blueprints.map((bp) => __async(this, null, function* () {
-        this.plugin.debug("Tearing down blueprint: ", bp);
-        yield bp.teardown();
-      })));
+      yield Promise.all(
+        this.blueprints.map((bp) => __async(this, null, function* () {
+          this.plugin.debug("Tearing down blueprint: ", bp);
+          yield bp.teardown();
+        }))
+      );
     });
   }
   readFile(file) {
@@ -24511,7 +24599,9 @@ var Reader = class {
           for (const processedElement of processedElements2) {
             if (processedElement instanceof NoteBase) {
               processedElement.setMetaData(metadata);
-              processedElement.setScopedConfig(resolveHeadingScopeForLine(fileContent, processedElement.source.from));
+              processedElement.setScopedConfig(
+                resolveHeadingScopeForLine(fileContent, processedElement.source.from)
+              );
               notes.push(processedElement);
               continue;
             }
@@ -24534,36 +24624,51 @@ var Reader = class {
   }
 };
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/settings/settings.ts
-var import_lodash5 = __toModule(require_lodash());
+// src/settings/settings.ts
+var import_lodash5 = __toESM(require_lodash());
 var Settings = class {
   getBlueprintSettings() {
-    const blueprintSettingsConst = Object.fromEntries(BLUEPRINTS.map((bp) => {
-      return [bp.id, bp.defaultConfigState];
-    }));
-    const blueprintSettings = Object.assign({}, blueprintSettingsConst, this.blueprints);
+    const blueprintSettingsConst = Object.fromEntries(
+      BLUEPRINTS.map((bp) => {
+        return [bp.id, bp.defaultConfigState];
+      })
+    );
+    const blueprintSettings = Object.assign(
+      {},
+      blueprintSettingsConst,
+      this.blueprints
+    );
     return blueprintSettings;
   }
   getMergedProcessors() {
     const processors = [...PREPROCESSORS, ...POSTPROCESSORS];
-    const processorSettingsConst = Object.fromEntries(import_lodash5.default.sortBy(processors, [
-      (o) => {
-        if (o.prototype instanceof Preprocessor) {
-          return 0;
-        } else {
-          return 1;
-        }
-      },
-      "weight"
-    ]).map((pp) => {
-      return [pp.id, pp.defaultConfigState];
-    }));
-    const processorSettingsOverrides = Object.fromEntries(processors.filter((pp) => {
-      return !pp.configurable;
-    }).map((pp) => {
-      return [pp.id, pp.defaultConfigState];
-    }));
-    const processorSettings = Object.assign({}, processorSettingsConst, this.processors, processorSettingsOverrides);
+    const processorSettingsConst = Object.fromEntries(
+      import_lodash5.default.sortBy(processors, [
+        (o) => {
+          if (o.prototype instanceof Preprocessor) {
+            return 0;
+          } else {
+            return 1;
+          }
+        },
+        "weight"
+      ]).map((pp) => {
+        return [pp.id, pp.defaultConfigState];
+      })
+    );
+    const processorSettingsOverrides = Object.fromEntries(
+      processors.filter((pp) => {
+        return !pp.configurable;
+      }).map((pp) => {
+        return [pp.id, pp.defaultConfigState];
+      })
+    );
+    const processorSettings = Object.assign(
+      {},
+      processorSettingsConst,
+      this.processors,
+      processorSettingsOverrides
+    );
     return processorSettings;
   }
 };
@@ -24586,8 +24691,8 @@ var DEFAULT_SETTINGS = {
   debugNetwork: false
 };
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/log.ts
-var import_obsidian7 = __toModule(require("obsidian"));
+// src/log.ts
+var import_obsidian7 = require("obsidian");
 function logError(e) {
   const notice = new import_obsidian7.Notice("", 8e3);
   if (e instanceof AnkiBridgeError && e.console_msg) {
@@ -24598,15 +24703,15 @@ function logError(e) {
   }
 }
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/settings/support.html
+// src/settings/support.html
 var support_default = "<a href='https://ko-fi.com/Q5Q74Z108' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi3.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>";
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/settings/settings-tab.ts
-var import_obsidian10 = __toModule(require("obsidian"));
+// src/settings/settings-tab.ts
+var import_obsidian10 = require("obsidian");
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/suggesters/suggest.ts
-var import_core3 = __toModule(require_popper());
-var import_obsidian8 = __toModule(require("obsidian"));
+// src/suggesters/suggest.ts
+var import_core3 = __toESM(require_popper());
+var import_obsidian8 = require("obsidian");
 var wrapAround = (value, size) => {
   return (value % size + size) % size;
 };
@@ -24739,8 +24844,8 @@ var TextInputSuggest = class {
   }
 };
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/suggesters/folder-suggester.ts
-var import_obsidian9 = __toModule(require("obsidian"));
+// src/suggesters/folder-suggester.ts
+var import_obsidian9 = require("obsidian");
 var FolderSuggest = class extends TextInputSuggest {
   getSuggestions(inputStr) {
     const abstractFiles = this.app.vault.getAllLoadedFiles();
@@ -24763,14 +24868,14 @@ var FolderSuggest = class extends TextInputSuggest {
   }
 };
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/utils/array.ts
+// src/utils/array.ts
 function arraymove(arr, fromIndex, toIndex) {
   const element = arr[fromIndex];
   arr.splice(fromIndex, 1);
   arr.splice(toIndex, 0, element);
 }
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/settings/settings-tab.ts
+// src/settings/settings-tab.ts
 var SettingsTab = class extends import_obsidian10.PluginSettingTab {
   constructor(app, plugin) {
     super(app, plugin);
@@ -24805,7 +24910,11 @@ var SettingsTab = class extends import_obsidian10.PluginSettingTab {
   }
   addInitialSetup() {
     const descFragment = createFragment();
-    descFragment.append("You only need to do this once, but you must have Anki open and AnkiConnect installed.", createEl("br"), "See Documentation > Insallation if in doubt.");
+    descFragment.append(
+      "You only need to do this once, but you must have Anki open and AnkiConnect installed.",
+      createEl("br"),
+      "See Documentation > Insallation if in doubt."
+    );
     new import_obsidian10.Setting(this.containerEl).setName("Perform Initial Anki Setup").setDesc(descFragment).addButton((text) => {
       text.setButtonText("Setup").setCta().onClick(() => __async(this, null, function* () {
         const initalNoticeFrag = createFragment();
@@ -24835,7 +24944,9 @@ var SettingsTab = class extends import_obsidian10.PluginSettingTab {
     new import_obsidian10.Setting(this.containerEl).setName("Test Anki Connection").setDesc("Test that AnkiBridge is able to connect to Anki.").addButton((text) => {
       text.setButtonText("Test").setCta().onClick(() => __async(this, null, function* () {
         try {
-          const notice = new import_obsidian10.Notice(this.plugin.manifest.name + ": Testing connection \u2026");
+          const notice = new import_obsidian10.Notice(
+            this.plugin.manifest.name + ": Testing connection \u2026"
+          );
           yield this.plugin.anki.ping();
           notice.hide();
           new import_obsidian10.Notice(this.plugin.manifest.name + ": Connection successful \u2714");
@@ -24924,9 +25035,14 @@ var SettingsTab = class extends import_obsidian10.PluginSettingTab {
       logicDesc.appendChild(li);
     });
     const descHeading = createFragment();
-    descHeading.append("Default decks are mapped based on the following logic, using the first match:", logicDesc);
+    descHeading.append(
+      "Default decks are mapped based on the following logic, using the first match:",
+      logicDesc
+    );
     new import_obsidian10.Setting(this.containerEl).setDesc(descHeading);
-    new import_obsidian10.Setting(this.containerEl).setName("Fallback Deck").setDesc("The name of the deck where the cards will be added when no folder mapping could be found.").addText((text) => {
+    new import_obsidian10.Setting(this.containerEl).setName("Fallback Deck").setDesc(
+      "The name of the deck where the cards will be added when no folder mapping could be found."
+    ).addText((text) => {
       text.setValue(this.plugin.settings.fallbackDeck).setPlaceholder("deck::subdeck").onChange((value) => {
         if (value.length) {
           this.plugin.settings.fallbackDeck = value;
@@ -24950,8 +25066,14 @@ var SettingsTab = class extends import_obsidian10.PluginSettingTab {
       const s = new import_obsidian10.Setting(this.containerEl).addSearch((cb) => {
         new FolderSuggest(this.app, cb.inputEl);
         cb.setPlaceholder("Folder").setValue(defaultDeckMap.folder).onChange((newFolder) => {
-          if (newFolder && this.plugin.settings.defaultDeckMaps.some((e) => e.folder == newFolder)) {
-            logError(new AnkiBridgeError(`${newFolder} already has a deck associated with it`));
+          if (newFolder && this.plugin.settings.defaultDeckMaps.some(
+            (e) => e.folder == newFolder
+          )) {
+            logError(
+              new AnkiBridgeError(
+                `${newFolder} already has a deck associated with it`
+              )
+            );
             cb.setValue("");
             return;
           }
@@ -25008,7 +25130,13 @@ var SettingsTab = class extends import_obsidian10.PluginSettingTab {
       });
     });
     const periodicPingDesc = createFragment();
-    periodicPingDesc.append("Pings Anki periodically at the set interval in seconds.", createEl("br"), "Note: Due to a shortcoming in Electron this will produce a lot of errors", "in console when pings are failing. These are harmless and safe to ignore, ", "but cannot be suppresed.");
+    periodicPingDesc.append(
+      "Pings Anki periodically at the set interval in seconds.",
+      createEl("br"),
+      "Note: Due to a shortcoming in Electron this will produce a lot of errors",
+      "in console when pings are failing. These are harmless and safe to ignore, ",
+      "but cannot be suppresed."
+    );
     new import_obsidian10.Setting(this.containerEl).setName("Periodic Ping").setDesc(periodicPingDesc).addText((e) => {
       e.setValue(String(this.plugin.settings.periodicPingInterval));
       e.setPlaceholder("Seconds");
@@ -25054,8 +25182,10 @@ var SettingsTab = class extends import_obsidian10.PluginSettingTab {
     this.containerEl.createEl("h2", { text: "Processor Settings" });
     const processorSettings = this.plugin.settings.getMergedProcessors();
     const descHeading = createFragment();
-    descHeading.append(`Processors are responsible for converting the raw markdown from Obsidian into
-            Anki-compatible HTML.`);
+    descHeading.append(
+      `Processors are responsible for converting the raw markdown from Obsidian into
+            Anki-compatible HTML.`
+    );
     descHeading.appendChild(createEl("br"));
     descHeading.append("Preprocessors act on Markdown-formatted text.");
     descHeading.appendChild(createEl("br"));
@@ -25112,7 +25242,7 @@ var SettingsTab = class extends import_obsidian10.PluginSettingTab {
   }
 };
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/utils/anki-shortcut.ts
+// src/utils/anki-shortcut.ts
 var CONFIG_PROPERTY_RE = /^[A-Za-z_][A-Za-z0-9_-]*:\s*(.*)$/;
 function isConfigPropertyLine(line) {
   return CONFIG_PROPERTY_RE.test(line);
@@ -25175,9 +25305,9 @@ function formatSelectionForAnkiShortcutUnwrap(content) {
   return [...lines.slice(0, configEnd), ...lines.slice(configEnd + 1)].join("\n");
 }
 
-// pnp:/home/rcocco/ObsidianAnkiBridge/src/main.ts
-var import_lodash6 = __toModule(require_lodash());
-var import_obsidian11 = __toModule(require("obsidian"));
+// src/main.ts
+var import_lodash6 = __toESM(require_lodash());
+var import_obsidian11 = require("obsidian");
 var AnkiBridgePlugin = class extends import_obsidian11.Plugin {
   constructor() {
     super(...arguments);
@@ -25251,9 +25381,14 @@ var AnkiBridgePlugin = class extends import_obsidian11.Plugin {
             editor.setSelection(toPos(editor, fos - startTag.length), toPos(editor, tos + endTag.length));
             const unwrappedText = formatSelectionForAnkiShortcutUnwrap(selectedText);
             editor.replaceSelection(unwrappedText);
-            editor.setSelection(toPos(editor, fos - startTag.length), toPos(editor, fos - startTag.length + unwrappedText.length));
+            editor.setSelection(
+              toPos(editor, fos - startTag.length),
+              toPos(editor, fos - startTag.length + unwrappedText.length)
+            );
           } else if (startText === startTag && endText === endTag) {
-            const unwrappedText = formatSelectionForAnkiShortcutUnwrap(editor.getRange(toPos(editor, fos + startTag.length), toPos(editor, tos - endTag.length)));
+            const unwrappedText = formatSelectionForAnkiShortcutUnwrap(
+              editor.getRange(toPos(editor, fos + startTag.length), toPos(editor, tos - endTag.length))
+            );
             editor.replaceSelection(unwrappedText);
             editor.setSelection(toPos(editor, fos), toPos(editor, fos + unwrappedText.length));
           } else {
@@ -25347,9 +25482,12 @@ var AnkiBridgePlugin = class extends import_obsidian11.Plugin {
   setupPeriodicPing() {
     this.teardownPeriodicPing();
     if (this.settings.periodicPingEnabled) {
-      this.periodicPingIntervalId = window.setInterval(() => __async(this, null, function* () {
-        return yield this.pingAnki();
-      }), this.settings.periodicPingInterval * 1e3);
+      this.periodicPingIntervalId = window.setInterval(
+        () => __async(this, null, function* () {
+          return yield this.pingAnki();
+        }),
+        this.settings.periodicPingInterval * 1e3
+      );
       this.registerInterval(this.periodicPingIntervalId);
     }
   }
@@ -25386,17 +25524,22 @@ var AnkiBridgePlugin = class extends import_obsidian11.Plugin {
         return;
       } else {
         if (displayOnFailure) {
-          new import_obsidian11.Notice("\u26A0 Unexpected error occured. Please inform maintainer on GitHub and include console output!\n\nError: " + result.fatalErrorString);
+          new import_obsidian11.Notice(
+            "\u26A0 Unexpected error occured. Please inform maintainer on GitHub and include console output!\n\nError: " + result.fatalErrorString
+          );
         }
         throw result.fatalErrorString;
       }
     }
-    const wasSuccess = !result.noteActions.includes(NoteAction.NonFatalError);
+    const wasSuccess = !result.noteActions.includes(6 /* NonFatalError */);
     const statusSymbol = wasSuccess ? "\u2714" : "\u{1F7E1}";
     if (displayOnSuccess || displayOnFailure && !wasSuccess) {
-      let counts = import_lodash6.default.zipObject(Object.keys(NoteAction).filter((x) => !isNaN(parseInt(x))).map((x) => parseInt(x)), import_lodash6.default.times(Object.keys(NoteAction).length / 2, import_lodash6.default.constant(0)));
+      let counts = import_lodash6.default.zipObject(
+        Object.keys(NoteAction).filter((x) => !isNaN(parseInt(x))).map((x) => parseInt(x)),
+        import_lodash6.default.times(Object.keys(NoteAction).length / 2, import_lodash6.default.constant(0))
+      );
       counts = import_lodash6.default.merge(counts, import_lodash6.default.countBy(result.noteActions));
-      if (counts[NoteAction.NonFatalError] === 0) {
+      if (counts[6 /* NonFatalError */] === 0) {
         let msg = `${statusSymbol} Synced with Anki
 
 `;
@@ -25408,7 +25551,7 @@ var AnkiBridgePlugin = class extends import_obsidian11.Plugin {
 
 `;
         for (const [action, count] of Object.entries(counts)) {
-          const actionStr = parseInt(action) === NoteAction.NonFatalError ? "Errored" : NoteAction[action];
+          const actionStr = parseInt(action) === 6 /* NonFatalError */ ? "Errored" : NoteAction[action];
           msg += `Notes ${actionStr.toLowerCase()}: ${count}.
 `;
         }
@@ -25473,15 +25616,17 @@ ${syncCounter}/${files.length}`);
         totalFiles: files.length
       };
       try {
-        yield Promise.all(this.app.vault.getMarkdownFiles().map((file) => __async(this, null, function* () {
-          if (!this.shouldIgnoreFile(file)) {
-            result.noteActions.push(...yield this.syncFileRoutine(file));
-          }
-          syncCounter++;
-          notice.setMessage(INITIAL_LINE + `
+        yield Promise.all(
+          this.app.vault.getMarkdownFiles().map((file) => __async(this, null, function* () {
+            if (!this.shouldIgnoreFile(file)) {
+              result.noteActions.push(...yield this.syncFileRoutine(file));
+            }
+            syncCounter++;
+            notice.setMessage(INITIAL_LINE + `
 
 ${syncCounter}/${files.length}`);
-        })));
+          }))
+        );
         result.fatalError = false;
       } catch (e) {
         result.fatalError = true;
@@ -25495,6 +25640,7 @@ ${syncCounter}/${files.length}`);
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {});
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
+/*! js-yaml 4.1.1 https://github.com/nodeca/js-yaml @license MIT */
 /**
  * @license
  * Lodash <https://lodash.com/>

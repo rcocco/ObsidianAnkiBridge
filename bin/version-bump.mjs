@@ -1,5 +1,5 @@
-// Usage: yarn vup {major,minor,patch}
-import { readFile, writeFile } from "fs/promises";
+// Usage: pnpm vup {major,minor,patch}
+import { access, readFile, writeFile } from "fs/promises";
 import { promisify } from "util";
 import { exec } from "child_process";
 
@@ -20,13 +20,22 @@ async function pExec(cmd) {
   }
 }
 
+async function fileExists(path) {
+  try {
+    await access(path);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 (async () => {
   const bumpStrategy = process.argv.slice(2);
-  // Run yarn version updater
-  console.log(`Running Yarn version bumper with strategy: ${bumpStrategy}`);
-  await pExec(`yarn version ${bumpStrategy}`);
+  // Run pnpm version updater
+  console.log(`Running pnpm version bumper with strategy: ${bumpStrategy}`);
+  await pExec(`pnpm version ${bumpStrategy}`);
 
-  // Read package.json version set by yarn version bumper
+  // Read package.json version set by pnpm version bumper
   console.log("Reading package.json");
   const packageJson = JSON.parse(await readFile("package.json", "utf-8"));
   const targetVersion = packageJson.version;
@@ -49,7 +58,14 @@ async function pExec(cmd) {
   await writeFile("versions.json", JSON.stringify(versions, null, "\t"));
 
   console.log("Adding to git")
-  await pExec("git add manifest.json manifest-beta.json package.json versions.json .yarn/versions")
+  const filesToAdd = ["manifest.json", "manifest-beta.json", "package.json", "versions.json"];
+  if (await fileExists("pnpm-lock.yaml")) {
+    filesToAdd.push("pnpm-lock.yaml");
+  }
+  if (await fileExists("docs/pnpm-lock.yaml")) {
+    filesToAdd.push("docs/pnpm-lock.yaml");
+  }
+  await pExec(`git add ${filesToAdd.join(" ")}`)
 
   console.log("Commiting to git")
   await pExec(`git commit -m "release(chore): ${targetVersion}"`)

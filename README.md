@@ -7,25 +7,27 @@ Anki integration for [Obsidian](https://obsidian.md/).
 
 **Please refer to the [documentation](https://jeppeklitgaard.github.io/ObsidianAnkiBridge/).**
 
+This repository uses `pnpm`.
+
 ## Additions in This Fork
 
 Compared with the original project, this fork adds several practical improvements:
 
-- Support for `anki_deck` and `anki_tags` in file-level frontmatter.
+- Support for `deckName` and `tags` in file-level frontmatter.
 - Support for `deckName` and `tags` at the heading level, allowing different sections of the same note to use different metadata.
 - Support for manually assigning cloze numbers through bold cloze syntax.
 - Shortcut helpers for wrapping and unwrapping Anki markup while editing notes.
 
 ### Examples
 
-#### 1. File-level `anki_deck` and `anki_tags`
+#### 1. File-level `deckName` and `tags`
 
 You can define deck and tag defaults for the whole note in frontmatter:
 
 ````md
 ---
-anki_deck: Biology::Cells
-anki_tags:
+deckName: Biology::Cells
+tags:
   - biology
   - chapter-1
 ---

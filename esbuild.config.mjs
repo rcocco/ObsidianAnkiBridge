@@ -1,7 +1,6 @@
 import esbuild from 'esbuild'
 import process from 'process'
 import builtins from 'builtin-modules'
-import { pnpPlugin } from '@yarnpkg/esbuild-plugin-pnp'
 
 // TODO: Remove this when Obsidian ships with node 14.18+
 const stripNodeColonPlugin = {
@@ -50,7 +49,7 @@ esbuild
         banner: {
             js: banner,
         },
-        plugins: [stripNodeColonPlugin, pnpPlugin()],
+        plugins: [stripNodeColonPlugin],
         entryPoints: ['src/main.ts'],
         bundle: true,
         external: ['obsidian', 'electron', ...builtins, ...codemirrors, 'node:*'],

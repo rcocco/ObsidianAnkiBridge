@@ -216,7 +216,7 @@ export abstract class NoteBase {
         }
 
         if(this.metadata) {
-            const metaDeckName = this.metadata?.frontmatter?.['anki_deck']
+            const metaDeckName = this.metadata?.frontmatter?.['deckName']
             if(metaDeckName) {
                 return metaDeckName
             }
@@ -238,7 +238,7 @@ export abstract class NoteBase {
     public getTags(plugin: AnkiBridgePlugin): Array<string> {
         let noteTags: string[] | undefined
         if(this.metadata) {
-            noteTags = this.metadata?.frontmatter?.['anki_tags']
+            noteTags = this.metadata?.frontmatter?.['tags']
         }
         return [
             plugin.settings.tagInAnki,

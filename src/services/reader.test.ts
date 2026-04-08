@@ -44,8 +44,8 @@ Back
             metadataCache: {
                 getFileCache: jest.fn().mockReturnValue({
                     frontmatter: {
-                        anki_deck: 'FileDeck',
-                        anki_tags: ['file'],
+                        deckName: 'FileDeck',
+                        tags: ['file'],
                     },
                 }),
             },
@@ -118,7 +118,7 @@ Front
             metadataCache: {
                 getFileCache: jest.fn().mockReturnValue({
                     frontmatter: {
-                        anki_tags: ['file'],
+                        tags: ['file'],
                     },
                 }),
             },
@@ -226,8 +226,8 @@ Card 3-1
 
     it('preserves heading order for scoped headings like the reported regression', async () => {
         const complexSource = `---
-anki_deck: Deck
-anki_tags: [tag]
+deckName: Deck
+tags: [tag]
 ---
 # 测试1
 
@@ -288,7 +288,7 @@ tags: [测试45]
             },
             metadataCache: {
                 getFileCache: jest.fn().mockReturnValue({
-                    frontmatter: { anki_deck: 'Deck', anki_tags: ['tag'] },
+                    frontmatter: { deckName: 'Deck', tags: ['tag'] },
                 }),
             },
         }

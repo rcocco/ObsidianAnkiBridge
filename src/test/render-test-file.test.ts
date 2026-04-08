@@ -1,6 +1,6 @@
 /**
- * Run using `yarn test` by commenting (1)
- */
+ * Run using `pnpm test` by commenting (1)
+*/
 import { SandwichBlueprint } from 'ankibridge/blueprints/sandwich'
 import AnkiBridgePlugin from 'ankibridge/main'
 import { TestingDatabase } from 'ankibridge/test/helpers'
