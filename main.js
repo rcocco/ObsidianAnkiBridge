@@ -25244,6 +25244,14 @@ var SettingsTab = class extends import_obsidian10.PluginSettingTab {
 
 // src/utils/anki-shortcut.ts
 var CONFIG_PROPERTY_RE = /^[A-Za-z_][A-Za-z0-9_-]*:\s*(.*)$/;
+function addTrailingBlankLine(content) {
+  return `${content}
+
+`;
+}
+function removeOneTrailingBlankLine(content) {
+  return content.endsWith("\n\n") ? content.slice(0, -1) : content;
+}
 function isConfigPropertyLine(line) {
   return CONFIG_PROPERTY_RE.test(line);
 }
@@ -25280,14 +25288,14 @@ function formatSelectionForAnkiShortcutWrap(content) {
   const configEnd = getLeadingConfigEndIndex(lines);
   if (configEnd === 0) {
     if (((_a = lines[0]) == null ? void 0 : _a.trim()) === "---") {
-      return content;
+      return addTrailingBlankLine(content);
     }
-    return ["---", ...lines].join("\n");
+    return addTrailingBlankLine(["---", ...lines].join("\n"));
   }
   if (configEnd >= lines.length || lines[configEnd].trim() === "---") {
-    return content;
+    return addTrailingBlankLine(content);
   }
-  return [...lines.slice(0, configEnd), "---", ...lines.slice(configEnd)].join("\n");
+  return addTrailingBlankLine([...lines.slice(0, configEnd), "---", ...lines.slice(configEnd)].join("\n"));
 }
 function formatSelectionForAnkiShortcutUnwrap(content) {
   var _a;
@@ -25297,12 +25305,12 @@ function formatSelectionForAnkiShortcutUnwrap(content) {
     if (((_a = lines[0]) == null ? void 0 : _a.trim()) !== "---") {
       return content;
     }
-    return lines.slice(1).join("\n");
+    return removeOneTrailingBlankLine(lines.slice(1).join("\n"));
   }
   if (configEnd >= lines.length || lines[configEnd].trim() !== "---") {
     return content;
   }
-  return [...lines.slice(0, configEnd), ...lines.slice(configEnd + 1)].join("\n");
+  return removeOneTrailingBlankLine([...lines.slice(0, configEnd), ...lines.slice(configEnd + 1)].join("\n"));
 }
 
 // src/main.ts
