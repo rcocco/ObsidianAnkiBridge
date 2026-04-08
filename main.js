@@ -25316,10 +25316,10 @@ function getAnkiShortcutPostFencePaddingLength(textAfterFence) {
 
 // src/utils/anki-scope-shortcut.ts
 function buildAnkiScopeShortcutBlock() {
-  const text = ["```anki-scope", "tags:", "```", "", ""].join("\n");
+  const text = ["```anki-scope", "tags:", "  - ", "```"].join("\n");
   return {
     text,
-    cursorOffset: "```anki-scope\ntags:\n".length
+    cursorOffset: "```anki-scope\ntags:\n  - ".length
   };
 }
 
