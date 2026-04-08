@@ -84,9 +84,9 @@ export function formatSelectionForAnkiShortcutUnwrap(content: string): string {
 }
 
 export function buildAnkiShortcutWrappedSelection(content: string): string {
-    return `${ANKI_SHORTCUT_START_TAG}${formatSelectionForAnkiShortcutWrap(content)}${ANKI_SHORTCUT_END_TAG}\n\n`
+    return `${ANKI_SHORTCUT_START_TAG}${formatSelectionForAnkiShortcutWrap(content)}${ANKI_SHORTCUT_END_TAG}\n`
 }
 
 export function getAnkiShortcutPostFencePaddingLength(textAfterFence: string): number {
-    return textAfterFence.startsWith('\n\n') ? 2 : 0
+    return textAfterFence.startsWith('\n') ? 1 : 0
 }

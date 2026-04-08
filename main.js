@@ -25308,11 +25308,10 @@ function formatSelectionForAnkiShortcutUnwrap(content) {
 }
 function buildAnkiShortcutWrappedSelection(content) {
   return `${ANKI_SHORTCUT_START_TAG}${formatSelectionForAnkiShortcutWrap(content)}${ANKI_SHORTCUT_END_TAG}
-
 `;
 }
 function getAnkiShortcutPostFencePaddingLength(textAfterFence) {
-  return textAfterFence.startsWith("\n\n") ? 2 : 0;
+  return textAfterFence.startsWith("\n") ? 1 : 0;
 }
 
 // src/main.ts

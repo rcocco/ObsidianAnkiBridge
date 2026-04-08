@@ -40,12 +40,12 @@ describe('anki shortcut helpers', () => {
 
     it('builds a fenced anki block and appends an extra blank line after the closing fence', () => {
         expect(buildAnkiShortcutWrappedSelection('Front body')).toBe(
-            ['```anki', '---', 'Front body', '```', '', ''].join('\n'),
+            ['```anki', '---', 'Front body', '```', ''].join('\n'),
         )
     })
 
     it('detects the extra blank line immediately after a closing fence', () => {
-        expect(getAnkiShortcutPostFencePaddingLength('\n\nNext line')).toBe(2)
-        expect(getAnkiShortcutPostFencePaddingLength('\nNext line')).toBe(0)
+        expect(getAnkiShortcutPostFencePaddingLength('\nNext line')).toBe(1)
+        expect(getAnkiShortcutPostFencePaddingLength('Next line')).toBe(0)
     })
 })
