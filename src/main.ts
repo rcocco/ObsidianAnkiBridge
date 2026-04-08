@@ -14,6 +14,7 @@ import {
     formatSelectionForAnkiShortcutWrap,
     getAnkiShortcutPostFencePaddingLength,
 } from 'ankibridge/utils/anki-shortcut'
+import { buildAnkiScopeShortcutBlock } from 'ankibridge/utils/anki-scope-shortcut'
 import _ from 'lodash'
 import { addIcon, Notice, Plugin, TFile, Editor, EditorPosition } from 'obsidian'
 
@@ -142,6 +143,19 @@ export default class AnkiBridgePlugin extends Plugin {
                     editor.setSelection(toPos(editor, fos + startTag.length), toPos(editor, tos + startTag.length + (formatSelectedText.length-selectedText.length)));
                 }
             }
+        })
+
+        this.addCommand({
+            id: 'anki-bridge-insert-anki-scope-tags-block',
+            name: 'Insert anki-scope tags block',
+            editorCallback: (editor: Editor) => {
+                const { text, cursorOffset } = buildAnkiScopeShortcutBlock()
+                const selectionStart = editor.getCursor('from')
+                const selectionStartOffset = editor.posToOffset(selectionStart)
+
+                editor.replaceSelection(text)
+                editor.setCursor(editor.offsetToPos(selectionStartOffset + cursorOffset))
+            },
         })
 
         this.addRibbonIcon('flashcards', 'Sync with Anki', async () => {

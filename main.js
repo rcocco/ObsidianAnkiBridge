@@ -25314,6 +25314,15 @@ function getAnkiShortcutPostFencePaddingLength(textAfterFence) {
   return textAfterFence.startsWith("\n") ? 1 : 0;
 }
 
+// src/utils/anki-scope-shortcut.ts
+function buildAnkiScopeShortcutBlock() {
+  const text = ["```anki-scope", "tags:", "```", "", ""].join("\n");
+  return {
+    text,
+    cursorOffset: "```anki-scope\ntags:\n".length
+  };
+}
+
 // src/main.ts
 var import_lodash6 = __toESM(require_lodash());
 var import_obsidian11 = require("obsidian");
@@ -25414,6 +25423,17 @@ var AnkiBridgePlugin = class extends import_obsidian11.Plugin {
             editor.replaceSelection(buildAnkiShortcutWrappedSelection(selectedText));
             editor.setSelection(toPos(editor, fos + startTag.length), toPos(editor, tos + startTag.length + (formatSelectedText.length - selectedText.length)));
           }
+        }
+      });
+      this.addCommand({
+        id: "anki-bridge-insert-anki-scope-tags-block",
+        name: "Insert anki-scope tags block",
+        editorCallback: (editor) => {
+          const { text, cursorOffset } = buildAnkiScopeShortcutBlock();
+          const selectionStart = editor.getCursor("from");
+          const selectionStartOffset = editor.posToOffset(selectionStart);
+          editor.replaceSelection(text);
+          editor.setCursor(editor.offsetToPos(selectionStartOffset + cursorOffset));
         }
       });
       this.addRibbonIcon("flashcards", "Sync with Anki", () => __async(this, null, function* () {
