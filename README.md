@@ -20,9 +20,10 @@ Compared with the original project, this fork adds several practical improvement
 
 ### Examples
 
-#### 1. File-level `deckName` and `tags`
+#### 1. File-level `deckName`, `tags`, and `headingAsTag`
 
-You can define deck and tag defaults for the whole note in frontmatter:
+You can define deck and tag defaults for the whole note in frontmatter. You can also enable
+`headingAsTag` there to use the active headings as default tags for cards in the file:
 
 ````md
 ---
@@ -30,7 +31,10 @@ deckName: Biology::Cells
 tags:
   - biology
   - chapter-1
+headingAsTag: true
 ---
+
+# Cell Structure
 
 ```anki
 ---
@@ -40,9 +44,12 @@ Mitochondria
 ```
 ````
 
-#### 2. Heading-level `deckName` and `tags`
+This card will include `Cell Structure` as a tag in addition to the file-level tags.
 
-You can also scope deck and tags to a heading by using an `anki-scope` block:
+#### 2. Heading-level `deckName`, `tags`, and `headingAsTag`
+
+You can also scope deck, tags, and `headingAsTag` to a heading by using an `anki-scope` block.
+Heading-level `headingAsTag` overrides the file-level value, and child headings override parent headings:
 
 ````md
 # Chapter 1
@@ -51,6 +58,7 @@ You can also scope deck and tags to a heading by using an `anki-scope` block:
 deckName: Biology::Chapter1
 tags:
   - chapter-1
+headingAsTag: true
 ```
 
 ```anki
@@ -66,6 +74,7 @@ Answer
 deckName: Biology::Chapter2
 tags:
   - chapter-2
+headingAsTag: false
 ```
 
 ```anki
@@ -75,6 +84,9 @@ Question for chapter 2
 Answer
 ```
 ````
+
+In this example, cards under `Chapter 1` will use the heading text as tags, while cards under
+`Chapter 2` will not, because the child scope overrides the parent/file default.
 
 #### 3. Manual cloze numbering with bold text
 

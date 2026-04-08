@@ -21000,11 +21000,12 @@ var NoteBase = class {
     if (this.metadata) {
       noteTags = (_b = (_a = this.metadata) == null ? void 0 : _a.frontmatter) == null ? void 0 : _b["tags"];
     }
+    const normaliseTags = (tags) => (tags || []).map((tag) => tag.replace(/\s+/g, ""));
     return [
       plugin.settings.tagInAnki,
-      ...noteTags || [],
+      ...normaliseTags(noteTags),
       ...((_c = this.scopedConfig) == null ? void 0 : _c.tags) || [],
-      ...this.config.tags || []
+      ...normaliseTags(this.config.tags)
     ];
   }
   getEnabled() {
@@ -24438,8 +24439,15 @@ var HeadingScopeSchema = yup_default.object({
   headingAsTag: yup_default.boolean().nullAsUndefined()
 });
 function parseHeadingScope(configText) {
+  var _a;
   const configObj = load(configText) || {};
-  return HeadingScopeSchema.validateSync(configObj);
+  const validatedConfig = HeadingScopeSchema.validateSync(configObj);
+  return __spreadProps(__spreadValues({}, validatedConfig), {
+    tags: (_a = validatedConfig.tags) == null ? void 0 : _a.map((tag) => tag.replace(/\s+/g, ""))
+  });
+}
+function normaliseTag(tag) {
+  return tag.replace(/\s+/g, "");
 }
 function isFenceStart(line) {
   return line.match(/^([`~]{3,})(.*)$/);
@@ -24447,8 +24455,8 @@ function isFenceStart(line) {
 function isHeading(line) {
   return line.match(/^(#{1,6})[ \t]+(.+?)\s*$/);
 }
-function resolveHeadingScopeForLine(source, lineNumber) {
-  var _a;
+function resolveHeadingScopeForLine(source, lineNumber, defaultHeadingAsTag) {
+  var _a, _b;
   const lines = source.split("\n");
   const headings = [];
   const stack = [];
@@ -24520,25 +24528,39 @@ function resolveHeadingScopeForLine(source, lineNumber) {
     }
   }
   closeHeadingLevels(0, lines.length);
-  const activeHeadings = headings.filter((heading) => heading.scope !== void 0).filter((heading) => heading.startLine <= lineNumber && lineNumber <= heading.endLine).sort((a, b) => a.level - b.level);
+  const activeHeadings = headings.filter((heading) => heading.startLine <= lineNumber && lineNumber <= heading.endLine).sort((a, b) => a.level - b.level);
   if (!activeHeadings.length) {
     return void 0;
   }
-  const resolved = { tags: [] };
+  const resolved = {
+    tags: [],
+    headingAsTag: defaultHeadingAsTag
+  };
+  let hasScopedConfig = false;
   for (const heading of activeHeadings) {
     const scope = heading.scope;
-    if (scope.deck !== void 0) {
+    if ((scope == null ? void 0 : scope.deck) !== void 0) {
       resolved.deck = scope.deck;
+      hasScopedConfig = true;
     }
-    if (scope.deckName !== void 0) {
+    if ((scope == null ? void 0 : scope.deckName) !== void 0) {
       resolved.deckName = scope.deckName;
+      hasScopedConfig = true;
     }
-    if ((_a = scope.tags) == null ? void 0 : _a.length) {
+    if ((_a = scope == null ? void 0 : scope.tags) == null ? void 0 : _a.length) {
       resolved.tags = [...resolved.tags || [], ...scope.tags];
+      hasScopedConfig = true;
     }
-    if (scope.headingAsTag) {
-      resolved.tags = [...resolved.tags || [], heading.title];
+    if ((scope == null ? void 0 : scope.headingAsTag) !== void 0) {
+      resolved.headingAsTag = scope.headingAsTag;
+      hasScopedConfig = true;
     }
+    if (resolved.headingAsTag) {
+      resolved.tags = [...resolved.tags || [], normaliseTag(heading.title)];
+    }
+  }
+  if (!hasScopedConfig && !((_b = resolved.tags) == null ? void 0 : _b.length)) {
+    return void 0;
   }
   return resolved;
 }
@@ -24581,6 +24603,7 @@ var Reader = class {
   }
   readFile(file) {
     return __async(this, null, function* () {
+      var _a;
       const fileContent = stripCr(yield this.app.vault.read(file));
       const metadata = this.app.metadataCache.getFileCache(file);
       const initialFragment = {
@@ -24600,7 +24623,11 @@ var Reader = class {
             if (processedElement instanceof NoteBase) {
               processedElement.setMetaData(metadata);
               processedElement.setScopedConfig(
-                resolveHeadingScopeForLine(fileContent, processedElement.source.from)
+                resolveHeadingScopeForLine(
+                  fileContent,
+                  processedElement.source.from,
+                  (_a = metadata == null ? void 0 : metadata.frontmatter) == null ? void 0 : _a["headingAsTag"]
+                )
               );
               notes.push(processedElement);
               continue;

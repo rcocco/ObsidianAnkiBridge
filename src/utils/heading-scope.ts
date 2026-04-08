@@ -21,7 +21,16 @@ const HeadingScopeSchema: yup.SchemaOf<HeadingScopeConfig> = yup.object({
 
 function parseHeadingScope(configText: string): HeadingScopeConfig {
     const configObj = (load(configText) || {}) as HeadingScopeConfig
-    return HeadingScopeSchema.validateSync(configObj)
+    const validatedConfig = HeadingScopeSchema.validateSync(configObj)
+
+    return {
+        ...validatedConfig,
+        tags: validatedConfig.tags?.map((tag) => tag.replace(/\s+/g, '')),
+    }
+}
+
+function normaliseTag(tag: string): string {
+    return tag.replace(/\s+/g, '')
 }
 
 function isFenceStart(line: string): RegExpMatchArray | null {
@@ -35,6 +44,7 @@ function isHeading(line: string): RegExpMatchArray | null {
 export function resolveHeadingScopeForLine(
     source: string,
     lineNumber: number,
+    defaultHeadingAsTag?: boolean,
 ): HeadingScopeConfig | undefined {
     const lines = source.split('\n')
     const headings: HeadingNode[] = []
@@ -122,7 +132,6 @@ export function resolveHeadingScopeForLine(
     closeHeadingLevels(0, lines.length)
 
     const activeHeadings = headings
-        .filter((heading) => heading.scope !== undefined)
         .filter((heading) => heading.startLine <= lineNumber && lineNumber <= heading.endLine)
         .sort((a, b) => a.level - b.level)
 
@@ -130,21 +139,38 @@ export function resolveHeadingScopeForLine(
         return undefined
     }
 
-    const resolved: HeadingScopeConfig = { tags: [] }
+    const resolved: HeadingScopeConfig = {
+        tags: [],
+        headingAsTag: defaultHeadingAsTag,
+    }
+    let hasScopedConfig = false
+
     for (const heading of activeHeadings) {
-        const scope = heading.scope!
-        if (scope.deck !== undefined) {
+        const scope = heading.scope
+
+        if (scope?.deck !== undefined) {
             resolved.deck = scope.deck
+            hasScopedConfig = true
         }
-        if (scope.deckName !== undefined) {
+        if (scope?.deckName !== undefined) {
             resolved.deckName = scope.deckName
+            hasScopedConfig = true
         }
-        if (scope.tags?.length) {
+        if (scope?.tags?.length) {
             resolved.tags = [...(resolved.tags || []), ...scope.tags]
+            hasScopedConfig = true
         }
-        if (scope.headingAsTag) {
-            resolved.tags = [...(resolved.tags || []), heading.title]
+        if (scope?.headingAsTag !== undefined) {
+            resolved.headingAsTag = scope.headingAsTag
+            hasScopedConfig = true
         }
+        if (resolved.headingAsTag) {
+            resolved.tags = [...(resolved.tags || []), normaliseTag(heading.title)]
+        }
+    }
+
+    if (!hasScopedConfig && !(resolved.tags?.length)) {
+        return undefined
     }
 
     return resolved

@@ -10,7 +10,7 @@ describe('Reader heading scopes', () => {
 \`\`\`anki-scope
 deck: RootDeck
 tags:
-  - root
+  - root tag
 \`\`\`
 
 \`\`\`anki
@@ -23,12 +23,12 @@ Root Front
 \`\`\`anki-scope
 deck: ChildDeck
 tags:
-  - child
+  - child tag
 \`\`\`
 
 \`\`\`anki
 tags:
-  - card
+  - card tag
 ---
 Front
 ===
@@ -45,7 +45,7 @@ Back
                 getFileCache: jest.fn().mockReturnValue({
                     frontmatter: {
                         deckName: 'FileDeck',
-                        tags: ['file'],
+                        tags: ['file tag'],
                     },
                 }),
             },
@@ -78,15 +78,15 @@ Back
         expect(notes).toHaveLength(2)
 
         expect(notes[0].getDeckName(reader.plugin)).toBe('RootDeck')
-        expect(notes[0].getTags(reader.plugin)).toEqual(['obsidian', 'file', 'root'])
+        expect(notes[0].getTags(reader.plugin)).toEqual(['obsidian', 'filetag', 'roottag'])
 
         expect(notes[1].getDeckName(reader.plugin)).toBe('ChildDeck')
         expect(notes[1].getTags(reader.plugin)).toEqual([
             'obsidian',
-            'file',
-            'root',
-            'child',
-            'card',
+            'filetag',
+            'roottag',
+            'childtag',
+            'cardtag',
         ])
     })
 
@@ -118,7 +118,7 @@ Front
             metadataCache: {
                 getFileCache: jest.fn().mockReturnValue({
                     frontmatter: {
-                        tags: ['file'],
+                        tags: ['file tag'],
                     },
                 }),
             },
@@ -147,10 +147,130 @@ Front
         expect(notes).toHaveLength(1)
         expect(notes[0].getTags(reader.plugin)).toEqual([
             'obsidian',
-            'file',
-            'Root Heading',
+            'filetag',
+            'RootHeading',
             'explicit',
-            'Child Heading',
+            'ChildHeading',
+        ])
+    })
+
+    it('uses file-level headingAsTag as the default for active headings', async () => {
+        const headingTagSource = `# Root Heading
+
+## Child Heading
+
+\`\`\`anki
+---
+Front
+\`\`\`
+`
+
+        const app = {
+            vault: {
+                read: jest.fn().mockResolvedValue(headingTagSource),
+            },
+            metadataCache: {
+                getFileCache: jest.fn().mockReturnValue({
+                    frontmatter: {
+                        tags: ['file tag'],
+                        headingAsTag: true,
+                    },
+                }),
+            },
+        }
+
+        const plugin = {
+            registerMarkdownCodeBlockProcessor: jest.fn(),
+            settings: {
+                getBlueprintSettings: jest.fn().mockReturnValue({
+                    BasicCodeblock: true,
+                    Sandwich: false,
+                }),
+                defaultDeckMaps: [],
+                fallbackDeck: 'FallbackDeck',
+                tagInAnki: 'obsidian',
+            },
+            debug: jest.fn(),
+        }
+
+        const reader = new Reader(app as any, plugin as any)
+        await reader.setup()
+
+        const result = await reader.readFile(file)
+        const notes = result.elements.filter((element) => element instanceof NoteBase) as NoteBase[]
+
+        expect(notes).toHaveLength(1)
+        expect(notes[0].getTags(reader.plugin)).toEqual([
+            'obsidian',
+            'filetag',
+            'RootHeading',
+            'ChildHeading',
+        ])
+    })
+
+    it('lets child headingAsTag override file-level and parent heading defaults', async () => {
+        const headingTagSource = `# Root Heading
+
+\`\`\`anki-scope
+headingAsTag: true
+\`\`\`
+
+## Child Heading
+
+\`\`\`anki-scope
+headingAsTag: false
+\`\`\`
+
+### Grandchild Heading
+
+\`\`\`anki-scope
+headingAsTag: true
+\`\`\`
+
+\`\`\`anki
+---
+Front
+\`\`\`
+`
+
+        const app = {
+            vault: {
+                read: jest.fn().mockResolvedValue(headingTagSource),
+            },
+            metadataCache: {
+                getFileCache: jest.fn().mockReturnValue({
+                    frontmatter: {
+                        headingAsTag: true,
+                    },
+                }),
+            },
+        }
+
+        const plugin = {
+            registerMarkdownCodeBlockProcessor: jest.fn(),
+            settings: {
+                getBlueprintSettings: jest.fn().mockReturnValue({
+                    BasicCodeblock: true,
+                    Sandwich: false,
+                }),
+                defaultDeckMaps: [],
+                fallbackDeck: 'FallbackDeck',
+                tagInAnki: 'obsidian',
+            },
+            debug: jest.fn(),
+        }
+
+        const reader = new Reader(app as any, plugin as any)
+        await reader.setup()
+
+        const result = await reader.readFile(file)
+        const notes = result.elements.filter((element) => element instanceof NoteBase) as NoteBase[]
+
+        expect(notes).toHaveLength(1)
+        expect(notes[0].getTags(reader.plugin)).toEqual([
+            'obsidian',
+            'RootHeading',
+            'GrandchildHeading',
         ])
     })
 

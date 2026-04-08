@@ -240,11 +240,15 @@ export abstract class NoteBase {
         if(this.metadata) {
             noteTags = this.metadata?.frontmatter?.['tags']
         }
+
+        const normaliseTags = (tags: Array<string> | undefined): Array<string> =>
+            (tags || []).map((tag) => tag.replace(/\s+/g, ''))
+
         return [
             plugin.settings.tagInAnki,
-            ...(noteTags || []),
+            ...normaliseTags(noteTags),
             ...(this.scopedConfig?.tags || []),
-            ...(this.config.tags || []),
+            ...normaliseTags(this.config.tags),
         ]
     }
 

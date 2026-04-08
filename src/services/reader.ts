@@ -73,7 +73,11 @@ export class Reader {
                     if (processedElement instanceof NoteBase) {
                         processedElement.setMetaData(metadata)
                         processedElement.setScopedConfig(
-                            resolveHeadingScopeForLine(fileContent, processedElement.source.from),
+                            resolveHeadingScopeForLine(
+                                fileContent,
+                                processedElement.source.from,
+                                metadata?.frontmatter?.['headingAsTag'],
+                            ),
                         )
                         notes.push(processedElement)
                         continue
