@@ -1,12 +1,7 @@
 const CONFIG_PROPERTY_RE = /^[A-Za-z_][A-Za-z0-9_-]*:\s*(.*)$/
 
-function addTrailingBlankLine(content: string): string {
-    return `${content}\n\n`
-}
-
-function removeOneTrailingBlankLine(content: string): string {
-    return content.endsWith('\n\n') ? content.slice(0, -1) : content
-}
+export const ANKI_SHORTCUT_START_TAG = '```anki\n'
+export const ANKI_SHORTCUT_END_TAG = '\n```'
 
 function isConfigPropertyLine(line: string): boolean {
     return CONFIG_PROPERTY_RE.test(line)
@@ -56,17 +51,17 @@ export function formatSelectionForAnkiShortcutWrap(content: string): string {
 
     if (configEnd === 0) {
         if (lines[0]?.trim() === '---') {
-            return addTrailingBlankLine(content)
+            return content
         }
 
-        return addTrailingBlankLine(['---', ...lines].join('\n'))
+        return ['---', ...lines].join('\n')
     }
 
     if (configEnd >= lines.length || lines[configEnd].trim() === '---') {
-        return addTrailingBlankLine(content)
+        return content
     }
 
-    return addTrailingBlankLine([...lines.slice(0, configEnd), '---', ...lines.slice(configEnd)].join('\n'))
+    return [...lines.slice(0, configEnd), '---', ...lines.slice(configEnd)].join('\n')
 }
 
 export function formatSelectionForAnkiShortcutUnwrap(content: string): string {
@@ -78,12 +73,20 @@ export function formatSelectionForAnkiShortcutUnwrap(content: string): string {
             return content
         }
 
-        return removeOneTrailingBlankLine(lines.slice(1).join('\n'))
+        return lines.slice(1).join('\n')
     }
 
     if (configEnd >= lines.length || lines[configEnd].trim() !== '---') {
         return content
     }
 
-    return removeOneTrailingBlankLine([...lines.slice(0, configEnd), ...lines.slice(configEnd + 1)].join('\n'))
+    return [...lines.slice(0, configEnd), ...lines.slice(configEnd + 1)].join('\n')
+}
+
+export function buildAnkiShortcutWrappedSelection(content: string): string {
+    return `${ANKI_SHORTCUT_START_TAG}${formatSelectionForAnkiShortcutWrap(content)}${ANKI_SHORTCUT_END_TAG}\n\n`
+}
+
+export function getAnkiShortcutPostFencePaddingLength(textAfterFence: string): number {
+    return textAfterFence.startsWith('\n\n') ? 2 : 0
 }

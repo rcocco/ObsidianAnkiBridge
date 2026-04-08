@@ -25244,14 +25244,8 @@ var SettingsTab = class extends import_obsidian10.PluginSettingTab {
 
 // src/utils/anki-shortcut.ts
 var CONFIG_PROPERTY_RE = /^[A-Za-z_][A-Za-z0-9_-]*:\s*(.*)$/;
-function addTrailingBlankLine(content) {
-  return `${content}
-
-`;
-}
-function removeOneTrailingBlankLine(content) {
-  return content.endsWith("\n\n") ? content.slice(0, -1) : content;
-}
+var ANKI_SHORTCUT_START_TAG = "```anki\n";
+var ANKI_SHORTCUT_END_TAG = "\n```";
 function isConfigPropertyLine(line) {
   return CONFIG_PROPERTY_RE.test(line);
 }
@@ -25288,14 +25282,14 @@ function formatSelectionForAnkiShortcutWrap(content) {
   const configEnd = getLeadingConfigEndIndex(lines);
   if (configEnd === 0) {
     if (((_a = lines[0]) == null ? void 0 : _a.trim()) === "---") {
-      return addTrailingBlankLine(content);
+      return content;
     }
-    return addTrailingBlankLine(["---", ...lines].join("\n"));
+    return ["---", ...lines].join("\n");
   }
   if (configEnd >= lines.length || lines[configEnd].trim() === "---") {
-    return addTrailingBlankLine(content);
+    return content;
   }
-  return addTrailingBlankLine([...lines.slice(0, configEnd), "---", ...lines.slice(configEnd)].join("\n"));
+  return [...lines.slice(0, configEnd), "---", ...lines.slice(configEnd)].join("\n");
 }
 function formatSelectionForAnkiShortcutUnwrap(content) {
   var _a;
@@ -25305,12 +25299,20 @@ function formatSelectionForAnkiShortcutUnwrap(content) {
     if (((_a = lines[0]) == null ? void 0 : _a.trim()) !== "---") {
       return content;
     }
-    return removeOneTrailingBlankLine(lines.slice(1).join("\n"));
+    return lines.slice(1).join("\n");
   }
   if (configEnd >= lines.length || lines[configEnd].trim() !== "---") {
     return content;
   }
-  return removeOneTrailingBlankLine([...lines.slice(0, configEnd), ...lines.slice(configEnd + 1)].join("\n"));
+  return [...lines.slice(0, configEnd), ...lines.slice(configEnd + 1)].join("\n");
+}
+function buildAnkiShortcutWrappedSelection(content) {
+  return `${ANKI_SHORTCUT_START_TAG}${formatSelectionForAnkiShortcutWrap(content)}${ANKI_SHORTCUT_END_TAG}
+
+`;
+}
+function getAnkiShortcutPostFencePaddingLength(textAfterFence) {
+  return textAfterFence.startsWith("\n\n") ? 2 : 0;
 }
 
 // src/main.ts
@@ -25364,8 +25366,8 @@ var AnkiBridgePlugin = class extends import_obsidian11.Plugin {
         id: "anki-bridge-wrap-with-shortcut",
         name: "Wrap text with anki card",
         editorCallback: (editor) => {
-          const startTag = "```anki\n";
-          const endTag = "\n```";
+          const startTag = ANKI_SHORTCUT_START_TAG;
+          const endTag = ANKI_SHORTCUT_END_TAG;
           const selectedText = editor.getSelection();
           const formatSelectedText = formatSelectionForAnkiShortcutWrap(selectedText);
           function toPos(editor2, pos) {
@@ -25386,7 +25388,13 @@ var AnkiBridgePlugin = class extends import_obsidian11.Plugin {
           const startText = getRange(editor, fos, fos + startTag.length);
           const endText = getRange(editor, tos - endTag.length, tos);
           if (beforeText === startTag && afterText === endTag) {
-            editor.setSelection(toPos(editor, fos - startTag.length), toPos(editor, tos + endTag.length));
+            const paddingLength = getAnkiShortcutPostFencePaddingLength(
+              getRange(editor, tos + endTag.length, tos + endTag.length + 2)
+            );
+            editor.setSelection(
+              toPos(editor, fos - startTag.length),
+              toPos(editor, tos + endTag.length + paddingLength)
+            );
             const unwrappedText = formatSelectionForAnkiShortcutUnwrap(selectedText);
             editor.replaceSelection(unwrappedText);
             editor.setSelection(
@@ -25394,13 +25402,17 @@ var AnkiBridgePlugin = class extends import_obsidian11.Plugin {
               toPos(editor, fos - startTag.length + unwrappedText.length)
             );
           } else if (startText === startTag && endText === endTag) {
+            const paddingLength = getAnkiShortcutPostFencePaddingLength(
+              getRange(editor, tos, tos + 2)
+            );
+            editor.setSelection(toPos(editor, fos), toPos(editor, tos + paddingLength));
             const unwrappedText = formatSelectionForAnkiShortcutUnwrap(
               editor.getRange(toPos(editor, fos + startTag.length), toPos(editor, tos - endTag.length))
             );
             editor.replaceSelection(unwrappedText);
             editor.setSelection(toPos(editor, fos), toPos(editor, fos + unwrappedText.length));
           } else {
-            editor.replaceSelection(`${startTag}${formatSelectedText}${endTag}`);
+            editor.replaceSelection(buildAnkiShortcutWrappedSelection(selectedText));
             editor.setSelection(toPos(editor, fos + startTag.length), toPos(editor, tos + startTag.length + (formatSelectedText.length - selectedText.length)));
           }
         }

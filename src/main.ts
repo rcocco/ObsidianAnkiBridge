@@ -7,8 +7,12 @@ import { Reader } from 'ankibridge/services/reader'
 import { DEFAULT_SETTINGS, Settings } from 'ankibridge/settings/settings'
 import { SettingsTab } from 'ankibridge/settings/settings-tab'
 import {
+    ANKI_SHORTCUT_END_TAG,
+    ANKI_SHORTCUT_START_TAG,
+    buildAnkiShortcutWrappedSelection,
     formatSelectionForAnkiShortcutUnwrap,
     formatSelectionForAnkiShortcutWrap,
+    getAnkiShortcutPostFencePaddingLength,
 } from 'ankibridge/utils/anki-shortcut'
 import _ from 'lodash'
 import { addIcon, Notice, Plugin, TFile, Editor, EditorPosition } from 'obsidian'
@@ -75,8 +79,8 @@ export default class AnkiBridgePlugin extends Plugin {
             id: 'anki-bridge-wrap-with-shortcut',
             name: 'Wrap text with anki card',
             editorCallback: (editor: Editor)=>{
-                const startTag = "```anki\n"
-                const endTag = "\n```"
+                const startTag = ANKI_SHORTCUT_START_TAG
+                const endTag = ANKI_SHORTCUT_END_TAG
 
                 const selectedText = editor.getSelection();
                 const formatSelectedText = formatSelectionForAnkiShortcutWrap(selectedText)
@@ -107,7 +111,13 @@ export default class AnkiBridgePlugin extends Plugin {
 
                 if (beforeText === startTag && afterText === endTag) {
                 //=> undo (inside selection)
-                    editor.setSelection(toPos(editor, fos - startTag.length), toPos(editor, tos + endTag.length));
+                    const paddingLength = getAnkiShortcutPostFencePaddingLength(
+                        getRange(editor, tos + endTag.length, tos + endTag.length + 2),
+                    )
+                    editor.setSelection(
+                        toPos(editor, fos - startTag.length),
+                        toPos(editor, tos + endTag.length + paddingLength),
+                    );
                     const unwrappedText = formatSelectionForAnkiShortcutUnwrap(selectedText)
                     editor.replaceSelection(unwrappedText);
                     // re-select
@@ -117,6 +127,10 @@ export default class AnkiBridgePlugin extends Plugin {
                     );
                 } else if (startText === startTag && endText === endTag) {
                     //=> undo (outside selection)
+                    const paddingLength = getAnkiShortcutPostFencePaddingLength(
+                        getRange(editor, tos, tos + 2),
+                    )
+                    editor.setSelection(toPos(editor, fos), toPos(editor, tos + paddingLength));
                     const unwrappedText = formatSelectionForAnkiShortcutUnwrap(
                         editor.getRange(toPos(editor, fos + startTag.length), toPos(editor, tos - endTag.length)),
                     )
@@ -124,7 +138,7 @@ export default class AnkiBridgePlugin extends Plugin {
                     // re-select
                     editor.setSelection(toPos(editor, fos), toPos(editor, fos + unwrappedText.length));
                 } else {
-                    editor.replaceSelection(`${startTag}${formatSelectedText}${endTag}`);
+                    editor.replaceSelection(buildAnkiShortcutWrappedSelection(selectedText));
                     editor.setSelection(toPos(editor, fos + startTag.length), toPos(editor, tos + startTag.length + (formatSelectedText.length-selectedText.length)));
                 }
             }
